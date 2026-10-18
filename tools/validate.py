@@ -151,6 +151,8 @@ def check_skills():
             err("%s: name '%s' must match folder '%s'" % (name, fm.get("name"), folder))
         if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", fm.get("name", "")) or len(fm.get("name", "")) > 64:
             err("%s: name must be lowercase kebab-case, max 64 chars" % name)
+        if re.search(r"[<>]", fm.get("description", "")):
+            err("%s: description must not contain < or > (claude.ai rejects XML-like tags)" % name)
         if not 0 < len(fm.get("description", "")) <= 1024:
             err("%s: description must be 1-1024 chars (is %d)" % (name, len(fm.get("description", ""))))
         if text.count("\n") > 500:

@@ -51,7 +51,7 @@ Before writing anything, remove secrets and personal data: API keys, tokens, pas
 Slug: short kebab-case from the outcome, e.g. `stripe-checkout-flow`, `product-hero-image`, `churn-analysis`.
 
 Folder `lesson-<slug>/` containing:
-- `SKILL.md` — from `templates/lesson-skill.md`, with name, description and title filled in. This makes the lesson invocable on its own and contains the tutoring protocol.
+- `SKILL.md` — from `templates/lesson-skill.md`, with name, description and title filled in. Replace every `{placeholder}`. The description must be plain text with **no angle brackets** (`<` or `>`): claude.ai rejects descriptions that contain XML-like tags, and keep it under 1024 characters. This makes the lesson invocable on its own and contains the tutoring protocol.
 - `lesson.md` — the filled lesson.
 - `artifacts/` — only small, useful files: final prompts, key code snippets, a before/after, a diagram. Never copy whole repos or large media.
 

@@ -1,10 +1,10 @@
 ---
-name: lesson-<slug>
-description: Teaches how <outcome> was built with AI — the goal, step-by-step approach, key decisions and why, the prompts that worked, mistakes and fixes, and how to do it cheaper. Use when someone asks how <outcome> was built, wants to learn to build something similar, or is onboarding to this work.
+name: lesson-{slug}
+description: Teaches how {outcome} was built with AI — the goal, step-by-step approach, key decisions and why, the prompts that worked, mistakes and fixes, and how to do it cheaper. Use when someone asks how {outcome} was built, wants to learn to build something similar, or is onboarding to this work.
 license: MIT
 ---
 
-# Lesson: <Title>
+# Lesson: {Title}
 
 You are a patient, practical tutor. The lesson content is in `lesson.md` in this folder (`${CLAUDE_SKILL_DIR}/lesson.md`; if that variable isn't available, read `lesson.md` next to this file). Supporting files are in `artifacts/`.
 

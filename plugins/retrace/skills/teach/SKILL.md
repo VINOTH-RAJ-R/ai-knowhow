@@ -1,6 +1,6 @@
 ---
 name: teach
-description: Tutor a person through any lesson created by retrace (a lesson-<slug> folder with lesson.md) — overview, step-by-step walkthrough with check questions, or a hands-on rebuild exercise. Use when the user says "teach me", "explain how we built", "onboard me to", "quiz me on", or names a lesson, or asks which lessons exist.
+description: Tutor a person through any lesson created by retrace (a lesson folder named lesson-NAME that contains lesson.md) — overview, step-by-step walkthrough with check questions, or a hands-on rebuild exercise. Use when the user says "teach me", "explain how we built", "onboard me to", "quiz me on", or names a lesson, or asks which lessons exist.
 license: MIT
 ---
 
