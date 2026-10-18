@@ -1,0 +1,98 @@
+{
+  "id": "claude-haiku-5-5",
+  "provider": "anthropic",
+  "display_name": "Claude Haiku 5.5",
+  "family": "haiku",
+  "tier": "fast",
+  "status": "current",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1000000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 0.1,
+    "output": 0.5,
+    "cached_input": null,
+    "notes": "For prompts up to 100K tokens; $0.50 / $2.50 above that."
+  },
+  "effort": {
+    "parameter": "output_config.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium",
+    "notes": "First Haiku with effort. low for chat and simple high-volume work; medium for most work; high for strict instruction following."
+  },
+  "speed": "fastest",
+  "fit": {
+    "code.quick": 4,
+    "code.build": 3,
+    "code.frontend": 3,
+    "code.debug": 3,
+    "code.review": 3,
+    "agent.longrun": 2.5,
+    "agent.computer": 3,
+    "text.write": 3.5,
+    "text.transform": 4.5,
+    "text.chat": 4,
+    "data.extract": 5,
+    "data.analysis": 3,
+    "research.deep": 3,
+    "reason.hard": 3,
+    "vision.understand": 3.5
+  },
+  "best_for": [
+    "High-volume classification, extraction, routing",
+    "Sub-agents and cheap workers inside bigger pipelines",
+    "Fast chat and simple edits",
+    "Budget pick to run the Modelwise router"
+  ],
+  "watch_out": [
+    "At low effort it may skip a search or a check in long agent prompts",
+    "No server-side refusal fallback",
+    "Price rises 5x for prompts over 100K tokens"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Give an explicit output format (JSON schema / structured outputs)",
+    "Keep prompts short and inputs under 100K tokens to keep the low price"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

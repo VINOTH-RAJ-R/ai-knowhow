@@ -1,0 +1,35 @@
+{
+  "name": "ai-knowhow",
+  "description": "Know how it was built. Know what to build it with. Two open-source agent skills: modelwise (right model, effort and prompt for any task) and retrace (turn finished AI work into lessons that teach people).",
+  "owner": {
+    "name": "vinothraj",
+    "url": "https://github.com/VINOTH-RAJ-R"
+  },
+  "plugins": [
+    {
+      "name": "modelwise",
+      "source": "./plugins/modelwise",
+      "description": "Turn a basic prompt into the right Anthropic/OpenAI model, effort level and a structured, model-specific prompt, with cost estimates and token-saving tips.",
+      "category": "productivity",
+      "tags": [
+        "prompting",
+        "model-selection",
+        "cost",
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "name": "retrace",
+      "source": "./plugins/retrace",
+      "description": "Capture how an AI-assisted task was done (decisions, prompts, mistakes, cheaper path) as a lesson skill, and teach it to people.",
+      "category": "learning",
+      "tags": [
+        "learning",
+        "documentation",
+        "onboarding",
+        "knowledge-sharing"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<source>
+Q3 update from the logistics platform team. Shipment volume grew 18% quarter over quarter to 2.4 million parcels, driven mainly by the new grocery partner in Bengaluru which alone added 310,000 parcels. On-time delivery slipped from 96.1% to 93.4%, almost entirely because of the Chennai hub, where a sorter breakdown in August caused a nine-day backlog; the sorter was replaced on September 3 and on-time delivery in Chennai has been back above 95% since mid-September. Cost per parcel fell from ₹41 to ₹37, helped by route batching, which went live in five cities. Driver attrition rose to 7% monthly from 5%, and exit interviews point to the new shift rota; HR proposes reverting to the old rota in two pilot cities in October. Customer complaints per 10,000 parcels fell from 22 to 17. The team is asking for approval of ₹2.1 crore capex for a second sorter in Chennai to avoid a single point of failure, with an expected payback of 14 months. The Pune hub launch moves from November to January because the landlord delayed handover.
+</source>
+
+<context>
+The source is a Q3 operations update from a logistics platform team. The reader is the executive team, who need the status, the risks, and the decision being asked of them.
+</context>
+
+<task>
+Summarize the update in the source as exactly 5 bullets for the executive team. Lead with the decision requested, then the results, then the risks.
+</task>
+
+<requirements>
+- Exactly 5 bullets, in this order: (1) the capex request for a second Chennai sorter, (2) volume growth and cost per parcel, (3) on-time delivery and customer complaints, (4) driver attrition and the proposed rota change, (5) the Pune hub delay.
+- One sentence per bullet, about 30 words or fewer.
+- Use only facts, figures and dates stated in the source. Do not add causes, forecasts or recommendations. Keep the source's hedges (for example "point to").
+- Keep numbers, currency and units exactly as written (₹, crore, %, parcels).
+- Plain, direct language. No hype.
+- If something in the source is unclear, add [CHECK] at the end of that bullet.
+</requirements>
+
+<output_format>
+Final text only: five bullets, each starting with "- ". No heading, no introduction, no notes.
+</output_format>

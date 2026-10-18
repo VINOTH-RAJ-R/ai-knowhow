@@ -1,0 +1,14 @@
+<context>
+A small utility used to clean a list of records. Each row is a dict with an 'email' string and an 'updated_at' ISO date string.
+</context>
+<task>Write a Python function `dedupe_by_email(rows)` that keeps only the most recent row per email and returns the kept rows sorted by email.</task>
+<requirements>
+- Python 3, standard library only.
+- Emails match case-insensitively and ignore surrounding whitespace, so " A@x.com" and "a@x.com " are the same email.
+- "Most recent" is decided by parsing `updated_at` as an ISO date (not by comparing raw strings). If two rows for one email have the same `updated_at`, keep the later one in the input list.
+- Return the original row dicts unchanged, do not mutate the input list, and sort the result by the normalized (stripped, lowercased) email.
+- Empty input returns an empty list.
+Before saying it's done, run a real check: write a few asserts covering mixed case, surrounding spaces, differing dates, a date tie, and empty input, and run them. A syntax check doesn't count. If you can't run anything, say exactly what you couldn't verify.
+</requirements>
+<done_when>The asserts pass and the function matches every rule above.</done_when>
+<output_format>Only the function (plus the asserts in a separate block), then a 2-line summary.</output_format>

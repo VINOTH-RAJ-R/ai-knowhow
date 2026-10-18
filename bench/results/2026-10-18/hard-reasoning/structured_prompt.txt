@@ -1,0 +1,19 @@
+<context>
+Five independent exact-answer math and combinatorics questions. Each has a single correct numeric answer, so accuracy matters more than explanation.
+</context>
+
+<problem>
+1. In how many ways can a 2x10 board be tiled using 1x2 dominoes (either orientation) and 2x2 squares?
+2. What is the sum of the digits of 2^100?
+3. How many 5-card poker hands (standard 52-card deck) contain exactly one pair and nothing better (no two pair, three of a kind, straight, flush, full house, or four of a kind)?
+4. What is the expected number of rolls of a fair six-sided die until every face has appeared at least once? Give a decimal.
+5. How many integers from 1 to 10000 are perfect squares or perfect cubes, but not both?
+</problem>
+
+<instructions>
+Work each question out carefully, then verify it with an independent method (for example a short script, a recurrence versus a closed form, or inclusion-exclusion versus direct counting). If a question is ambiguous, state the assumption you made.
+</instructions>
+
+<output_format>
+Final answers only, numbered 1 to 5, one line each. For question 4, give a decimal.
+</output_format>

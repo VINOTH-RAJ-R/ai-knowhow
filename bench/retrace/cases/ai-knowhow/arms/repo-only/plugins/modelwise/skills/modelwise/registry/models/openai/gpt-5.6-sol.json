@@ -1,0 +1,87 @@
+{
+  "id": "gpt-5.6-sol",
+  "provider": "openai",
+  "display_name": "GPT-5.6 Sol",
+  "family": "gpt-5.6",
+  "tier": "flagship",
+  "status": "previous",
+  "released": "2026-07-09",
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1050000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 4,
+    "output": 20,
+    "cached_input": 0.4,
+    "notes": "Promotional price through at least 2026-11-21. Over 272K input tokens the whole request is billed at 2x input / 1.5x output. Batch & Flex about 50% off; Fast tier about 2x."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium",
+    "notes": "Supports reasoning.mode='pro'."
+  },
+  "speed": "medium",
+  "fit": {
+    "code.quick": 5,
+    "code.build": 4.5,
+    "code.frontend": 4.5,
+    "code.debug": 4.5,
+    "code.review": 4.5,
+    "agent.longrun": 4.5,
+    "agent.computer": 4.5,
+    "text.write": 4.5,
+    "text.transform": 4.5,
+    "text.chat": 4.5,
+    "data.extract": 4.5,
+    "data.analysis": 4.5,
+    "research.deep": 4.5,
+    "reason.hard": 4,
+    "vision.understand": 4.5
+  },
+  "best_for": [
+    "Existing 5.6 integrations"
+  ],
+  "watch_out": [
+    "GPT-6.1 Sol is cheaper and comparable or better"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Prefer gpt-6.1-sol"
+  ],
+  "where": [
+    "api",
+    "chatgpt",
+    "codex",
+    "azure"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "gpt-image-1.5",
+  "provider": "openai",
+  "display_name": "GPT Image -1.5",
+  "family": "gpt-image",
+  "tier": "specialist",
+  "status": "deprecated",
+  "released": null,
+  "retires": "2026-12-01",
+  "capabilities": [
+    "image_in",
+    "image_out"
+  ],
+  "context_window": null,
+  "max_output_tokens": null,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": null,
+    "output": null,
+    "notes": "Deprecated."
+  },
+  "effort": {
+    "parameter": "quality",
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": "auto"
+  },
+  "speed": "medium",
+  "fit": {
+    "image.generate": 2,
+    "image.edit": 2
+  },
+  "best_for": [
+    "Nothing new"
+  ],
+  "watch_out": [
+    "Shuts down 2026-12-01"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Migrate to gpt-image-2.5-flare"
+  ],
+  "where": [
+    "api"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/deprecations",
+      "what": "shutdown dates"
+    }
+  ],
+  "verified": "2026-10-17"
+}

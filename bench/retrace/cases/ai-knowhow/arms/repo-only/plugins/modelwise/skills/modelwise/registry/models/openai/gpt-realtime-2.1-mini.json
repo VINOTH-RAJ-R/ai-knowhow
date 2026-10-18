@@ -1,0 +1,59 @@
+{
+  "id": "gpt-realtime-2.1-mini",
+  "provider": "openai",
+  "display_name": "GPT Realtime 2.1 mini",
+  "family": "gpt-realtime",
+  "tier": "specialist",
+  "status": "current",
+  "released": "2026-07-06",
+  "retires": null,
+  "capabilities": [
+    "audio",
+    "text_out",
+    "image_in",
+    "tool_use"
+  ],
+  "context_window": 128000,
+  "max_output_tokens": 32000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 10,
+    "output": 20,
+    "cached_input": 0.3,
+    "notes": "Audio rates shown. Text: $0.60 / $0.06 / $2.40. OpenAI's named replacement for TTS models."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [],
+    "default": null
+  },
+  "speed": "fastest",
+  "fit": {
+    "audio.agent": 4,
+    "audio.speak": 4.5
+  },
+  "best_for": [
+    "Text-to-speech and budget voice agents"
+  ],
+  "watch_out": [
+    "No dedicated new TTS model exists; this is the recommended path"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Pass voice style as instructions; keep the script clean"
+  ],
+  "where": [
+    "api"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-realtime-2.1-mini",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

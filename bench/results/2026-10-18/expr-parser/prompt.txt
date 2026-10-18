@@ -1,0 +1,1 @@
+python function evaluate(expr) that evaluates an arithmetic expression string without using eval/exec. support + - * / ** (right-associative, binds tighter than unary minus like python), unary minus, parentheses, integers and decimals, spaces anywhere. raise ValueError on malformed input (e.g. '2 +', '(1', '1 2'). division by zero should raise ZeroDivisionError

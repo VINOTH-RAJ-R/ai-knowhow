@@ -1,0 +1,8 @@
+{
+  "name": "retrace",
+  "version": "0.1.0",
+  "description": "Capture how an AI-assisted task was done (decisions, prompts, mistakes, cheaper path) as a lesson skill, and teach it to people.",
+  "author": { "name": "vinothraj" },
+  "license": "MIT",
+  "keywords": ["learning", "lessons", "onboarding", "documentation", "teaching"]
+}

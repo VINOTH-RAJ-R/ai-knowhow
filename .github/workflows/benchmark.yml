@@ -1,0 +1,49 @@
+name: benchmark
+
+# Monthly A/B benchmark over the real APIs (and on demand after a registry change).
+# Needs repository secrets ANTHROPIC_API_KEY and/or OPENAI_API_KEY; vendors without a key are skipped.
+# Spends real money: a full run is typically a few dollars at list prices.
+on:
+  schedule:
+    - cron: "0 7 1 * *"
+  workflow_dispatch:
+    inputs:
+      tasks:
+        description: "Comma-separated task ids (blank = all)"
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check keys
+        id: keys
+        env:
+          A: ${{ secrets.ANTHROPIC_API_KEY }}
+          O: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$A$O" ]; then echo "skip=1" >> "$GITHUB_OUTPUT"; echo "No API keys configured; skipping."; fi
+      - name: Run and score
+        if: steps.keys.outputs.skip != '1'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          pip install anthropic openai
+          OUT="bench/results/$(date +%F)-api"
+          if [ -n "${{ github.event.inputs.tasks }}" ]; then T="--tasks ${{ github.event.inputs.tasks }}"; fi
+          python3 bench/run_api.py --effort-sweep --out "$OUT" $T
+          python3 bench/score.py --run "$OUT" > /dev/null
+      - name: Commit results
+        if: steps.keys.outputs.skip != '1'
+        run: |
+          git config user.name "benchmark-bot"
+          git config user.email "benchmark-bot@users.noreply.github.com"
+          git add bench/results && git commit -m "benchmark: $(date +%F)" && git push || echo "Nothing to commit"

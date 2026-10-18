@@ -1,0 +1,37 @@
+<context>
+Single-page marketing site for a yoga studio. The studio has no existing brand, copy, or design system to match. Most visitors will arrive on a phone from a local search and want to see the class schedule and book a first class, so the mobile layout matters most.
+</context>
+
+<task>
+Build a one-page landing site for a yoga studio. The primary action is booking a first class.
+</task>
+
+<content>
+Sections, in this order:
+1. Hero: headline and one-line subhead about calm, strength, and community, with a "Book a first class" button.
+2. About: a short paragraph on the studio's approach, written for beginners and returning students.
+3. Class schedule: a weekly list or table of 6 sample classes (for example Vinyasa, Gentle Hatha, Yin, Restorative) with day, time, level, and teacher.
+4. Teachers: 3 sample instructors, each with a short bio and a placeholder photo area.
+5. Membership: 3 pricing tiers (drop-in, 10-class pack, unlimited monthly) with sample prices.
+6. Testimonials: 2 short quotes, marked as placeholders in an HTML comment.
+7. Visit: placeholder address ("123 Example Street, Your City"), opening hours, and a map placeholder.
+8. Booking form: name, email, phone, preferred class, and a submit button that posts to a placeholder URL.
+9. Footer: studio name, placeholder Instagram and Facebook links, and copyright.
+Write realistic, concrete sample copy. Keep invented facts plausible and generic, with no real addresses, statistics, or customer names.
+</content>
+
+<design>
+Calm, airy, with a warm wellness feel. Define a muted palette of 2 to 3 colors as CSS custom properties on :root, and keep body text clearly readable. Use one serif font for headings and one sans-serif font for body text.
+Do not use: cream or off-white backgrounds by default, italic accent words in headlines, numbered "01/02/03" section labels, monospace eyebrow labels, pill-shaped buttons everywhere, purple-to-blue gradients.
+</design>
+
+<requirements>
+Single index.html with inline CSS and only a few lines of vanilla JavaScript (for example, a mobile menu toggle). No frameworks and no build step.
+Mobile-first, with a 16px side gutter. Check the layout at 375px and 1440px: no horizontal scroll, and the booking button is visible without zooming.
+Use semantic HTML (header, nav, main, sections with headings, footer), alt text on images, labelled form fields, visible focus styles, and WCAG AA text contrast.
+Before you say the page is done, verify it: render it in a headless browser at both widths if you have one, or check the breakpoints by reading the CSS. Say what you verified and what you could not.
+</requirements>
+
+<output_format>
+One file, index.html, then a three-line summary: what you built, how you verified it, and which parts are still placeholders. Where details are unknown, use realistic sample content. Never show notes or instructions as page text.
+</output_format>

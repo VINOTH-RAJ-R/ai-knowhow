@@ -1,0 +1,23 @@
+{
+  "name": "modelwise",
+  "version": "0.1.0",
+  "description": "Turn a basic prompt into the right Anthropic/OpenAI model, effort level and a structured, model-specific prompt, with cost estimates and token-saving tips.",
+  "author": {
+    "name": "vinothraj",
+    "url": "https://github.com/VINOTH-RAJ-R"
+  },
+  "license": "MIT",
+  "keywords": [
+    "prompting",
+    "model-selection",
+    "effort",
+    "cost",
+    "anthropic",
+    "openai"
+  ],
+  "homepage": "https://github.com/VINOTH-RAJ-R/ai-knowhow",
+  "repository": "https://github.com/VINOTH-RAJ-R/ai-knowhow",
+  "documentationUrl": "https://github.com/VINOTH-RAJ-R/ai-knowhow/tree/main/plugins/modelwise#readme",
+  "supportUrl": "https://github.com/VINOTH-RAJ-R/ai-knowhow/issues",
+  "privacyPolicyUrl": "https://github.com/VINOTH-RAJ-R/ai-knowhow/blob/main/PRIVACY.md"
+}

@@ -1,0 +1,31 @@
+<context>
+Six short invoice-like text snippets, each with an id. Downstream code will load the result as JSON, so every value must be in a fixed format even though the snippets use different layouts, languages of formatting and currencies.
+</context>
+
+<task>
+For each snippet, extract the invoice number, the invoice date and the total amount, and return them as a JSON list with one object per snippet.
+</task>
+
+<requirements>
+- Keys, in this order: id, invoice_no, date, total.
+- id: the snippet's number, as an integer.
+- invoice_no: the identifier as a string, without a label such as "Inv", "INVOICE NO." or "#". Keep letters, digits, dashes and slashes exactly as written. If the snippet has no invoice or reference number, use null.
+- date: the invoice date (issue date) in YYYY-MM-DD. If a snippet also gives a payment date, order date or other date, use only the date that belongs to the invoice itself, unless the snippet gives no invoice date, in which case use the order date. If a snippet states its own date format, follow it when reading the date. If there is no date, use null.
+- total: a JSON number only (no currency symbol, no thousands separators, dot as decimal separator). Use the final amount due or charged, after tax, not a subtotal. Convert European formats such as 3.400,50 to 3400.50. If there is no total, use null.
+- Do not guess. Use null only when the information is absent from the snippet.
+- Return the JSON list and nothing else.
+</requirements>
+
+<input>
+<snippet id="1">Inv #A-1043 dated 3 March 2026. Amount due: $1,250.00</snippet>
+<snippet id="2">INVOICE NO. 88231 // 2026-01-17 // TOTAL USD 99.90 (incl. tax)</snippet>
+<snippet id="3">Bill ref: KX/22/7 issued on 07/04/2026 (DD/MM/YYYY). Grand total: EUR 3.400,50</snippet>
+<snippet id="4">Thanks for your order! Total charged $45. Order date Feb 2, 2026.</snippet>
+<snippet id="5">Invoice 5521-B, date: 12-Dec-2025, subtotal 200.00, tax 36.00, total 236.00</snippet>
+<snippet id="6">Re: invoice INV-0091 — paid in full ($780.25) on 2026/05/30, invoice date 2026/05/01</snippet>
+</input>
+
+<output_format>
+A JSON list only, shaped like this (placeholder values):
+[{"id": 1, "invoice_no": "...", "date": "YYYY-MM-DD", "total": 0.00}]
+</output_format>

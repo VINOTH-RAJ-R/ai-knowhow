@@ -1,0 +1,29 @@
+{
+  "e2e": {
+    "launch-email": {
+      "Z": "A",
+      "Y": "B",
+      "X": "C"
+    },
+    "yoga-landing": {
+      "Z": "A",
+      "Y": "B",
+      "X": "C"
+    },
+    "summary": {
+      "Y": "A",
+      "X": "B",
+      "Z": "C"
+    }
+  },
+  "retrace": {
+    "spendsum": {
+      "Q": "A",
+      "P": "B"
+    },
+    "ai-knowhow": {
+      "Q": "A",
+      "P": "B"
+    }
+  }
+}

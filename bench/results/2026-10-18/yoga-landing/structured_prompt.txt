@@ -1,0 +1,33 @@
+<context>
+A yoga studio needs a one-page landing site. Visitors are local people, mostly on phones, who want to see what classes are offered, when, and book a first class. Studio name, location and brand details are not given yet, so use the placeholders below and keep them easy to find and replace.
+</context>
+
+<task>
+Build a one-page landing site for a yoga studio. Primary action: book a trial class (a clear "Book a class" button in the hero and again near the end of the page).
+</task>
+
+<content>
+Sections in order, with realistic placeholder copy (clearly marked so it is easy to swap):
+1. Hero: studio name [[FILL: studio name]], one-line promise, primary CTA, one supporting image slot.
+2. Class styles: 4 to 5 styles (for example vinyasa, yin, beginners, prenatal) with a one-line description and level for each.
+3. Weekly schedule: a simple table or list by day and time, readable on a phone.
+4. Teachers: 3 short bios with photo slots.
+5. Pricing: drop-in, 10-class pack, monthly unlimited, plus a first-class offer. [[FILL: real prices and currency]]
+6. Testimonials: 3 short quotes, marked as placeholders.
+7. Visit and contact: address and map link [[FILL: address]], opening hours, phone/WhatsApp, Instagram link, short booking form (name, email, phone, preferred class) that posts to a placeholder URL.
+</content>
+
+<design>
+Calm, welcoming, uncluttered, with generous whitespace and photo-forward layout. [[FILL: brand colors with hex, heading and body fonts, 1-2 reference sites]]. If no brand is given, choose a restrained palette of two or three natural tones with one accent color, one serif or soft sans for headings and one clean sans for body, and state the choices at the top of the CSS as variables.
+Do not use: cream or off-white page background by default, italic accent words in headlines, numbered 01/02/03 section labels, monospace eyebrow labels, pill-shaped buttons everywhere, purple-to-blue gradients, stock lotus or om icons as decoration.
+</design>
+
+<requirements>
+- Single index.html with inline CSS and a small amount of vanilla JS only if needed (no frameworks, no build step). Images are placeholders (solid blocks or inline SVG), not hotlinked.
+- Mobile-first. Semantic HTML, alt text, visible focus states, WCAG AA contrast, tap targets of at least 44px.
+- Open the page and check the layout at 375px and 1440px: no horizontal scroll, text readable, CTA visible without scrolling at 375px. Fix anything that fails before saying it is done.
+</requirements>
+
+<output_format>
+The finished file, then a 3-line summary: what was built, which placeholders still need real content, and how it was checked.
+</output_format>

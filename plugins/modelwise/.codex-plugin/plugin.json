@@ -1,0 +1,47 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "modelwise",
+  "version": "0.1.0",
+  "description": "Turn a basic prompt into the right Anthropic/OpenAI model, effort level and a structured, model-specific prompt, with cost estimates and token-saving tips.",
+  "author": {
+    "name": "vinothraj",
+    "url": "https://github.com/VINOTH-RAJ-R"
+  },
+  "homepage": "https://github.com/VINOTH-RAJ-R/ai-knowhow",
+  "repository": "https://github.com/VINOTH-RAJ-R/ai-knowhow",
+  "license": "MIT",
+  "keywords": [
+    "prompting",
+    "model-selection",
+    "effort",
+    "cost",
+    "anthropic",
+    "openai"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Modelwise",
+        "shortDescription": "Right model, effort & prompt",
+        "longDescription": "Type a basic prompt and get the best Anthropic or OpenAI model for it, the reasoning effort to use, a cost comparison across all current models, a structured prompt in the format that model prefers, and token-saving tips. All model facts come from a curated registry built from official vendor docs; runs fully locally.",
+        "developerName": "vinothraj",
+        "category": "Productivity",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/VINOTH-RAJ-R/ai-knowhow",
+        "privacyPolicyURL": "https://github.com/VINOTH-RAJ-R/ai-knowhow/blob/main/PRIVACY.md",
+        "termsOfServiceURL": "https://github.com/VINOTH-RAJ-R/ai-knowhow/blob/main/LICENSE",
+        "defaultPrompt": [
+          "Use modelwise: landing page for my bakery",
+          "Use modelwise to find the cheapest way to classify 50,000 support tickets",
+          "Use modelwise: which model and effort for debugging a failing Next.js build?"
+        ],
+        "brandColor": "#0F766E",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      }
+    }
+  }
+}

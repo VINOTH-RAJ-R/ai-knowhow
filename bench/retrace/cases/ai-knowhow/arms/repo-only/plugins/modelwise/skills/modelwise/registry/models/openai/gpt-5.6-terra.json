@@ -1,0 +1,86 @@
+{
+  "id": "gpt-5.6-terra",
+  "provider": "openai",
+  "display_name": "GPT-5.6 Terra",
+  "family": "gpt-5.6",
+  "tier": "balanced",
+  "status": "previous",
+  "released": "2026-07-09",
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1050000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 2,
+    "output": 12,
+    "cached_input": 0.2,
+    "notes": "Over 272K input tokens the whole request is billed at 2x input / 1.5x output. Batch & Flex about 50% off; Fast tier about 2x."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium"
+  },
+  "speed": "fast",
+  "fit": {
+    "code.quick": 3.5,
+    "code.build": 3.5,
+    "code.frontend": 3.5,
+    "code.debug": 3.5,
+    "code.review": 3.5,
+    "agent.longrun": 3.5,
+    "agent.computer": 3.5,
+    "text.write": 3.5,
+    "text.transform": 4,
+    "text.chat": 4,
+    "data.extract": 4.5,
+    "data.analysis": 3.5,
+    "research.deep": 3.5,
+    "reason.hard": 3.5,
+    "vision.understand": 3.5
+  },
+  "best_for": [
+    "Former 'mini' tier"
+  ],
+  "watch_out": [
+    "Costs more than GPT-6.1 Sol for less quality"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Prefer gpt-6.1-sol or gpt-6-luna"
+  ],
+  "where": [
+    "api",
+    "chatgpt",
+    "codex",
+    "azure"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

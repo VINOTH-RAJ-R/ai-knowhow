@@ -1,0 +1,6 @@
+{
+  "Groceries": ["tesco", "aldi", "supermarket", "grocer"],
+  "Transport": ["uber", "train", "fuel", "shell"],
+  "Eating Out": ["cafe", "restaurant", "pizza"],
+  "Bills": ["electric", "water", "internet"]
+}

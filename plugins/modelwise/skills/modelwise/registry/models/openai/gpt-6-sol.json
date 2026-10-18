@@ -1,0 +1,87 @@
+{
+  "id": "gpt-6-sol",
+  "provider": "openai",
+  "display_name": "GPT-6 Sol",
+  "family": "gpt-6",
+  "tier": "balanced",
+  "status": "previous",
+  "released": "2026-09-22",
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1050000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 2,
+    "output": 10,
+    "cached_input": 0.2,
+    "notes": "Over 272K input tokens the whole request is billed at 2x input / 1.5x output. Batch & Flex about 50% off; Fast tier about 2x."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium",
+    "notes": "In Chat Completions, function calling only works at 'none'."
+  },
+  "speed": "fast",
+  "fit": {
+    "code.quick": 4.5,
+    "code.build": 4,
+    "code.frontend": 4,
+    "code.debug": 4,
+    "code.review": 4,
+    "agent.longrun": 4,
+    "agent.computer": 4,
+    "text.write": 4,
+    "text.transform": 4.5,
+    "text.chat": 4.5,
+    "data.extract": 4.5,
+    "data.analysis": 4,
+    "research.deep": 4,
+    "reason.hard": 4,
+    "vision.understand": 4
+  },
+  "best_for": [
+    "Existing integrations. GPT-6.1 Sol is the same price and stronger, with cheaper cache"
+  ],
+  "watch_out": [
+    "Superseded by gpt-6.1-sol"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Prefer gpt-6.1-sol"
+  ],
+  "where": [
+    "api",
+    "chatgpt",
+    "codex",
+    "azure"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-sol",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

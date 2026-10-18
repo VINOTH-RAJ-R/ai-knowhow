@@ -1,0 +1,858 @@
+{
+  "$comment": "Task taxonomy. The router classifies the user's prompt into one task id, a complexity, and a priority. 'effort' maps complexity onto the normalized E-scale (see effort-scale.json). 'tokens' are rough per-task estimates (input, output) used only for comparing costs. They are not quotes. 'tokens' is null for media tasks priced per image/second. 'fallback' names the task to route when no model can do this one.",
+  "complexities": {
+    "simple": "One step. The answer is obvious once you know the facts. Low risk if it's slightly wrong.",
+    "moderate": "A few steps or files. Needs some judgment. Normal day-to-day work.",
+    "complex": "Many steps or files, hidden constraints, or high stakes. Mistakes are expensive.",
+    "frontier": "Long-horizon, novel, or research-grade. Even strong models often fail. Needs planning and verification."
+  },
+  "priorities": {
+    "quality": "Best result. Cost is secondary.",
+    "balanced": "Good result at sensible cost (default).",
+    "cost": "Cheapest model that still clears the quality bar.",
+    "speed": "Fastest response that still clears the quality bar."
+  },
+  "min_fit_by_complexity": {
+    "simple": 2,
+    "moderate": 3,
+    "complex": 4,
+    "frontier": 5
+  },
+  "tasks": [
+    {
+      "id": "code.quick",
+      "label": "Quick code: snippet, one function, regex, shell command, small fix",
+      "signals": [
+        "regex",
+        "one-liner",
+        "snippet",
+        "bash command",
+        "convert this",
+        "small function",
+        "syntax"
+      ],
+      "requires": [
+        "text_out"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E2",
+        "complex": "E3",
+        "frontier": "E4"
+      },
+      "tokens": {
+        "simple": [
+          2000,
+          800
+        ],
+        "moderate": [
+          5000,
+          2000
+        ],
+        "complex": [
+          15000,
+          5000
+        ],
+        "frontier": [
+          30000,
+          10000
+        ]
+      },
+      "template": "templates/coding.md"
+    },
+    {
+      "id": "code.build",
+      "label": "Build a feature, app, API or script from a description",
+      "signals": [
+        "build",
+        "create an app",
+        "implement",
+        "add a feature",
+        "api",
+        "backend",
+        "endpoint",
+        "script that"
+      ],
+      "requires": [
+        "text_out"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E3",
+        "complex": "E4",
+        "frontier": "E5"
+      },
+      "tokens": {
+        "simple": [
+          8000,
+          3000
+        ],
+        "moderate": [
+          60000,
+          12000
+        ],
+        "complex": [
+          300000,
+          40000
+        ],
+        "frontier": [
+          1500000,
+          120000
+        ]
+      },
+      "template": "templates/coding.md"
+    },
+    {
+      "id": "code.frontend",
+      "label": "Frontend / UI: web page, component, landing page, design-to-code",
+      "signals": [
+        "landing page",
+        "ui",
+        "component",
+        "react",
+        "css",
+        "tailwind",
+        "website",
+        "screen",
+        "figma",
+        "design"
+      ],
+      "requires": [
+        "text_out"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E3",
+        "complex": "E4",
+        "frontier": "E5"
+      },
+      "tokens": {
+        "simple": [
+          8000,
+          6000
+        ],
+        "moderate": [
+          40000,
+          20000
+        ],
+        "complex": [
+          200000,
+          60000
+        ],
+        "frontier": [
+          800000,
+          150000
+        ]
+      },
+      "template": "templates/frontend.md"
+    },
+    {
+      "id": "code.debug",
+      "label": "Debug: error, failing test, wrong behavior, performance problem",
+      "signals": [
+        "error",
+        "bug",
+        "fails",
+        "not working",
+        "exception",
+        "stack trace",
+        "crash",
+        "slow",
+        "why does"
+      ],
+      "requires": [
+        "text_out"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E3",
+        "complex": "E4",
+        "frontier": "E5"
+      },
+      "tokens": {
+        "simple": [
+          6000,
+          1500
+        ],
+        "moderate": [
+          40000,
+          6000
+        ],
+        "complex": [
+          250000,
+          25000
+        ],
+        "frontier": [
+          1000000,
+          80000
+        ]
+      },
+      "template": "templates/debugging.md"
+    },
+    {
+      "id": "code.review",
+      "label": "Code review, refactor, migration, explain a codebase",
+      "signals": [
+        "review",
+        "refactor",
+        "clean up",
+        "migrate",
+        "upgrade",
+        "explain this code",
+        "architecture"
+      ],
+      "requires": [
+        "text_out"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E3",
+        "complex": "E4",
+        "frontier": "E5"
+      },
+      "tokens": {
+        "simple": [
+          10000,
+          2000
+        ],
+        "moderate": [
+          60000,
+          8000
+        ],
+        "complex": [
+          300000,
+          30000
+        ],
+        "frontier": [
+          1200000,
+          100000
+        ]
+      },
+      "template": "templates/code-review.md"
+    },
+    {
+      "id": "agent.longrun",
+      "label": "Autonomous long-running agent work: multi-hour coding, end-to-end tasks with tools",
+      "signals": [
+        "autonomously",
+        "end to end",
+        "agent",
+        "overnight",
+        "entire repo",
+        "until done",
+        "multi-step with tools"
+      ],
+      "requires": [
+        "text_out",
+        "tool_use"
+      ],
+      "effort": {
+        "simple": "E3",
+        "moderate": "E3",
+        "complex": "E4",
+        "frontier": "E5"
+      },
+      "tokens": {
+        "simple": [
+          100000,
+          15000
+        ],
+        "moderate": [
+          500000,
+          50000
+        ],
+        "complex": [
+          2000000,
+          150000
+        ],
+        "frontier": [
+          8000000,
+          500000
+        ]
+      },
+      "template": "templates/agentic.md"
+    },
+    {
+      "id": "agent.computer",
+      "label": "Computer / browser use: operate a UI, fill forms, navigate apps",
+      "signals": [
+        "click",
+        "browser",
+        "navigate the site",
+        "fill the form",
+        "operate",
+        "computer use",
+        "automate the ui"
+      ],
+      "requires": [
+        "text_out",
+        "tool_use",
+        "computer_use"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E3",
+        "complex": "E4",
+        "frontier": "E4"
+      },
+      "tokens": {
+        "simple": [
+          50000,
+          3000
+        ],
+        "moderate": [
+          200000,
+          10000
+        ],
+        "complex": [
+          800000,
+          30000
+        ],
+        "frontier": [
+          2000000,
+          60000
+        ]
+      },
+      "template": "templates/agentic.md"
+    },
+    {
+      "id": "text.write",
+      "label": "Writing: articles, docs, emails, marketing copy, scripts, stories",
+      "signals": [
+        "write",
+        "draft",
+        "blog",
+        "article",
+        "email",
+        "copy",
+        "post",
+        "story",
+        "documentation",
+        "proposal"
+      ],
+      "requires": [
+        "text_out"
+      ],
+      "effort": {
+        "simple": "E1",
+        "moderate": "E2",
+        "complex": "E3",
+        "frontier": "E4"
+      },
+      "tokens": {
+        "simple": [
+          1500,
+          1000
+        ],
+        "moderate": [
+          5000,
+          3000
+        ],
+        "complex": [
+          30000,
+          8000
+        ],
+        "frontier": [
+          100000,
+          20000
+        ]
+      },
+      "template": "templates/writing.md"
+    },
+    {
+      "id": "text.transform",
+      "label": "Summarize, rewrite, translate, change tone, shorten",
+      "signals": [
+        "summarize",
+        "rewrite",
+        "translate",
+        "shorten",
+        "tone",
+        "paraphrase",
+        "tl;dr",
+        "simplify"
+      ],
+      "requires": [
+        "text_out"
+      ],
+      "effort": {
+        "simple": "E0",
+        "moderate": "E1",
+        "complex": "E2",
+        "frontier": "E3"
+      },
+      "tokens": {
+        "simple": [
+          3000,
+          600
+        ],
+        "moderate": [
+          20000,
+          2000
+        ],
+        "complex": [
+          150000,
+          6000
+        ],
+        "frontier": [
+          600000,
+          15000
+        ]
+      },
+      "template": "templates/writing.md"
+    },
+    {
+      "id": "text.chat",
+      "label": "Quick question, explanation, brainstorming, advice",
+      "signals": [
+        "what is",
+        "explain",
+        "how do i",
+        "ideas for",
+        "brainstorm",
+        "should i",
+        "difference between"
+      ],
+      "requires": [
+        "text_out"
+      ],
+      "effort": {
+        "simple": "E0",
+        "moderate": "E2",
+        "complex": "E3",
+        "frontier": "E4"
+      },
+      "tokens": {
+        "simple": [
+          500,
+          400
+        ],
+        "moderate": [
+          2000,
+          1200
+        ],
+        "complex": [
+          10000,
+          3000
+        ],
+        "frontier": [
+          30000,
+          6000
+        ]
+      },
+      "template": "templates/chat.md"
+    },
+    {
+      "id": "data.extract",
+      "label": "Extraction / classification / tagging, often at high volume, structured output",
+      "signals": [
+        "extract",
+        "classify",
+        "tag",
+        "categorize",
+        "parse",
+        "json",
+        "label",
+        "for each row",
+        "bulk",
+        "thousands"
+      ],
+      "requires": [
+        "text_out",
+        "structured_output"
+      ],
+      "effort": {
+        "simple": "E0",
+        "moderate": "E1",
+        "complex": "E2",
+        "frontier": "E3"
+      },
+      "tokens": {
+        "simple": [
+          800,
+          150
+        ],
+        "moderate": [
+          3000,
+          400
+        ],
+        "complex": [
+          15000,
+          1500
+        ],
+        "frontier": [
+          60000,
+          4000
+        ]
+      },
+      "template": "templates/extraction.md"
+    },
+    {
+      "id": "data.analysis",
+      "label": "Data analysis: spreadsheets, CSV, metrics, charts, SQL",
+      "signals": [
+        "analyze",
+        "csv",
+        "spreadsheet",
+        "excel",
+        "sql",
+        "metrics",
+        "chart",
+        "dashboard",
+        "trend",
+        "forecast"
+      ],
+      "requires": [
+        "text_out"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E3",
+        "complex": "E4",
+        "frontier": "E4"
+      },
+      "tokens": {
+        "simple": [
+          5000,
+          1500
+        ],
+        "moderate": [
+          30000,
+          5000
+        ],
+        "complex": [
+          150000,
+          15000
+        ],
+        "frontier": [
+          500000,
+          40000
+        ]
+      },
+      "template": "templates/data-analysis.md"
+    },
+    {
+      "id": "research.deep",
+      "label": "Research and synthesis: compare sources, market/tech research, reports",
+      "signals": [
+        "research",
+        "compare",
+        "market",
+        "report",
+        "sources",
+        "literature",
+        "competitive",
+        "deep dive",
+        "investigate"
+      ],
+      "requires": [
+        "text_out"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E3",
+        "complex": "E3",
+        "frontier": "E4"
+      },
+      "tokens": {
+        "simple": [
+          20000,
+          2000
+        ],
+        "moderate": [
+          100000,
+          6000
+        ],
+        "complex": [
+          400000,
+          15000
+        ],
+        "frontier": [
+          1500000,
+          40000
+        ]
+      },
+      "template": "templates/research.md"
+    },
+    {
+      "id": "reason.hard",
+      "label": "Hard reasoning: math, proofs, logic puzzles, planning, strategy, tricky decisions",
+      "signals": [
+        "prove",
+        "math",
+        "optimize",
+        "plan",
+        "strategy",
+        "puzzle",
+        "trade-off",
+        "decision",
+        "calculate"
+      ],
+      "requires": [
+        "text_out"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E3",
+        "complex": "E4",
+        "frontier": "E6"
+      },
+      "tokens": {
+        "simple": [
+          1000,
+          2000
+        ],
+        "moderate": [
+          3000,
+          8000
+        ],
+        "complex": [
+          8000,
+          25000
+        ],
+        "frontier": [
+          20000,
+          80000
+        ]
+      },
+      "template": "templates/reasoning.md"
+    },
+    {
+      "id": "vision.understand",
+      "label": "Understand images, screenshots, charts, PDFs, scanned documents",
+      "signals": [
+        "this image",
+        "screenshot",
+        "photo",
+        "pdf",
+        "scan",
+        "diagram",
+        "read this chart",
+        "ocr",
+        "invoice"
+      ],
+      "requires": [
+        "text_out",
+        "image_in"
+      ],
+      "effort": {
+        "simple": "E1",
+        "moderate": "E2",
+        "complex": "E4",
+        "frontier": "E5"
+      },
+      "tokens": {
+        "simple": [
+          3000,
+          500
+        ],
+        "moderate": [
+          15000,
+          1500
+        ],
+        "complex": [
+          80000,
+          5000
+        ],
+        "frontier": [
+          300000,
+          15000
+        ]
+      },
+      "template": "templates/vision.md"
+    },
+    {
+      "id": "image.generate",
+      "label": "Generate an image: illustration, product shot, poster, logo, social graphic",
+      "signals": [
+        "generate an image",
+        "create a picture",
+        "logo",
+        "poster",
+        "illustration",
+        "thumbnail",
+        "photo of",
+        "render",
+        "draw"
+      ],
+      "requires": [
+        "image_out"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E3",
+        "complex": "E4",
+        "frontier": "E4"
+      },
+      "tokens": {
+        "simple": null,
+        "moderate": null,
+        "complex": null,
+        "frontier": null
+      },
+      "template": "templates/image.md"
+    },
+    {
+      "id": "image.edit",
+      "label": "Edit an image: change background, inpaint, restyle, combine references",
+      "signals": [
+        "edit this image",
+        "remove background",
+        "change the",
+        "make it look like",
+        "inpaint",
+        "replace",
+        "combine these images"
+      ],
+      "requires": [
+        "image_out",
+        "image_in"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E3",
+        "complex": "E4",
+        "frontier": "E4"
+      },
+      "tokens": {
+        "simple": null,
+        "moderate": null,
+        "complex": null,
+        "frontier": null
+      },
+      "template": "templates/image.md"
+    },
+    {
+      "id": "video.generate",
+      "label": "Generate a video clip: ad, b-roll, explainer shot, social short",
+      "signals": [
+        "video",
+        "clip",
+        "animation",
+        "reel",
+        "short",
+        "b-roll",
+        "commercial",
+        "scene",
+        "footage"
+      ],
+      "requires": [
+        "video_out"
+      ],
+      "effort": {
+        "simple": "E2",
+        "moderate": "E3",
+        "complex": "E4",
+        "frontier": "E4"
+      },
+      "tokens": {
+        "simple": null,
+        "moderate": null,
+        "complex": null,
+        "frontier": null
+      },
+      "template": "templates/video.md",
+      "fallback": {
+        "task": "text.write",
+        "note": "No video-generation model is in the registry: OpenAI shut down the Sora 2 API on 2026-09-24 and Anthropic does not generate video. The route below is for the model that writes your shot list and generator prompt. Generator recommendations (e.g. Google Veo, Runway, Kling) are planned for phase 2."
+      }
+    },
+    {
+      "id": "audio.transcribe",
+      "label": "Transcribe audio: meetings, calls, podcasts, captions",
+      "signals": [
+        "transcribe",
+        "transcript",
+        "captions",
+        "subtitles",
+        "speech to text",
+        "meeting notes from audio"
+      ],
+      "requires": [
+        "audio"
+      ],
+      "effort": {
+        "simple": "E0",
+        "moderate": "E0",
+        "complex": "E1",
+        "frontier": "E2"
+      },
+      "tokens": {
+        "simple": null,
+        "moderate": null,
+        "complex": null,
+        "frontier": null
+      },
+      "template": "templates/audio.md",
+      "fallback": {
+        "task": "text.write",
+        "note": "Claude models don't do audio. If you're limited to Anthropic, the route below writes the script or prompt; use an audio model for the voice."
+      }
+    },
+    {
+      "id": "audio.speak",
+      "label": "Text-to-speech: voiceover, narration, spoken audio",
+      "signals": [
+        "voiceover",
+        "text to speech",
+        "tts",
+        "narration",
+        "read this aloud",
+        "audio version"
+      ],
+      "requires": [
+        "audio"
+      ],
+      "effort": {
+        "simple": "E0",
+        "moderate": "E1",
+        "complex": "E2",
+        "frontier": "E3"
+      },
+      "tokens": {
+        "simple": null,
+        "moderate": null,
+        "complex": null,
+        "frontier": null
+      },
+      "template": "templates/audio.md",
+      "fallback": {
+        "task": "text.write",
+        "note": "Claude models don't do audio. If you're limited to Anthropic, the route below writes the script or prompt; use an audio model for the voice."
+      }
+    },
+    {
+      "id": "audio.agent",
+      "label": "Real-time voice agent: phone bot, live assistant, live translation",
+      "signals": [
+        "voice agent",
+        "phone bot",
+        "call center",
+        "talk to",
+        "live voice",
+        "real-time voice",
+        "live translation"
+      ],
+      "requires": [
+        "audio"
+      ],
+      "effort": {
+        "simple": "E1",
+        "moderate": "E2",
+        "complex": "E3",
+        "frontier": "E4"
+      },
+      "tokens": {
+        "simple": null,
+        "moderate": null,
+        "complex": null,
+        "frontier": null
+      },
+      "template": "templates/audio.md",
+      "fallback": {
+        "task": "text.write",
+        "note": "Claude models don't do audio. If you're limited to Anthropic, the route below writes the script or prompt; use an audio model for the voice."
+      }
+    }
+  ]
+}

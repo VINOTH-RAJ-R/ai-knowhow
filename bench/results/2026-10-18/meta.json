@@ -1,0 +1,333 @@
+{
+  "movavg-debug": {
+    "skill": {
+      "runner_model": "sonnet",
+      "harness_tokens": 79249,
+      "seconds": 30.8
+    },
+    "C": {
+      "runner_model": "haiku",
+      "harness_tokens": 58191,
+      "seconds": 14.5
+    },
+    "A": {
+      "runner_model": "opus",
+      "harness_tokens": 56530,
+      "seconds": 21.4
+    },
+    "B": {
+      "runner_model": "haiku",
+      "harness_tokens": 62269,
+      "seconds": 30.8
+    }
+  },
+  "reasoning": {
+    "skill": {
+      "runner_model": "sonnet",
+      "harness_tokens": 73403,
+      "seconds": 30.9
+    },
+    "B": {
+      "runner_model": "sonnet",
+      "harness_tokens": 56634,
+      "seconds": 9.9
+    },
+    "C": {
+      "runner_model": "sonnet",
+      "harness_tokens": 56363,
+      "seconds": 10.0
+    },
+    "A": {
+      "runner_model": "opus",
+      "harness_tokens": 55894,
+      "seconds": 11.0
+    }
+  },
+  "dedupe": {
+    "skill": {
+      "runner_model": "sonnet",
+      "harness_tokens": 74770,
+      "seconds": 32.2
+    },
+    "C": {
+      "runner_model": "haiku",
+      "harness_tokens": 57814,
+      "seconds": 13.0
+    },
+    "B": {
+      "runner_model": "haiku",
+      "harness_tokens": 59965,
+      "seconds": 19.7
+    },
+    "A": {
+      "runner_model": "opus",
+      "harness_tokens": 57158,
+      "seconds": 22.2
+    },
+    "skill-haiku": {
+      "runner_model": "haiku",
+      "harness_tokens": 82642,
+      "seconds": 41.5
+    }
+  },
+  "ipv4": {
+    "skill": {
+      "runner_model": "sonnet",
+      "harness_tokens": 71757,
+      "seconds": 33.5
+    },
+    "C": {
+      "runner_model": "haiku",
+      "harness_tokens": 57836,
+      "seconds": 12.7
+    },
+    "A": {
+      "runner_model": "opus",
+      "harness_tokens": 56423,
+      "seconds": 16.0
+    },
+    "B": {
+      "runner_model": "haiku",
+      "harness_tokens": 59552,
+      "seconds": 17.3
+    }
+  },
+  "summary": {
+    "skill": {
+      "runner_model": "sonnet",
+      "harness_tokens": 81303,
+      "seconds": 39.3
+    },
+    "C": {
+      "runner_model": "haiku",
+      "harness_tokens": 57520,
+      "seconds": 10.2
+    },
+    "A": {
+      "runner_model": "opus",
+      "harness_tokens": 56455,
+      "seconds": 15.5
+    },
+    "B": {
+      "runner_model": "haiku",
+      "harness_tokens": 59951,
+      "seconds": 19.0
+    },
+    "skill-v2-haiku": {
+      "runner_model": "haiku",
+      "harness_tokens": 92061,
+      "seconds": 69.4
+    },
+    "B2": {
+      "runner_model": "haiku",
+      "harness_tokens": 59202,
+      "seconds": 13.3
+    },
+    "skill-v3-haiku": {
+      "runner_model": "haiku",
+      "harness_tokens": 93948,
+      "seconds": 56.2
+    },
+    "B3": {
+      "runner_model": "haiku",
+      "harness_tokens": 60940,
+      "seconds": 20.3
+    }
+  },
+  "invoices": {
+    "skill": {
+      "runner_model": "sonnet",
+      "harness_tokens": 83869,
+      "seconds": 39.8
+    },
+    "B": {
+      "runner_model": "haiku",
+      "harness_tokens": 58937,
+      "seconds": 14.7
+    },
+    "A": {
+      "runner_model": "opus",
+      "harness_tokens": 56528,
+      "seconds": 15.0
+    },
+    "C": {
+      "runner_model": "haiku",
+      "harness_tokens": 57623,
+      "seconds": 15.0
+    }
+  },
+  "launch-email": {
+    "skill": {
+      "runner_model": "sonnet",
+      "harness_tokens": 85168,
+      "seconds": 167.6
+    },
+    "C": {
+      "runner_model": "sonnet",
+      "harness_tokens": 56883,
+      "seconds": 15.6
+    },
+    "A": {
+      "runner_model": "opus",
+      "harness_tokens": 56265,
+      "seconds": 18.3
+    },
+    "B": {
+      "runner_model": "sonnet",
+      "harness_tokens": 60376,
+      "seconds": 31.3
+    },
+    "skill-haiku": {
+      "runner_model": "haiku",
+      "harness_tokens": 86035,
+      "seconds": 56.0
+    },
+    "skill-v2-haiku": {
+      "runner_model": "haiku",
+      "harness_tokens": 87738,
+      "seconds": 53.9
+    },
+    "B2": {
+      "runner_model": "haiku",
+      "harness_tokens": 61105,
+      "seconds": 23.8
+    },
+    "skill-v3-haiku": {
+      "runner_model": "haiku",
+      "harness_tokens": 90905,
+      "seconds": 75.9
+    },
+    "B3": {
+      "runner_model": "sonnet",
+      "harness_tokens": 57363,
+      "seconds": 14.8
+    }
+  },
+  "yoga-landing": {
+    "skill": {
+      "runner_model": "sonnet",
+      "harness_tokens": 95618,
+      "seconds": 178.6
+    },
+    "C": {
+      "runner_model": "sonnet",
+      "harness_tokens": 67905,
+      "seconds": 74.6
+    },
+    "B": {
+      "runner_model": "sonnet",
+      "harness_tokens": 70669,
+      "seconds": 92.1
+    },
+    "A": {
+      "runner_model": "opus",
+      "harness_tokens": 73783,
+      "seconds": 149.9
+    },
+    "skill-v2-haiku": {
+      "runner_model": "haiku",
+      "harness_tokens": 91631,
+      "seconds": 90.5
+    },
+    "B2": {
+      "runner_model": "sonnet",
+      "harness_tokens": 72356,
+      "seconds": 105.4
+    },
+    "skill-v3-haiku": {
+      "runner_model": "haiku",
+      "harness_tokens": 94503,
+      "seconds": 73.8
+    },
+    "B3": {
+      "runner_model": "sonnet",
+      "harness_tokens": 73262,
+      "seconds": 112.8
+    }
+  },
+  "expr-parser": {
+    "skill": {
+      "runner_model": "sonnet",
+      "harness_tokens": 75041,
+      "seconds": 33.6
+    },
+    "C": {
+      "runner_model": "haiku",
+      "harness_tokens": 64633,
+      "seconds": 36.2
+    },
+    "A": {
+      "runner_model": "opus",
+      "harness_tokens": 60094,
+      "seconds": 48.1
+    },
+    "B": {
+      "runner_model": "haiku",
+      "harness_tokens": 72734,
+      "seconds": 64.9
+    }
+  },
+  "hard-reasoning": {
+    "skill": {
+      "runner_model": "sonnet",
+      "harness_tokens": 76689,
+      "seconds": 33.9
+    },
+    "C": {
+      "runner_model": "sonnet",
+      "harness_tokens": 56541,
+      "seconds": 10.3
+    },
+    "B": {
+      "runner_model": "sonnet",
+      "harness_tokens": 56888,
+      "seconds": 12.5
+    },
+    "A": {
+      "runner_model": "opus",
+      "harness_tokens": 56039,
+      "seconds": 12.5
+    }
+  },
+  "router": {
+    "classify": {
+      "runner_model": "haiku",
+      "harness_tokens": 75969,
+      "seconds": 32.2
+    }
+  },
+  "retrace-aik": {
+    "learnerB": {
+      "runner_model": "sonnet",
+      "harness_tokens": 79098,
+      "seconds": 20.4
+    },
+    "learnerA": {
+      "runner_model": "sonnet",
+      "harness_tokens": 85001,
+      "seconds": 42.4
+    }
+  },
+  "retrace-spend": {
+    "learnerB": {
+      "runner_model": "sonnet",
+      "harness_tokens": 73343,
+      "seconds": 24.2
+    },
+    "learnerA": {
+      "runner_model": "sonnet",
+      "harness_tokens": 63315,
+      "seconds": 26.4
+    },
+    "lesson": {
+      "runner_model": "sonnet",
+      "harness_tokens": 77973,
+      "seconds": 89.8
+    },
+    "quiz": {
+      "runner_model": "sonnet",
+      "harness_tokens": 64227,
+      "seconds": 25.2
+    }
+  }
+}

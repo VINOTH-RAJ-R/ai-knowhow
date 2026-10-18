@@ -1,0 +1,97 @@
+{
+  "id": "claude-sonnet-5-5",
+  "provider": "anthropic",
+  "display_name": "Claude Sonnet 5.5",
+  "family": "sonnet",
+  "tier": "balanced",
+  "status": "current",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1000000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 2,
+    "output": 10,
+    "cached_input": 0.2
+  },
+  "effort": {
+    "parameter": "output_config.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high",
+    "notes": "Levels were recalibrated. Start at medium for agentic coding, low for chat/content/extraction. To switch thinking off use thinking:{type:'between_tools'} (high or below)."
+  },
+  "speed": "fast",
+  "fit": {
+    "code.quick": 5,
+    "code.build": 4.5,
+    "code.frontend": 4.5,
+    "code.debug": 4.5,
+    "code.review": 4.5,
+    "agent.longrun": 4,
+    "agent.computer": 4.5,
+    "text.write": 4.5,
+    "text.transform": 5,
+    "text.chat": 5,
+    "data.extract": 5,
+    "data.analysis": 4.5,
+    "research.deep": 4,
+    "reason.hard": 4,
+    "vision.understand": 4.5
+  },
+  "best_for": [
+    "Everyday coding and agents at a fifth of Opus cost",
+    "Computer use",
+    "Content, chat, and tool-heavy workflows",
+    "Recommended default model to run the Modelwise router itself"
+  ],
+  "watch_out": [
+    "At low effort it may report code 'done' without running tests. Ask it to verify",
+    "Follows 'minimize tool calls' literally. Don't discourage tool use"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Set effort explicitly (medium for coding, low for chat)",
+    "Tell it to run a real check (tests/build) before saying done",
+    "Remove old 'don't be lazy' style workarounds. They're no longer needed"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

@@ -1,0 +1,69 @@
+{
+  "id": "gpt-oss-120b",
+  "provider": "openai",
+  "display_name": "gpt-oss-120b (open weight)",
+  "family": "gpt-oss",
+  "tier": "specialist",
+  "status": "current",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "tool_use",
+    "structured_output"
+  ],
+  "context_window": 131072,
+  "max_output_tokens": 131072,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": null,
+    "output": null,
+    "notes": "Apache 2.0; self-host (single H100). No API price published."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": "medium"
+  },
+  "speed": "medium",
+  "fit": {
+    "code.quick": 3,
+    "code.build": 2.5,
+    "code.debug": 2.5,
+    "text.write": 3,
+    "text.transform": 3.5,
+    "text.chat": 3.5,
+    "data.extract": 3.5,
+    "reason.hard": 3
+  },
+  "best_for": [
+    "Private/on-prem deployments where data can't leave your servers"
+  ],
+  "watch_out": [
+    "Knowledge cutoff 2024-06; text only",
+    "You pay for and run the hardware"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Set reasoning level in the system prompt ('Reasoning: high')"
+  ],
+  "where": [
+    "self-hosted",
+    "api"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-oss-120b",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

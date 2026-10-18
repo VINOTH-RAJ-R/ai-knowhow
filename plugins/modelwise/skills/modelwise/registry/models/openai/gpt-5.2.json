@@ -1,0 +1,85 @@
+{
+  "id": "gpt-5.2",
+  "provider": "openai",
+  "display_name": "GPT-5.2",
+  "family": "gpt-5.2",
+  "tier": "flagship",
+  "status": "legacy",
+  "released": "2025-12-11",
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 400000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 1.75,
+    "output": 14,
+    "cached_input": 0.175,
+    "notes": "Over 272K input tokens the whole request is billed at 2x input / 1.5x output. Batch & Flex about 50% off; Fast tier about 2x."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "default": "none"
+  },
+  "speed": "medium",
+  "fit": {
+    "code.quick": 3,
+    "code.build": 3,
+    "code.frontend": 3,
+    "code.debug": 3,
+    "code.review": 3,
+    "agent.longrun": 3,
+    "agent.computer": 3,
+    "text.write": 3,
+    "text.transform": 3,
+    "text.chat": 3,
+    "data.extract": 3.5,
+    "data.analysis": 3,
+    "research.deep": 3,
+    "reason.hard": 3,
+    "vision.understand": 3
+  },
+  "best_for": [
+    "Legacy"
+  ],
+  "watch_out": [
+    "Two generations behind"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Migrate to gpt-6.1-sol"
+  ],
+  "where": [
+    "api",
+    "chatgpt",
+    "codex",
+    "azure"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.2",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

@@ -1,0 +1,90 @@
+{
+  "id": "claude-sonnet-4-6",
+  "provider": "anthropic",
+  "display_name": "Claude Sonnet 4.6",
+  "family": "sonnet",
+  "tier": "balanced",
+  "status": "legacy",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1000000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 3,
+    "output": 15,
+    "cached_input": 0.3
+  },
+  "effort": {
+    "parameter": "output_config.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "max"
+    ],
+    "default": "high",
+    "notes": "No xhigh level."
+  },
+  "speed": "fast",
+  "fit": {
+    "code.quick": 3.5,
+    "code.build": 3.5,
+    "code.frontend": 3.5,
+    "code.debug": 3.5,
+    "code.review": 3.5,
+    "agent.longrun": 3,
+    "agent.computer": 3.5,
+    "text.write": 3.5,
+    "text.transform": 3.5,
+    "text.chat": 3.5,
+    "data.extract": 3.5,
+    "data.analysis": 3.5,
+    "research.deep": 3.5,
+    "reason.hard": 3,
+    "vision.understand": 3.5
+  },
+  "best_for": [
+    "Legacy integrations"
+  ],
+  "watch_out": [
+    "Costs more than Sonnet 5.5 and is weaker"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Migrate to claude-sonnet-5-5"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

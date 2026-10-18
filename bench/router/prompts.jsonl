@@ -1,0 +1,40 @@
+{"id": 1, "prompt": "regex to match indian mobile numbers", "task": "code.quick", "complexity": ["simple"], "priority": "balanced"}
+{"id": 2, "prompt": "build a REST API in node for a todo app with auth and postgres", "task": "code.build", "complexity": ["moderate", "complex"], "priority": "balanced"}
+{"id": 3, "prompt": "landing page for my bakery", "task": "code.frontend", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 4, "prompt": "my django app throws 'relation does not exist' after deploy, works locally", "task": "code.debug", "complexity": ["moderate"], "priority": "balanced"}
+{"id": 5, "prompt": "review this PR for security issues, it touches our payment webhook handler", "task": "code.review", "complexity": ["moderate", "complex"], "priority": "quality"}
+{"id": 6, "prompt": "migrate our whole monorepo from webpack to vite, run tests and fix whatever breaks, work through it on your own", "task": "agent.longrun", "complexity": ["complex", "frontier"], "priority": "balanced"}
+{"id": 7, "prompt": "log into our vendor portal every morning and download the invoices csv", "task": "agent.computer", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 8, "prompt": "write a linkedin post announcing our series A", "task": "text.write", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 9, "prompt": "summarize this 40 page contract into key risks", "task": "text.transform", "complexity": ["moderate", "complex"], "priority": "balanced"}
+{"id": 10, "prompt": "what is the difference between kafka and rabbitmq", "task": "text.chat", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 11, "prompt": "classify 50,000 support tickets into billing, bug, feature request, other - as cheap as possible", "task": "data.extract", "complexity": ["simple", "moderate"], "priority": "cost"}
+{"id": 12, "prompt": "analyze this sales csv and tell me which regions are declining and why", "task": "data.analysis", "complexity": ["moderate"], "priority": "balanced"}
+{"id": 13, "prompt": "research the EV charging market in southeast asia and compare the top 5 players", "task": "research.deep", "complexity": ["moderate", "complex"], "priority": "balanced"}
+{"id": 14, "prompt": "prove that the square root of 2 is irrational", "task": "reason.hard", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 15, "prompt": "read this screenshot of an error dialog and tell me what it means", "task": "vision.understand", "complexity": ["simple"], "priority": "balanced"}
+{"id": 16, "prompt": "create a logo for my coffee brand called Bean There", "task": "image.generate", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 17, "prompt": "remove the background from these 200 product photos", "task": "image.edit", "complexity": ["simple", "moderate"], "priority": "cost"}
+{"id": 18, "prompt": "make a 30 second product demo video for our app", "task": "video.generate", "complexity": ["moderate", "complex"], "priority": "balanced"}
+{"id": 19, "prompt": "transcribe my 2 hour podcast episode with speaker names", "task": "audio.transcribe", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 20, "prompt": "voiceover for my explainer video script in a warm british voice", "task": "audio.speak", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 21, "prompt": "build a phone bot that books appointments for my clinic", "task": "audio.agent", "complexity": ["moderate", "complex"], "priority": "balanced"}
+{"id": 22, "prompt": "convert this json to a typescript interface", "task": "code.quick", "complexity": ["simple"], "priority": "balanced"}
+{"id": 23, "prompt": "add stripe subscriptions to my nextjs saas", "task": "code.build", "complexity": ["moderate", "complex"], "priority": "balanced"}
+{"id": 24, "prompt": "our checkout page takes 8 seconds to load, find out why", "task": "code.debug", "complexity": ["moderate", "complex"], "priority": "balanced"}
+{"id": 25, "prompt": "explain how this legacy cobol module works so I can rewrite it", "task": "code.review", "complexity": ["moderate", "complex"], "priority": "balanced"}
+{"id": 26, "prompt": "translate our app strings file into spanish, french and german", "task": "text.transform", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 27, "prompt": "write the docs for our public API", "task": "text.write", "complexity": ["moderate", "complex"], "priority": "balanced"}
+{"id": 28, "prompt": "pull name, company and title from these 3,000 business card scans into a spreadsheet", "task": "data.extract", "complexity": ["simple", "moderate"], "priority": "cost"}
+{"id": 29, "prompt": "write a SQL query for monthly active users by country from our events table", "task": "data.analysis", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 30, "prompt": "should we build or buy our auth system? 12 engineers, B2B SaaS, SOC2 next year", "task": "reason.hard", "complexity": ["moderate", "complex"], "priority": "balanced"}
+{"id": 31, "prompt": "extract all line items from this scanned invoice pdf", "task": "vision.understand", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 32, "prompt": "instagram carousel images for our diwali sale", "task": "image.generate", "complexity": ["simple", "moderate"], "priority": "balanced"}
+{"id": 33, "prompt": "real-time captions for our live webinar", "task": "audio.transcribe", "complexity": ["simple", "moderate"], "priority": "speed"}
+{"id": 34, "prompt": "fix the typo in the README", "task": "code.quick", "complexity": ["simple"], "priority": "balanced"}
+{"id": 35, "prompt": "design the database schema for a multi-tenant hospital management system", "task": "code.build", "complexity": ["complex"], "priority": "quality"}
+{"id": 36, "prompt": "react component for a date range picker with keyboard support", "task": "code.frontend", "complexity": ["moderate"], "priority": "balanced"}
+{"id": 37, "prompt": "solve this olympiad geometry problem: ...", "task": "reason.hard", "complexity": ["complex", "frontier"], "priority": "quality"}
+{"id": 38, "prompt": "give me 10 names for a pet grooming business", "task": "text.chat", "complexity": ["simple"], "priority": "balanced"}
+{"id": 39, "prompt": "fill out the same visa form for 40 employees on the government website", "task": "agent.computer", "complexity": ["moderate", "complex"], "priority": "balanced"}
+{"id": 40, "prompt": "change the sky in this photo to a sunset, keep everything else the same", "task": "image.edit", "complexity": ["simple"], "priority": "balanced"}

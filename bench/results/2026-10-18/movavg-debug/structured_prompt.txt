@@ -1,0 +1,29 @@
+<evidence>
+Symptom: the first value is wrong and calling the function twice gives odd output.
+</evidence>
+
+<input>
+def moving_average(values, window, out=[]):
+    for i in range(len(values)):
+        start = max(0, i - window)
+        chunk = values[start:i]
+        out.append(sum(chunk) / len(chunk))
+    return out
+</input>
+
+<context>
+Plain Python function. Intended behavior: for each position i, return the average of the last `window` values up to and including i (fewer values at the start). No other files or recent changes are involved.
+</context>
+
+<task>
+The function returns wrong results. Find the root cause of each problem first: form a hypothesis, confirm it by running the function on a small example, then fix it.
+</task>
+
+<requirements>
+- Make the smallest change that fixes the causes, not the symptoms. Keep the function name and the (values, window) call signature.
+- Add a few regression tests (empty list, window larger than the list, window of 1, calling it twice returns the same result) and run them. Show that they pass before reporting.
+</requirements>
+
+<output_format>
+Root causes (2-3 sentences) -> the fixed function -> test output.
+</output_format>

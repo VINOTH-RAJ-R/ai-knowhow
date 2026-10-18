@@ -1,0 +1,86 @@
+{
+  "id": "gpt-5.5",
+  "provider": "openai",
+  "display_name": "GPT-5.5",
+  "family": "gpt-5.5",
+  "tier": "flagship",
+  "status": "previous",
+  "released": "2026-04-24",
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1050000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 5,
+    "output": 30,
+    "cached_input": 0.5,
+    "notes": "Over 272K input tokens the whole request is billed at 2x input / 1.5x output. Batch & Flex about 50% off; Fast tier about 2x."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "default": "medium",
+    "notes": "For latency-sensitive work try low before none. text.verbosity low/medium/high."
+  },
+  "speed": "medium",
+  "fit": {
+    "code.quick": 4.5,
+    "code.build": 4,
+    "code.frontend": 4,
+    "code.debug": 4,
+    "code.review": 4,
+    "agent.longrun": 4,
+    "agent.computer": 4,
+    "text.write": 4,
+    "text.transform": 4.5,
+    "text.chat": 4.5,
+    "data.extract": 4.5,
+    "data.analysis": 4,
+    "research.deep": 4,
+    "reason.hard": 4,
+    "vision.understand": 4
+  },
+  "best_for": [
+    "Existing integrations"
+  ],
+  "watch_out": [
+    "More expensive than GPT-6.1 Sol"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Markdown sections: Role \u2192 Personality \u2192 Goal \u2192 Success criteria \u2192 Constraints \u2192 Output \u2192 Stop rules"
+  ],
+  "where": [
+    "api",
+    "chatgpt",
+    "codex",
+    "azure"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.5",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

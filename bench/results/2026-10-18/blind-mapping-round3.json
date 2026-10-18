@@ -1,0 +1,17 @@
+{
+  "launch-email": {
+    "T": "A",
+    "S": "B3",
+    "R": "C"
+  },
+  "yoga-landing": {
+    "R": "A",
+    "T": "B3",
+    "S": "C"
+  },
+  "summary": {
+    "R": "A",
+    "S": "B3",
+    "T": "C"
+  }
+}

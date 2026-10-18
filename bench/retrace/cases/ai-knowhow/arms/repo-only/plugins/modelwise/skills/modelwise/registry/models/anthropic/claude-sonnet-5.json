@@ -1,0 +1,91 @@
+{
+  "id": "claude-sonnet-5",
+  "provider": "anthropic",
+  "display_name": "Claude Sonnet 5",
+  "family": "sonnet",
+  "tier": "balanced",
+  "status": "previous",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1000000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 2,
+    "output": 10,
+    "cached_input": 0.2
+  },
+  "effort": {
+    "parameter": "output_config.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high",
+    "notes": "Adaptive thinking on by default."
+  },
+  "speed": "fast",
+  "fit": {
+    "code.quick": 4.5,
+    "code.build": 4,
+    "code.frontend": 4,
+    "code.debug": 4,
+    "code.review": 4,
+    "agent.longrun": 3.5,
+    "agent.computer": 4,
+    "text.write": 4,
+    "text.transform": 4.5,
+    "text.chat": 4.5,
+    "data.extract": 4.5,
+    "data.analysis": 4,
+    "research.deep": 3.5,
+    "reason.hard": 3.5,
+    "vision.understand": 4
+  },
+  "best_for": [
+    "Existing integrations. Sonnet 5.5 is the same price and stronger"
+  ],
+  "watch_out": [
+    "Superseded at the same price"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Prefer claude-sonnet-5-5"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

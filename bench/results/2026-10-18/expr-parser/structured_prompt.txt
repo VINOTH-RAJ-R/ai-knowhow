@@ -1,0 +1,16 @@
+<context>
+Standalone utility, no existing code. It will be tested against edge cases around operator precedence and error handling, so exact semantics matter more than speed.
+</context>
+<task>
+Write a Python function evaluate(expr) that takes an arithmetic expression string and returns its numeric value without using eval or exec.
+</task>
+<requirements>
+- Python 3, standard library only. Do not use eval, exec, compile, ast.literal_eval or similar shortcuts; write a tokenizer and a parser (for example recursive descent).
+- Supported: + - * / ** , unary minus, parentheses, integers and decimals. Spaces may appear anywhere, including between a unary minus and its operand.
+- Precedence follows Python: ** is right-associative and binds tighter than unary minus on its left (-2 ** 2 == -4, 2 ** -1 == 0.5, 2 ** 3 ** 2 == 512); + - * / are left-associative.
+- Malformed input raises ValueError, for example '2 +', '(1', '1 2', '', '()', '1 + * 2', ')'. Reject any unexpected character.
+- Division by zero raises ZeroDivisionError (not ValueError).
+Before saying it's done, run a real check: write and run a small set of asserts covering the examples above plus decimals like '1.5 * 2' and '  3 -  -2 '. A syntax check doesn't count. If you can't run anything, say exactly what you couldn't verify.
+</requirements>
+<done_when>All asserts pass: valid expressions return the right values, each malformed example raises ValueError, and '1 / 0' raises ZeroDivisionError.</done_when>
+<output_format>The function (with its helpers) in one code block, then 3 lines on the design and what you tested.</output_format>

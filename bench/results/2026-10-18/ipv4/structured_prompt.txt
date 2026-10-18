@@ -1,0 +1,13 @@
+<context>
+Small utility function for a Python codebase that needs to validate user-supplied IPv4 addresses. Strictness matters because accepting malformed addresses causes downstream bugs.
+</context>
+<task>Write a Python function `is_valid_ipv4(s)` that returns True if `s` is a valid dotted-decimal IPv4 address and False otherwise.</task>
+<requirements>
+- Python 3.10+, standard library only. Do not use the `ipaddress` module (the logic should be self-contained).
+- Valid means exactly four decimal octets separated by single dots, each 0-255.
+- Reject: empty octets, whitespace, signs (+/-), non-ASCII digits, hex or other bases, and leading zeros such as "01" (but "0" is valid).
+- Return False (never raise) for non-string input such as None or int.
+Before saying it's done, run the function against a quick set of asserts covering the valid and invalid cases above. A syntax check doesn't count. If you can't run anything, say exactly what you couldn't verify.
+</requirements>
+<done_when>All asserts pass, e.g. "192.168.1.1", "0.0.0.0", "255.255.255.255" are True; "256.1.1.1", "1.2.3", "1.2.3.4.5", "01.2.3.4", "1..2.3", " 1.2.3.4", "1.2.3.4\n", "" and None are False.</done_when>
+<output_format>The function only (with a one-line docstring), then the asserts you ran, then 2 lines on the assumptions you made.</output_format>

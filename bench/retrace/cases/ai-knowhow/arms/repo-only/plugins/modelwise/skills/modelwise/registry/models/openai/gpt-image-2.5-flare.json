@@ -1,0 +1,86 @@
+{
+  "id": "gpt-image-2.5-flare",
+  "provider": "openai",
+  "display_name": "GPT Image 2.5 Flare",
+  "family": "gpt-image",
+  "tier": "specialist",
+  "status": "current",
+  "released": "2026-09-08",
+  "retires": null,
+  "capabilities": [
+    "image_in",
+    "image_out"
+  ],
+  "context_window": null,
+  "max_output_tokens": null,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 5,
+    "output": 30,
+    "cached_input": 1.25,
+    "notes": "Token-based: text in $5, image in $8 (cached $2), image out $30 ($15 Batch). OpenAI publishes no per-image price; use its pricing calculator."
+  },
+  "effort": {
+    "parameter": "quality",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "auto",
+    "map": {
+      "E0": "low",
+      "E1": "low",
+      "E2": "low",
+      "E3": "medium",
+      "E4": "high",
+      "E5": "xhigh",
+      "E6": "max"
+    }
+  },
+  "speed": "fast",
+  "fit": {
+    "image.generate": 4.5,
+    "image.edit": 4
+  },
+  "best_for": [
+    "Fast, high-quality everyday images (quality comparable to gpt-image-2)",
+    "Drafts and volume"
+  ],
+  "watch_out": [
+    "No per-image list price. Cost depends on size and quality",
+    "Small text needs quality medium or higher"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Order: scene \u2192 subject \u2192 key details \u2192 constraints; state the intended use",
+    "Put exact text in quotes; say 'no other text'",
+    "Edits: 'change only X, keep everything else the same', with one change per turn",
+    "Transparent background: background='transparent' + png/webp"
+  ],
+  "where": [
+    "api",
+    "chatgpt"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-image-2.5-flare",
+      "what": "model page"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/image-generation",
+      "what": "image API parameters"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/image-prompting",
+      "what": "image prompting guide"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

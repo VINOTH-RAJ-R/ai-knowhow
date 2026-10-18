@@ -1,0 +1,23 @@
+<audience>
+[[FILL: who receives this, e.g. existing customers / trial users / a prospect list, and what they already know about the product]]
+They are busy and skim; they care about spending less time on expenses and about getting reimbursed correctly.
+</audience>
+
+<task>
+Write a launch email announcing our new expense tracking feature so that the reader understands what it does for them and clicks through to try it.
+</task>
+
+<must_include>
+- What the feature does, in one plain sentence: [[FILL: product name and feature name, one-line description]]
+- Three concrete benefits, each tied to something the reader does today: [[FILL: e.g. capture receipts, categorize automatically, export or approve reports]]
+- One clear call to action: [[FILL: link and button text, e.g. "Try expense tracking"]]
+- Availability: [[FILL: who gets it, from when, which plans or regions]]
+</must_include>
+
+<style>
+Clear, plain, friendly; brand voice: [[FILL: tone words or paste a past email as a sample]]. Length: 120-180 words body, plus one subject line and one preview text under 90 characters. Avoid hype words ("revolutionary", "game-changing"), exclamation marks and filler openers. Don't invent facts, numbers or customer quotes; mark anything you're unsure of as [CHECK].
+</style>
+
+<output_format>
+Three short variants labelled A, B and C that differ in angle (time saved, money visibility, simplicity). For each: subject line, preview text, body, call-to-action button text. Nothing else.
+</output_format>

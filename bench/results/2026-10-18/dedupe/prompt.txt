@@ -1,0 +1,1 @@
+python function dedupe_by_email(rows) - rows is a list of dicts with 'email' and 'updated_at' (ISO date string). keep only the most recent row per email. emails should match case-insensitively and ignore surrounding spaces. return the rows sorted by email

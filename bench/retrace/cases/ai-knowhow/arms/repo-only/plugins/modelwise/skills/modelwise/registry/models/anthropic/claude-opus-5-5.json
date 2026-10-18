@@ -1,0 +1,98 @@
+{
+  "id": "claude-opus-5-5",
+  "provider": "anthropic",
+  "display_name": "Claude Opus 5.5",
+  "family": "opus",
+  "tier": "flagship",
+  "status": "current",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1000000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 4,
+    "output": 20,
+    "cached_input": 0.2,
+    "notes": "Fast mode (Claude API only): $8 / $40."
+  },
+  "effort": {
+    "parameter": "output_config.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium",
+    "notes": "Default is medium (not high). medium already beats Opus 5 at high on coding. Thinking can't be disabled. Lower effort to think less."
+  },
+  "speed": "medium",
+  "fit": {
+    "code.quick": 5,
+    "code.build": 5,
+    "code.frontend": 5,
+    "code.debug": 5,
+    "code.review": 5,
+    "agent.longrun": 5,
+    "agent.computer": 5,
+    "text.write": 5,
+    "text.transform": 5,
+    "text.chat": 5,
+    "data.extract": 5,
+    "data.analysis": 5,
+    "research.deep": 5,
+    "reason.hard": 4.5,
+    "vision.understand": 5
+  },
+  "best_for": [
+    "Default choice for serious coding and agent work",
+    "Complex multi-file features and refactors",
+    "Knowledge work: analysis, reports, research synthesis",
+    "Reading dense charts, diagrams, screenshots"
+  ],
+  "watch_out": [
+    "At xhigh/max, turns get long. Plan for streaming and timeouts",
+    "Frontend output falls back on a few default styles unless you name the patterns to avoid"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Set effort explicitly. Start at medium, try low for routine work",
+    "For UI work, list the specific styles you DON'T want (e.g. 'no cream background, no pill buttons')",
+    "Give the full task spec up front for long agentic runs"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

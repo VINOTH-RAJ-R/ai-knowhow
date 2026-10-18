@@ -1,0 +1,85 @@
+{
+  "id": "claude-haiku-4-5",
+  "provider": "anthropic",
+  "display_name": "Claude Haiku 4.5",
+  "family": "haiku",
+  "tier": "fast",
+  "status": "legacy",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 200000,
+  "max_output_tokens": 64000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 1,
+    "output": 5,
+    "cached_input": 0.1
+  },
+  "effort": {
+    "parameter": null,
+    "levels": [],
+    "default": null,
+    "notes": "No effort parameter. Uses budget_tokens for thinking."
+  },
+  "speed": "fastest",
+  "fit": {
+    "code.quick": 3,
+    "code.build": 2,
+    "code.frontend": 2,
+    "code.debug": 2,
+    "code.review": 2,
+    "agent.longrun": 1.5,
+    "agent.computer": 2,
+    "text.write": 3,
+    "text.transform": 3.5,
+    "text.chat": 3.5,
+    "data.extract": 4,
+    "data.analysis": 2,
+    "research.deep": 2,
+    "reason.hard": 2,
+    "vision.understand": 2.5
+  },
+  "best_for": [
+    "Legacy integrations"
+  ],
+  "watch_out": [
+    "10x the price of Haiku 5.5 and weaker. Migrate"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Migrate to claude-haiku-5-5"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

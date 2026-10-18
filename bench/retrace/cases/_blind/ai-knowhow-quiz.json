@@ -1,0 +1,117 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "type": "design",
+      "question": "Why is the model registry stored inside the modelwise skill folder instead of at the repository root?",
+      "answer": "Plugin installers copy only the plugin's own folder; files outside it break after install. A self-contained skill folder also works as a ZIP upload.",
+      "key_points": [
+        "installers copy only the plugin folder",
+        "self-contained / works as zip"
+      ],
+      "source": "session record (author-written)"
+    },
+    {
+      "id": 2,
+      "type": "design",
+      "question": "Why are the registry files JSON rather than YAML?",
+      "answer": "Python's standard library reads JSON everywhere; YAML needs PyYAML and tomllib needs Python 3.11+, so JSON keeps zero install steps.",
+      "key_points": [
+        "stdlib / no dependency",
+        "YAML needs PyYAML"
+      ],
+      "source": "session record (author-written)"
+    },
+    {
+      "id": 3,
+      "type": "design",
+      "question": "What does the 'balanced' priority pick, and what earlier approach did it replace and why?",
+      "answer": "The cheapest model whose fit clears the quality bar with one point of headroom; it replaced a log-cost penalty that picked Haiku for moderate feature builds (too weak).",
+      "key_points": [
+        "cheapest that clears bar + headroom",
+        "replaced log-cost penalty",
+        "penalty picked a too-weak model (Haiku) for moderate builds"
+      ],
+      "source": "session record (author-written)"
+    },
+    {
+      "id": 4,
+      "type": "design",
+      "question": "Why don't the SKILL.md files pin a model and effort in their frontmatter?",
+      "answer": "claude.ai skill upload rejects unknown frontmatter keys, so portability won; defaults went into metadata and the skill text.",
+      "key_points": [
+        "claude.ai rejects unknown keys",
+        "defaults put in metadata/text instead"
+      ],
+      "source": "session record (author-written)"
+    },
+    {
+      "id": 5,
+      "type": "behavior",
+      "question": "What happens when someone asks modelwise for a video, and why?",
+      "answer": "No generator is recommended: OpenAI shut down the Sora 2 API (2026-09-24) and Anthropic doesn't generate video. It routes the prompt-writing to a text model and still writes the full video prompt.",
+      "key_points": [
+        "Sora API shut down",
+        "fallback to text model to write the prompt"
+      ],
+      "source": "session record (author-written)"
+    },
+    {
+      "id": 6,
+      "type": "design",
+      "question": "Why was the single audio task split into three?",
+      "answer": "One audio task mixed transcription, speech and voice agents and produced nonsensical picks; splitting gave each its right model.",
+      "key_points": [
+        "one task mixed different jobs",
+        "gave wrong/nonsense routes"
+      ],
+      "source": "session record (author-written)"
+    },
+    {
+      "id": 7,
+      "type": "verification",
+      "question": "How is the registry kept current and checked?",
+      "answer": "A weekly watcher checks vendor model pages and opens an issue for unknown IDs; a human updates the card from official docs, runs validate.py --fix (regenerates the routing table) and CI runs validation and router tests.",
+      "key_points": [
+        "weekly watcher opens issue",
+        "human updates from official docs",
+        "validate + tests in CI"
+      ],
+      "source": "session record (author-written)"
+    },
+    {
+      "id": 8,
+      "type": "verification",
+      "question": "What assumption about OpenAI's lineup turned out to be wrong, and how was it caught?",
+      "answer": "The plan assumed GPT-5.x was current; a research agent told not to trust memory found GPT-6 (Astra/Sol/Luna) is current and Sora/DALL-E were shut down.",
+      "key_points": [
+        "assumed GPT-5.x current",
+        "research (not memory) found GPT-6"
+      ],
+      "source": "session record (author-written)"
+    },
+    {
+      "id": 9,
+      "type": "scenario",
+      "question": "Google releases a new video model. What do you change in the repo?",
+      "answer": "Add google to the provider enum, an effort mapping and a prompt-style guide, a model card with video_out and fit for video.generate, a watcher source; run validate --fix and tests. The video fallback stops applying automatically.",
+      "key_points": [
+        "provider enum + effort map + guide",
+        "card with video_out and fit",
+        "validate/tests; fallback no longer applies"
+      ],
+      "source": "session record (author-written)"
+    },
+    {
+      "id": 10,
+      "type": "design",
+      "question": "Why does routing use a Python script plus a generated ROUTING_TABLE.md instead of letting the model pick from the cards?",
+      "answer": "Deterministic and testable \u2014 same inputs give the same answer regardless of the running model \u2014 and the table covers environments that can't run scripts (e.g. ChatGPT Projects).",
+      "key_points": [
+        "deterministic / testable",
+        "table for no-script environments"
+      ],
+      "source": "session record (author-written)"
+    }
+  ]
+}

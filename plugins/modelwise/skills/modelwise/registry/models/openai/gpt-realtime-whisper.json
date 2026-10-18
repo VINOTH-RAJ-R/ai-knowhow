@@ -1,0 +1,53 @@
+{
+  "id": "gpt-realtime-whisper",
+  "provider": "openai",
+  "display_name": "GPT Realtime Whisper",
+  "family": "gpt-realtime",
+  "tier": "specialist",
+  "status": "current",
+  "released": "2026-05-07",
+  "retires": null,
+  "capabilities": [
+    "audio",
+    "text_out"
+  ],
+  "context_window": 16000,
+  "max_output_tokens": 2000,
+  "pricing": {
+    "unit": "usd_per_minute",
+    "per_unit": 0.017
+  },
+  "effort": {
+    "parameter": null,
+    "levels": [],
+    "default": null
+  },
+  "speed": "fastest",
+  "fit": {
+    "audio.transcribe": 4
+  },
+  "best_for": [
+    "Streaming speech-to-text"
+  ],
+  "watch_out": [
+    "gpt-transcribe is cheaper for files"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Pass domain vocabulary"
+  ],
+  "where": [
+    "api"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-realtime-whisper",
+      "what": "model page"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

@@ -1,0 +1,14 @@
+<audience>Existing customers of our business software: small business owners and the finance or admin staff who handle expenses. They already use the product and have not seen this feature yet.</audience>
+
+<task>Write a launch email announcing our new expense tracking feature, so that readers open it and log their first expense this week.</task>
+
+<must_include>
+- What the feature does: one place to record expenses and sort them into categories, so spending is easy to see.
+- The benefit in plain terms: less time re-typing receipts and a clearer view of where the money goes before month-end.
+- How to start: open the app, go to the expenses section, and add a first expense.
+- One clear call to action: open the expenses section today.
+</must_include>
+
+<style>Confident, plain and friendly. Short sentences, written to "you". No hype words such as "game-changing", "revolutionary" or "seamless", and no fake urgency or deadlines. Use concrete, realistic wording as finished copy, with no placeholders. Keep any invented detail plausible and generic: refer to the product as "our app", and invent no product name, prices, statistics, dates or customer quotes. Length: a subject line and a body of 120 to 180 words. Sign off as "The team".</style>
+
+<output_format>A subject line, then the email body. Final text only: one email, no variants, no notes.</output_format>

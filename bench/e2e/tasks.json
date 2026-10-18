@@ -1,0 +1,238 @@
+{
+  "$comment": "End-to-end A/B tasks. Each 'prompt' is the basic prompt a user would type. 'check' says how the output is scored: python_tests (run checks/<id>.py against the code in the answer), extract (field accuracy vs gold), numeric (exact answers), keyfacts (share of gold facts present) and/or judge (blind rubric score by a separate model).",
+  "tasks": [
+    {
+      "id": "ipv4",
+      "gold_route": {
+        "task": "code.quick",
+        "complexity": [
+          "simple"
+        ]
+      },
+      "prompt": "write a python function is_valid_ipv4(s) that returns True if s is a valid IPv4 address",
+      "check": {
+        "type": "python_tests",
+        "file": "checks/ipv4.py"
+      }
+    },
+    {
+      "id": "dedupe",
+      "gold_route": {
+        "task": "code.build",
+        "complexity": [
+          "simple",
+          "moderate"
+        ]
+      },
+      "prompt": "python function dedupe_by_email(rows) - rows is a list of dicts with 'email' and 'updated_at' (ISO date string). keep only the most recent row per email. emails should match case-insensitively and ignore surrounding spaces. return the rows sorted by email",
+      "check": {
+        "type": "python_tests",
+        "file": "checks/dedupe.py"
+      }
+    },
+    {
+      "id": "movavg-debug",
+      "gold_route": {
+        "task": "code.debug",
+        "complexity": [
+          "simple",
+          "moderate"
+        ]
+      },
+      "prompt": "this function gives wrong results, sometimes the first value is wrong and calling it twice gives weird output. fix it\n\n```python\ndef moving_average(values, window, out=[]):\n    for i in range(len(values)):\n        start = max(0, i - window)\n        chunk = values[start:i]\n        out.append(sum(chunk) / len(chunk))\n    return out\n```\nit should return, for each position i, the average of the last `window` values up to and including i (fewer at the start).",
+      "check": {
+        "type": "python_tests",
+        "file": "checks/movavg.py"
+      }
+    },
+    {
+      "id": "invoices",
+      "gold_route": {
+        "task": "data.extract",
+        "complexity": [
+          "simple",
+          "moderate"
+        ]
+      },
+      "prompt": "extract invoice number, invoice date (as YYYY-MM-DD) and total amount (number only) from each of these as a JSON list with keys id, invoice_no, date, total. use null if missing.\n\n1: Inv #A-1043 dated 3 March 2026. Amount due: $1,250.00\n2: INVOICE NO. 88231 // 2026-01-17 // TOTAL USD 99.90 (incl. tax)\n3: Bill ref: KX/22/7 issued on 07/04/2026 (DD/MM/YYYY). Grand total: EUR 3.400,50\n4: Thanks for your order! Total charged $45. Order date Feb 2, 2026.\n5: Invoice 5521-B, date: 12-Dec-2025, subtotal 200.00, tax 36.00, total 236.00\n6: Re: invoice INV-0091 \u2014 paid in full ($780.25) on 2026/05/30, invoice date 2026/05/01",
+      "check": {
+        "type": "extract",
+        "gold": [
+          {
+            "id": 1,
+            "invoice_no": "A-1043",
+            "date": "2026-03-03",
+            "total": 1250.0
+          },
+          {
+            "id": 2,
+            "invoice_no": "88231",
+            "date": "2026-01-17",
+            "total": 99.9
+          },
+          {
+            "id": 3,
+            "invoice_no": "KX/22/7",
+            "date": "2026-04-07",
+            "total": 3400.5
+          },
+          {
+            "id": 4,
+            "invoice_no": null,
+            "date": "2026-02-02",
+            "total": 45
+          },
+          {
+            "id": 5,
+            "invoice_no": "5521-B",
+            "date": "2025-12-12",
+            "total": 236.0
+          },
+          {
+            "id": 6,
+            "invoice_no": "INV-0091",
+            "date": "2026-05-01",
+            "total": 780.25
+          }
+        ]
+      }
+    },
+    {
+      "id": "reasoning",
+      "gold_route": {
+        "task": "reason.hard",
+        "complexity": [
+          "moderate",
+          "complex"
+        ]
+      },
+      "prompt": "answer these, give just the final answers numbered:\n1. how many 4-digit numbers have all different digits that add up to 9?\n2. how many ways can you climb 12 stairs taking 1, 2 or 3 steps at a time?\n3. how many integers from 1 to 1000 are divisible by 3 or 5 but not by 15?\n4. two fair dice are rolled. what is the probability the product is even? give a fraction.",
+      "check": {
+        "type": "numeric",
+        "gold": [
+          "54",
+          "927",
+          "401",
+          "3/4"
+        ]
+      }
+    },
+    {
+      "id": "summary",
+      "gold_route": {
+        "task": "text.transform",
+        "complexity": [
+          "simple",
+          "moderate"
+        ]
+      },
+      "prompt": "summarize this for our exec team in 5 bullets\n\nQ3 update from the logistics platform team. Shipment volume grew 18% quarter over quarter to 2.4 million parcels, driven mainly by the new grocery partner in Bengaluru which alone added 310,000 parcels. On-time delivery slipped from 96.1% to 93.4%, almost entirely because of the Chennai hub, where a sorter breakdown in August caused a nine-day backlog; the sorter was replaced on September 3 and on-time delivery in Chennai has been back above 95% since mid-September. Cost per parcel fell from \u20b941 to \u20b937, helped by route batching, which went live in five cities. Driver attrition rose to 7% monthly from 5%, and exit interviews point to the new shift rota; HR proposes reverting to the old rota in two pilot cities in October. Customer complaints per 10,000 parcels fell from 22 to 17. The team is asking for approval of \u20b92.1 crore capex for a second sorter in Chennai to avoid a single point of failure, with an expected payback of 14 months. The Pune hub launch moves from November to January because the landlord delayed handover.",
+      "check": {
+        "type": "keyfacts",
+        "facts": [
+          [
+            "18%",
+            "2.4 million",
+            "2.4m",
+            "2.4 m"
+          ],
+          [
+            "93.4",
+            "on-time"
+          ],
+          [
+            "chennai",
+            "sorter"
+          ],
+          [
+            "\u20b937",
+            "37",
+            "cost per parcel"
+          ],
+          [
+            "attrition",
+            "7%"
+          ],
+          [
+            "2.1 crore",
+            "capex",
+            "second sorter"
+          ],
+          [
+            "pune",
+            "january"
+          ]
+        ],
+        "also_judge": true,
+        "max_bullets": 5
+      }
+    },
+    {
+      "id": "launch-email",
+      "gold_route": {
+        "task": "text.write",
+        "complexity": [
+          "simple",
+          "moderate"
+        ]
+      },
+      "prompt": "write a launch email for our new expense tracking feature",
+      "check": {
+        "type": "judge",
+        "rubric": "Score 1-10 on: clear value for the reader, specific (not generic filler), good structure (subject line, scannable body, one clear call to action), appropriate length for an email, no invented facts presented as real (placeholders are fine)."
+      }
+    },
+    {
+      "id": "yoga-landing",
+      "gold_route": {
+        "task": "code.frontend",
+        "complexity": [
+          "simple",
+          "moderate"
+        ]
+      },
+      "prompt": "make a landing page for a yoga studio",
+      "check": {
+        "type": "html",
+        "also_judge": true,
+        "rubric": "Score 1-10 on: complete single-page site with sensible sections (hero, classes/schedule, pricing or offer, contact/CTA), responsive (mobile) CSS, accessible markup (alt text, labels, contrast), visual polish and non-generic design, clean code."
+      }
+    },
+    {
+      "id": "expr-parser",
+      "gold_route": {
+        "task": "code.build",
+        "complexity": [
+          "moderate",
+          "complex"
+        ]
+      },
+      "prompt": "python function evaluate(expr) that evaluates an arithmetic expression string without using eval/exec. support + - * / ** (right-associative, binds tighter than unary minus like python), unary minus, parentheses, integers and decimals, spaces anywhere. raise ValueError on malformed input (e.g. '2 +', '(1', '1 2'). division by zero should raise ZeroDivisionError",
+      "check": {
+        "type": "python_tests",
+        "file": "checks/expr.py"
+      }
+    },
+    {
+      "id": "hard-reasoning",
+      "gold_route": {
+        "task": "reason.hard",
+        "complexity": [
+          "complex",
+          "frontier"
+        ]
+      },
+      "prompt": "answer these, give just the final answers numbered:\n1. in how many ways can a 2x10 board be tiled using 1x2 dominoes (either orientation) and 2x2 squares?\n2. what is the sum of the digits of 2^100?\n3. how many 5-card poker hands contain exactly one pair (and nothing better)?\n4. what is the expected number of rolls of a fair six-sided die until every face has appeared at least once? give a decimal.\n5. how many integers from 1 to 10000 are perfect squares or perfect cubes, but not both?",
+      "check": {
+        "type": "numeric",
+        "gold": [
+          "683",
+          "115",
+          "1098240",
+          "14.7",
+          "113"
+        ]
+      }
+    }
+  ]
+}

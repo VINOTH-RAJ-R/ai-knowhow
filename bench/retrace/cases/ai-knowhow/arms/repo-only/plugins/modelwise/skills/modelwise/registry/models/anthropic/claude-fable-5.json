@@ -1,0 +1,91 @@
+{
+  "id": "claude-fable-5",
+  "provider": "anthropic",
+  "display_name": "Claude Fable 5",
+  "family": "fable",
+  "tier": "frontier",
+  "status": "previous",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1000000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 10,
+    "output": 50,
+    "cached_input": 1.0
+  },
+  "effort": {
+    "parameter": "output_config.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high",
+    "notes": "Thinking always on."
+  },
+  "speed": "slow",
+  "fit": {
+    "code.quick": 5,
+    "code.build": 5,
+    "code.frontend": 5,
+    "code.debug": 5,
+    "code.review": 5,
+    "agent.longrun": 4.5,
+    "agent.computer": 5,
+    "text.write": 5,
+    "text.transform": 5,
+    "text.chat": 5,
+    "data.extract": 5,
+    "data.analysis": 5,
+    "research.deep": 5,
+    "reason.hard": 4.5,
+    "vision.understand": 5
+  },
+  "best_for": [
+    "Same tier as Fable 5.1. Keep only if already integrated"
+  ],
+  "watch_out": [
+    "Superseded by Fable 5.1 at the same price, with 4x cheaper cache reads"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Prefer claude-fable-5-1 for new work"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

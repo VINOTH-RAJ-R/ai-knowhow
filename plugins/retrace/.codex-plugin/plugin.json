@@ -1,0 +1,46 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "retrace",
+  "version": "0.1.0",
+  "description": "Capture how an AI-assisted task was done (decisions, prompts, mistakes, cheaper path) as a lesson skill, and teach it to people.",
+  "author": {
+    "name": "vinothraj",
+    "url": "https://github.com/VINOTH-RAJ-R"
+  },
+  "homepage": "https://github.com/VINOTH-RAJ-R/ai-knowhow",
+  "repository": "https://github.com/VINOTH-RAJ-R/ai-knowhow",
+  "license": "MIT",
+  "keywords": [
+    "learning",
+    "lessons",
+    "onboarding",
+    "documentation",
+    "teaching"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Retrace",
+        "shortDescription": "Turn AI work into lessons",
+        "longDescription": "After an AI-assisted task, retrace captures the goal, the decisions and their rationale, the prompts that worked, mistakes and fixes, and how to do it cheaper next time, as a lesson skill. Anyone can then be taught how it was built: overview, step-by-step walkthrough with check questions, or a hands-on rebuild. Lessons stay on your machine.",
+        "developerName": "vinothraj",
+        "category": "Productivity",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://github.com/VINOTH-RAJ-R/ai-knowhow",
+        "privacyPolicyURL": "https://github.com/VINOTH-RAJ-R/ai-knowhow/blob/main/PRIVACY.md",
+        "termsOfServiceURL": "https://github.com/VINOTH-RAJ-R/ai-knowhow/blob/main/LICENSE",
+        "defaultPrompt": [
+          "Retrace what we just built and make a lesson",
+          "Teach me how we built the checkout flow",
+          "Quiz me on the spendsum lesson"
+        ],
+        "brandColor": "#B45309",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      }
+    }
+  }
+}

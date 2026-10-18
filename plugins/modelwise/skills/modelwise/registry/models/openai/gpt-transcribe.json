@@ -1,0 +1,53 @@
+{
+  "id": "gpt-transcribe",
+  "provider": "openai",
+  "display_name": "GPT Transcribe",
+  "family": "gpt-transcribe",
+  "tier": "specialist",
+  "status": "current",
+  "released": "2026-07-28",
+  "retires": null,
+  "capabilities": [
+    "audio",
+    "text_out"
+  ],
+  "context_window": null,
+  "max_output_tokens": null,
+  "pricing": {
+    "unit": "usd_per_minute",
+    "per_unit": 0.0045
+  },
+  "effort": {
+    "parameter": null,
+    "levels": [],
+    "default": null
+  },
+  "speed": "fast",
+  "fit": {
+    "audio.transcribe": 5
+  },
+  "best_for": [
+    "File and realtime transcription at low cost"
+  ],
+  "watch_out": [
+    "For live streaming captions see gpt-live-transcribe ($0.017/min)"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Pass domain vocabulary as a prompt"
+  ],
+  "where": [
+    "api"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-transcribe",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

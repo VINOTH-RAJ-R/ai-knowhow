@@ -1,0 +1,88 @@
+{
+  "id": "gpt-6-luna",
+  "provider": "openai",
+  "display_name": "GPT-6 Luna",
+  "family": "gpt-6",
+  "tier": "fast",
+  "status": "current",
+  "released": "2026-09-22",
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1050000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 0.1,
+    "output": 0.5,
+    "cached_input": 0.01,
+    "notes": "Over 272K input tokens the whole request is billed at 2x input / 1.5x output. Batch & Flex about 50% off; Fast tier about 2x."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium",
+    "notes": "OpenAI: low for simple extraction and fine-grained edits; Codex suggests starting at high for coding."
+  },
+  "speed": "fastest",
+  "fit": {
+    "code.quick": 4,
+    "code.build": 3,
+    "code.frontend": 3,
+    "code.debug": 3,
+    "code.review": 3,
+    "agent.longrun": 2.5,
+    "text.write": 3.5,
+    "text.transform": 4.5,
+    "text.chat": 4,
+    "data.extract": 5,
+    "data.analysis": 3,
+    "research.deep": 3,
+    "reason.hard": 3,
+    "vision.understand": 3.5
+  },
+  "best_for": [
+    "High-volume extraction, classification, routing",
+    "Cheap sub-agents and workers",
+    "Budget pick to run Modelwise"
+  ],
+  "watch_out": [
+    "For coding, needs higher effort (start at high) to be reliable"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Use Structured Outputs for anything machine-read",
+    "Keep tasks focused and single-purpose"
+  ],
+  "where": [
+    "api",
+    "chatgpt",
+    "codex",
+    "azure"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

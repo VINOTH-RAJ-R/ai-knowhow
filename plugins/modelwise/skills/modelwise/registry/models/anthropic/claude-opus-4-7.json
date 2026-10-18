@@ -1,0 +1,91 @@
+{
+  "id": "claude-opus-4-7",
+  "provider": "anthropic",
+  "display_name": "Claude Opus 4.7",
+  "family": "opus",
+  "tier": "flagship",
+  "status": "legacy",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1000000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 5,
+    "output": 25,
+    "cached_input": 0.5
+  },
+  "effort": {
+    "parameter": "output_config.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high",
+    "notes": "xhigh was introduced on this model."
+  },
+  "speed": "medium",
+  "fit": {
+    "code.quick": 4,
+    "code.build": 4,
+    "code.frontend": 4,
+    "code.debug": 4,
+    "code.review": 4,
+    "agent.longrun": 4,
+    "agent.computer": 4,
+    "text.write": 4,
+    "text.transform": 4,
+    "text.chat": 4,
+    "data.extract": 4,
+    "data.analysis": 4,
+    "research.deep": 3.5,
+    "reason.hard": 3.5,
+    "vision.understand": 4
+  },
+  "best_for": [
+    "Legacy integrations only"
+  ],
+  "watch_out": [
+    "Two generations behind. Opus 5.5 is cheaper"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Migrate to claude-opus-5-5"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

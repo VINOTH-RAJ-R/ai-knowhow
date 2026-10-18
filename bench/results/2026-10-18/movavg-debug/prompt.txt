@@ -1,0 +1,11 @@
+this function gives wrong results, sometimes the first value is wrong and calling it twice gives weird output. fix it
+
+```python
+def moving_average(values, window, out=[]):
+    for i in range(len(values)):
+        start = max(0, i - window)
+        chunk = values[start:i]
+        out.append(sum(chunk) / len(chunk))
+    return out
+```
+it should return, for each position i, the average of the last `window` values up to and including i (fewer at the start).

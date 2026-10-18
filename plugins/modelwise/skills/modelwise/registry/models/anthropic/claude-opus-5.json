@@ -1,0 +1,92 @@
+{
+  "id": "claude-opus-5",
+  "provider": "anthropic",
+  "display_name": "Claude Opus 5",
+  "family": "opus",
+  "tier": "flagship",
+  "status": "previous",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1000000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 5,
+    "output": 25,
+    "cached_input": 0.5,
+    "notes": "Fast mode: $10 / $50."
+  },
+  "effort": {
+    "parameter": "output_config.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high",
+    "notes": "Thinking on by default. Can be disabled only at high or below."
+  },
+  "speed": "medium",
+  "fit": {
+    "code.quick": 5,
+    "code.build": 4.5,
+    "code.frontend": 4.5,
+    "code.debug": 4.5,
+    "code.review": 4.5,
+    "agent.longrun": 4.5,
+    "agent.computer": 4.5,
+    "text.write": 4.5,
+    "text.transform": 5,
+    "text.chat": 5,
+    "data.extract": 5,
+    "data.analysis": 4.5,
+    "research.deep": 4.5,
+    "reason.hard": 4.5,
+    "vision.understand": 4.5
+  },
+  "best_for": [
+    "Existing integrations. Opus 5.5 is cheaper and stronger"
+  ],
+  "watch_out": [
+    "Costs more than Opus 5.5 for lower quality. Migrate"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Prefer claude-opus-5-5"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

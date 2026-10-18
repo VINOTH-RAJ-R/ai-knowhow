@@ -1,0 +1,31 @@
+<context>
+We are launching a new expense tracking feature in our product. The email goes to existing customers who already use the product and know the brand but not this feature. Its job is to make them understand what the feature does for them and try it.
+</context>
+
+<task>
+Write one launch email announcing the new expense tracking feature. The reader should finish it understanding what the feature does for them and click the call to action to try it.
+</task>
+
+<key_points>
+[[FILL: at least 3 facts about the feature: what it records or automates, what it saves the user, which plans, platforms or regions it is on, and the launch date]]
+Use only facts given in this prompt, because the email goes to real customers and an invented claim cannot be taken back. Do not invent features, numbers, prices, dates, testimonials or quotes. Where a fact is missing, use a neutral placeholder such as [Product name], [Launch date] or [Price]. Mark anything uncertain with [CHECK].
+</key_points>
+
+<style>
+Clear, plain, friendly and confident, written for a busy reader. Short paragraphs, no buzzwords, no hype. Open with what the feature does for the reader, not with "We are excited to announce". [[FILL: a short sample of past customer emails for voice, if available]]
+</style>
+
+<requirements>
+- A subject line, a preview line under 90 characters, then the email body.
+- A body of about 150 to 200 words with one call to action, linked as [CTA link].
+- Sign off as [Sender name], [Company name].
+- One email only. No variants and no commentary.
+- Print nothing unfilled as visible instructions. Only neutral bracketed placeholders may appear in the output.
+</requirements>
+
+<output_format>
+Subject: [subject line]
+Preview: [preview line]
+
+[Email body in plain text]
+</output_format>

@@ -1,0 +1,636 @@
+{
+  "dedupe": {
+    "A": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "6/6 tests"
+        }
+      },
+      "runner_model": "opus",
+      "harness_tokens": 57158,
+      "seconds": 22.2
+    },
+    "B": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "6/6 tests"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 59965,
+      "seconds": 19.7
+    },
+    "C": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "6/6 tests"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 57814,
+      "seconds": 13.0
+    },
+    "route-haiku": {
+      "score": 0.0,
+      "parts": {
+        "objective": {
+          "score": 0.0,
+          "detail": "no python code block"
+        }
+      }
+    },
+    "route": {
+      "score": 0.0,
+      "parts": {
+        "objective": {
+          "score": 0.0,
+          "detail": "no python code block"
+        }
+      }
+    }
+  },
+  "expr-parser": {
+    "A": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "20/20 tests"
+        }
+      },
+      "runner_model": "opus",
+      "harness_tokens": 60094,
+      "seconds": 48.1
+    },
+    "B": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "20/20 tests"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 72734,
+      "seconds": 64.9
+    },
+    "C": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "20/20 tests"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 64633,
+      "seconds": 36.2
+    },
+    "route": {
+      "score": 0.0,
+      "parts": {
+        "objective": {
+          "score": 0.0,
+          "detail": "no python code block"
+        }
+      }
+    }
+  },
+  "hard-reasoning": {
+    "A": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "5/5 correct"
+        }
+      },
+      "runner_model": "opus",
+      "harness_tokens": 56039,
+      "seconds": 12.5
+    },
+    "B": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "5/5 correct"
+        }
+      },
+      "runner_model": "sonnet",
+      "harness_tokens": 56888,
+      "seconds": 12.5
+    },
+    "C": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "5/5 correct"
+        }
+      },
+      "runner_model": "sonnet",
+      "harness_tokens": 56541,
+      "seconds": 10.3
+    },
+    "route": {
+      "score": 0.0,
+      "parts": {
+        "objective": {
+          "score": 0.0,
+          "detail": "0/5 correct"
+        }
+      }
+    }
+  },
+  "invoices": {
+    "A": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "18/18 fields"
+        }
+      },
+      "runner_model": "opus",
+      "harness_tokens": 56528,
+      "seconds": 15.0
+    },
+    "B": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "18/18 fields"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 58937,
+      "seconds": 14.7
+    },
+    "C": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "18/18 fields"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 57623,
+      "seconds": 15.0
+    },
+    "route": {
+      "score": 0.05555555555555555,
+      "parts": {
+        "objective": {
+          "score": 0.05555555555555555,
+          "detail": "1/18 fields"
+        }
+      }
+    }
+  },
+  "ipv4": {
+    "A": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "20/20 tests"
+        }
+      },
+      "runner_model": "opus",
+      "harness_tokens": 56423,
+      "seconds": 16.0
+    },
+    "B": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "20/20 tests"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 59552,
+      "seconds": 17.3
+    },
+    "C": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "20/20 tests"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 57836,
+      "seconds": 12.7
+    },
+    "route": {
+      "score": 0.0,
+      "parts": {
+        "objective": {
+          "score": 0.0,
+          "detail": "no python code block"
+        }
+      }
+    }
+  },
+  "launch-email": {
+    "A": {
+      "score": 0.8,
+      "parts": {
+        "judge": {
+          "score": 0.8,
+          "detail": "8/10"
+        }
+      },
+      "runner_model": "opus",
+      "harness_tokens": 56265,
+      "seconds": 18.3
+    },
+    "B": {
+      "score": 0.7,
+      "parts": {
+        "judge": {
+          "score": 0.7,
+          "detail": "7/10"
+        }
+      },
+      "runner_model": "sonnet",
+      "harness_tokens": 60376,
+      "seconds": 31.3
+    },
+    "B2": {
+      "score": 0.4,
+      "parts": {
+        "judge": {
+          "score": 0.4,
+          "detail": "4/10"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 61105,
+      "seconds": 23.8
+    },
+    "B3": {
+      "score": 0.6,
+      "parts": {
+        "judge": {
+          "score": 0.6,
+          "detail": "6/10"
+        }
+      },
+      "runner_model": "sonnet",
+      "harness_tokens": 57363,
+      "seconds": 14.8
+    },
+    "C": {
+      "score": 0.8,
+      "parts": {
+        "judge": {
+          "score": 0.8,
+          "detail": "8/10"
+        }
+      },
+      "runner_model": "sonnet",
+      "harness_tokens": 56883,
+      "seconds": 15.6
+    },
+    "route-haiku": {
+      "score": null,
+      "parts": {}
+    },
+    "route-v2": {
+      "score": null,
+      "parts": {}
+    },
+    "route-v3": {
+      "score": null,
+      "parts": {}
+    },
+    "route": {
+      "score": null,
+      "parts": {}
+    }
+  },
+  "movavg-debug": {
+    "A": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "6/6 tests"
+        }
+      },
+      "runner_model": "opus",
+      "harness_tokens": 56530,
+      "seconds": 21.4
+    },
+    "B": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "6/6 tests"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 62269,
+      "seconds": 30.8
+    },
+    "C": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "6/6 tests"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 58191,
+      "seconds": 14.5
+    },
+    "route": {
+      "score": 0.0,
+      "parts": {
+        "objective": {
+          "score": 0.0,
+          "detail": "no python code block"
+        }
+      }
+    }
+  },
+  "reasoning": {
+    "A": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "4/4 correct"
+        }
+      },
+      "runner_model": "opus",
+      "harness_tokens": 55894,
+      "seconds": 11.0
+    },
+    "B": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "4/4 correct"
+        }
+      },
+      "runner_model": "sonnet",
+      "harness_tokens": 56634,
+      "seconds": 9.9
+    },
+    "C": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "4/4 correct"
+        }
+      },
+      "runner_model": "sonnet",
+      "harness_tokens": 56363,
+      "seconds": 10.0
+    },
+    "route": {
+      "score": 0.0,
+      "parts": {
+        "objective": {
+          "score": 0.0,
+          "detail": "0/4 correct"
+        }
+      }
+    }
+  },
+  "summary": {
+    "A": {
+      "score": 0.9,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "7/7 facts, 5 bullets"
+        },
+        "judge": {
+          "score": 0.8,
+          "detail": "8/10"
+        }
+      },
+      "runner_model": "opus",
+      "harness_tokens": 56455,
+      "seconds": 15.5
+    },
+    "B": {
+      "score": 0.85,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "7/7 facts, 5 bullets"
+        },
+        "judge": {
+          "score": 0.7,
+          "detail": "7/10"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 59951,
+      "seconds": 19.0
+    },
+    "B2": {
+      "score": 0.85,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "7/7 facts, 5 bullets"
+        },
+        "judge": {
+          "score": 0.7,
+          "detail": "7/10"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 59202,
+      "seconds": 13.3
+    },
+    "B3": {
+      "score": 0.85,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "7/7 facts, 5 bullets"
+        },
+        "judge": {
+          "score": 0.7,
+          "detail": "7/10"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 60940,
+      "seconds": 20.3
+    },
+    "C": {
+      "score": 0.9,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "7/7 facts, 5 bullets"
+        },
+        "judge": {
+          "score": 0.8,
+          "detail": "8/10"
+        }
+      },
+      "runner_model": "haiku",
+      "harness_tokens": 57520,
+      "seconds": 10.2
+    },
+    "route-v2": {
+      "score": 0.8,
+      "parts": {
+        "objective": {
+          "score": 0.8,
+          "detail": "7/7 facts, 16 bullets (over 5 bullets: -20%)"
+        }
+      }
+    },
+    "route-v3": {
+      "score": 1.0,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "7/7 facts, 3 bullets"
+        }
+      }
+    },
+    "route": {
+      "score": 0.8,
+      "parts": {
+        "objective": {
+          "score": 0.8,
+          "detail": "7/7 facts, 13 bullets (over 5 bullets: -20%)"
+        }
+      }
+    }
+  },
+  "yoga-landing": {
+    "A": {
+      "score": 0.95,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "complete document:y, viewport meta:y, responsive css:y, img alt text:y, form labels:y"
+        },
+        "judge": {
+          "score": 0.9,
+          "detail": "9/10"
+        }
+      },
+      "runner_model": "opus",
+      "harness_tokens": 73783,
+      "seconds": 149.9
+    },
+    "B": {
+      "score": 0.85,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "complete document:y, viewport meta:y, responsive css:y, img alt text:y, form labels:y"
+        },
+        "judge": {
+          "score": 0.7,
+          "detail": "7/10"
+        }
+      },
+      "runner_model": "sonnet",
+      "harness_tokens": 70669,
+      "seconds": 92.1
+    },
+    "B2": {
+      "score": 0.8,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "complete document:y, viewport meta:y, responsive css:y, img alt text:y, form labels:y"
+        },
+        "judge": {
+          "score": 0.6,
+          "detail": "6/10"
+        }
+      },
+      "runner_model": "sonnet",
+      "harness_tokens": 72356,
+      "seconds": 105.4
+    },
+    "B3": {
+      "score": 0.85,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "complete document:y, viewport meta:y, responsive css:y, img alt text:y, form labels:y"
+        },
+        "judge": {
+          "score": 0.7,
+          "detail": "7/10"
+        }
+      },
+      "runner_model": "sonnet",
+      "harness_tokens": 73262,
+      "seconds": 112.8
+    },
+    "C": {
+      "score": 0.9,
+      "parts": {
+        "objective": {
+          "score": 1.0,
+          "detail": "complete document:y, viewport meta:y, responsive css:y, img alt text:y, form labels:y"
+        },
+        "judge": {
+          "score": 0.8,
+          "detail": "8/10"
+        }
+      },
+      "runner_model": "sonnet",
+      "harness_tokens": 67905,
+      "seconds": 74.6
+    },
+    "route-v2": {
+      "score": 0.4,
+      "parts": {
+        "objective": {
+          "score": 0.4,
+          "detail": "complete document:n, viewport meta:n, responsive css:n, img alt text:y, form labels:y"
+        }
+      }
+    },
+    "route-v3": {
+      "score": 0.4,
+      "parts": {
+        "objective": {
+          "score": 0.4,
+          "detail": "complete document:n, viewport meta:n, responsive css:n, img alt text:y, form labels:y"
+        }
+      }
+    },
+    "route": {
+      "score": 0.4,
+      "parts": {
+        "objective": {
+          "score": 0.4,
+          "detail": "complete document:n, viewport meta:n, responsive css:n, img alt text:y, form labels:y"
+        }
+      }
+    }
+  }
+}

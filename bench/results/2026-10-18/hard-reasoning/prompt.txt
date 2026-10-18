@@ -1,0 +1,6 @@
+answer these, give just the final answers numbered:
+1. in how many ways can a 2x10 board be tiled using 1x2 dominoes (either orientation) and 2x2 squares?
+2. what is the sum of the digits of 2^100?
+3. how many 5-card poker hands contain exactly one pair (and nothing better)?
+4. what is the expected number of rolls of a fair six-sided die until every face has appeared at least once? give a decimal.
+5. how many integers from 1 to 10000 are perfect squares or perfect cubes, but not both?

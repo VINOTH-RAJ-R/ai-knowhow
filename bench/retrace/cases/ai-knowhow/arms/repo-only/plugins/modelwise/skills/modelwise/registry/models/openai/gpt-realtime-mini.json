@@ -1,0 +1,57 @@
+{
+  "id": "gpt-realtime-mini",
+  "provider": "openai",
+  "display_name": "GPT Realtime mini",
+  "family": "gpt-audio",
+  "tier": "specialist",
+  "status": "deprecated",
+  "released": null,
+  "retires": "2027-01-20",
+  "capabilities": [
+    "audio",
+    "text_out"
+  ],
+  "context_window": null,
+  "max_output_tokens": null,
+  "pricing": {
+    "unit": "usd_per_minute",
+    "per_unit": null
+  },
+  "effort": {
+    "parameter": null,
+    "levels": [],
+    "default": null
+  },
+  "speed": "fast",
+  "fit": {
+    "audio.agent": 2
+  },
+  "best_for": [
+    "Nothing new"
+  ],
+  "watch_out": [
+    "Shuts down 2027-01-20. Migrate to gpt-realtime-2.1-mini"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Migrate to gpt-realtime-2.1-mini"
+  ],
+  "where": [
+    "api"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-realtime-mini",
+      "what": "model page"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/deprecations",
+      "what": "shutdown dates"
+    }
+  ],
+  "verified": "2026-10-17"
+}

@@ -1,0 +1,75 @@
+{
+  "$comment": "One effort scale for every vendor. The router chooses a normalized level (E0-E6) for the task, then each model card maps it onto that model's real setting. When a model doesn't support the exact level, the router rounds to the nearest supported one: up when quality is the priority, down for cost or speed.",
+  "levels": [
+    {
+      "level": "E0",
+      "name": "none",
+      "meaning": "No reasoning pass. Answer straight away. For lookups, formatting, and trivial rewrites."
+    },
+    {
+      "level": "E1",
+      "name": "minimal",
+      "meaning": "A very brief think. For high-volume classification, extraction and routing."
+    },
+    {
+      "level": "E2",
+      "name": "low",
+      "meaning": "Light reasoning. For chat, short edits, simple code, summaries. Fastest sensible default."
+    },
+    {
+      "level": "E3",
+      "name": "medium",
+      "meaning": "Normal reasoning. For most real work: features, debugging, analysis, writing with structure."
+    },
+    {
+      "level": "E4",
+      "name": "high",
+      "meaning": "Deep reasoning. For multi-file changes, tricky bugs, research synthesis, strict instruction following."
+    },
+    {
+      "level": "E5",
+      "name": "xhigh",
+      "meaning": "Very deep reasoning. For long-horizon agentic coding and hard architecture. Only when a lower level measurably fails."
+    },
+    {
+      "level": "E6",
+      "name": "max",
+      "meaning": "Uncapped. Use only when correctness matters far more than cost and time."
+    }
+  ],
+  "vendor_mappings": {
+    "anthropic": {
+      "parameter": "output_config.effort",
+      "map": {
+        "E0": "low",
+        "E1": "low",
+        "E2": "low",
+        "E3": "medium",
+        "E4": "high",
+        "E5": "xhigh",
+        "E6": "max"
+      },
+      "notes": "Current Claude models have no true 'off'. To think less, lower the effort; don't ask in the prompt. Sonnet 5.5 can switch thinking off with thinking:{type:'between_tools'} at high effort or below."
+    },
+    "openai": {
+      "parameter": "reasoning.effort (Responses API) / reasoning_effort (Chat Completions)",
+      "map": {
+        "E0": "none",
+        "E1": "low",
+        "E2": "low",
+        "E3": "medium",
+        "E4": "high",
+        "E5": "xhigh",
+        "E6": "max"
+      },
+      "notes": "GPT-6 dropped 'minimal' (use 'low'); some models reject 'none'. Each card's effort.levels is the source of truth. reasoning.mode='pro' (GPT-5.6/GPT-6) is a separate switch for the hardest problems."
+    }
+  },
+  "app_mappings": {
+    "$comment": "In chat apps you don't set an API parameter. You pick a mode instead. This is what to tell users.",
+    "claude.ai": "Choose the model in the model picker. For E4+ turn on Extended thinking (or pick the higher effort option where shown).",
+    "claude-code": "Model: /model <alias> (e.g. /model sonnet). Effort: /effort <low|medium|high|xhigh|max>, or the arrows in the /model picker.",
+    "chatgpt": "Pick the model in the model menu (paid plans default to GPT-6 Sol) and raise the Thinking level for E3+. GPT-6 Pro (Astra) on Pro/Business/Enterprise for E5-E6.",
+    "codex": "Pick the model with /model. Effort labels: Light, Medium, High, Extra High, Max (and Ultra, which splits work across subagents). Config: model and model_reasoning_effort in ~/.codex/config.toml."
+  }
+}

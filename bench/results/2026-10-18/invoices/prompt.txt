@@ -1,0 +1,8 @@
+extract invoice number, invoice date (as YYYY-MM-DD) and total amount (number only) from each of these as a JSON list with keys id, invoice_no, date, total. use null if missing.
+
+1: Inv #A-1043 dated 3 March 2026. Amount due: $1,250.00
+2: INVOICE NO. 88231 // 2026-01-17 // TOTAL USD 99.90 (incl. tax)
+3: Bill ref: KX/22/7 issued on 07/04/2026 (DD/MM/YYYY). Grand total: EUR 3.400,50
+4: Thanks for your order! Total charged $45. Order date Feb 2, 2026.
+5: Invoice 5521-B, date: 12-Dec-2025, subtotal 200.00, tax 36.00, total 236.00
+6: Re: invoice INV-0091 — paid in full ($780.25) on 2026/05/30, invoice date 2026/05/01

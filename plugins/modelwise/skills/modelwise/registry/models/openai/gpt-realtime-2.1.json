@@ -1,0 +1,60 @@
+{
+  "id": "gpt-realtime-2.1",
+  "provider": "openai",
+  "display_name": "GPT Realtime 2.1",
+  "family": "gpt-realtime",
+  "tier": "specialist",
+  "status": "current",
+  "released": "2026-07-06",
+  "retires": null,
+  "capabilities": [
+    "audio",
+    "text_out",
+    "image_in",
+    "tool_use"
+  ],
+  "context_window": 128000,
+  "max_output_tokens": 32000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 32,
+    "output": 64,
+    "cached_input": 0.4,
+    "notes": "Audio rates shown. Text: $4 / $0.40 / $24. Image in $5."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [],
+    "default": null,
+    "notes": "Configurable reasoning; levels not documented."
+  },
+  "speed": "fast",
+  "fit": {
+    "audio.agent": 4.5,
+    "audio.speak": 4.5
+  },
+  "best_for": [
+    "Speech-to-speech agents with tools"
+  ],
+  "watch_out": [
+    "Audio tokens are expensive. Keep turns short"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Role \u2192 personality \u2192 flow \u2192 rules \u2192 pronunciations"
+  ],
+  "where": [
+    "api"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-realtime-2.1",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

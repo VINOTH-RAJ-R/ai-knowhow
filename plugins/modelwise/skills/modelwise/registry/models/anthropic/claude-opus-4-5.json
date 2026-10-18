@@ -1,0 +1,89 @@
+{
+  "id": "claude-opus-4-5",
+  "provider": "anthropic",
+  "display_name": "Claude Opus 4.5",
+  "family": "opus",
+  "tier": "flagship",
+  "status": "legacy",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 200000,
+  "max_output_tokens": 64000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 5,
+    "output": 25,
+    "cached_input": 0.5
+  },
+  "effort": {
+    "parameter": "output_config.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": "high",
+    "notes": "Only low/medium/high."
+  },
+  "speed": "medium",
+  "fit": {
+    "code.quick": 3,
+    "code.build": 3,
+    "code.frontend": 3,
+    "code.debug": 3,
+    "code.review": 3,
+    "agent.longrun": 3,
+    "agent.computer": 3,
+    "text.write": 3,
+    "text.transform": 3,
+    "text.chat": 3,
+    "data.extract": 3,
+    "data.analysis": 3,
+    "research.deep": 3,
+    "reason.hard": 3,
+    "vision.understand": 3
+  },
+  "best_for": [
+    "Legacy integrations only"
+  ],
+  "watch_out": [
+    "Old model. Migrate"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Migrate to claude-opus-5-5"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

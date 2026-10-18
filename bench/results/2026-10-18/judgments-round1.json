@@ -1,0 +1,21 @@
+{
+  "note": "Round-1 judge output (unblinded). The original blinded folder was deleted by mistake during cleanup; scores below are from each task's judge.json and the mapping in blind-mapping.json. Notes are as captured at the time (launch-email note truncated).",
+  "launch-email": {
+    "A": 8,
+    "B": 7,
+    "C": 8,
+    "notes": "X and Z are both complete, scannable emails with a subject line, preview text, one primary CTA and clearly bracketed placeholders; X is more cautious about unshipped features, while Z is more vivid and concrete but leans on more assumed capabilities. Y offers three tight, specific variants with hone[...truncated]"
+  },
+  "yoga-landing": {
+    "A": 9,
+    "B": 7,
+    "C": 8,
+    "notes": "Z is the most complete and polished: mobile hamburger with ARIA, keyboard-navigable schedule tabs, validated form with aria-invalid, skip link and reduced-motion support, though its reveal animation hides content when JavaScript is off. X is clean and well-crafted with dark mode and good focus states [...]"
+  },
+  "summary": {
+    "A": 8,
+    "B": 7,
+    "C": 8,
+    "notes": "All three are faithful, exactly 5 bullets, and cover results, problems and the capex ask; Y best serves executives by leading with the decision and grouping risks, but slightly overstates HR's proposal as a decision ('HR will pilot'). [...]"
+  }
+}

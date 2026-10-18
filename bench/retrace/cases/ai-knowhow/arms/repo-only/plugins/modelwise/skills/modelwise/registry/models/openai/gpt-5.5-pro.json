@@ -1,0 +1,77 @@
+{
+  "id": "gpt-5.5-pro",
+  "provider": "openai",
+  "display_name": "GPT-5.5 Pro",
+  "family": "gpt-5.5",
+  "tier": "specialist",
+  "status": "previous",
+  "released": "2026-04-24",
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1050000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 30,
+    "output": 180,
+    "cached_input": null,
+    "notes": "No cached-input discount. Over 272K input tokens the whole request is billed at 2x input / 1.5x output. Batch & Flex about 50% off; Fast tier about 2x."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "default": "high",
+    "notes": "Responses and Batch only; use background mode. Newer models offer reasoning.mode='pro' instead."
+  },
+  "speed": "slow",
+  "fit": {
+    "reason.hard": 5,
+    "research.deep": 4.5,
+    "code.debug": 4.5,
+    "code.review": 4.5,
+    "data.analysis": 4.5,
+    "text.write": 4
+  },
+  "best_for": [
+    "Hardest single problems where an extra-long think pays off"
+  ],
+  "watch_out": [
+    "Very expensive ($30/$180)",
+    "Requests can take minutes",
+    "GPT-6 Astra with reasoning.mode='pro' is the newer path"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Give the complete problem in one request. Don't use it for chatty back-and-forth"
+  ],
+  "where": [
+    "api",
+    "chatgpt",
+    "codex",
+    "azure"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.5-pro",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

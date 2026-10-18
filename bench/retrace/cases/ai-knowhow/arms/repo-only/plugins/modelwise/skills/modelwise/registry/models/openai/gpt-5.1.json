@@ -1,0 +1,90 @@
+{
+  "id": "gpt-5.1",
+  "provider": "openai",
+  "display_name": "GPT-5.1",
+  "family": "gpt-5.1",
+  "tier": "flagship",
+  "status": "deprecated",
+  "released": null,
+  "retires": "2027-04-01",
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 400000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 1.25,
+    "output": 10,
+    "cached_input": 0.125,
+    "notes": "Over 272K input tokens the whole request is billed at 2x input / 1.5x output. Batch & Flex about 50% off; Fast tier about 2x."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "default": null,
+    "notes": "Deprecated."
+  },
+  "speed": "medium",
+  "fit": {
+    "code.quick": 2,
+    "code.build": 2,
+    "code.frontend": 2,
+    "code.debug": 2,
+    "code.review": 2,
+    "agent.longrun": 2,
+    "agent.computer": 2,
+    "text.write": 2,
+    "text.transform": 2,
+    "text.chat": 2,
+    "data.extract": 2,
+    "data.analysis": 2,
+    "research.deep": 2,
+    "reason.hard": 2,
+    "vision.understand": 2
+  },
+  "best_for": [
+    "Nothing new"
+  ],
+  "watch_out": [
+    "Shuts down 2027-04-01. Migrate to gpt-6-sol / gpt-6.1-sol"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Migrate to gpt-6-sol / gpt-6.1-sol"
+  ],
+  "where": [
+    "api",
+    "chatgpt",
+    "codex",
+    "azure"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.1",
+      "what": "model page"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/deprecations",
+      "what": "shutdown dates"
+    }
+  ],
+  "verified": "2026-10-17"
+}

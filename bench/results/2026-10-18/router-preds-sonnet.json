@@ -1,0 +1,242 @@
+[
+ {
+  "id": 1,
+  "task": "code.quick",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 2,
+  "task": "code.build",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 3,
+  "task": "code.frontend",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 4,
+  "task": "code.debug",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 5,
+  "task": "code.review",
+  "complexity": "complex",
+  "priority": "balanced"
+ },
+ {
+  "id": 6,
+  "task": "agent.longrun",
+  "complexity": "complex",
+  "priority": "balanced"
+ },
+ {
+  "id": 7,
+  "task": "agent.computer",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 8,
+  "task": "text.write",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 9,
+  "task": "text.transform",
+  "complexity": "complex",
+  "priority": "balanced"
+ },
+ {
+  "id": 10,
+  "task": "text.chat",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 11,
+  "task": "data.extract",
+  "complexity": "simple",
+  "priority": "cost"
+ },
+ {
+  "id": 12,
+  "task": "data.analysis",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 13,
+  "task": "research.deep",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 14,
+  "task": "reason.hard",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 15,
+  "task": "vision.understand",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 16,
+  "task": "image.generate",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 17,
+  "task": "image.edit",
+  "complexity": "moderate",
+  "priority": "cost"
+ },
+ {
+  "id": 18,
+  "task": "video.generate",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 19,
+  "task": "audio.transcribe",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 20,
+  "task": "audio.speak",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 21,
+  "task": "audio.agent",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 22,
+  "task": "code.quick",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 23,
+  "task": "code.build",
+  "complexity": "complex",
+  "priority": "balanced"
+ },
+ {
+  "id": 24,
+  "task": "code.debug",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 25,
+  "task": "code.review",
+  "complexity": "complex",
+  "priority": "balanced"
+ },
+ {
+  "id": 26,
+  "task": "text.transform",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 27,
+  "task": "text.write",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 28,
+  "task": "data.extract",
+  "complexity": "moderate",
+  "priority": "cost"
+ },
+ {
+  "id": 29,
+  "task": "data.analysis",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 30,
+  "task": "reason.hard",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 31,
+  "task": "vision.understand",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 32,
+  "task": "image.generate",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 33,
+  "task": "audio.transcribe",
+  "complexity": "moderate",
+  "priority": "speed"
+ },
+ {
+  "id": 34,
+  "task": "code.quick",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 35,
+  "task": "code.build",
+  "complexity": "complex",
+  "priority": "balanced"
+ },
+ {
+  "id": 36,
+  "task": "code.frontend",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 37,
+  "task": "reason.hard",
+  "complexity": "frontier",
+  "priority": "quality"
+ },
+ {
+  "id": 38,
+  "task": "text.chat",
+  "complexity": "simple",
+  "priority": "balanced"
+ },
+ {
+  "id": 39,
+  "task": "agent.computer",
+  "complexity": "moderate",
+  "priority": "balanced"
+ },
+ {
+  "id": 40,
+  "task": "image.edit",
+  "complexity": "simple",
+  "priority": "balanced"
+ }
+]

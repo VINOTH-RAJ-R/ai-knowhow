@@ -1,0 +1,85 @@
+{
+  "id": "claude-sonnet-4-5",
+  "provider": "anthropic",
+  "display_name": "Claude Sonnet 4.5",
+  "family": "sonnet",
+  "tier": "balanced",
+  "status": "legacy",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 200000,
+  "max_output_tokens": 64000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 3,
+    "output": 15,
+    "cached_input": 0.3
+  },
+  "effort": {
+    "parameter": null,
+    "levels": [],
+    "default": null,
+    "notes": "No effort parameter. Uses budget_tokens for thinking."
+  },
+  "speed": "fast",
+  "fit": {
+    "code.quick": 3,
+    "code.build": 3,
+    "code.frontend": 3,
+    "code.debug": 3,
+    "code.review": 3,
+    "agent.longrun": 3,
+    "agent.computer": 3,
+    "text.write": 3,
+    "text.transform": 3,
+    "text.chat": 3,
+    "data.extract": 3,
+    "data.analysis": 3,
+    "research.deep": 3,
+    "reason.hard": 2.5,
+    "vision.understand": 3
+  },
+  "best_for": [
+    "Legacy integrations"
+  ],
+  "watch_out": [
+    "Old model. Migrate"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Migrate to claude-sonnet-5-5"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

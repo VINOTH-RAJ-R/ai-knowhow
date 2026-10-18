@@ -1,0 +1,5 @@
+- **Volume up, cost down:** Shipments grew 18% quarter over quarter to 2.4 million parcels, led by the new Bengaluru grocery partner (310,000 parcels). Cost per parcel fell from ₹41 to ₹37, helped by route batching now live in five cities.
+- **On-time delivery dipped, now recovering:** On-time delivery fell from 96.1% to 93.4%, almost entirely due to an August sorter breakdown at the Chennai hub that caused a nine-day backlog. The sorter was replaced on September 3, and Chennai has been back above 95% since mid-September.
+- **Customer experience improved:** Complaints per 10,000 parcels fell from 22 to 17.
+- **Driver attrition is a concern:** Monthly driver attrition rose to 7% from 5%. Exit interviews point to the new shift rota, and HR proposes reverting to the old rota in two pilot cities in October.
+- **Decision needed:** Approve ₹2.1 crore capex for a second Chennai sorter to remove the single point of failure, with an expected 14-month payback. The Pune hub launch moves from November to January because the landlord delayed handover.

@@ -1,0 +1,5 @@
+answer these, give just the final answers numbered:
+1. how many 4-digit numbers have all different digits that add up to 9?
+2. how many ways can you climb 12 stairs taking 1, 2 or 3 steps at a time?
+3. how many integers from 1 to 1000 are divisible by 3 or 5 but not by 15?
+4. two fair dice are rolled. what is the probability the product is even? give a fraction.

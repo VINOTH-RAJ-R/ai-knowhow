@@ -1,0 +1,36 @@
+{
+  "name": "ai-knowhow",
+  "description": "Know how it was built. Know what to build it with. Agent skills: modelwise and retrace.",
+  "owner": {
+    "name": "vinothraj",
+    "url": "https://github.com/VINOTH-RAJ-R"
+  },
+  "plugins": [
+    {
+      "name": "modelwise",
+      "source": {
+        "source": "local",
+        "path": "./plugins/modelwise"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity",
+      "description": "Right model, effort and structured prompt for any task."
+    },
+    {
+      "name": "retrace",
+      "source": {
+        "source": "local",
+        "path": "./plugins/retrace"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity",
+      "description": "Turn finished AI work into lessons that teach people."
+    }
+  ]
+}

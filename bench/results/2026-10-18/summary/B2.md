@@ -1,0 +1,5 @@
+- The team requests approval of ₹2.1 crore capex for a second sorter in Chennai to avoid a single point of failure, with an expected payback of 14 months.
+- Shipment volume grew 18% quarter over quarter to 2.4 million parcels, and cost per parcel fell from ₹41 to ₹37.
+- On-time delivery slipped from 96.1% to 93.4%, almost entirely because of the Chennai hub, while complaints per 10,000 parcels fell from 22 to 17.
+- Driver attrition rose to 7% monthly from 5%, and exit interviews point to the new shift rota; HR proposes reverting to the old rota in two pilot cities in October.
+- The Pune hub launch has moved from November to January because the landlord delayed the handover.

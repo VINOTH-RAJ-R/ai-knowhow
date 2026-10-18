@@ -1,0 +1,93 @@
+{
+  "id": "claude-opus-4-8",
+  "provider": "anthropic",
+  "display_name": "Claude Opus 4.8",
+  "family": "opus",
+  "tier": "flagship",
+  "status": "previous",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1000000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 5,
+    "output": 25,
+    "cached_input": 0.5
+  },
+  "effort": {
+    "parameter": "output_config.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high",
+    "notes": "Adaptive thinking must be turned on explicitly ({type:'adaptive'})."
+  },
+  "speed": "medium",
+  "fit": {
+    "code.quick": 4,
+    "code.build": 4,
+    "code.frontend": 4,
+    "code.debug": 4,
+    "code.review": 4,
+    "agent.longrun": 4,
+    "agent.computer": 4,
+    "text.write": 4.5,
+    "text.transform": 4.5,
+    "text.chat": 4.5,
+    "data.extract": 4.5,
+    "data.analysis": 4,
+    "research.deep": 4,
+    "reason.hard": 4,
+    "vision.understand": 4
+  },
+  "best_for": [
+    "Warm, clear long-form writing",
+    "Existing Opus 4.x integrations"
+  ],
+  "watch_out": [
+    "Without thinking enabled it may write long reasoning into the visible reply",
+    "Superseded by Opus 5.5 (cheaper)"
+  ],
+  "prompt_style": "prompt-style-anthropic.md",
+  "prompt_tips": [
+    "Enable adaptive thinking or add 'give only the final answer'"
+  ],
+  "where": [
+    "api",
+    "claude.ai",
+    "claude-code",
+    "bedrock",
+    "vertex",
+    "foundry"
+  ],
+  "sources": [
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "what": "IDs, context, output limits, pricing"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "what": "effort levels and defaults"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/migration-guide",
+      "what": "behavior and prompting changes per model"
+    }
+  ],
+  "verified": "2026-10-17"
+}

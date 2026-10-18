@@ -1,0 +1,100 @@
+{
+  "id": "gpt-6-astra",
+  "provider": "openai",
+  "display_name": "GPT-6 Astra",
+  "family": "gpt-6",
+  "tier": "frontier",
+  "status": "current",
+  "released": "2026-09-03",
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1050000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 10,
+    "output": 50,
+    "cached_input": 1.0,
+    "notes": "Cache write $12.50. Over 272K input tokens the whole request is billed at 2x input / 1.5x output. Batch & Flex about 50% off; Fast tier about 2x. Ultrafast tier 6x."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": null,
+    "notes": "'none' returns HTTP 400. Default not documented: set it explicitly. Add reasoning.mode='pro' for the hardest problems. temperature/top_p/logprobs removed."
+  },
+  "speed": "slow",
+  "fit": {
+    "code.quick": 5,
+    "code.build": 5,
+    "code.frontend": 5,
+    "code.debug": 5,
+    "code.review": 5,
+    "agent.longrun": 5,
+    "agent.computer": 5,
+    "text.write": 5,
+    "text.transform": 5,
+    "text.chat": 5,
+    "data.extract": 5,
+    "data.analysis": 5,
+    "research.deep": 5,
+    "reason.hard": 5,
+    "vision.understand": 5
+  },
+  "best_for": [
+    "OpenAI's top model: complex reasoning, coding, computer use, research, document creation",
+    "Hard multi-step agent work in Codex (start at low effort there)"
+  ],
+  "watch_out": [
+    "Most expensive OpenAI text model (same list price as Claude Fable 5.1)",
+    "Leans toward lists/tables/Markdown. Ask for paragraphs if you want prose",
+    "More sensitive to everything in context. Trim old skill files and AGENTS.md"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "State goals, constraints and what 'done' means. Drop step-by-step recipes",
+    "Remove 'double-check / run the tests' reminders and heavy 'ask first' wording. It already does this",
+    "Say explicitly how autonomous it should be (act on reversible steps vs. ask first)",
+    "Use text.verbosity for default length"
+  ],
+  "where": [
+    "api",
+    "chatgpt",
+    "codex",
+    "azure"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "what": "model page"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "what": "prompting guidance"
+    },
+    {
+      "url": "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra",
+      "what": "prompt migration advice"
+    }
+  ],
+  "verified": "2026-10-17"
+}

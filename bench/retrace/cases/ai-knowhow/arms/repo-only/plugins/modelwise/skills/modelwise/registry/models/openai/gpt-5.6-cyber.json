@@ -1,0 +1,59 @@
+{
+  "id": "gpt-5.6-cyber",
+  "provider": "openai",
+  "display_name": "GPT-5.6 Cyber",
+  "family": "gpt-5.6",
+  "tier": "specialist",
+  "status": "restricted",
+  "released": null,
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "tool_use",
+    "structured_output"
+  ],
+  "context_window": 400000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 12.5,
+    "output": 75,
+    "cached_input": 1.25,
+    "notes": "Approval required (Daybreak program). Responses API only."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [],
+    "default": null,
+    "notes": "Not documented."
+  },
+  "speed": "slow",
+  "fit": {
+    "code.review": 4.5
+  },
+  "best_for": [
+    "Approved security research only"
+  ],
+  "watch_out": [
+    "Needs program approval"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Same as GPT-5.x"
+  ],
+  "where": [
+    "api"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.6-cyber",
+      "what": "model page"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}

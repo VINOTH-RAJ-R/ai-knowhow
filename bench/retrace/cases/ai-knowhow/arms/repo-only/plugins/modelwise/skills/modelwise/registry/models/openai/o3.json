@@ -1,0 +1,73 @@
+{
+  "id": "o3",
+  "provider": "openai",
+  "display_name": "o3",
+  "family": "o-series",
+  "tier": "specialist",
+  "status": "deprecated",
+  "released": "2025-04-16",
+  "retires": "2026-12-11",
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "pdf_in",
+    "tool_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 200000,
+  "max_output_tokens": 100000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 2,
+    "output": 8,
+    "cached_input": 0.5,
+    "notes": ""
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": null,
+    "notes": "Default not documented."
+  },
+  "speed": "slow",
+  "fit": {
+    "reason.hard": 3
+  },
+  "best_for": [
+    "Nothing new"
+  ],
+  "watch_out": [
+    "Snapshot shuts down 2026-12-11. Migrate to GPT-5.6/GPT-6"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Migrate"
+  ],
+  "where": [
+    "api",
+    "chatgpt",
+    "codex",
+    "azure"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/o3",
+      "what": "model page"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/deprecations",
+      "what": "shutdown dates"
+    }
+  ],
+  "verified": "2026-10-17"
+}

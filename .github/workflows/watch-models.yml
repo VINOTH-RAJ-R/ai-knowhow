@@ -1,0 +1,40 @@
+name: watch-models
+
+# Daily tripwire: look for model IDs on Anthropic/OpenAI pages that the registry doesn't know.
+# Opens (or updates) one issue for a human to review. It never edits model cards itself.
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check vendor pages
+        id: watch
+        run: |
+          set +e
+          python3 tools/watch_models.py > report.md
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          cat report.md
+      - name: Open or update the issue
+        if: steps.watch.outputs.code == '2'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Registry needs attention"
+          existing=$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file report.md
+          else
+            gh issue create --title "$title" --body-file report.md --label registry || gh issue create --title "$title" --body-file report.md
+          fi

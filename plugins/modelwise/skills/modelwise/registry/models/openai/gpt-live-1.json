@@ -1,0 +1,54 @@
+{
+  "id": "gpt-live-1",
+  "provider": "openai",
+  "display_name": "GPT Live 1",
+  "family": "gpt-live",
+  "tier": "specialist",
+  "status": "current",
+  "released": "2026-09-10",
+  "retires": null,
+  "capabilities": [
+    "audio",
+    "text_out"
+  ],
+  "context_window": null,
+  "max_output_tokens": null,
+  "pricing": {
+    "unit": "usd_per_minute",
+    "per_unit": 0.05,
+    "notes": "$0.05/min billed per second, plus the backend reasoning model's usage."
+  },
+  "effort": {
+    "parameter": null,
+    "levels": [],
+    "default": null
+  },
+  "speed": "fastest",
+  "fit": {
+    "audio.agent": 5
+  },
+  "best_for": [
+    "Full-duplex live voice agents (it hands reasoning to a backend model)"
+  ],
+  "watch_out": [
+    "Backend model usage is billed separately"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Use the voice-agent section structure in templates/audio.md"
+  ],
+  "where": [
+    "api"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-live-1",
+      "what": "model page: limits, price, effort levels"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-17"
+}
