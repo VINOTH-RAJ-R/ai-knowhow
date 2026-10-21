@@ -39,6 +39,11 @@ class RouterTests(unittest.TestCase):
         self.assertIsNone(r("video.generate")["recommended"])
         self.assertIsNotNone(r("video.generate")["fallback"])
 
+    def test_media_without_prices_ranks_by_fit(self):
+        res = r("image.generate", "moderate")
+        self.assertEqual(res["recommended"]["model"], "gpt-image-2.5-sunburst")
+        self.assertIn("no published prices", res["ranking_basis"])
+
     def test_cost_priority_is_never_pricier_than_balanced(self):
         for t in TASKS:
             b, c = r(t, "moderate", "balanced")["recommended"], r(t, "moderate", "cost")["recommended"]

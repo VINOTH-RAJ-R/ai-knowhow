@@ -25,7 +25,7 @@ Everything you know about models comes from the files in this skill, **not from 
 | `ROUTING_TABLE.md` | Pre-computed routes, for environments that can't run scripts |
 
 ## Which model should run this skill?
-This skill mostly reads files and fills templates, so it doesn't need a frontier model. Recommended: **Claude Haiku 5.5** or **GPT-6 Luna** at low effort — in our benchmark Haiku produced the same routes and the same answer format as Sonnet at about a twentieth of the cost. Use **Claude Sonnet 5.5** or **GPT-6.1 Sol** when the prompt rewriting itself is complex (long specs, multi-phase work). This is about running *this skill*; it is unrelated to the model and effort you recommend for the user's task. If you are running on a frontier model (Fable, Opus, GPT-6 Astra), mention this once at the end of your answer — the recommendation itself will be the same, just more expensive to produce.
+This skill mostly reads files and fills templates, so it doesn't need a frontier model. Recommended: **Claude Haiku 5.5** or **GPT-6 Luna** at low effort — in our benchmark Haiku produced the same routes and the same answer format as Sonnet at about a fifteenth of the per-run cost. Use **Claude Sonnet 5.5** or **GPT-6.1 Sol** when the prompt rewriting itself is complex (long specs, multi-phase work). This is about running *this skill*; it is unrelated to the model and effort you recommend for the user's task. If you are running on a frontier model (Fable, Opus, GPT-6 Astra), mention this once at the end of your answer — the recommendation itself will be the same, just more expensive to produce.
 
 ## Workflow
 
@@ -34,6 +34,14 @@ Use the text after the command, or the prompt the user is discussing. If there i
 
 ### 2. Classify
 Follow `guides/classify.md` → `task`, `complexity`, `priority`, `provider`. Ask at most two questions, only if the answer changes the tier or the prompt; otherwise state assumptions in one line.
+
+### 2b. Research the context (when the prompt needs facts)
+Research **before** writing any prompt when the request names an event, festival, ritual, culture, place, public figure, brand, or a reference site. Examples: "Diwali poster", "Vidyarambham", "a Kerala wedding invitation", "in the style of Pinterest".
+1. **Use the web tools if they are available** (search, then fetch the best 2–3 pages). Collect the facts the design depends on: what the event is, when it is held, the ritual and its symbols, the colours and motifs traditionally used, and what is sensitive (deities, faces, religious text).
+2. **Verify the date.** If the event is near today, say when it falls, with a source, and suggest the user confirm it with the local calendar.
+3. **Find design references** (Behance, Pinterest, Google Images results). From search results you can read titles, text and links, but you may not be able to see the images. Say so, and describe a reference by its text and link only.
+4. **Never copy** a specific artwork or layout. Reference a style, not a piece.
+5. If no web tool is available, say so **once**, label every cultural fact "from general knowledge, unverified", and keep the motifs to ones that are safe and widely known.
 
 ### 3. Route
 Always run the router across both vendors:
@@ -98,9 +106,38 @@ To improve the result, tell me: <2-4 specifics that would most improve the outpu
 
 For a task with distinct phases (plan with a strong model, execute with a cheaper one; write a script then generate video), give one short route per phase.
 
+### 7. Creative and event requests (posters, social graphics, invitations)
+Use this structure instead of the generic one above. Keep each part short.
+
+```
+## Context you should know
+- 3–5 verified facts about the event or ritual, each with a source link. Include the date if it is near.
+- Anything sensitive to avoid (deities, faces, religious text) and why.
+
+## Design references
+- 2–4 links (Behance, Pinterest, search results) with one line each on what to take from them: a layout, a type treatment, a colour use. State if you could not view the images.
+
+## Brand brief
+| Colour | Hex | Role | Share of area |
+Use the user's own palette. Write each colour's share as area, not as a count, and state how you read any conflict (for example "red 10%" but "very minimal").
+Typography, and what the model can't match exactly (text is approximate; set the final type in a design tool).
+
+## Options (A–D, or as many as asked)
+Each option: direction, layout (top / middle / bottom), motif set, the self-contained prompt in a code block, and one line on why it fits.
+Give different layouts, not colour swaps.
+
+## Recommendation
+Model and quality setting (note: image models have no published price, so cost shows as n/a and the router ranks by fit).
+
+## Assumptions and conflicts
+## To improve the result, tell me: <2–4 specifics>
+```
+
 ## Rules
 - Never recommend a model that isn't in the registry, and never invent a model ID, price or effort level. If the user asks about a model that's missing, say it isn't in the registry yet and suggest the closest card plus checking the vendor's docs.
 - Image and audio models in this registry are OpenAI-only; Claude can still write the prompt. There is no video generator in the registry (Sora 2 API shut down 2026-09-24): when `route.py` returns a `fallback`, explain its note, give the fallback route for writing the prompt, and still produce the full video prompt from `templates/video.md` so the user can paste it into the generator they use.
 - Respect the card's `status`: don't recommend `deprecated` models; mention `previous`/`legacy` only when the user is already on them, with the migration target.
 - Each card has a `verified` date. If it is more than 45 days old, add one line suggesting the user check the vendor's model page for changes.
 - Effort is the main lever for thinking depth and cost — prefer lowering effort to switching to a weaker model.
+- **Never say you can't browse, search or look something up without trying the tool that is available.** If a search or fetch fails, say what failed and continue with labelled assumptions.
+- **Never invent a source.** Every link in the answer must come from a page you actually retrieved.

@@ -134,10 +134,11 @@ def rank(entries, priority, min_fit):
 
     no_prices = all(e["cost"] is None for e in entries)
     if priority in ("balanced", "cost") and no_prices:
-        # Media models priced by tokens/area have no comparable per-task estimate: use speed as the cost proxy.
-        priority = "speed" if priority == "cost" else "balanced_speed"
-    if priority == "balanced_speed":
-        key = lambda e: (e["fit"] < target, -SPEED_RANK.get(e["card"].get("speed", "medium"), 1), -e["fit"], stale(e))
+        # No published per-task price (image and audio models): cost can't rank them, so fit decides.
+        # For cost priority, speed is the only remaining proxy.
+        priority = "speed" if priority == "cost" else "balanced_fit"
+    if priority == "balanced_fit":
+        key = lambda e: (e["fit"] < target, -e["fit"], stale(e))
     elif priority == "quality":
         key = lambda e: (-e["fit"], stale(e), cost(e))
     elif priority == "cost":
@@ -291,6 +292,8 @@ def route(task_id, complexity="moderate", priority="balanced", provider="any",
         "template": task["template"],
         "relaxed_quality_bar": relaxed,
         "recommended": summary(top),
+        "ranking_basis": ("list price" if any(e["cost"] is not None for e in entries)
+                          else "fit (no published prices for this task)"),
         "tie_with": summary(tie, "Same fit and about the same cost from another vendor: either is a good choice."),
         "fallback": fallback,
         "cheaper_option": summary(cheaper, "Lower cost; quality may drop a little."),
@@ -317,6 +320,7 @@ def print_human(r):
     print("Complexity:  %s   Priority: %s   Providers: %s" % (r["complexity"], r["priority"], r["provider_filter"]))
     print("Effort:      %s (%s) on the normalized scale" % (r["effort_level"], r["effort_level_name"]))
     print("Template:    %s" % r["template"])
+    print("Ranked by:   %s" % r.get("ranking_basis", "list price"))
     if r["relaxed_quality_bar"]:
         print("NOTE: no model fully clears the quality bar for this complexity; showing the strongest available.")
     rec = r["recommended"]

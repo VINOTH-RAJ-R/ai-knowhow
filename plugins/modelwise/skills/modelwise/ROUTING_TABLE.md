@@ -374,8 +374,8 @@ Template: `templates/image.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | gpt-image-2.5-flare @ low (n/a) | - | - | gpt-image-2.5-flare @ low (n/a) |
-| moderate | E3 medium | gpt-image-2.5-flare @ medium (n/a) | - | - | gpt-image-2.5-flare @ medium (n/a) |
+| simple | E2 low | gpt-image-2.5-sunburst @ low (n/a) | - | - | gpt-image-2.5-sunburst @ low (n/a) |
+| moderate | E3 medium | gpt-image-2.5-sunburst @ medium (n/a) | - | - | gpt-image-2.5-sunburst @ medium (n/a) |
 | complex | E4 high | gpt-image-2.5-sunburst @ high (n/a) | - | - | gpt-image-2.5-sunburst @ high (n/a) |
 | frontier | E4 high | gpt-image-2.5-sunburst @ high (n/a) | - | - | gpt-image-2.5-sunburst @ high (n/a) |
 
@@ -392,8 +392,8 @@ Template: `templates/image.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | gpt-image-2.5-flare @ low (n/a) | - | - | gpt-image-2.5-flare @ low (n/a) |
-| moderate | E3 medium | gpt-image-2.5-flare @ medium (n/a) | - | - | gpt-image-2.5-flare @ medium (n/a) |
+| simple | E2 low | gpt-image-2.5-sunburst @ low (n/a) | - | - | gpt-image-2.5-sunburst @ low (n/a) |
+| moderate | E3 medium | gpt-image-2.5-sunburst @ medium (n/a) | - | - | gpt-image-2.5-sunburst @ medium (n/a) |
 | complex | E4 high | gpt-image-2.5-sunburst @ high (n/a) | - | - | gpt-image-2.5-sunburst @ high (n/a) |
 | frontier | E4 high | gpt-image-2.5-sunburst @ high (n/a) | - | - | gpt-image-2.5-sunburst @ high (n/a) |
 

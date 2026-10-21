@@ -63,6 +63,37 @@ Constraints: No logos, no people, no watermark.
 ```
 Parameters: `size=1024x1024`, `quality=medium`, model per routing (Flare for drafts, Sunburst for the final).
 
+## Poster, festive and social graphics (no logo, text in the image)
+
+Use this when the request is a poster, festival post or social graphic with a heading and subheading. Read the research step first (SKILL.md 2b) and fill the slots from verified facts.
+
+| Slot | Fill with |
+|---|---|
+| FORMAT | Exact size and use, e.g. "square 1:1 Instagram feed post, 1024×1024". |
+| EVENT FACT | One verified sentence on what the event is and why it is held. It shapes the motifs; it is not printed unless asked. |
+| LAYOUT | Three zones, top to bottom: heading zone, hero zone, subheading zone. Say where each sits and how much space it leaves. |
+| PALETTE | Each colour as hex, role and share of area: e.g. "blue #0a4e9b, base background, ~80%". Describe red and green as accents if their share is small. |
+| MOTIFS | 3–5 objects from the verified ritual or tradition. Name only what is safe to depict. |
+| TYPE | The exact text, quoted, with its position. Say "clean geometric sans-serif, bold for the heading". |
+| AVOID | No logo, no wordmark, no watermark, no extra text, no faces of real people, no deities unless asked. |
+
+**Skeleton**
+```
+Create a square 1:1 image for a <use>.
+Layout: top zone for the heading; middle zone for the hero illustration; bottom zone for the subheading. Leave generous margins.
+Background: <colour and hex>, <share> of the canvas.
+Hero: <scene and motifs>, in a <style>.
+Accents: <colour and hex>, only as <role>, at about <share>.
+Text, exactly as written, nothing else: "<heading>" (bold, white, top zone). "<subheading>" (regular, <colour>, bottom zone).
+Avoid: <AVOID>.
+```
+
+**Rules that prevent the common failures**
+- **Text is approximate.** Image models misspell text and can't load a brand font. Keep on-image text short, spell it letter by letter, and tell the user the final type should be set in the real font in Canva or Figma.
+- **Percentages describe area, not counts.** Write "about 80%" and say how you read any conflict between a percentage and a word.
+- **Different options means different layouts.** Four colour swaps of one layout are not four options.
+- **Motifs come from the research.** Never invent a ritual detail. If a script or symbol is needed (e.g. a Malayalam letter), say the image model may misdraw it and suggest overlaying it with real type.
+
 ## Token & cost savers
 - **Draft at low quality** (and with the faster model) until composition is right, then render the final once at high.
 - One change per edit turn. Big multi-change edits cause re-rolls.

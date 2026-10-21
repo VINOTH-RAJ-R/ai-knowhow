@@ -38,4 +38,4 @@ Then go to **Customize → Skills → + → Create skill → Upload a skill** fo
 | Where retrace saves lessons | `.claude/skills/lesson-<slug>/` | A connected folder, plus a ZIP | Downloads, plus a ZIP |
 | Setting effort for the recommended model | `/effort` | Model picker | Model picker, plus extended thinking on/off |
 
-**Recommended model to run the skills:** Claude Haiku 5.5. Our benchmark found it gave the same routes and format as Sonnet at about a twentieth of the cost. Use Sonnet 5.5 for complex rewrites.
+**Recommended model to run the skills:** Claude Haiku 5.5. Our benchmark found it gave the same routes and format as Sonnet at about a fifteenth of the per-run cost. Use Sonnet 5.5 for complex rewrites.

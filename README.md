@@ -114,7 +114,7 @@ Your tool's selected model runs the skill, and we can't control that. The skills
 | **Claude** (Claude Code, claude.ai, Cowork) | Claude Haiku 5.5 @ low effort | Claude Sonnet 5.5 |
 | **OpenAI** (ChatGPT, Codex) | GPT-6 Luna @ low effort | GPT-6.1 Sol |
 
-The answer doesn't depend on the model's own knowledge. All model facts come from the registry. In our benchmark, Haiku running the skill gave the same routes and the same answer format as Sonnet, at about a twentieth of the cost.
+The answer doesn't depend on the model's own knowledge. All model facts come from the registry. In our benchmark, Haiku running the skill gave the same routes and the same answer format as Sonnet, at about a fifteenth of the per-run cost.
 
 ## Does it work? (benchmark, 2026-10-18)
 Full report: [docs/benchmark-report-2026-10.md](docs/benchmark-report-2026-10.md). In short:
