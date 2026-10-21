@@ -1,0 +1,36 @@
+# Art direction for image prompts (posters, banners, social graphics)
+
+Image models do what the brief says. A brief that says "flat, solid, simple, minimal" gets clip-art on a flat fill. Write the brief the way a senior designer briefs an illustrator: one idea, a clear focal point, depth, light, a controlled colour system, and typographic hierarchy.
+
+## The senior-designer checklist (run it before you send any prompt)
+
+1. **Concept.** One idea that goes beyond the literal words. An NFO isn't "bars going up"; it's "a door opening", "first light on a new horizon", "a seed becoming a forest". Write it in one line.
+2. **Focal point and hierarchy.** One hero visual, one headline, one supporting element. Say the reading order.
+3. **Composition.** Name the grid and where things sit (left third, centre, rule of thirds). Margins of about 6–8% of the short edge. Empty space should be deliberate, not leftover.
+4. **Depth.** Foreground, midground and background layers. A light direction, and the shadows and highlights that come from it.
+5. **Colour as visual weight.** "80% blue" means blue dominates what the eye sees. It does not mean a flat fill. Use a tonal range of the primary (3–5 tones, from shade to tint), with gradients and light inside that range. Keep the accents restrained, and check text contrast (4.5:1 for normal text, 3:1 for large display text). `scripts/palette.py` gives the tones and the contrast.
+6. **Typography.** The headline is a designed element: dominant size (cap height about 15–25% of the canvas height on a banner), tight tracking, at most two weights, deliberate line breaks.
+7. **Finish.** Subtle grain or texture, small highlights, consistent light. These are the details that separate "designed" from "generated".
+8. **Edge to edge.** The background fills the whole canvas. Say that a reserved zone is "kept clear of elements, still filled with the background". Otherwise models draw white bars.
+
+## Style families (pick a different one for each option)
+
+| Family | When it fits | Prompt vocabulary | Watch out |
+|---|---|---|---|
+| **Premium 3D render** | Finance, tech, launches | "soft 3D render, matte and satin materials, studio lighting with a key light from the upper left and soft rim light, shallow depth of field, subtle ambient occlusion" | Can look like generic stock 3D. Fix it with a specific concept and material. |
+| **Glass and light** | Fintech, premium, "new" | "layered frosted-glass panels, light refracting through glass, soft glow, translucent depth, gentle bloom" | Text over glass gets muddy. Put text on a calm zone. |
+| **Layered paper-cut** | Festivals, culture, warmth | "layered paper-cut illustration, 5–7 depth layers, soft drop shadows between layers, tactile paper texture" | Keep the palette disciplined. Paper invites extra colours. |
+| **Editorial photography + type** | Human warmth, trust | "editorial photograph, natural window light, 50mm, shallow depth of field, graded to the brand's blues" | Faces and real people raise compliance and likeness issues. Use hands, objects, places. |
+| **Typographic-led** | Announcements, alerts, short copy | "the headline is the hero: oversized bold type, cropped at the edge, layered behind and in front of a graphic element" | Keep the words few. Models misspell long text. |
+| **Abstract light and geometry** | Data, growth, modern brands | "abstract flowing light ribbons and soft gradient mesh in tonal blues, precise geometric accents, cinematic light" | Without a concept it reads as wallpaper. Tie it to the idea. |
+
+## Phrases that cause flat, generic output (don't use them unless the user asks)
+"flat", "solid background", "simple geometric shapes", "no gradients", "no 3D", "minimal illustration", "icon", "clip-art", "leave empty", "plain".
+
+## Phrases that raise the quality bar
+"art-directed", "polished, high detail", "award-level finish", "considered typographic hierarchy", "cinematic light", "depth and dimension", "premium brand campaign".
+
+## Regulated categories (finance, health, alcohol)
+- Keep compliance text (disclaimers, warnings) out of the image and set it as real type afterwards.
+- No promised returns, no figures, no celebrities, no faces of real people.
+- Concepts should suggest growth or opportunity without implying a guaranteed outcome.

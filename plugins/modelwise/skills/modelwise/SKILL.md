@@ -22,6 +22,8 @@ Everything you know about models comes from the files in this skill, **not from 
 | `guides/token-saving.md` | Cost levers by task type |
 | `templates/<task>.md` | Slots, skeleton, vendor renderings and an example per task type |
 | `scripts/route.py` | Deterministic router over the registry |
+| `guides/art-direction.md` | Senior-designer checklist and style families for posters, banners and social graphics |
+| `scripts/palette.py` | Tonal range and text contrast for brand colours |
 | `ROUTING_TABLE.md` | Pre-computed routes, for environments that can't run scripts |
 
 ## Which model should run this skill?
@@ -72,7 +74,7 @@ Our benchmark (docs/benchmark-report-2026-10.md) found that rewriting a **short,
    - Slots whose default says "Ask" count against the two-question budget from step 2. If you don't ask, list the missing details under **"To improve the result, tell me:"** after the prompt instead of putting them in it.
    - The template's example illustrates the structure — never copy its specifics into the user's prompt.
    - Keep the deliverable the user asked for: one email means one email, not variants; add options only if asked.
-3. Render it in the **recommended model's style** (Claude → XML-tagged sections; OpenAI → Markdown sections). If the user will run it elsewhere, render for that model instead.
+3. Render it in the **recommended model's style** (Claude → XML-tagged sections; OpenAI → Markdown sections). If the user will run it elsewhere, render for that model instead. **Image models are the exception:** use the image template's skeleton (plain labelled lines such as `Concept:`, `Composition:`, `Colour:`), never the text-model `# Role` / `# Goal` sections.
 4. Apply the model card's `prompt_tips`.
 
 ### 6. Answer in this format
@@ -106,8 +108,12 @@ To improve the result, tell me: <2-4 specifics that would most improve the outpu
 
 For a task with distinct phases (plan with a strong model, execute with a cheaper one; write a script then generate video), give one short route per phase.
 
-### 7. Creative and event requests (posters, social graphics, invitations)
-Use this structure instead of the generic one above. Keep each part short.
+### 7. Creative and event requests (posters, banners, social graphics, invitations)
+Use this structure instead of the generic one above. Keep each part short. Run the palette tool first:
+```bash
+python3 "${CLAUDE_SKILL_DIR}/scripts/palette.py" <primary> <secondary> <accent>
+```
+The default quality bar is **senior designer**: a concept, depth, light, tonal colour and typographic hierarchy. Produce flat or minimal work only when the user asks for it.
 
 ```
 ## Context you should know
@@ -118,16 +124,25 @@ Use this structure instead of the generic one above. Keep each part short.
 - 2–4 links (Behance, Pinterest, search results) with one line each on what to take from them: a layout, a type treatment, a colour use. State if you could not view the images.
 
 ## Brand brief
-| Colour | Hex | Role | Share of area |
-Use the user's own palette. Write each colour's share as area, not as a count, and state how you read any conflict (for example "red 10%" but "very minimal").
+| Colour | Hex | Role | Visual weight | Tonal range (from scripts/palette.py) |
+Use the user's own palette. Treat each share as visual weight, not a flat fill, and state how you read any conflict (for example "red 10%" but "very minimal").
+Text colour: one that passes contrast on the primary (from the palette tool).
 Typography, and what the model can't match exactly (text is approximate; set the final type in a design tool).
 
-## Options (A–D, or as many as asked)
-Each option: direction, layout (top / middle / bottom), motif set, the self-contained prompt in a code block, and one line on why it fits.
-Give different layouts, not colour swaps.
+## Options (as many as asked; 3 if the user doesn't say)
+Write each option as a senior designer would brief an illustrator. Follow `guides/art-direction.md` and the art-direction brief in `templates/image.md`.
+Each option has:
+- the art direction (a different style family per option),
+- the concept (a one-line visual idea beyond the literal words),
+- the composition (hero, headline, reading order),
+- the colour handling (tonal range and light, not flat fill),
+- the self-contained prompt in a code block,
+- one line on why it fits the brand and the moment.
+Before you send, check each prompt against the guide's checklist. If it contains "flat", "solid", "simple", "minimal", "icon", "leave empty" or "plain" and the user didn't ask for that look, rewrite it.
 
 ## Recommendation
 Model and quality setting (note: image models have no published price, so cost shows as n/a and the router ranks by fit).
+For image models, effort is the API `quality` parameter. Don't map it to an app's Thinking or effort setting, which applies to text models. In the ChatGPT app there's no image quality setting, so say so and put the size in the prompt.
 
 ## Assumptions and conflicts
 ## To improve the result, tell me: <2–4 specifics>
@@ -141,3 +156,4 @@ Model and quality setting (note: image models have no published price, so cost s
 - Effort is the main lever for thinking depth and cost — prefer lowering effort to switching to a weaker model.
 - **Never say you can't browse, search or look something up without trying the tool that is available.** If a search or fetch fails, say what failed and continue with labelled assumptions.
 - **Never invent a source.** Every link in the answer must come from a page you actually retrieved.
+- **Never change the user's copy.** On-image text is exactly what the user wrote, in their casing and spelling. Don't add taglines, subheadings or labels they didn't give. A prefix like "Alert:" is part of the copy: render it as a small tag unless the user says otherwise. Suggest extra copy under "To improve the result" instead.

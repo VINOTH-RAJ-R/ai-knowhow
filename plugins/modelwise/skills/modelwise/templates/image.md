@@ -63,36 +63,50 @@ Constraints: No logos, no people, no watermark.
 ```
 Parameters: `size=1024x1024`, `quality=medium`, model per routing (Flare for drafts, Sunburst for the final).
 
-## Poster, festive and social graphics (no logo, text in the image)
+## Posters, banners and social graphics (art-directed, text in the image)
 
-Use this when the request is a poster, festival post or social graphic with a heading and subheading. Read the research step first (SKILL.md 2b) and fill the slots from verified facts.
+Use this for any poster, banner, launch, alert or festival graphic. Read `guides/art-direction.md` first. It has the senior-designer checklist and the style families. Then run the palette tool on the brand colours:
+```bash
+python3 "${CLAUDE_SKILL_DIR}/scripts/palette.py" <primary> <secondary> <accent>
+```
+It returns a tonal range for each colour and the text colours that pass contrast on the primary.
 
-| Slot | Fill with |
+**Art-direction brief (fill every line; this is what makes the output look designed)**
+
+| Line | What to write |
 |---|---|
-| FORMAT | Exact size and use, e.g. "square 1:1 Instagram feed post, 1024×1024". |
-| EVENT FACT | One verified sentence on what the event is and why it is held. It shapes the motifs; it is not printed unless asked. |
-| LAYOUT | Three zones, top to bottom: heading zone, hero zone, subheading zone. Say where each sits and how much space it leaves. |
-| PALETTE | Each colour as hex, role and share of area: e.g. "blue #0a4e9b, base background, ~80%". Describe red and green as accents if their share is small. |
-| MOTIFS | 3–5 objects from the verified ritual or tradition. Name only what is safe to depict. |
-| TYPE | The exact text, quoted, with its position. Say "clean geometric sans-serif, bold for the heading". |
-| AVOID | No logo, no wordmark, no watermark, no extra text, no faces of real people, no deities unless asked. |
+| FORMAT | Ratio, pixel size and use, e.g. "2:1 landscape banner, 1536×768, for LinkedIn and the website". |
+| ART DIRECTION | One style family from the guide, plus the quality bar: "premium 3D render, art-directed, polished, high detail". |
+| CONCEPT | One-line visual idea beyond the literal words (e.g. NFO: "a door of light opening onto a new horizon"). |
+| COMPOSITION | Grid and placement: where the hero sits, where the headline sits, the reading order, and margins. The background runs edge to edge. Reserved zones are "kept clear of elements, still filled with the background". |
+| COLOUR | Primary as dominant visual weight, written as a tonal range from the palette tool (shade hex → base → tint hex) with soft gradients and light. Accent for one named role. Secondary only as a tiny mark. Text colour that passes contrast. |
+| HERO | Subject, material, rendering, light (key light direction, rim light, glow) and depth (foreground, midground, background). |
+| TYPOGRAPHY | Each text in quotes, its role, size relative to the canvas, weight, tracking, alignment and line breaks. "Exactly these words, nothing else." |
+| FINISH | Subtle grain, highlights, small supporting details that stay quiet. |
+| AVOID | Logos (unless asked), watermarks, extra text or numbers, clip-art icons, a lone icon on a flat fill, white bars or borders, stock-chart clichés, faces of real people. |
 
 **Skeleton**
 ```
-Create a square 1:1 image for a <use>.
-Layout: top zone for the heading; middle zone for the hero illustration; bottom zone for the subheading. Leave generous margins.
-Background: <colour and hex>, <share> of the canvas.
-Hero: <scene and motifs>, in a <style>.
-Accents: <colour and hex>, only as <role>, at about <share>.
-Text, exactly as written, nothing else: "<heading>" (bold, white, top zone). "<subheading>" (regular, <colour>, bottom zone).
-Avoid: <AVOID>.
+Create a <ratio> <format> (<px>) for <use>. Art direction: <style family>, art-directed, polished, high detail, premium brand-campaign quality.
+Concept: <one-line visual idea>.
+Composition: <hero placement>, <headline placement>, reading order <A → B → C>. Margins about 7%. The background fills the entire canvas edge to edge; keep <zone> clear of elements but filled with the same background.
+Colour: <primary> is the dominant colour (about 80% of what the eye sees), built as a tonal range from <shade> to <tint> with soft gradients and directional light, not a flat fill. <accent> for <role> (about 10–15%). <secondary> only as <one tiny mark> (about 2%). Text in <text colour>.
+Hero: <subject>, <material and rendering>, lit by <key light> with <rim light / glow>, with <foreground / midground / background layers>.
+Typography: "<headline>" is the dominant element: <weight>, cap height about <x>% of the canvas height, tight tracking, <alignment and line breaks>. "<secondary text>" <role and size>. Clean geometric sans-serif similar to Inter. Exactly these words, nothing else.
+Finish: <subtle grain, highlights, supporting details>.
+Avoid: <AVOID list>.
 ```
 
 **Rules that prevent the common failures**
-- **Text is approximate.** Image models misspell text and can't load a brand font. Keep on-image text short, spell it letter by letter, and tell the user the final type should be set in the real font in Canva or Figma.
-- **Percentages describe area, not counts.** Write "about 80%" and say how you read any conflict between a percentage and a word.
-- **Different options means different layouts.** Four colour swaps of one layout are not four options.
-- **Motifs come from the research.** Never invent a ritual detail. If a script or symbol is needed (e.g. a Malayalam letter), say the image model may misdraw it and suggest overlaying it with real type.
+- **Colour is visual weight, not a flat fill.** Never write "solid", "flat" or "no gradients" unless the user asks for flat design. Use the tonal range.
+- **Never write "leave empty" or "plain".** Models draw white bars. Write "kept clear of elements, still filled with the background".
+- **Every option is a different art direction:** a different style family and a different concept, not the same layout recoloured.
+- **The hero carries the concept.** A generic icon (bars, arrows, seedlings, coins) is acceptable only when it's rendered with material, light and depth, as part of a scene.
+- **Use only the user's copy, exactly.** Same words, same casing. No added taglines or subheadings. A label like "Alert:" becomes a small tag.
+- **Keep the skeleton format.** Write image prompts as the labelled lines above, not as `# Role` / `# Goal` sections.
+- **Text is approximate.** Image models misspell and can't load a brand font. Keep on-image text short, spell it exactly, and set the final type in the real font in Canva or Figma.
+- **Check contrast.** Never use a text colour that fails contrast on its background. For example, red on the AssetPlus blue is 1.76:1, so it can't be used for text.
+- **Motifs come from the research** for events and cultures. Never invent a ritual detail.
 
 ## Token & cost savers
 - **Draft at low quality** (and with the faster model) until composition is right, then render the final once at high.

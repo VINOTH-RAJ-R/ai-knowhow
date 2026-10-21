@@ -44,6 +44,16 @@ class RouterTests(unittest.TestCase):
         self.assertEqual(res["recommended"]["model"], "gpt-image-2.5-sunburst")
         self.assertIn("no published prices", res["ranking_basis"])
 
+    def test_palette_contrast_and_scale(self):
+        sys.path.insert(0, os.path.join(ROOT, "plugins", "modelwise", "skills", "modelwise", "scripts"))
+        import palette
+        self.assertAlmostEqual(palette.contrast((0, 0, 0), (255, 255, 255)), 21.0, places=1)
+        r = palette.analyse(["0a4e9b", "e41f26", "d1e5ad"])
+        verdict = {t["text"]: t["normal_text"] for t in r["text_on_primary"]}
+        self.assertEqual(verdict["white"], "pass")
+        self.assertEqual(verdict["#e41f26"], "fail")   # red text on the blue is unreadable
+        self.assertEqual([s["step"] for s in r["colours"][0]["scale"]], ["900", "700", "500", "300", "100"])
+
     def test_cost_priority_is_never_pricier_than_balanced(self):
         for t in TASKS:
             b, c = r(t, "moderate", "balanced")["recommended"], r(t, "moderate", "cost")["recommended"]
