@@ -65,7 +65,7 @@ Parameters: `size=1024x1024`, `quality=medium`, model per routing (Flare for dra
 
 ## Posters, banners and social graphics (art-directed, text in the image)
 
-Use this for any poster, banner, launch, alert or festival graphic. Read `guides/art-direction.md` first. It has the senior-designer checklist and the style families. Then run the palette tool on the brand colours:
+Use this for any poster, banner, launch, alert or festival graphic. Read `guides/practice-design.md` first. It covers the creative director's brief, the category clichés, three territories that really differ, how to judge them, and how a studio produces the result. Then read `guides/art-direction.md`, which has the senior-designer checklist and the style families. Then run the palette tool on the brand colours:
 ```bash
 python3 "${CLAUDE_SKILL_DIR}/scripts/palette.py" <primary> <secondary> <accent>
 ```
@@ -78,7 +78,7 @@ It returns a tonal range for each colour and the text colours that pass contrast
 | FORMAT | Ratio, pixel size and use, e.g. "2:1 landscape banner, 1536×768, for LinkedIn and the website". |
 | ART DIRECTION | One style family from the guide, plus the quality bar: "premium 3D render, art-directed, polished, high detail". |
 | EXPERT LENS | The top designer for this industry and 3–5 brand-personality words, from `guides/industry-lens.md` (e.g. "head of brand design at a leading fintech; trustworthy, clear, calm, modern"). |
-| CONCEPT | One-line visual idea in the industry's own visual language (e.g. fintech NFO: "a new fund card sliding into a clean portfolio dashboard"). Run the brand-fit check: no fantasy, mythic or spiritual scenes for corporate, finance or health brands. |
+| CONCEPT | One-line visual idea in the industry's own visual language, drawn from this brief (`guides/practice-design.md`), never from an example. Run the brand-fit check: no fantasy, mythic or spiritual scenes for corporate, finance or health brands. |
 | COMPOSITION | Grid and placement: where the hero sits, where the headline sits, the reading order, and margins. The background runs edge to edge. Reserved zones are "kept clear of elements, still filled with the background". |
 | COLOUR | Primary as dominant visual weight, written as a tonal range from the palette tool (shade hex → base → tint hex) with soft gradients and light. Accent for one named role. Secondary only as a tiny mark. Text colour that passes contrast. |
 | HERO | Subject, material, rendering, light (key light direction, rim light, glow) and depth (foreground, midground, background). |
@@ -104,13 +104,32 @@ Avoid: <AVOID list>.
 - **Industry before style.** The concept and every style word must pass the brand-fit check in `guides/industry-lens.md`. A beautiful image in the wrong genre is a failure.
 - **Keep the Avoid line generic.** Write "no fantasy or mystical scenes", not a list of the motifs you're trying to keep out (portals, mist, rays). Naming a motif can pull it into the image even inside an "avoid" list. Steer with the positive description instead.
 - **Aspect ratio in apps.** Chat apps may ignore the requested size and return a square image. Put the ratio first in the prompt, check the result, and if it comes back square, ask the app to "extend to a 2:1 landscape canvas keeping everything else identical", or use the API `size` parameter.
-- **Every option is a different art direction:** a different style family and a different concept, not the same layout recoloured.
-- **The hero carries the concept.** A generic icon (bars, arrows, seedlings, coins) is acceptable only when it's rendered with material, light and depth, as part of a scene.
+- **Every option is a different territory.** Each pair of options differs on at least two axes: focal element (type-led, object-led, human-led, graphic-led), visual metaphor, tonal register, medium. Two "3D objects on a blue gradient" are one idea, whatever the material. Run the swap test from `guides/practice-design.md`.
+- **The hero carries the concept and is not a category cliché.** Never make rising bars, arrows, coins, rockets or generic floating cards the hero of a finance graphic. Use a specific product, human or brand-device moment.
+- **Platform size first.** Use the channel's real size (LinkedIn 1.91:1 at 1200×628, Instagram feed 4:5, Stories 9:16). If the user asks for a ratio, use theirs and note any crop. The API size uses edges in multiples of 16 (2:1 → 1536×768).
 - **Use only the user's copy, exactly.** Same words, same casing. No added taglines or subheadings. A label like "Alert:" becomes a small tag.
 - **Keep the skeleton format.** Write image prompts as the labelled lines above, not as `# Role` / `# Goal` sections.
 - **Text is approximate.** Image models misspell and can't load a brand font. Keep on-image text short, spell it exactly, and set the final type in the real font in Canva or Figma.
-- **Check contrast.** Never use a text colour that fails contrast on its background. For example, red on the AssetPlus blue is 1.76:1, so it can't be used for text.
+- **Check contrast.** Never use a text colour that fails contrast on its background. For example, a bright red on a mid blue is often below 2:1, so it can't be used for text. Check with `scripts/palette.py`.
 - **Motifs come from the research** for events and cultures. Never invent a ritual detail.
+
+## Production plate and layout spec (for the recommended option)
+A studio doesn't ship text rendered by an image model. It generates a text-free plate and sets type, logo and legal copy in Figma or Canva.
+
+**Plate skeleton.** Take the chosen option's prompt and change three lines:
+```
+Typography: none. This is a text-free background plate: no words, letters, numbers, logos, UI text or watermarks anywhere.
+Reserved zones (kept clear and calm, still filled with the background, low detail): headline <x–y% from left, y1–y2% from top>; supporting line and CTA <…>; logo <corner, size %>; legal and compliance block <bottom band, height %>.
+Composition: <hero placement> so it never enters a reserved zone; key elements at least 5% inside every edge.
+```
+Keep every other line (format, art direction, concept, colour, hero, finish, avoid).
+
+**Layout spec** (a small table for the designer):
+
+| Element | Exact text or source | Font, weight | Size (% of canvas height) | Position | Colour, contrast |
+|---|---|---|---|---|---|
+
+Include one row for each mandatory element the category requires (`guides/practice-design.md`, section 7). Ask the user for any value you don't have; never invent it.
 
 ## Token & cost savers
 - **Draft at low quality** (and with the faster model) until composition is right, then render the final once at high.

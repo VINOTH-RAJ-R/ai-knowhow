@@ -12,6 +12,18 @@
 | LENGTH | Words, characters, or reading time | Platform norm |
 | SOURCE | Text to summarize/rewrite/translate | (required for transform) |
 | AVOID | Words, claims, clichés to avoid | No hype words, no invented facts |
+| PROPOSITION | The one thing the reader must take away, in one sentence (marketing and persuasive pieces) | Derive it from GOAL |
+| PROOF | Reasons to believe: specific, sourced, permitted | Mark gaps `[NEEDS PROOF]`; never invent stats, quotes or customers |
+| COMPLIANCE | Mandatory lines and banned claims for regulated industries (`guides/practice-content.md`) | Omit outside regulated industries |
+
+**Senior copywriter's order** (marketing, launch and ad copy):
+1. The audience's tension in their own words, then the proposition.
+2. The hierarchy: the one thing, then 2–3 reasons to believe, then detail.
+3. Specific claims instead of adjectives.
+4. For headlines, 10 variants across angles, then the best 3 with reasons.
+5. A claims-and-proof check before handing over.
+
+In regulated industries, end with a "compliance review needed" list.
 
 ## Universal skeleton
 ```

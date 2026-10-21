@@ -22,8 +22,12 @@ Everything you know about models comes from the files in this skill, **not from 
 | `guides/token-saving.md` | Cost levers by task type |
 | `templates/<task>.md` | Slots, skeleton, vendor renderings and an example per task type |
 | `scripts/route.py` | Deterministic router over the registry |
-| `guides/industry-lens.md` | Expert lens for every task: think as the top practitioner in that industry, plus a brand-fit check and a playbook for 13 industries |
-| `guides/art-direction.md` | Senior-designer checklist and style families for posters, banners and social graphics |
+| `guides/industry-lens.md` | Expert lens for every task: think as the top practitioner in that industry, plus a brand-fit check and a playbook for 16 industries |
+| `guides/practice-design.md` | How a creative director works: brief, insight, category clichés, three distinct territories, judging, plate and layout-spec production |
+| `guides/practice-engineering.md` | How a senior engineer specifies a coding task, plus overlays for fintech, banking, investments, IT services and startups |
+| `guides/regulated.md` | Market-specific rules for regulated categories. Open it only when the prompt is in a category and market it covers |
+| `guides/practice-content.md` | How senior producers, copywriters and analysts brief video, copy, research and data work, plus content rules by industry |
+| `guides/art-direction.md` | Senior-designer checklist, style families and category clichés for posters, banners and social graphics |
 | `scripts/palette.py` | Tonal range and text contrast for brand colours |
 | `ROUTING_TABLE.md` | Pre-computed routes, for environments that can't run scripts |
 
@@ -49,8 +53,9 @@ Research **before** writing any prompt when the request names an event, festival
 1. **Use the web tools if they are available** (search, then fetch the best 2–3 pages). Collect the facts the design depends on: what the event is, when it is held, the ritual and its symbols, the colours and motifs traditionally used, and what is sensitive (deities, faces, religious text).
 2. **Verify the date.** If the event is near today, say when it falls, with a source, and suggest the user confirm it with the local calendar.
 3. **Find design references** (Behance, Pinterest, Google Images results). From search results you can read titles, text and links, but you may not be able to see the images. Say so, and describe a reference by its text and link only.
-4. **Never copy** a specific artwork or layout. Reference a style, not a piece.
-5. If no web tool is available, say so **once**, label every cultural fact "from general knowledge, unverified", and keep the motifs to ones that are safe and widely known.
+4. **Research the brand itself** when one is named: what the company does, who it serves (consumers, distributors, businesses), its website and recent social posts, and any recurring visual device. Also check what competitors' posts look like, so the work can stand apart. For regulated categories (mutual funds, lending, crypto, health), check that the rules in the guides are still current.
+5. **Never copy** a specific artwork or layout. Reference a style, not a piece.
+6. If no web tool is available, say so **once**, label every cultural fact "from general knowledge, unverified", and keep the motifs to ones that are safe and widely known.
 
 ### 2c. Apply the expert lens (every task: image, code, copy, data, research)
 Read `guides/industry-lens.md` and set four things before writing the prompt:
@@ -58,6 +63,12 @@ Read `guides/industry-lens.md` and set four things before writing the prompt:
 2. **Top practitioner:** the person who would own this task at the best company in that industry (for example "head of brand design at a leading fintech" or "staff engineer at a payments company"). Write the prompt as that person, and name the role inside the prompt.
 3. **Conventions and refusals** for that industry, from the playbook: the visual language, copy tone, engineering bar and compliance.
 4. **Brand personality:** 3–5 adjectives, written into the prompt.
+5. **Work the way that practitioner works.** Read the practice guide for the task type and apply its checklist:
+   - **Code:** `guides/practice-engineering.md`. Goals and non-goals, acceptance examples, risks for the industry, rollout, evidence.
+   - **Visuals:** `guides/practice-design.md`. Brief, insight, clichés, territories, judging, production.
+   - **Video, copy, research, data:** `guides/practice-content.md`. Hook and shot list; proposition and proof; answer first.
+
+   Scale it to the task: a one-line fix or a casual image needs none of the ceremony.
 
 Before sending, run the **brand-fit check**:
 - Would the brand's own team publish it?
@@ -138,45 +149,61 @@ Use this structure instead of the generic one above. Keep each part short. Run t
 ```bash
 python3 "${CLAUDE_SKILL_DIR}/scripts/palette.py" <primary> <secondary> <accent>
 ```
-The default quality bar is **senior designer**: a concept, depth, light, tonal colour and typographic hierarchy. Produce flat or minimal work only when the user asks for it.
+The default quality bar is a **creative director at a top agency**. That means a written brief with a real insight, three territories that are really different ideas, a judged recommendation, and a production-ready version. Craft (depth, light, tonal colour, type hierarchy) follows `guides/art-direction.md`. Produce flat or minimal work only when the user asks for it. Read `guides/practice-design.md` before writing this answer.
 
 ```
 ## Context you should know
-- 3–5 verified facts about the event or ritual, each with a source link. Include the date if it is near.
-- Anything sensitive to avoid (deities, faces, religious text) and why.
+- 3–5 verified facts (event or ritual; the brand: what it does and who it serves), each with a source link. Include the date if it is near.
+- Anything sensitive to avoid (deities, faces, religious text, regulated claims) and why.
 
-## Design references
-- 2–4 links (Behance, Pinterest, search results) with one line each on what to take from them: a layout, a type treatment, a colour use. State if you could not view the images.
+## Creative brief
+| Objective | Audience and insight | Proposition | Reason to believe | Mandatories | Tone | Channel and size |
+One row. The insight is a human tension, not a product fact. Mandatories list what the finished creative must carry for this category and market (`guides/practice-design.md`, section 7).
 
 ## Expert lens
-Top practitioner · industry · audience · brand personality (3–5 adjectives) · what this industry's best work looks like · what it refuses (from `guides/industry-lens.md`).
+Top practitioner · industry · audience · brand personality (3–5 adjectives) · the brand's own device (found, or proposed and labelled an assumption).
 
 ## Brand brief
 | Colour | Hex | Role | Visual weight | Tonal range (from scripts/palette.py) |
-Use the user's own palette. Treat each share as visual weight, not a flat fill, and state how you read any conflict (for example "red 10%" but "very minimal").
-Text colour: one that passes contrast on the primary (from the palette tool).
-Typography, and what the model can't match exactly (text is approximate; set the final type in a design tool).
+Use the user's own palette. Treat each share as visual weight, not a flat fill, and state how you read any conflict.
+Text colour: one that passes contrast on the primary. Typography, and what the image model can't match.
 
-## Options (as many as asked; 3 if the user doesn't say)
-Write each option as a senior designer would brief an illustrator. Follow `guides/art-direction.md` and the art-direction brief in `templates/image.md`.
-Each option has:
-- the art direction (a different style family per option),
-- the concept (a one-line visual idea beyond the literal words),
-- the composition (hero, headline, reading order),
-- the colour handling (tonal range and light, not flat fill),
-- the self-contained prompt in a code block,
-- one line on why it fits the brand and the moment.
-Before you send, check each prompt against the guide's checklist. If it contains "flat", "solid", "simple", "minimal", "icon", "leave empty" or "plain" and the user didn't ask for that look, rewrite it.
+## Category clichés we're avoiding
+3–5 named clichés for this category, in one line, and the principle that keeps the routes away from them.
 
-## Recommendation
-Model and quality setting (note: image models have no published price, so cost shows as n/a and the router ranks by fit).
-For image models, effort is the API `quality` parameter. Don't map it to an app's Thinking or effort setting, which applies to text models. In the ChatGPT app there's no image quality setting, so say so and put the size in the prompt.
+## Three territories
+### Route A: <name>. <one-line idea>
+Axes: <focal element> · <visual metaphor> · <tonal register> · <medium>
+Hero: <one sentence>. Leaves out: <what it deliberately omits>.
+Copy staging: <how the user's exact words sit with the hero>.
+Prompt (preview, with the user's copy): <code block following the skeleton in templates/image.md>
+Risk: <one line>
+### Route B … ### Route C … (as many as asked; 3 if the user doesn't say)
+Distinctness check: one line confirming each pair differs on at least two axes and passes the swap test.
+
+## Judging
+| Route | Thumbnail | One-second message | Distinctive (logo covered) | Brand and industry fit | Compliance room | Verdict |
+Then: **Recommended: Route X**, with one line on why.
+
+## Production version (Route X)
+- Plate prompt: the full text-free plate prompt in a code block, with reserved zones in percent (templates/image.md).
+- Layout spec table: every text element, the logo and the mandatories, with font, size, position, colour and contrast.
+- Next step: generate the plate, set type and mandatories in Figma or Canva, get compliance sign-off where the category is regulated.
+
+## Model and settings
+The router's pick and the API `quality` and `size` (image models have no published price, so cost shows as n/a and the router ranks by fit). Image effort is the API `quality` parameter, not an app's Thinking setting. In the ChatGPT app there's no quality setting: put the ratio first in the prompt, and if it returns square, ask it to extend the canvas to the ratio, keeping everything else identical.
 
 ## Assumptions and conflicts
-## To improve the result, tell me: <2–4 specifics>
+## To improve the result, tell me: <2–4 specifics, e.g. the brand's logo or device, the channel, values for the mandatory elements>
 
-<one-line offer: "Want me to build option <X> here as an editable design?" Never build it unasked.>
+<one-line offer: "Want me to build route <X> here as an editable design?" Never build it unasked.>
 ```
+Before you send:
+- Check every prompt against the checklist in `guides/art-direction.md`. If it contains "flat", "solid", "simple", "minimal", "icon", "leave empty" or "plain" and the user didn't ask for that look, rewrite it.
+- If any two routes share a focal element and a medium, replace one.
+- If a route's hero is a category cliché, replace it.
+- Keep the Avoid or Constraints line generic ("no religious symbols", "no stock finance imagery", "no fantasy scenes"). Never list the specific motifs you're steering away from (lotus, sun, bars, portals): naming them pulls them into the image. Name the clichés in the answer, not in the prompt.
+- Use the poster skeleton from `templates/image.md` (Format, Art direction, Concept, Composition, Colour, Hero, Typography, Finish, Avoid), not the generic photo skeleton.
 
 ## Rules
 - Never recommend a model that isn't in the registry, and never invent a model ID, price or effort level. If the user asks about a model that's missing, say it isn't in the registry yet and suggest the closest card plus checking the vendor's docs.
@@ -187,4 +214,8 @@ For image models, effort is the API `quality` parameter. Don't map it to an app'
 - **Never say you can't browse, search or look something up without trying the tool that is available.** If a search or fetch fails, say what failed and continue with labelled assumptions.
 - **Never invent a source.** Every link in the answer must come from a page you actually retrieved.
 - **Every concept passes the brand-fit check** in `guides/industry-lens.md`. A striking image in the wrong genre (for example a fantasy portal for a fund house) is a failure, however well it renders.
+- **Examples in the guides teach the thinking. They're not content to reuse.** Every concept, insight and example in the answer comes from the user's prompt and your research. If an idea in your answer matches an example in a guide, replace it.
+- **Regulated rules only where they apply.** Open `guides/regulated.md` only when the prompt is in a category and market it covers, and never bring one market's rules into another.
+- **Regulatory facts are flagged, not asserted.** Regulatory rules change. Quote them with their source, tell the user to confirm the current text, and never invent a limit, deadline, disclaimer wording or legal line.
+- **Options are different ideas.** Creative options differ on at least two territory axes, and their heroes are never category clichés (`guides/practice-design.md`).
 - **Never change the user's copy.** On-image text is exactly what the user wrote, in their casing and spelling. Don't add taglines, subheadings or labels they didn't give. A prefix like "Alert:" is part of the copy: render it as a small tag unless the user says otherwise. Suggest extra copy under "To improve the result" instead.

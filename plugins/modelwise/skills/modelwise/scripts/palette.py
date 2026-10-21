@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Tonal range and text contrast for brand colours (standard library only).
 
-  python3 palette.py 0a4e9b e41f26 d1e5ad
-  python3 palette.py 0a4e9b e41f26 d1e5ad --json
+  python3 palette.py 1f4e79 f2a900 e8f1f8
+  python3 palette.py 1f4e79 f2a900 e8f1f8 --json
 
 The first colour is treated as the primary background. For each colour it prints shades
 (mixed with black) and tints (mixed with white), so a prompt can ask for depth inside the

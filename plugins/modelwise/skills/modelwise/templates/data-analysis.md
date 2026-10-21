@@ -18,6 +18,11 @@ DEFINITIONS: <metric definitions>
 METHOD: Inspect the data first (shape, nulls, odd values) and tell me about quality issues before analyzing. Compute with code, never mental math.
 OUTPUT: <top 3 findings with numbers, chart(s), caveats>
 ```
+**How a senior analyst shapes it** (`guides/practice-content.md`):
+- Define each metric in writing: numerator, denominator, time grain, time zone and exclusions.
+- Check freshness, row counts against the previous period, nulls and duplicates before analysing, because a pipeline gap looks exactly like a real drop.
+- Compare against a baseline, and run the check that could prove the finding wrong.
+- Lead with the answer and a confidence label.
 
 ## Rendered for Claude
 ```xml

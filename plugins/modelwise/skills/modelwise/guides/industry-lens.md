@@ -4,7 +4,7 @@ Every prompt is written for a real industry, audience and brand. A beautiful res
 
 ## The procedure (every task, every type)
 
-1. **Industry and audience.** Name the industry, who will see or use the output, and what they must feel or do. ("Indian retail investors scrolling LinkedIn. They should feel confident and informed, and click to learn more.")
+1. **Industry and audience.** Name the industry, who will see or use the output, and what they must feel or do. ("Clinic managers reading email between patients. They should feel the tool saves them time, and book a demo.")
 2. **The top practitioner.** Name the person who would own this task at the best company in that industry. Examples: "head of brand design at a leading fintech", "staff backend engineer at a payments company", "senior copywriter at a hospital network", "lead data analyst at a D2C brand". Write the prompt as that person would.
 3. **Their conventions and their refusals.** What would they always do, and what would they refuse? Use the playbook below.
 4. **Brand personality.** 3–5 adjectives from the industry plus the user's brand cues. Put them in the prompt.
@@ -16,15 +16,38 @@ Every prompt is written for a real industry, audience and brand. A beautiful res
 
 If the industry isn't in the playbook, reason it out with the same five steps and say so in one line.
 
+**How the top practitioner actually works** (read the one that matches the task):
+- Coding, frontend, debugging, agents → `guides/practice-engineering.md`: the senior engineer's brief, plus overlays for fintech, banking, investments, IT services and startups.
+- Posters, banners, social and ad visuals → `guides/practice-design.md`: the creative director's brief, category clichés, three distinct territories, judging, and plate plus layout-spec production.
+- Video, copy, research, data → `guides/practice-content.md`: the producer's, copywriter's and analyst's checklists, plus content rules by industry.
+
 ## Playbook
 
 ### Fintech and financial services (banking, payments, mutual funds, insurance, wealth)
 - **Personality:** trustworthy, clear, calm confidence, modern, optimistic, human.
-- **What the best brands do:** bright, airy, contemporary compositions. Product- and UI-led visuals: app screens, cards and dashboards shown as clean objects with soft, realistic depth. Brand-shape geometric systems. Real-life moments photographed naturally (planning at a desk, a family at home, a professional on a phone). Daylight or soft studio light. Generous whitespace and a strong type hierarchy. Data drawn as elegant, simplified charts with no real numbers.
-- **Refuse:** fantasy, epic or mystical scenes (portals, glowing doorways, temples, ancient stone, mountains in mist, god-rays, smoke). Dark or ominous moods. Money clichés (raining cash, piles of gold coins, rockets to the moon, casino energy). Aggressive red. Stock-chart screenshots. Anything implying guaranteed returns.
-- **Copy:** plain, precise, no hype ("guaranteed", "best returns", "risk-free"). Short sentences.
-- **Engineering:** money as integer minor units or decimal, never float. Idempotent payment operations. Audit logs. Authentication and authorisation on every endpoint. Encryption of personal data at rest and in transit. Card data under PCI DSS. Accessibility (WCAG AA).
-- **Compliance:** the regulator's mandatory disclaimers go in as real text, never generated. No celebrities in mutual fund ads (India, SEBI). The issuing entity is named correctly.
+- **What the best brands do:** own one colour and one device and reuse it everywhere (Monzo's hot coral and card edge; Robinhood's neon accent on black; CRED's NeoPop system). Show the product or a feature, often exaggerated, instead of abstract money. Bright, airy, contemporary compositions. Product- and UI-led visuals: app screens, cards and dashboards shown as clean objects with soft, realistic depth. Brand-shape geometric systems. Real-life moments photographed naturally (planning at a desk, a family at home, a professional on a phone). Daylight or soft studio light. Generous whitespace and a strong type hierarchy. Data drawn as elegant, simplified charts with no real numbers.
+- **Refuse:** fantasy, epic or mystical scenes (portals, glowing doorways, temples, ancient stone, mountains in mist, god-rays, smoke). Dark or ominous moods. Money clichés (rising bars and arrows, raining cash, piles of gold coins, rockets to the moon, piggy banks, handshakes, casino energy). Aggressive red. Stock-chart screenshots. Anything implying guaranteed returns.
+- **Copy:** plain, precise, no hype ("guaranteed", "best returns", "risk-free"). Short sentences. Explain jargon. No jokes about money worries.
+- **Engineering:** money as integer minor units with a currency code, never float. Idempotency keys on money-moving calls. Append-only double-entry ledger. Reconciliation. Signed, deduplicated webhooks. Audit logs. Maker-checker for manual money actions. Card data kept out of scope with tokenisation (PCI DSS). Details in `guides/practice-engineering.md`.
+- **Compliance:** the regulator's mandatory disclaimers go in as real text, never generated. No testimonials, rankings or return projections where the regulator bans them. The issuing entity is named correctly. For a market covered by `guides/regulated.md`, use its section.
+
+### Banking
+- **Personality:** reassuring, precise, established, unflashy, human.
+- **Best practice:** real customers and real moments, product clarity (fees and rates shown together), strong service tone, consistent brand device across branch, app and social.
+- **Refuse:** guarantee language outside guaranteed products, fear-led security messaging, cluttered rate tables, invented legal lines.
+- **Engineering:** data stored and processed in the region the regulator requires. Core-banking adapters with cut-off and batch awareness. Ticketed change with UAT sign-off and rollback. Segregation of duties. Immutable audit logs. Personal and KYC data masked outside production.
+
+### IT services and enterprise IT
+- **Personality:** dependable, expert, structured, partner-like.
+- **Best practice:** client outcomes with named, permitted proof; clear architecture diagrams; people at work rather than abstract tech.
+- **Refuse:** globes of glowing dots, circuit-board backgrounds, padlocks, unprovable "best" and "leading" claims, fabricated logos or certifications.
+- **Engineering:** client standards first, boring supportable technology, documentation and runbooks as deliverables, SLAs, environments and release notes, handover-ready code.
+
+### Startups
+- **Personality:** sharp, candid, founder-credible, a clear point of view.
+- **Best practice:** a strong single idea over polish, real early proof (users, pilots, waitlist), the founder's voice, one distinctive device used consistently from day one.
+- **Refuse:** inflated traction, borrowed big-brand gloss with no idea behind it, jargon.
+- **Engineering:** smallest slice that tests the riskiest assumption, YAGNI, deliberate recorded tech debt, managed services. Never skimp on tests for money, auth and data-loss paths. Regulated startups use their sector's overlay.
 
 ### Healthcare, pharma and wellness
 - **Personality:** caring, competent, calm, reassuring, evidence-based.

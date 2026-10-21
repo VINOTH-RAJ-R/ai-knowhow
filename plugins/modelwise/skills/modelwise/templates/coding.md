@@ -11,6 +11,13 @@ Ask the user only for slots that are missing and would change the result. Fill t
 | CONSTRAINTS | Libraries allowed/forbidden, style, performance, security | Follow existing project conventions |
 | DONE_WHEN | How we'll know it works (tests, command, behavior) | "Tests pass and the example runs" |
 | OUTPUT | Full files, a diff, or a single function | Diff for existing code, full file for new |
+| NON_GOALS | What's deliberately out of scope | Omit for simple tasks |
+| ACCEPTANCE | Input → expected output examples, including error and edge cases | 2–3 examples from the goal |
+| RISKS | Security, data, money and compliance rules for this industry (`guides/practice-engineering.md` overlays) | Omit for personal scripts |
+| ROLLOUT | Flag, migration, backward compatibility, rollback (production changes only) | Omit unless it touches a live system |
+| BOUNDARIES | Ask first before: schema changes, new dependencies, CI edits, deleting data | Include for agentic tools |
+
+**Scale the brief to the task** (`guides/practice-engineering.md`). A personal script needs GOAL, STACK, CONSTRAINTS and DONE_WHEN. A production change adds non-goals, acceptance examples, risks, rollout and boundaries. A regulated domain (payments, banking, investments, health) always adds that industry's overlay to RISKS, and tells the model to flag regulatory assumptions for the user to confirm, not to state limits or deadlines as fact.
 
 ## Universal skeleton
 ```
@@ -21,10 +28,16 @@ EXISTING CODE: <paths or pasted snippets; long material goes here, before the as
 CONSTRAINTS:
 - <hard rule>
 - <hard rule>
+NON-GOALS: <out of scope>                         (production work)
+ACCEPTANCE: <input → expected output, incl. errors and edge cases>
+RISKS: <security / money / data / compliance rules for this industry>   (when relevant)
+ROLLOUT: <flag, migration, rollback>             (live systems)
+BOUNDARIES: ask before <schema, dependencies, CI, deletes>               (agentic tools)
 DONE WHEN:
 - <observable check, e.g. `npm test` passes, endpoint returns 200 with body X>
-OUTPUT: <diff | full files | function only> + a 3-line summary of what changed and why
+OUTPUT: <diff | full files | function only> + a 3-line summary of what changed and why, the commands run as evidence, and known gaps
 ```
+Before coding, the model lists its assumptions and up to 3 blocking questions; if a change is irreversible, it stops and asks.
 
 ## Rendered for Claude (Fable / Opus / Sonnet / Haiku)
 ```xml

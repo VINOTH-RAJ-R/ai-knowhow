@@ -19,6 +19,10 @@ SOURCES: <rules>. Cite every claim with a link. Say "no reliable source found" r
 DEPTH: <...>
 OUTPUT: <format> + list of open questions
 ```
+**How a senior analyst shapes it** (`guides/practice-content.md`):
+- Name the decision the research feeds, and write the hypotheses down before searching.
+- **Answer first:** a one-line answer, then the recommendation, then 2–3 findings with evidence, then caveats.
+- Separate fact from inference, flag single-source claims, and give each conclusion a confidence label (high, medium or low).
 
 ## Rendered for Claude
 ```xml

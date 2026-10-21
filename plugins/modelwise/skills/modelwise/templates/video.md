@@ -37,6 +37,18 @@ Style: <film stock / era / animation style>
 ```
 Set duration, resolution and aspect ratio in the generator's **settings**, not in the prompt text.
 
+## The producer's layer (ads, shorts and explainers; see `guides/practice-content.md`)
+Before any shot prompt, write a short production brief. It covers:
+- objective and KPI, and one proposition
+- the hook in the first 3 seconds
+- where the brand appears (early, and said aloud as well as shown)
+- one CTA on an end card
+- the deliverables (9:16 master plus 4:5 and 16:9, cut-downs, hook variants)
+
+Then write a two-column script (picture | audio, about 2.5 words per second of voice-over) and a numbered shot list. The film must work muted (burned-in captions, at most 7 words per card) and with sound. Keep text inside the platform's safe zones.
+
+**Never generate** text, logos, UI, real product footage, numbers or legal disclaimers in the video model. They're overlaid in the edit. A mandatory warning in a regulated category is shown and spoken for as long as the regulator requires (`guides/regulated.md` for the markets it covers).
+
 ## Rules that work across generators
 - **One camera move, one subject action, one lighting recipe per shot.** Complex shots misfire.
 - **Shorter clips follow instructions better.** Two stitched 4-second shots often beat one 8-second shot.

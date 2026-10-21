@@ -4,8 +4,15 @@ Image models do what the brief says. A brief that says "flat, solid, simple, min
 
 ## The senior-designer checklist (run it before you send any prompt)
 
+Before this checklist, do the thinking in `guides/practice-design.md`: the brief, the category clichés, and three territories that differ on at least two axes. This checklist covers the craft of each route.
+
 0. **Industry fit first.** Apply `guides/industry-lens.md`. Name the top designer for that industry, the brand personality, and what that industry's best work looks like. Every choice below has to fit it.
-1. **Concept.** One idea that goes beyond the literal words, *in the industry's own visual language*. For a fintech NFO, that could be "a new fund card sliding into a clean portfolio dashboard", "a calm person reviewing a new fund on their phone at a sunlit desk", or "brand shapes stacking into a confident upward path". It is **not** a mystical portal, a temple or a sunrise over mountains. Write the concept in one line.
+1. **Concept.** One idea that goes beyond the literal words, *in the industry's own visual language*, and different from the category clichés. It comes from this brief, not from an example. These show the kind of thinking, not ideas to reuse:
+   - **Type-led,** for a bakery's new opening hours: "the times set huge, as if pressed into dough, with flour dusting the letters."
+   - **Human-led,** for an accounting app's invoicing feature: "a café owner closing the laptop at 6 pm, chairs already up on the tables."
+   - **Graphic-led,** for a bank's savings product: "the brand's own shape repeated as a steady rhythm of tiles, one tile filled in."
+
+   Never use a genre that doesn't fit the industry (a mystical portal for a bank), and never make a category cliché the hero (rising bars for finance). Write the concept in one line.
 2. **Focal point and hierarchy.** One hero visual, one headline, one supporting element. Say the reading order.
 3. **Composition.** Name the grid and where things sit (left third, centre, rule of thirds). Margins of about 6–8% of the short edge. Empty space should be deliberate, not leftover.
 4. **Depth.** Foreground, midground and background layers. A light direction, and the shadows and highlights that come from it.
@@ -15,6 +22,7 @@ Image models do what the brief says. A brief that says "flat, solid, simple, min
 8. **Edge to edge.** The background fills the whole canvas. Say that a reserved zone is "kept clear of elements, still filled with the background". Otherwise models draw white bars.
 
 ## Style families (pick a different one for each option)
+A different style family is not enough on its own. Two routes that are both "a 3D object on a blue gradient" are the same idea even in different materials. Vary the focal element too: type-led, object-led, human-led or graphic-led (`guides/practice-design.md`).
 
 | Family | When it fits | Prompt vocabulary | Watch out |
 |---|---|---|---|
@@ -36,7 +44,14 @@ Image models do what the brief says. A brief that says "flat, solid, simple, min
 ## Phrases that cause genre drift (use only where the industry fits; see `guides/industry-lens.md`)
 "cinematic", "epic", "monumental", "volumetric rays", "god-rays", "haze", "mist", "ethereal", "mystical", "portal", "doorway of light", "ancient stone", "dust particles in the light". These turn a fintech or corporate poster into a fantasy or afterlife scene.
 
+## Category clichés (never the hero unless transformed into a brand-owned device)
+- **Finance:** rising bars, arrows, upward chart lines, coins, cash, rockets, piggy banks, handshakes, lighthouses, compasses, generic glowing cards floating on a gradient.
+- **B2B tech:** globes of glowing dots, circuit boards, padlocks, handshakes.
+- **Health:** stethoscopes on white, glowing DNA helixes.
+- **Education:** mortarboards, apples, rocket ships.
+Name them in the answer, steer away with a specific positive hero, and keep the prompt's Avoid line generic ("no stock finance imagery").
+
 ## Regulated categories (finance, health, alcohol)
-- Keep compliance text (disclaimers, warnings) out of the image and set it as real type afterwards.
+- Keep compliance text (disclaimers, warnings) out of the image and set it as real type afterwards. Reserve a calm zone for it in the plate. For a category and market covered by `guides/regulated.md`, its section lists the mandatory elements.
 - No promised returns, no figures, no celebrities, no faces of real people.
 - Concepts should suggest growth or opportunity without implying a guaranteed outcome.
