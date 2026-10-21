@@ -1,6 +1,6 @@
 ---
 name: modelwise
-description: Turn a basic prompt into the right model, effort level and a structured, model-specific prompt. Classifies the task (coding, frontend, debugging, writing, research, data, reasoning, vision, image, video, audio, agents), picks the best Anthropic or OpenAI model and reasoning effort from a curated registry of official model docs, estimates cost, rewrites the prompt in the format that model works best with, and gives token-saving tips. Use when the user asks "which model should I use", "what effort", "improve/structure my prompt", "how do I prompt X for Y", "cheapest way to do this", or invokes /modelwise with a prompt.
+description: Turn a basic prompt into the right model, effort level and a structured, model-specific prompt. Classifies the task (coding, frontend, debugging, writing, research, data, reasoning, vision, image, video, audio, agents), picks the best Anthropic or OpenAI model and reasoning effort from a curated registry of official model docs, estimates cost, rewrites the prompt in the format that model works best with, and gives token-saving tips. Use when the user asks "which model should I use", "what effort", "improve/structure my prompt", "how do I prompt X for Y", "cheapest way to do this", or invokes /modelwise with a prompt. It returns the recommendation and ready-to-use prompts; it does not produce the final asset itself.
 license: MIT
 metadata:
   default-model-claude: "claude-haiku-5-5 at effort low (claude-sonnet-5-5 for complex rewrites)"
@@ -26,6 +26,12 @@ Everything you know about models comes from the files in this skill, **not from 
 | `guides/art-direction.md` | Senior-designer checklist and style families for posters, banners and social graphics |
 | `scripts/palette.py` | Tonal range and text contrast for brand colours |
 | `ROUTING_TABLE.md` | Pre-computed routes, for environments that can't run scripts |
+
+## What this skill delivers (output contract)
+- **The deliverable is advice plus prompts:** the model and effort recommendation, the cost table, and ready-to-paste prompts in the answer format below.
+- **Don't do the task itself.** Don't generate the image, poster, design, artifact, web page, code, document or file, even when tools for that are available (artifact or design tools, image tools, file writing, code execution). The only tool use allowed is web research and running `scripts/route.py` and `scripts/palette.py`.
+- **Offer, don't assume.** End with one line, for example: *"Want me to build option B here as an editable design?"* Then wait.
+- **Only if the user explicitly asks for both** ("give me the prompt and make it"): give the modelwise answer first, then do the work.
 
 ## Which model should run this skill?
 This skill mostly reads files and fills templates, so it doesn't need a frontier model. Recommended: **Claude Haiku 5.5** or **GPT-6 Luna** at low effort — in our benchmark Haiku produced the same routes and the same answer format as Sonnet at about a fifteenth of the per-run cost. Use **Claude Sonnet 5.5** or **GPT-6.1 Sol** when the prompt rewriting itself is complex (long specs, multi-phase work). This is about running *this skill*; it is unrelated to the model and effort you recommend for the user's task. If you are running on a frontier model (Fable, Opus, GPT-6 Astra), mention this once at the end of your answer — the recommendation itself will be the same, just more expensive to produce.
@@ -121,6 +127,8 @@ To improve the result, tell me: <2-4 specifics that would most improve the outpu
 
 ## Why this works
 <2–3 sentences teaching the user what the structure does, so they learn to do it themselves>
+
+<one-line offer, e.g. "Want me to run this prompt / build this here?" Never do it unasked.>
 ```
 
 For a task with distinct phases (plan with a strong model, execute with a cheaper one; write a script then generate video), give one short route per phase.
@@ -166,6 +174,8 @@ For image models, effort is the API `quality` parameter. Don't map it to an app'
 
 ## Assumptions and conflicts
 ## To improve the result, tell me: <2–4 specifics>
+
+<one-line offer: "Want me to build option <X> here as an editable design?" Never build it unasked.>
 ```
 
 ## Rules
