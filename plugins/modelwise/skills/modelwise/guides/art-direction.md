@@ -4,7 +4,8 @@ Image models do what the brief says. A brief that says "flat, solid, simple, min
 
 ## The senior-designer checklist (run it before you send any prompt)
 
-1. **Concept.** One idea that goes beyond the literal words. An NFO isn't "bars going up"; it's "a door opening", "first light on a new horizon", "a seed becoming a forest". Write it in one line.
+0. **Industry fit first.** Apply `guides/industry-lens.md`. Name the top designer for that industry, the brand personality, and what that industry's best work looks like. Every choice below has to fit it.
+1. **Concept.** One idea that goes beyond the literal words, *in the industry's own visual language*. For a fintech NFO, that could be "a new fund card sliding into a clean portfolio dashboard", "a calm person reviewing a new fund on their phone at a sunlit desk", or "brand shapes stacking into a confident upward path". It is **not** a mystical portal, a temple or a sunrise over mountains. Write the concept in one line.
 2. **Focal point and hierarchy.** One hero visual, one headline, one supporting element. Say the reading order.
 3. **Composition.** Name the grid and where things sit (left third, centre, rule of thirds). Margins of about 6–8% of the short edge. Empty space should be deliberate, not leftover.
 4. **Depth.** Foreground, midground and background layers. A light direction, and the shadows and highlights that come from it.
@@ -22,13 +23,18 @@ Image models do what the brief says. A brief that says "flat, solid, simple, min
 | **Layered paper-cut** | Festivals, culture, warmth | "layered paper-cut illustration, 5–7 depth layers, soft drop shadows between layers, tactile paper texture" | Keep the palette disciplined. Paper invites extra colours. |
 | **Editorial photography + type** | Human warmth, trust | "editorial photograph, natural window light, 50mm, shallow depth of field, graded to the brand's blues" | Faces and real people raise compliance and likeness issues. Use hands, objects, places. |
 | **Typographic-led** | Announcements, alerts, short copy | "the headline is the hero: oversized bold type, cropped at the edge, layered behind and in front of a graphic element" | Keep the words few. Models misspell long text. |
-| **Abstract light and geometry** | Data, growth, modern brands | "abstract flowing light ribbons and soft gradient mesh in tonal blues, precise geometric accents, cinematic light" | Without a concept it reads as wallpaper. Tie it to the idea. |
+| **Abstract light and geometry** | Data, growth, modern brands | "abstract flowing ribbons and soft gradient mesh in tonal blues, precise geometric accents, clean studio light" | Without a concept it reads as wallpaper. Tie it to the idea. |
+| **Product and UI-led** | Fintech, SaaS, apps | "a clean app screen or card as the hero, shown as a crisp object with soft realistic depth and daylight shadows, brand shapes around it, contemporary and uncluttered" | Never show real numbers or returns. Keep the UI abstract and legible. |
+| **Cinematic and epic** | Entertainment, gaming, some festival work only | "cinematic light, volumetric rays, atmospheric haze, epic scale" | It drifts into fantasy or spiritual scenes. Never use it for finance, health, SaaS or corporate brands. |
 
 ## Phrases that cause flat, generic output (don't use them unless the user asks)
 "flat", "solid background", "simple geometric shapes", "no gradients", "no 3D", "minimal illustration", "icon", "clip-art", "leave empty", "plain".
 
 ## Phrases that raise the quality bar
-"art-directed", "polished, high detail", "award-level finish", "considered typographic hierarchy", "cinematic light", "depth and dimension", "premium brand campaign".
+"art-directed", "polished, high detail", "award-level finish", "considered typographic hierarchy", "depth and dimension", "premium brand campaign", "contemporary", "grounded, real-world".
+
+## Phrases that cause genre drift (use only where the industry fits; see `guides/industry-lens.md`)
+"cinematic", "epic", "monumental", "volumetric rays", "god-rays", "haze", "mist", "ethereal", "mystical", "portal", "doorway of light", "ancient stone", "dust particles in the light". These turn a fintech or corporate poster into a fantasy or afterlife scene.
 
 ## Regulated categories (finance, health, alcohol)
 - Keep compliance text (disclaimers, warnings) out of the image and set it as real type afterwards.

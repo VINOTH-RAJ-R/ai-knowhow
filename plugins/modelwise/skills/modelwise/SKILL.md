@@ -22,6 +22,7 @@ Everything you know about models comes from the files in this skill, **not from 
 | `guides/token-saving.md` | Cost levers by task type |
 | `templates/<task>.md` | Slots, skeleton, vendor renderings and an example per task type |
 | `scripts/route.py` | Deterministic router over the registry |
+| `guides/industry-lens.md` | Expert lens for every task: think as the top practitioner in that industry, plus a brand-fit check and a playbook for 13 industries |
 | `guides/art-direction.md` | Senior-designer checklist and style families for posters, banners and social graphics |
 | `scripts/palette.py` | Tonal range and text contrast for brand colours |
 | `ROUTING_TABLE.md` | Pre-computed routes, for environments that can't run scripts |
@@ -44,6 +45,21 @@ Research **before** writing any prompt when the request names an event, festival
 3. **Find design references** (Behance, Pinterest, Google Images results). From search results you can read titles, text and links, but you may not be able to see the images. Say so, and describe a reference by its text and link only.
 4. **Never copy** a specific artwork or layout. Reference a style, not a piece.
 5. If no web tool is available, say so **once**, label every cultural fact "from general knowledge, unverified", and keep the motifs to ones that are safe and widely known.
+
+### 2c. Apply the expert lens (every task: image, code, copy, data, research)
+Read `guides/industry-lens.md` and set four things before writing the prompt:
+1. **Industry and audience:** who sees or uses the output, and what they must feel or do.
+2. **Top practitioner:** the person who would own this task at the best company in that industry (for example "head of brand design at a leading fintech" or "staff engineer at a payments company"). Write the prompt as that person, and name the role inside the prompt.
+3. **Conventions and refusals** for that industry, from the playbook: the visual language, copy tone, engineering bar and compliance.
+4. **Brand personality:** 3–5 adjectives, written into the prompt.
+
+Before sending, run the **brand-fit check**:
+- Would the brand's own team publish it?
+- Does it read as this industry in one second?
+- Is it free of genre drift (fantasy, mythic, religious, horror, sci-fi, gaming) unless the brand is in that genre?
+- Is it free of compliance risk?
+
+If any answer is "no", change the concept itself, not just its wording.
 
 ### 3. Route
 Always run the router across both vendors:
@@ -82,6 +98,7 @@ Keep it tight — the user wants to copy and go.
 
 ```
 ## Recommendation
+**Expert lens:** <top practitioner> · <industry> · <audience> · <brand personality>
 **Model:** <display name> (`<id>`, <provider>) — <one-line why>
 **Effort:** <native value> (<E-level name>) — API: `<parameter>=<value>` · App: <how to set it in the app they use>
 **Est. cost per run:** <est_cost_usd from route.py, rounded to cents; write "<$0.01" below a cent> (list price, before caching/batch)
@@ -123,6 +140,9 @@ The default quality bar is **senior designer**: a concept, depth, light, tonal c
 ## Design references
 - 2–4 links (Behance, Pinterest, search results) with one line each on what to take from them: a layout, a type treatment, a colour use. State if you could not view the images.
 
+## Expert lens
+Top practitioner · industry · audience · brand personality (3–5 adjectives) · what this industry's best work looks like · what it refuses (from `guides/industry-lens.md`).
+
 ## Brand brief
 | Colour | Hex | Role | Visual weight | Tonal range (from scripts/palette.py) |
 Use the user's own palette. Treat each share as visual weight, not a flat fill, and state how you read any conflict (for example "red 10%" but "very minimal").
@@ -156,4 +176,5 @@ For image models, effort is the API `quality` parameter. Don't map it to an app'
 - Effort is the main lever for thinking depth and cost — prefer lowering effort to switching to a weaker model.
 - **Never say you can't browse, search or look something up without trying the tool that is available.** If a search or fetch fails, say what failed and continue with labelled assumptions.
 - **Never invent a source.** Every link in the answer must come from a page you actually retrieved.
+- **Every concept passes the brand-fit check** in `guides/industry-lens.md`. A striking image in the wrong genre (for example a fantasy portal for a fund house) is a failure, however well it renders.
 - **Never change the user's copy.** On-image text is exactly what the user wrote, in their casing and spelling. Don't add taglines, subheadings or labels they didn't give. A prefix like "Alert:" is part of the copy: render it as a small tag unless the user says otherwise. Suggest extra copy under "To improve the result" instead.

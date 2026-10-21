@@ -77,7 +77,8 @@ It returns a tonal range for each colour and the text colours that pass contrast
 |---|---|
 | FORMAT | Ratio, pixel size and use, e.g. "2:1 landscape banner, 1536×768, for LinkedIn and the website". |
 | ART DIRECTION | One style family from the guide, plus the quality bar: "premium 3D render, art-directed, polished, high detail". |
-| CONCEPT | One-line visual idea beyond the literal words (e.g. NFO: "a door of light opening onto a new horizon"). |
+| EXPERT LENS | The top designer for this industry and 3–5 brand-personality words, from `guides/industry-lens.md` (e.g. "head of brand design at a leading fintech; trustworthy, clear, calm, modern"). |
+| CONCEPT | One-line visual idea in the industry's own visual language (e.g. fintech NFO: "a new fund card sliding into a clean portfolio dashboard"). Run the brand-fit check: no fantasy, mythic or spiritual scenes for corporate, finance or health brands. |
 | COMPOSITION | Grid and placement: where the hero sits, where the headline sits, the reading order, and margins. The background runs edge to edge. Reserved zones are "kept clear of elements, still filled with the background". |
 | COLOUR | Primary as dominant visual weight, written as a tonal range from the palette tool (shade hex → base → tint hex) with soft gradients and light. Accent for one named role. Secondary only as a tiny mark. Text colour that passes contrast. |
 | HERO | Subject, material, rendering, light (key light direction, rim light, glow) and depth (foreground, midground, background). |
@@ -87,8 +88,8 @@ It returns a tonal range for each colour and the text colours that pass contrast
 
 **Skeleton**
 ```
-Create a <ratio> <format> (<px>) for <use>. Art direction: <style family>, art-directed, polished, high detail, premium brand-campaign quality.
-Concept: <one-line visual idea>.
+Create a <ratio> <format> (<px>) for <use>. Designed as <top practitioner> for a <industry> brand that feels <personality words>. Art direction: <style family>, art-directed, polished, high detail, premium brand-campaign quality, contemporary and grounded.
+Concept: <one-line visual idea in the industry's visual language>.
 Composition: <hero placement>, <headline placement>, reading order <A → B → C>. Margins about 7%. The background fills the entire canvas edge to edge; keep <zone> clear of elements but filled with the same background.
 Colour: <primary> is the dominant colour (about 80% of what the eye sees), built as a tonal range from <shade> to <tint> with soft gradients and directional light, not a flat fill. <accent> for <role> (about 10–15%). <secondary> only as <one tiny mark> (about 2%). Text in <text colour>.
 Hero: <subject>, <material and rendering>, lit by <key light> with <rim light / glow>, with <foreground / midground / background layers>.
@@ -100,6 +101,9 @@ Avoid: <AVOID list>.
 **Rules that prevent the common failures**
 - **Colour is visual weight, not a flat fill.** Never write "solid", "flat" or "no gradients" unless the user asks for flat design. Use the tonal range.
 - **Never write "leave empty" or "plain".** Models draw white bars. Write "kept clear of elements, still filled with the background".
+- **Industry before style.** The concept and every style word must pass the brand-fit check in `guides/industry-lens.md`. A beautiful image in the wrong genre is a failure.
+- **Keep the Avoid line generic.** Write "no fantasy or mystical scenes", not a list of the motifs you're trying to keep out (portals, mist, rays). Naming a motif can pull it into the image even inside an "avoid" list. Steer with the positive description instead.
+- **Aspect ratio in apps.** Chat apps may ignore the requested size and return a square image. Put the ratio first in the prompt, check the result, and if it comes back square, ask the app to "extend to a 2:1 landscape canvas keeping everything else identical", or use the API `size` parameter.
 - **Every option is a different art direction:** a different style family and a different concept, not the same layout recoloured.
 - **The hero carries the concept.** A generic icon (bars, arrows, seedlings, coins) is acceptable only when it's rendered with material, light and depth, as part of a scene.
 - **Use only the user's copy, exactly.** Same words, same casing. No added taglines or subheadings. A label like "Alert:" becomes a small tag.
