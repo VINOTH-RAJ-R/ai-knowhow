@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "modelwise",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Turn a basic prompt into the right Anthropic/OpenAI model, effort level and a structured, model-specific prompt, with cost estimates and token-saving tips.",
   "author": {
     "name": "vinothraj",

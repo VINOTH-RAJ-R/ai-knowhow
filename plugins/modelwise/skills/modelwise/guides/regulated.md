@@ -1,4 +1,4 @@
-# Regulated categories: market-specific reference
+# Regulated categories and market-specific law: reference
 
 **When to open this file:** only when the prompt is actually in one of the categories and markets below. Read only the matching section and leave the rest out of the answer. If the prompt's category or market isn't listed, research the current rules (step 2b) or tell the user to get the mandatory elements from their compliance team. Never borrow rules from another market or category.
 
@@ -34,6 +34,43 @@ Rules change. Quote each rule with its source, tell the user to confirm the curr
 - **Disclaimer:** ASCI's prescribed text, on a plain background with voice-over. In video it stays on screen for at least 5 seconds.
 - **Banned words:** never use "currency", "securities", "custodian" or "depositories".
 - **Never:** promise returns, or feature minors.
+
+## Financial promotions and advice (US, UK)
+- **US broker-dealers (FINRA Rule 2210):** communications must be fair and balanced, never promissory or misleading. Retail communications generally need principal approval before use. FINRA Notice 26-14 (July 2026) proposes risk-based procedures instead; it is a proposal.
+- **US investment advisers (SEC Marketing Rule 206(4)-1):** no unsupported claims. Testimonials and endorsements need disclosures. Net performance is shown with gross. Ads are kept as records.
+- **US recommendations to retail customers (Reg BI):** disclose conflicts and meet the care obligation.
+- **US customer service (CFPB):** wrong answers from agents or chatbots can be an unfair practice. Complaints get complete, accurate, timely responses.
+- **UK (FCA Consumer Duty; promotions under CONC 3.3.1R):** fair, clear and not misleading. Key risks and exclusions surface early, and communications are tested for consumer understanding.
+
+## Health marketing (US)
+- **Prescription drug promotion (FDA, 21 CFR 202.1):** truthful, consistent with approved labelling, substantiated, with a fair balance of risks and benefits.
+- **HIPAA:** marketing that uses patient information generally needs written authorisation. Support replies share only the minimum necessary.
+
+## Employment law (by market)
+- **US:**
+  - The WARN Act generally requires 60 days' notice for mass layoffs at covered employers; some states have stricter versions.
+  - Releases for workers aged 40 and over (OWBPA) need 21 days to consider and 7 to revoke, or 45 days with disclosures in group exits.
+  - Courts have let claims against AI hiring tools proceed (Mobley v. Workday).
+- **UK:** collective consultation applies when 20 or more redundancies fall within 90 days. Selection criteria are objective and justifiable.
+- **EU:**
+  - The AI Act treats AI used in recruitment and performance management as high-risk. Its application to employment was reportedly postponed to December 2027, so verify.
+  - The Pay Transparency Directive's transposition deadline was June 2026, and national implementation is uneven.
+- **India:**
+  - The four labour codes took effect on 21 Nov 2025, with central rules notified in May 2026; state rules vary.
+  - Final wages are due within 2 working days of exit.
+  - Retrenchment compensation is 15 days' average pay per year of service. Sources conflict on notice periods and thresholds, so verify.
+  - The POSH Act requires an Internal Committee at offices with 10 or more employees.
+
+## Privacy (by market)
+- **EU and UK (GDPR):**
+  - a lawful basis for each processing purpose
+  - impact assessments for high-risk processing
+  - data-subject rights
+  - limits on solely automated decisions with significant effects (UK rules relaxed with safeguards from February 2026)
+- **India (DPDP Act 2023; rules notified 13 Nov 2025):** obligations phase in, with consent managers at 12 months and core duties at 18 months (May 2027). Employment is a "legitimate use", but security and retention duties still apply.
+
+## Professional conduct for lawyers using AI
+- ABA Formal Opinion 512 (US) and SRA guidance (England and Wales) apply. The lawyer stays responsible for the work. Every citation is checked, and confidential material stays out of unapproved tools. Courts have sanctioned AI-invented authorities in the US, the UK and India.
 
 ## Card payments (any market)
 - **PCI DSS:** keep card data off your servers with tokenisation or hosted fields. Never log card number, CVV or OTP.

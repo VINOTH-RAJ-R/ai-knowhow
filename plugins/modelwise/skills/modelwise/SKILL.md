@@ -1,6 +1,6 @@
 ---
 name: modelwise
-description: Turn a basic prompt into the right model, effort level and a structured, model-specific prompt. Classifies the task (coding, frontend, debugging, writing, research, data, reasoning, vision, image, video, audio, agents), picks the best Anthropic or OpenAI model and reasoning effort from a curated registry of official model docs, estimates cost, rewrites the prompt in the format that model works best with, and gives token-saving tips. Use when the user asks "which model should I use", "what effort", "improve/structure my prompt", "how do I prompt X for Y", "cheapest way to do this", or invokes /modelwise with a prompt. It returns the recommendation and ready-to-use prompts; it does not produce the final asset itself.
+description: Turn a basic prompt from any department (engineering, design, marketing, sales, support, product, HR, finance, legal, operations, leadership) in any industry into an expert decision, the right model and effort, and a structured, model-specific prompt. It first decides like the top practitioner of that function would (goal, deliverable, approach, production path and sign-off), then classifies each phase (coding, frontend, debugging, writing, research, data, reasoning, vision, image, video, audio, agents), picks the best Anthropic or OpenAI model and reasoning effort from a curated registry, estimates cost, rewrites the prompt in the format that model works best with, and gives token-saving tips. Use when the user asks "which model should I use", "what effort", "improve/structure my prompt", "how do I prompt X for Y", "cheapest way to do this", or invokes /modelwise with a prompt. It returns the recommendation and ready-to-use prompts; it does not produce the final asset itself.
 license: MIT
 metadata:
   default-model-claude: "claude-haiku-5-5 at effort low (claude-sonnet-5-5 for complex rewrites)"
@@ -22,10 +22,11 @@ Everything you know about models comes from the files in this skill, **not from 
 | `guides/token-saving.md` | Cost levers by task type |
 | `templates/<task>.md` | Slots, skeleton, vendor renderings and an example per task type |
 | `scripts/route.py` | Deterministic router over the registry |
-| `guides/industry-lens.md` | Expert lens for every task: think as the top practitioner in that industry, plus a brand-fit check and a playbook for 16 industries |
+| `guides/industry-lens.md` | Expert lens for every task: think as the top practitioner in that industry, plus a brand-fit check and a playbook for 24 industries |
 | `guides/practice-design.md` | How a creative director works: brief, insight, category clichés, three distinct territories, judging, plate and layout-spec production |
 | `guides/practice-engineering.md` | How a senior engineer specifies a coding task, plus overlays for fintech, banking, investments, IT services and startups |
-| `guides/regulated.md` | Market-specific rules for regulated categories. Open it only when the prompt is in a category and market it covers |
+| `guides/regulated.md` | Market-specific rules: regulated advertising (finance, crypto, health), banking and payments, employment law, privacy, and AI use by lawyers. Open only the section that matches the prompt's category and market |
+| `guides/practice-functions.md` | How the top person in each business function works: sales, marketing strategy, support and success, product, HR, finance, legal, operations and procurement, leadership and strategy |
 | `guides/practice-content.md` | How senior producers, copywriters and analysts brief video, copy, research and data work, plus content rules by industry |
 | `guides/art-direction.md` | Senior-designer checklist, style families and category clichés for posters, banners and social graphics |
 | `scripts/palette.py` | Tonal range and text contrast for brand colours |
@@ -45,8 +46,8 @@ This skill mostly reads files and fills templates, so it doesn't need a frontier
 ### 1. Get the prompt
 Use the text after the command, or the prompt the user is discussing. If there is none, ask for it.
 
-### 2. Classify
-Follow `guides/classify.md` → `task`, `complexity`, `priority`, `provider`. Ask at most two questions, only if the answer changes the tier or the prompt; otherwise state assumptions in one line.
+### 2. Understand: department, industry, task
+Follow `guides/classify.md` → `department`, `industry`, then a first read of `task`, `complexity`, `priority`, `provider`. The final task comes from the decision in step 2d. Ask at most two questions, only if the answer changes the decision, the tier or the prompt; otherwise state assumptions in one line.
 
 ### 2b. Research the context (when the prompt needs facts)
 Research **before** writing any prompt when the request names an event, festival, ritual, culture, place, public figure, brand, or a reference site. Examples: "Diwali poster", "Vidyarambham", "a Kerala wedding invitation", "in the style of Pinterest".
@@ -57,16 +58,17 @@ Research **before** writing any prompt when the request names an event, festival
 5. **Never copy** a specific artwork or layout. Reference a style, not a piece.
 6. If no web tool is available, say so **once**, label every cultural fact "from general knowledge, unverified", and keep the motifs to ones that are safe and widely known.
 
-### 2c. Apply the expert lens (every task: image, code, copy, data, research)
-Read `guides/industry-lens.md` and set four things before writing the prompt:
+### 2c. Apply the expert lens (every department, every industry)
+Read `guides/industry-lens.md` and set these before deciding anything:
 1. **Industry and audience:** who sees or uses the output, and what they must feel or do.
-2. **Top practitioner:** the person who would own this task at the best company in that industry (for example "head of brand design at a leading fintech" or "staff engineer at a payments company"). Write the prompt as that person, and name the role inside the prompt.
+2. **Top practitioner:** the person who would own this task in that department at the best company in that industry (for example "head of brand design at a leading fintech", "staff engineer at a payments company", "head of people at a fast-growing SaaS company", "general counsel at a hospital group", "VP of sales at an enterprise software firm"). Write the prompt as that person, and name the role inside the prompt.
 3. **Conventions and refusals** for that industry, from the playbook: the visual language, copy tone, engineering bar and compliance.
 4. **Brand personality:** 3–5 adjectives, written into the prompt.
 5. **Work the way that practitioner works.** Read the practice guide for the task type and apply its checklist:
    - **Code:** `guides/practice-engineering.md`. Goals and non-goals, acceptance examples, risks for the industry, rollout, evidence.
    - **Visuals:** `guides/practice-design.md`. Brief, insight, clichés, territories, judging, production.
    - **Video, copy, research, data:** `guides/practice-content.md`. Hook and shot list; proposition and proof; answer first.
+   - **Sales, marketing strategy, support and success, product, HR, finance, legal, operations and procurement, leadership and strategy:** `guides/practice-functions.md`. That function's framing, frameworks, deliverable standard, refusals and sign-off path.
 
    Scale it to the task: a one-line fix or a casual image needs none of the ceremony.
 
@@ -78,8 +80,19 @@ Before sending, run the **brand-fit check**:
 
 If any answer is "no", change the concept itself, not just its wording.
 
-### 3. Route
-Always run the router across both vendors:
+### 2d. Decide like the owner (before any routing)
+A top practitioner doesn't just do what the request literally says. They decide what outcome is needed and how to get there. Write this decision down. It becomes the first section of the answer, and everything after it follows from it.
+1. **Real goal:** the business outcome behind the request, in one line ("reduce time-to-hire for engineers", not "write a JD").
+2. **Deliverable:** what the expert would actually hand over. Keep the user's deliverable unless it clearly won't reach the goal. Then say what you'd add and why, and still deliver what they asked.
+3. **Approach:** the framework or method from the practice guide, and the 2–3 key decisions with the criterion for each ("structured interview with a scorecard, because it predicts performance better than unstructured chats").
+4. **Success measure:** how the owner will know it worked.
+5. **Production path:** the phases from draft to shipped. For each phase, give who or what does it (which AI task, which tool, which human), the review gate, and the sign-off (manager, legal, finance, compliance, brand). Name a human gate wherever the output has legal, financial, people or safety consequences.
+6. **Risks and red lines:** what the owner would refuse (from the practice guide and `guides/regulated.md` where it applies).
+
+Then classify each AI phase of the production path as a task (`guides/classify.md`). A one-phase request stays one route. Keep the decision short, 6 lines for most requests, and skip it for trivial ones (a regex, a quick reply).
+
+### 3. Route (each AI phase of the decision)
+Always run the router across both vendors, once per AI phase:
 ```bash
 python3 "${CLAUDE_SKILL_DIR}/scripts/route.py" --task <task> --complexity <complexity> --priority <priority> --provider any --json
 ```
@@ -101,6 +114,7 @@ Our benchmark (docs/benchmark-report-2026-10.md) found that rewriting a **short,
 
 ### 5. Build the structured prompt
 1. Open the task's template (`template` field) and the prompt-style guide for the recommended model's provider.
+   **Carry the expert decision into the prompt:** the owner's role, the real goal, the approach and key criteria, the deliverable standard from the practice guide, and the red lines. The model should work as that expert would, not just follow the literal words.
 2. Fill the template's slots from the user's prompt. **Fill or omit, never leave blanks:**
    - Include a slot only if you can fill it from what the user said or with a sensible default. Omit empty slots entirely — no `[[FILL]]` markers, no "TBD", no instructions-to-self inside the prompt. (Our benchmark showed unfilled slots made models return placeholder-heavy, generic output or leak the instructions.)
    - Where the user gave no specifics for content (brand, audience, data), tell the model to write realistic, concrete sample content and keep invented facts plausible and generic (no real addresses, statistics or customer names) — so the output is usable as-is.
@@ -114,6 +128,16 @@ Our benchmark (docs/benchmark-report-2026-10.md) found that rewriting a **short,
 Keep it tight — the user wants to copy and go.
 
 ```
+## Expert decision
+**Owner:** <top practitioner> · <department> · <industry> · <audience>
+**Real goal:** <one line>
+**Deliverable:** <what the expert hands over; if you add anything beyond the ask, say why in a few words>
+**Approach:** <framework or method> · key decisions: <decision: criterion>; <decision: criterion>
+**Success measure:** <one line>
+**Production path:** <phase → who or which tool → gate> → … → <sign-off>
+**Red lines:** <what the owner refuses here>
+<Skip this section for trivial requests (a regex, a one-line reply).>
+
 ## Recommendation
 **Expert lens:** <top practitioner> · <industry> · <audience> · <brand personality>
 **Model:** <display name> (`<id>`, <provider>) — <one-line why>
@@ -122,6 +146,7 @@ Keep it tight — the user wants to copy and go.
 **Cheaper:** <model @ effort> — <trade-off> (or "— already the cheapest model that clears the bar")   **Stronger:** <model @ effort> — <when it's worth it>
 <If `volume` is present: **For <n> runs:** <total> list, <total_batch> with Batch.>
 <If the user is in Claude Code/claude.ai/ChatGPT and the recommendation is a different vendor, give the best in-app option too.>
+<If the decision has several AI phases: **Route per phase** table (phase · task · model @ effort · est. cost · human gate).>
 
 ## Cost across models
 | Model | Effort | Fit | Per run | Per 1,000 runs | Note |
@@ -142,7 +167,7 @@ To improve the result, tell me: <2-4 specifics that would most improve the outpu
 <one-line offer, e.g. "Want me to run this prompt / build this here?" Never do it unasked.>
 ```
 
-For a task with distinct phases (plan with a strong model, execute with a cheaper one; write a script then generate video), give one short route per phase.
+For a decision with several AI phases (decide or plan with a strong model, then write or execute with a cheaper one; analyse the data, then draft the board memo), give the main route for the hardest phase in **Recommendation**, then a **Route per phase** table with one row for every AI phase in the production path (phase · task · model @ effort · est. cost · human gate) and a ready prompt per phase under **Your prompt**. A later phase's prompt takes the earlier phase's output as its input.
 
 ### 7. Creative and event requests (posters, banners, social graphics, invitations)
 Use this structure instead of the generic one above. Keep each part short. Run the palette tool first:

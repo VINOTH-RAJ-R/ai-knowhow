@@ -109,6 +109,50 @@ If the industry isn't in the playbook, reason it out with the same five steps an
 - **Best practice:** real communities, accessible information design, plain-language copy.
 - **Refuse:** partisan cues, poverty imagery that removes dignity.
 
+### Manufacturing and industrial
+- **Personality:** reliable, precise, engineered, safety-first.
+- **Best practice:** real plants, products and people at work; technical clarity (specs, tolerances, certifications); case studies with measured outcomes.
+- **Refuse:** unsafe practices in imagery (missing protective equipment), vague "world-class quality" claims, invented certifications.
+- **Engineering and operations:** safety and quality systems (ISO 9001, ISO 45001 where relevant), traceability, OT/IT separation, downtime cost in every decision.
+
+### Logistics, supply chain and mobility
+- **Personality:** dependable, fast, transparent, efficient.
+- **Best practice:** real-time visibility and tracking UI, clear service levels, maps and flows drawn simply, the people who move goods.
+- **Refuse:** delivery promises the network can't keep, cluttered route maps.
+- **Engineering and operations:** event-driven tracking, idempotent status updates, exception handling (delays, damages, returns), SLA measurement.
+
+### Energy, utilities and telecom
+- **Personality:** dependable, responsible, clear, future-focused.
+- **Best practice:** plain-language bills and tariffs, outage communication that leads with impact and restore time, real infrastructure and communities.
+- **Refuse:** greenwashing (unsubstantiated "green" or "net zero" claims), fear-led safety messaging, jargon in customer communication.
+- **Engineering and operations:** critical-infrastructure security, regulatory reporting, high-availability design, field-workforce safety.
+
+### Professional services (consulting, legal, accounting, agencies)
+- **Personality:** expert, rigorous, discreet, partner-like.
+- **Best practice:** a point of view backed by evidence, answer-first structure, named credentials, client confidentiality.
+- **Refuse:** client names or results without permission, overclaiming, generic thought leadership.
+- **Compliance:** professional-body rules on advertising and confidentiality, conflict checks.
+
+### Media and publishing
+- **Personality:** credible, timely, distinctive voice.
+- **Best practice:** a strong headline with accurate framing, sourcing standards, clear separation of editorial and sponsored content.
+- **Refuse:** misleading headlines, unlabelled sponsored content, unverified claims, copyrighted material without rights.
+
+### Automotive
+- **Personality:** confident, engineered, aspirational, safe.
+- **Best practice:** product as hero with true design lines, real driving contexts, clear specs and pricing terms.
+- **Refuse:** unsafe driving depictions (speeding, no seatbelts), unsubstantiated range or mileage claims.
+
+### Agriculture and food production
+- **Personality:** grounded, honest, practical, sustainable.
+- **Best practice:** real farms and farmers, local languages, practical outcomes (yield, cost, time), simple visuals that work on basic phones.
+- **Refuse:** romanticised poverty, unsubstantiated yield promises, imagery from the wrong region or crop.
+
+### Travel and hospitality
+- **Personality:** inviting, warm, effortless, trustworthy.
+- **Best practice:** true-to-life places and rooms, all-inclusive pricing shown clearly, a calm booking flow.
+- **Refuse:** drip pricing (fees hidden until checkout), over-edited imagery, fake urgency.
+
 ### Entertainment and gaming
 - **Personality:** bold, immersive, dramatic.
 - **Best practice:** this is where cinematic light, epic scale, fantasy worlds and atmospheric haze belong.

@@ -1,6 +1,26 @@
 # Classifying a raw prompt
 
-Turn a basic prompt into four values: **task**, **complexity**, **priority**, **provider**. Takes one pass; don't over-think it.
+Turn a basic prompt into six values: **department**, **industry**, then **task**, **complexity**, **priority** and **provider**. Takes one pass; don't over-think it.
+
+## 0. Department and industry (who owns this at a top company?)
+| If the prompt is about… | Department |
+|---|---|
+| code, systems, infrastructure, security engineering | engineering |
+| visuals, UI/UX, brand assets | design |
+| campaigns, positioning, content, social, brand | marketing |
+| prospecting, deals, proposals, pricing conversations | sales |
+| replies to customers, help articles, onboarding, renewals | customer support and success |
+| what to build, requirements, roadmaps, launches | product |
+| hiring, policies, reviews, employee communication | HR and people |
+| budgets, forecasts, reporting, accounting, unit economics | finance |
+| contracts, policies with legal effect, privacy, regulatory | legal and compliance |
+| processes, vendors, projects, SOPs, supply chain | operations and procurement |
+| strategy, board material, OKRs, company-wide decisions | leadership and strategy |
+| analysis, dashboards, research questions | data and research |
+
+**Industry** comes from the prompt, the brand named, or the user's context (`guides/industry-lens.md`). If neither is clear and it changes the answer, it's one of your two questions; otherwise state the assumption.
+
+The department sets the top practitioner and their playbook (`guides/practice-functions.md` and the other practice guides). The **task** below is classified from the deliverable that practitioner decides on (SKILL.md step 2d). That can differ from the literal ask: "plan our hiring for next year" becomes a planning task (`reason.hard`) followed by writing (`text.write`).
 
 ## 1. Task
 Match against `registry/tasks.json` using its `label` and `signals`. Pick the task whose *output* matches what the user wants:
@@ -29,6 +49,18 @@ Match against `registry/tasks.json` using its `label` and `signals`. Pick the ta
 | text spoken aloud (voiceover, TTS) | `audio.speak` |
 | a live voice agent or live translation | `audio.agent` |
 
+**Common department deliverables:**
+
+| Deliverable | Task |
+|---|---|
+| Job description, policy, outreach email, support reply, help article, PRD, press release, executive memo | `text.write` |
+| Contract review, redline, risk or policy gap check against a supplied document | `reason.hard`, because it means judging risk against a playbook; add `vision.understand` first if it's a scan |
+| Summarising or simplifying a contract or policy, with no judgment | `text.transform` |
+| Budget or forecast model, variance analysis, pipeline or churn analysis | `data.analysis` |
+| Strategy, prioritisation, pricing decision, org design, scenario choice | `reason.hard` |
+| Competitive or market scan, regulation lookup | `research.deep` |
+| Triage or tagging of many tickets, CVs or invoices | `data.extract` |
+
 Mixed requests: classify by the **hardest deliverable** ("build an app that also generates logos" → `code.build`, then route the logo separately as `image.generate`). It's fine — and often cheaper — to return two routes for two phases.
 
 ## 2. Complexity
@@ -39,7 +71,7 @@ Mixed requests: classify by the **hardest deliverable** ("build an app that also
 | complex | Many files or steps, unfamiliar codebase, production stakes, subtle bugs, strict constraints, long documents |
 | frontier | Multi-hour autonomous work, novel research, problems other models already failed, correctness-critical math/proofs |
 
-Bump up one level if: the user mentions production/money/security/legal, or previous attempts failed. Bump down if: it's a prototype, a draft, or "quick".
+Bump up one level if: the user mentions production/money/security/legal, the output goes to a board, investors, regulators or all employees, it affects people's jobs or pay, or previous attempts failed. Bump down if: it's a prototype, a draft, or "quick".
 
 ## 3. Priority
 - `quality` — "best", "most accurate", "critical", "for a client/investor", previous failures
