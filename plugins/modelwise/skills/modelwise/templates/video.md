@@ -1,6 +1,6 @@
 # Template: video generation (video.generate)
 
-**Status (2026-10):** neither vendor in this registry currently offers a video generator. OpenAI shut down the Sora 2 API on 2026-09-24, and Anthropic does not generate video. This template still gives you a strong, generator-agnostic prompt and shot list (it's based on OpenAI's archived Sora guide, which applies to most text-to-video tools). Recommendations for specific generators (Google Veo, Runway, Kling, Luma, etc.) are planned for phase 2. Use the text model from the routing to write and refine the prompt.
+**Status (2026-10):** neither vendor in this registry currently offers a video generator. OpenAI shut down the Sora 2 API on 2026-09-24, and Anthropic does not generate video. This template still gives you a strong, generator-agnostic prompt and shot list (it's based on OpenAI's archived Sora guide, which applies to most text-to-video tools). Ranked recommendations for specific generators are planned for phase 2. Until then, name the common ones as unranked options (below) and use the text model from the routing to write and refine the prompts.
 
 ## Fill these slots
 | Slot | Why it matters | Default if missing |
@@ -48,6 +48,18 @@ Before any shot prompt, write a short production brief. It covers:
 Then write a two-column script (picture | audio, about 2.5 words per second of voice-over) and a numbered shot list. The film must work muted (burned-in captions, at most 7 words per card) and with sound. Keep text inside the platform's safe zones.
 
 **Never generate** text, logos, UI, real product footage, numbers or legal disclaimers in the video model. They're overlaid in the edit. A mandatory warning in a regulated category is shown and spoken for as long as the regulator requires (`guides/regulated.md` for the markets it covers).
+
+## Where to generate, and how to finish (generate-then-edit)
+Claude and ChatGPT write the plan; they don't make the clips. Tell the user exactly this:
+1. **Generate each shot** in a video generator: Google Veo 3.1 (Gemini app, Google Flow, Vertex AI), Kling or Runway. These are unranked and unpriced here, so check which one your plan includes. Paste **one shot prompt at a time**. Set the aspect ratio (9:16 for Reels and Stories) and the clip length (4–8 seconds) in the tool's settings. Generate several takes per shot and keep the best; professionals often need 10 or more per usable shot.
+2. **Lock the look first** if the tool supports it: a reference image of the product or character (a still from ChatGPT image generation works), or first and last frames, so the shots match.
+3. **Edit** in CapCut, Canva or Premiere:
+   - put the clips in order and trim to the script's timings
+   - add the voice-over (record it, or use a text-to-speech tool) and music you have rights to
+   - add captions and text cards from the overlay list, in your real font
+   - add the logo, end card and any legal lines
+4. **Export one version per placement:** 9:16 (Reels, Stories), 4:5 (Instagram and Facebook feed), 16:9 or 1:1 (LinkedIn, YouTube). Check each against the platform's safe zones.
+5. **Label AI-generated content** where the platform or local law requires it.
 
 ## Rules that work across generators
 - **One camera move, one subject action, one lighting recipe per shot.** Complex shots misfire.

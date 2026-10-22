@@ -105,7 +105,11 @@ The result already includes the recommended model's `watch_out` and `prompt_tips
 
 **Borderline complexity.** If the prompt could reasonably be one level lower or higher (e.g. "landing page for my bakery" — prototype or real site?) and that level routes to a different model, run it too and add one line after the recommendation: *"If this is just a quick prototype: <model @ effort, cost>"* (or *"If this is production-critical: …"*).
 
-**No direct route (`recommended` is null, `fallback` present)** — e.g. video: say plainly why (the fallback `note`), recommend the fallback route as **Phase 1 — write the prompt**, and add **Phase 2 — generate** naming what's missing (no generator in the registry yet; cost not covered). Still produce the full prompt from the original task's template.
+**No direct route (`recommended` is null, `fallback` present)** — e.g. video: say plainly why (the fallback `note`), recommend the fallback route as **Phase 1: write the script and shot prompts**. Then add:
+- **Phase 2: generate the clips,** outside the registry. Name the common generators as unranked options without prices, and tell the user to check which one their plan includes: Google Veo 3.1 (Gemini app, Google Flow, Vertex AI), Kling, Runway.
+- **Phase 3: edit,** following the generate-then-edit workflow in `templates/video.md`.
+
+Still produce the full prompt from the original task's template.
 
 ### 4. Decide the prompt mode (evidence-based)
 Our benchmark (docs/benchmark-report-2026-10.md) found that rewriting a **short, vague, subjective** prompt (writing, design, marketing) *without the user's details* scored 1-2 points lower than sending the user's own prompt to the same model, while on objective or detailed tasks (code with a clear spec, extraction, math, summaries of supplied text) the structured prompt was equal. So:
@@ -146,7 +150,7 @@ Keep it tight — the user wants to copy and go.
 **Cheaper:** <model @ effort> — <trade-off> (or "— already the cheapest model that clears the bar")   **Stronger:** <model @ effort> — <when it's worth it>
 <If `volume` is present: **For <n> runs:** <total> list, <total_batch> with Batch.>
 <If the user is in Claude Code/claude.ai/ChatGPT and the recommendation is a different vendor, give the best in-app option too.>
-<If the decision has several AI phases: **Route per phase** table (phase · task · model @ effort · est. cost · human gate).>
+<If the decision has several AI phases: **Route per phase** table (phase · task · model @ effort · est. cost · run it in → you get · human gate).>
 
 ## Cost across models
 | Model | Effort | Fit | Per run | Per 1,000 runs | Note |
@@ -154,6 +158,7 @@ Keep it tight — the user wants to copy and go.
 <one row per entry in `cost_comparison` from the `--provider any` result (every current model that can do the task, both vendors, cheapest first). Mark the recommended row in bold, and show "below quality bar" in Note where `meets_quality_bar` is false. Always include this table — even when the user is limited to one vendor — so they can see what the same task costs elsewhere. Without the script, copy the task's cost table from `ROUTING_TABLE.md`.>
 
 ## Your prompt
+<Start every prompt block with one line: **Paste into:** <app or tool, see "Where each prompt runs"> · **You get:** <what comes back: a script and shot prompts, an image, a draft, a table>. If the user is in Claude and the step needs an image or video, say plainly that Claude can't make it, and name where it's made.>
 <detailed/objective tasks: the structured prompt in a code block, ready to run. Vague subjective tasks: "Best now: send your prompt as-is to <model>", then "Upgrade (after adding the details below):" and the structured prompt.>
 Assumptions: <one line>
 To improve the result, tell me: <2-4 specifics that would most improve the output, or omit this line>
@@ -167,9 +172,19 @@ To improve the result, tell me: <2-4 specifics that would most improve the outpu
 <one-line offer, e.g. "Want me to run this prompt / build this here?" Never do it unasked.>
 ```
 
-For a decision with several AI phases (decide or plan with a strong model, then write or execute with a cheaper one; analyse the data, then draft the board memo), give the main route for the hardest phase in **Recommendation**, then a **Route per phase** table with one row for every AI phase in the production path (phase · task · model @ effort · est. cost · human gate) and a ready prompt per phase under **Your prompt**. A later phase's prompt takes the earlier phase's output as its input.
+For a decision with several AI phases (decide or plan with a strong model, then write or execute with a cheaper one; analyse the data, then draft the board memo), give the main route for the hardest phase in **Recommendation**, then a **Route per phase** table with one row for every phase in the production path, including the human and tool steps (phase · task · model @ effort · est. cost · run it in → you get · human gate) and a ready prompt per phase under **Your prompt**. A later phase's prompt takes the earlier phase's output as its input.
+
+**Where each prompt runs** (for the "Paste into" line and the "run it in" column):
+| Phase | Paste into | You get |
+|---|---|---|
+| Claude text model | claude.ai (pick the model), Claude Code, or the Anthropic API | text, code, a script, a plan |
+| OpenAI text model | ChatGPT (pick the model), Codex, or the OpenAI API | text, code, a script, a plan |
+| Image (GPT Image) | ChatGPT image generation, or the OpenAI Images API with `size` and `quality` | an image to judge; claude.ai can't generate images |
+| Video | a video generator outside the registry (see the video rule below); Claude and ChatGPT can't make the clips | 4–8 second clips, one per shot prompt |
+| Type, logo, legal lines, editing | Figma or Canva for images; CapCut, Canva or Premiere for video | the finished asset |
 
 ### 7. Creative and event requests (posters, banners, social graphics, invitations)
+**This applies whenever the request includes a poster, banner or social image, including mixed requests** ("a launch video and images"). Give the full structure below for the image part: all three territories with their prompts and the judging table, in the same answer. Never give one route and offer the others as a follow-up. In a mixed request, give the video plan first in the generic format (with the Expert decision and Route per phase covering both), then this creative structure for the images. Share the brief, expert lens and brand brief once, not twice.
 Use this structure instead of the generic one above. Keep each part short. Run the palette tool first:
 ```bash
 python3 "${CLAUDE_SKILL_DIR}/scripts/palette.py" <primary> <secondary> <accent>
@@ -201,6 +216,7 @@ Text colour: one that passes contrast on the primary. Typography, and what the i
 Axes: <focal element> · <visual metaphor> · <tonal register> · <medium>
 Hero: <one sentence>. Leaves out: <what it deliberately omits>.
 Copy staging: <how the user's exact words sit with the hero>.
+**Paste into:** ChatGPT image generation (or the OpenAI Images API, `size=<WxH>`, `quality=<draft level>`) · **You get:** a preview image to judge. Claude can't generate it.
 Prompt (preview, with the user's copy): <code block following the skeleton in templates/image.md>
 Risk: <one line>
 ### Route B … ### Route C … (as many as asked; 3 if the user doesn't say)
@@ -211,7 +227,8 @@ Distinctness check: one line confirming each pair differs on at least two axes a
 Then: **Recommended: Route X**, with one line on why.
 
 ## Production version (Route X)
-- Plate prompt: the full text-free plate prompt in a code block, with reserved zones in percent (templates/image.md).
+- Plate prompt: **Paste into:** ChatGPT image generation or the Images API (`size`, `quality=high`) · **You get:** a text-free background. Then the full plate prompt in a code block, with reserved zones in percent (templates/image.md).
+- One line per extra size the channels need (for example 9:16 Stories, 1.91:1 LinkedIn): which lines of the plate prompt change.
 - Layout spec table: every text element, the logo and the mandatories, with font, size, position, colour and contrast.
 - Next step: generate the plate, set type and mandatories in Figma or Canva, get compliance sign-off where the category is regulated.
 
@@ -232,7 +249,7 @@ Before you send:
 
 ## Rules
 - Never recommend a model that isn't in the registry, and never invent a model ID, price or effort level. If the user asks about a model that's missing, say it isn't in the registry yet and suggest the closest card plus checking the vendor's docs.
-- Image and audio models in this registry are OpenAI-only; Claude can still write the prompt. There is no video generator in the registry (Sora 2 API shut down 2026-09-24): when `route.py` returns a `fallback`, explain its note, give the fallback route for writing the prompt, and still produce the full video prompt from `templates/video.md` so the user can paste it into the generator they use.
+- Image and audio models in this registry are OpenAI-only; Claude can still write the prompt. There is no video generator in the registry (Sora 2 API shut down 2026-09-24): when `route.py` returns a `fallback`, explain its note, give the fallback route for writing the prompt, and still produce the full video prompt from `templates/video.md`. Then say where to generate the clips (unranked: Google Veo 3.1, Kling, Runway) and how to edit them together.
 - Respect the card's `status`: don't recommend `deprecated` models; mention `previous`/`legacy` only when the user is already on them, with the migration target.
 - Each card has a `verified` date. If it is more than 45 days old, add one line suggesting the user check the vendor's model page for changes.
 - Effort is the main lever for thinking depth and cost — prefer lowering effort to switching to a weaker model.
@@ -243,4 +260,5 @@ Before you send:
 - **Regulated rules only where they apply.** Open `guides/regulated.md` only when the prompt is in a category and market it covers, and never bring one market's rules into another.
 - **Regulatory facts are flagged, not asserted.** Regulatory rules change. Quote them with their source, tell the user to confirm the current text, and never invent a limit, deadline, disclaimer wording or legal line.
 - **Options are different ideas.** Creative options differ on at least two territory axes, and their heroes are never category clichés (`guides/practice-design.md`).
+- **Every prompt says where it runs and what comes back** ("Paste into … · You get …"). Never leave the user holding a prompt they can't place, such as an image or video prompt they might try in Claude.
 - **Never change the user's copy.** On-image text is exactly what the user wrote, in their casing and spelling. Don't add taglines, subheadings or labels they didn't give. A prefix like "Alert:" is part of the copy: render it as a small tag unless the user says otherwise. Suggest extra copy under "To improve the result" instead.

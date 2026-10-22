@@ -1,6 +1,6 @@
 {
   "name": "modelwise",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Turn a basic prompt into the right Anthropic/OpenAI model, effort level and a structured, model-specific prompt, with cost estimates and token-saving tips.",
   "author": {
     "name": "vinothraj",
