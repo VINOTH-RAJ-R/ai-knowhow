@@ -17,7 +17,7 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity",
-      "description": "Right model, effort and structured prompt for any task."
+      "description": "Expert decision, right model and effort, and structured prompts for any department."
     },
     {
       "name": "retrace",
@@ -30,7 +30,7 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity",
-      "description": "Turn finished AI work into lessons that teach people."
+      "description": "Retrace finished AI work and teach how it was done, step by step."
     }
   ]
 }

@@ -13,7 +13,7 @@ ChatGPT can import a GitHub repo that contains a `.claude-plugin/marketplace.jso
 ```bash
 python3 tools/install.py zip
 ```
-Then go to **Plugins** → **Skills** → **Create** → **Upload from your computer**, and upload `dist/modelwise.zip`, `dist/retrace.zip` and `dist/teach.zip` one at a time.
+Then go to **Plugins** → **Skills** → **Create** → **Upload from your computer**, and upload `dist/modelwise.zip` and `dist/retrace.zip` one at a time. (Older versions had a separate `teach.zip`; teaching is now part of retrace, so remove the old teach skill if you uploaded it.)
 
 ## 3. Other plans: a ChatGPT Project
 Skill uploads aren't available on every plan. Projects (custom instructions plus files) are available more widely, so check your plan.

@@ -1,6 +1,6 @@
 # Template: video generation (video.generate)
 
-**Status (2026-10):** neither vendor in this registry currently offers a video generator. OpenAI shut down the Sora 2 API on 2026-09-24, and Anthropic does not generate video. This template still gives you a strong, generator-agnostic prompt and shot list (it's based on OpenAI's archived Sora guide, which applies to most text-to-video tools). Ranked recommendations for specific generators are planned for phase 2. Until then, name the common ones as unranked options (below) and use the text model from the routing to write and refine the prompts.
+**Status (2026-10):** neither vendor in this registry currently offers a video generator. OpenAI shut down the Sora 2 API on 2026-09-24, and Anthropic does not generate video. This template still gives you a strong, generator-agnostic prompt and shot list (it's based on OpenAI's archived Sora guide, which applies to most text-to-video tools). Ranked recommendations for specific generators will come in a future registry update. Until then, name the common ones as unranked options (below) and use the text model from the routing to write and refine the prompts.
 
 ## Fill these slots
 | Slot | Why it matters | Default if missing |
@@ -10,7 +10,7 @@
 | DURATION | Total length and number of shots | Short clips (4-8s each) |
 | STORY | What happens, beginning → end | (required) |
 | SUBJECT | Who/what is on screen; keep a consistent description | (required) |
-| LOOK | Visual style, era, color palette (3-5 color anchors), film stock | Natural, cinematic |
+| LOOK | Visual style, era, color palette (3-5 color anchors), film stock | Natural, contemporary, grounded daylight (cinematic only for entertainment, gaming or festival work) |
 | CAMERA | Per shot: framing, angle, one movement, lens | Per shot |
 | LIGHT | Light sources and direction, kept consistent across shots | Soft key light |
 | SOUND | Dialogue (short lines, labeled speakers), ambience, music | Ambience only |

@@ -48,17 +48,17 @@ Repeat the "keep" list on every iteration, and make one change per turn.
 - Transparent cut-outs: `background="transparent"` and describe no backdrop.
 
 ## Example (illustrative: shows the structure, never copy its specifics)
-**Basic:** "make an image for my coffee shop instagram"
+**Basic:** "product photo of our iced latte for the website menu"
 **Structured:**
 ```
-Use: Instagram feed post (square) announcing a new autumn drink.
+Use: Website menu product photo (square) for an iced latte.
 Scene: Rustic wooden café counter, blurred warm café interior behind.
 Subject: A tall glass of iced pumpkin-spice latte with visible layers of espresso and milk, cinnamon dusting on top.
 Details: Small orange maple leaves and two cinnamon sticks beside the glass; condensation on the glass.
 Style: Photorealistic product photograph, shallow depth of field.
 Lighting & mood: Golden late-afternoon window light from the left; cozy, inviting.
 Camera: 45-degree angle, close-up, 85mm lens look.
-Text: "AUTUMN IS BACK" in bold white sans-serif, top center, once. No other text.
+Text: none. No words, numbers or logos anywhere.
 Constraints: No logos, no people, no watermark.
 ```
 Parameters: `size=1024x1024`, `quality=medium`, model per routing (Flare for drafts, Sunburst for the final).
@@ -84,19 +84,20 @@ It returns a tonal range for each colour and the text colours that pass contrast
 | HERO | Subject, material, rendering, light (key light direction, rim light, glow) and depth (foreground, midground, background). |
 | TYPOGRAPHY | Each text in quotes, its role, size relative to the canvas, weight, tracking, alignment and line breaks. "Exactly these words, nothing else." |
 | FINISH | Subtle grain, highlights, small supporting details that stay quiet. |
-| AVOID | Logos (unless asked), watermarks, extra text or numbers, clip-art icons, a lone icon on a flat fill, white bars or borders, stock-chart clichés, faces of real people. |
+| AVOID | Generic only: "No logos unless asked, no watermark, no extra words or numbers, no stock imagery, no fantasy or mystical scenes, no faces of real people; the background fills the canvas edge to edge." Never name the specific motifs you want to keep out. |
 
 **Skeleton**
 ```
 Create a <ratio> <format> (<px>) for <use>. Designed as <top practitioner> for a <industry> brand that feels <personality words>. Art direction: <style family>, art-directed, polished, high detail, premium brand-campaign quality, contemporary and grounded.
 Concept: <one-line visual idea in the industry's visual language>.
-Composition: <hero placement>, <headline placement>, reading order <A → B → C>. Margins about 7%. The background fills the entire canvas edge to edge; keep <zone> clear of elements but filled with the same background.
-Colour: <primary> is the dominant colour (about 80% of what the eye sees), built as a tonal range from <shade> to <tint> with soft gradients and directional light, not a flat fill. <accent> for <role> (about 10–15%). <secondary> only as <one tiny mark> (about 2%). Text in <text colour>.
+Composition: <hero placement>, <headline placement>, reading order <A → B → C>. Margins about 6–8% of the short edge. The background fills the entire canvas edge to edge; keep <zone> clear of elements but filled with the same background.
+Colour: <primary> is the dominant colour (<the share the user gave, or "clearly dominant">), built as a tonal range from <shade> to <tint> with soft gradients and directional light, not a flat fill. <accent> for <role> (<user's share, or "restrained">). <secondary> <role and share>. Text in <text colour>.
 Hero: <subject>, <material and rendering>, lit by <key light> with <rim light / glow>, with <foreground / midground / background layers>.
-Typography: "<headline>" is the dominant element: <weight>, cap height about <x>% of the canvas height, tight tracking, <alignment and line breaks>. "<secondary text>" <role and size>. Clean geometric sans-serif similar to Inter. Exactly these words, nothing else.
+Typography: "<headline>" is the dominant element: <weight>, cap height about <x>% of the canvas height, tight tracking, <alignment and line breaks>. "<secondary text>" <role and size>. <Typeface style from the brand or the industry lens, e.g. "clean geometric sans-serif similar to <brand font>" or "refined serif">. Exactly these words, nothing else.
 Finish: <subtle grain, highlights, supporting details>.
-Avoid: <AVOID list>.
+Avoid: <generic AVOID wording>.
 ```
+Percentages, typefaces and margins come from the user's brand and the industry lens. Never reuse the example values in this template.
 
 **Rules that prevent the common failures**
 - **Colour is visual weight, not a flat fill.** Never write "solid", "flat" or "no gradients" unless the user asks for flat design. Use the tonal range.

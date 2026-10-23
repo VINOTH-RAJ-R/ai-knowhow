@@ -36,12 +36,12 @@ retrace SKILL.md ─► capture-checklist (by domain) ─► fill templates/less
    │
    ▼
 lesson-<slug>/
-  SKILL.md   ← templates/lesson-skill.md: tutoring protocol (overview | walkthrough | rebuild)
+  SKILL.md   ← templates/lesson-skill.md: tutoring protocol (short retrace | walkthrough | rebuild)
   lesson.md  ← goal, steps, decision log, prompts, mistakes, efficiency review, pattern, quiz, exercise
   artifacts/ ← final prompts, key snippets
    │
    ▼
-/lesson-<slug>  or  /retrace:teach  → a person is taught
+/retrace teaches it right away; later: /lesson-<slug> or "teach me <slug>" → a person is taught
 ```
 
 ## Keeping the registry current

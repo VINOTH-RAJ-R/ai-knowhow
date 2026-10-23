@@ -68,7 +68,7 @@ Notes: use `verbosity: low` for short pieces where supported, instead of "be con
 
 ## Example (illustrative: shows the structure, never copy its specifics)
 **Basic:** "write a linkedin post about our new feature"
-**Structured:** PIECE = LinkedIn post; AUDIENCE = HR managers at 50-500 person companies; GOAL = book a demo; KEY_POINTS = (auto-generated payslips, cuts payroll time from 2 days to 2 hours, live in India and UAE); VOICE = confident, human, no buzzwords; LENGTH = 120-180 words, 1 emoji max; OUTPUT = 2 variants.
+**Structured:** PIECE = LinkedIn post; AUDIENCE = HR managers at 50-500 person companies; GOAL = book a demo; KEY_POINTS = (auto-generated payslips, [NEEDS PROOF: time saved per payroll run], available regions); VOICE = confident, human, no buzzwords; LENGTH = 120-180 words, 1 emoji max; OUTPUT = one post.
 
 ## Token savers
 - Writing rarely needs high effort: low/medium is usually indistinguishable in quality.

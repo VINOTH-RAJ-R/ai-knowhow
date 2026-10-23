@@ -72,7 +72,7 @@ DONE_WHEN. Run the tests/linters available and report results.
 # Output
 OUTPUT. End with a short summary of the change.
 ```
-Notes: state goals, constraints and the done-loop (implement → run → inspect → fix); remove contradictory rules and old "double-check" crutches. For Codex models, keep the prompt lean and let its built-in coding instructions do the rest. Use `reasoning.effort` and (where supported) `verbosity` instead of "be brief" text.
+Notes: state goals, constraints and the done-loop (implement → run → inspect → fix); remove contradictory rules and old "double-check" crutches. For GPT-6 models, drop the "list your assumptions and blocking questions" line and extra "run the tests" reminders; keep **Done when**, which already says what to run. For Codex models, keep the prompt lean and let its built-in coding instructions do the rest. Use `reasoning.effort` and (where supported) `verbosity` instead of "be brief" text.
 
 ## Example (illustrative: shows the structure, never copy its specifics)
 **Basic prompt:** "make a python script to rename my photos by date"

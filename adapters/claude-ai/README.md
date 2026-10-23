@@ -19,7 +19,7 @@ Then go to **Customize → Plugins → Add → Upload plugin** and upload `dist/
 ```bash
 python3 tools/install.py zip
 ```
-Then go to **Customize → Skills → + → Create skill → Upload a skill** for `dist/modelwise.zip`, `dist/retrace.zip` and `dist/teach.zip`. Turn each one on.
+Then go to **Customize → Skills → + → Create skill → Upload a skill** for `dist/modelwise.zip` and `dist/retrace.zip`. Turn each one on. (Teaching is now part of retrace: delete the old `teach` skill if you uploaded it before.)
 
 ## Option C: add the GitHub marketplace (after you push)
 **Customize → Plugins → Add → Add marketplace** → `VINOTH-RAJ-R/ai-knowhow`.

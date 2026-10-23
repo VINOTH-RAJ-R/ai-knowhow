@@ -105,6 +105,22 @@ class RouterTests(unittest.TestCase):
         self.assertTrue(res["recommended"]["prompt_tips"])
         self.assertIsNone(r("code.build")["volume"])
 
+    def test_effort_floor_for_luna_coding(self):
+        rows = {c["model"]: c for c in r("code.quick", "simple", "balanced", "openai")["cost_comparison"]}
+        self.assertEqual(rows["gpt-6-luna"]["effort"], "high")
+        rows = {c["model"]: c for c in r("text.transform", "simple", "balanced", "openai")["cost_comparison"]}
+        self.assertNotEqual(rows["gpt-6-luna"]["effort"], "high")
+
+    def test_translate_model_never_picked_for_voice_agents(self):
+        for cx in ("simple", "moderate", "complex"):
+            self.assertNotEqual(r("audio.agent", cx)["recommended"]["model"], "gpt-realtime-translate")
+
+    def test_image_tasks_fall_back_to_prompt_writing_for_anthropic(self):
+        for task in ("image.generate", "image.edit"):
+            res = r(task, "moderate", "balanced", "anthropic")
+            self.assertIsNone(res["recommended"])
+            self.assertEqual(res["fallback"]["route"]["recommended"]["provider"], "anthropic")
+
     def test_known_sensible_picks(self):
         # Guards against accidental regressions in fit ratings or scoring.
         self.assertIn(r("data.extract", "simple")["recommended"]["tier"], ("fast",))

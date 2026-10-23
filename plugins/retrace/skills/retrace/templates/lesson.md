@@ -20,12 +20,15 @@ What was delivered — a short description, the key files/outputs (link to `arti
 ## 3. The approach in one paragraph
 The overall strategy, so the learner has a map before the details.
 
-## 4. Step by step
+## 4. Step by step (the moves)
 Numbered phases in the order they actually happened. For each:
+- **Looked at:** the files, searches, data or outputs the AI used at this point
 - **What** was done
-- **Why** at this point
+- **Why** at this point (mark `(inferred)` where the record doesn't say)
 - **Tool/model** used (and effort, if known)
 - **Output** of the step
+
+Mark a phase where the plan changed with **↺ Turning point:** what triggered it (a failed test, a user correction, a new fact) and what changed.
 
 ## 5. Decision log
 | # | Decision | Options considered | Why this one | Evidence |

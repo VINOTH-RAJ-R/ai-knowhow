@@ -98,7 +98,7 @@ At the end of any task:
 ```
 /retrace            (or: "make a lesson from what we just did")
 ```
-It writes `.claude/skills/lesson-<slug>/`. Commit it, and your whole team can run `/lesson-<slug>` to be walked through how it was built: overview, step-by-step with check questions, or a hands-on rebuild. `/retrace:teach` lists and teaches any lesson.
+It reads the whole session, writes `.claude/skills/lesson-<slug>/`, and then teaches you straight away with a short retrace: the map, the moves the AI made (what it looked at, what it decided and why, the result), the turning points, and the cheaper path next time. Reply "walkthrough" or "rebuild" to go deeper. Commit the lesson, and your whole team can run `/lesson-<slug>` or ask "teach me <slug>" later. Teaching is built into retrace; there's no separate teach skill any more.
 
 See a real one: [examples/lessons/lesson-building-ai-knowhow](examples/lessons/lesson-building-ai-knowhow/lesson.md), the lesson for how this repo was built.
 
@@ -146,7 +146,6 @@ Fit ratings are curated judgments built from vendor docs. They are not benchmark
 .agents/plugins/marketplace.json    Codex marketplace
 plugins/modelwise/skills/modelwise/ SKILL.md · registry/ · templates/ · guides/ · scripts/route.py · ROUTING_TABLE.md
 plugins/retrace/skills/retrace/     SKILL.md · templates/ (lesson + lesson skill) · guides/capture-checklist.md
-plugins/retrace/skills/teach/       SKILL.md
 examples/lessons/                   example lessons
 adapters/                           per-platform install notes (ChatGPT, Codex, claude.ai + Cowork)
 tools/                              validate.py · test_route.py · install.py · release.py · watch_models.py

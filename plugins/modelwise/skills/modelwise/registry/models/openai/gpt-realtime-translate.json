@@ -24,13 +24,13 @@
   },
   "speed": "fastest",
   "fit": {
-    "audio.agent": 4
+    "audio.agent": 1.5
   },
   "best_for": [
     "Live speech-to-speech translation"
   ],
   "watch_out": [
-    "Translation only, not a general agent"
+    "Translation only, not a general agent: fit for audio.agent is set below the quality bar so it is never recommended for general voice agents. Name it when the user wants live speech translation."
   ],
   "prompt_style": "prompt-style-openai.md",
   "prompt_tips": [

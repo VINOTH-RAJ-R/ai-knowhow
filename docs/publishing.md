@@ -73,7 +73,7 @@ git push origin v0.1.0
 ```
 `.github/workflows/release.yml` checks that the tag matches the manifest versions, runs the release checks, and publishes a GitHub Release. Attached ZIPs:
 - `*-plugin.zip`: claude.ai/Cowork → Customize → Plugins → Upload plugin
-- `modelwise.zip`, `retrace.zip`, `teach.zip`: single skills for claude.ai or ChatGPT skill upload
+- `modelwise.zip`, `retrace.zip`: single skills for claude.ai or ChatGPT skill upload
 - `*-openai.zip`: the OpenAI plugin directory (Step 4)
 
 ---

@@ -1,4 +1,4 @@
-# Template: voice: speech, transcription, real-time (audio.speech)
+# Template: voice: speech, transcription, real-time (audio.speak, audio.transcribe, audio.agent)
 
 Claude models don't generate or transcribe audio natively. In this registry, audio tasks route to OpenAI's audio models. Claude can still write the script.
 
@@ -18,7 +18,7 @@ TONE & PACE: <...>
 PRONUNCIATION: <names, acronyms, numbers spelled how>
 SCRIPT: <exact text>
 ```
-OpenAI's steerable TTS models accept a separate `instructions` field for VOICE/TONE. Keep the script itself clean.
+Where the routed speech model accepts a separate voice or style instruction (check the model card's `prompt_tips`), put VOICE and TONE there and keep the script itself clean. Audio runs in the OpenAI API or Playground, not the ChatGPT app.
 
 ## Transcription skeleton
 ```

@@ -9,7 +9,7 @@
     {
       "name": "modelwise",
       "source": "./plugins/modelwise",
-      "description": "Turn a basic prompt into the right Anthropic/OpenAI model, effort level and a structured, model-specific prompt, with cost estimates and token-saving tips.",
+      "description": "For any department and industry: decide like the top practitioner, then pick the right Anthropic/OpenAI model and effort for each phase and write model-specific prompts, with cost comparisons.",
       "category": "productivity",
       "tags": [
         "prompting",
@@ -22,7 +22,7 @@
     {
       "name": "retrace",
       "source": "./plugins/retrace",
-      "description": "Capture how an AI-assisted task was done (decisions, prompts, mistakes, cheaper path) as a lesson skill, and teach it to people.",
+      "description": "Retrace a finished AI-assisted task and teach it on the spot: the moves the AI made and why, the turning points, the prompts, the mistakes and the cheaper path, saved as a reusable lesson skill.",
       "category": "learning",
       "tags": [
         "learning",

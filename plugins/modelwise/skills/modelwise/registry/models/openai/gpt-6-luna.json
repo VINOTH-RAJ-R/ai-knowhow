@@ -36,7 +36,8 @@
       "max"
     ],
     "default": "medium",
-    "notes": "OpenAI: low for simple extraction and fine-grained edits; Codex suggests starting at high for coding."
+    "notes": "OpenAI: low for simple extraction and fine-grained edits; Codex suggests starting at high for coding.",
+    "floor": {"code.*": "E4"}
   },
   "speed": "fastest",
   "fit": {

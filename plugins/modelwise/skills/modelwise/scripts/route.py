@@ -51,8 +51,21 @@ def find_task(tasks, task_id):
     sys.exit("Unknown task '%s'. Known tasks: %s" % (task_id, ids))
 
 
-def native_effort(card, level, scale, round_up):
+def effort_floor(card, task_id, level):
+    """Raise the E-level to the card's floor for this task, if it sets one (e.g. {"code.*": "E4"})."""
+    floor = None
+    for pattern, lvl in ((card.get("effort") or {}).get("floor") or {}).items():
+        if pattern == task_id or (pattern.endswith(".*") and task_id.startswith(pattern[:-1])):
+            floor = lvl
+    if floor and E_ORDER.index(floor) > E_ORDER.index(level):
+        return floor
+    return level
+
+
+def native_effort(card, level, scale, round_up, task_id=None):
     """Map a normalized E-level onto the model's own effort setting."""
+    if task_id:
+        level = effort_floor(card, task_id, level)
     eff = card.get("effort") or {}
     levels = eff.get("levels") or []
     if not eff.get("parameter") or not levels:
@@ -178,7 +191,7 @@ def cost_comparison(task, complexity, models, provider, scale, round_up, min_fit
             "name": m["display_name"],
             "provider": m["provider"],
             "tier": m["tier"],
-            "effort": native_effort(m, level, scale, round_up),
+            "effort": native_effort(m, level, scale, round_up, task["id"]),
             "fit": fit,
             "meets_quality_bar": fit >= min_fit,
             "est_cost_usd": round(cost, 4) if cost is not None else None,
@@ -220,7 +233,7 @@ def route(task_id, complexity="moderate", priority="balanced", provider="any",
             "card": card,
             "fit": fit,
             "cost": estimate_cost(card, task, complexity),
-            "effort": native_effort(card, level, scale, round_up),
+            "effort": native_effort(card, level, scale, round_up, task["id"]),
         })
     ranked = rank(entries, priority, tasks["min_fit_by_complexity"][complexity])
 

@@ -22,8 +22,8 @@ Template: `templates/coding.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
-| moderate | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
+| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
+| moderate | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
 | complex | E3 medium | claude-sonnet-5-5 @ medium ($0.08) | claude-haiku-5-5 @ medium (<$0.01) | claude-sonnet-5-5 @ medium ($0.08) | gpt-6.1-sol @ medium ($0.08) |
 | frontier | E4 high | claude-sonnet-5-5 @ high ($0.16) | - | claude-sonnet-5-5 @ high ($0.16) | gpt-6.1-sol @ high ($0.16) |
 
@@ -33,7 +33,7 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a ✓ @low | n/a @medium | n/a @high |
 | claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @low | <$0.01 ✓ @medium | <$0.01 @high |
-| gpt-6-luna | <$0.01 ✓ @low | <$0.01 ✓ @low | <$0.01 ✓ @medium | <$0.01 @high |
+| gpt-6-luna | <$0.01 ✓ @high | <$0.01 ✓ @high | <$0.01 ✓ @high | <$0.01 @high |
 | claude-sonnet-5-5 | $0.01 ✓ @low | $0.03 ✓ @low | $0.08 ✓ @medium | $0.16 ✓ @high |
 | gpt-6.1-sol | $0.01 ✓ @low | $0.03 ✓ @low | $0.08 ✓ @medium | $0.16 ✓ @high |
 | claude-opus-5-5 | $0.02 ✓ @low | $0.06 ✓ @low | $0.16 ✓ @medium | $0.32 ✓ @high |
@@ -46,7 +46,7 @@ Template: `templates/coding.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
+| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
 | moderate | E3 medium | claude-sonnet-5-5 @ medium ($0.24) | claude-haiku-5-5 @ medium ($0.01) | claude-sonnet-5-5 @ medium ($0.24) | gpt-6.1-sol @ medium ($0.24) |
 | complex | E4 high | claude-opus-5-5 @ high ($2.00) | claude-sonnet-5-5 @ high ($1.00) | claude-opus-5-5 @ high ($2.00) | gpt-6-astra @ high ($5.00) |
 | frontier | E5 xhigh | claude-opus-5-5 @ xhigh ($8.40) | - | claude-opus-5-5 @ xhigh ($8.40) | gpt-6-astra @ xhigh ($21.00) |
@@ -57,7 +57,7 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a @medium | n/a @high | n/a @high |
 | claude-haiku-5-5 | <$0.01 ✓ @low | $0.01 ✓ @medium | $0.05 @high | $0.21 @xhigh |
-| gpt-6-luna | <$0.01 ✓ @low | $0.01 ✓ @medium | $0.05 @high | $0.21 @xhigh |
+| gpt-6-luna | <$0.01 ✓ @high | $0.01 ✓ @high | $0.05 @high | $0.21 @xhigh |
 | claude-sonnet-5-5 | $0.05 ✓ @low | $0.24 ✓ @medium | $1.00 ✓ @high | $4.20 @xhigh |
 | gpt-6.1-sol | $0.05 ✓ @low | $0.24 ✓ @medium | $1.00 ✓ @high | $4.20 @xhigh |
 | claude-opus-5-5 | $0.09 ✓ @low | $0.48 ✓ @medium | $2.00 ✓ @high | $8.40 ✓ @xhigh |
@@ -70,7 +70,7 @@ Template: `templates/frontend.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
+| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
 | moderate | E3 medium | claude-sonnet-5-5 @ medium ($0.28) | claude-haiku-5-5 @ medium ($0.01) | claude-sonnet-5-5 @ medium ($0.28) | gpt-6.1-sol @ medium ($0.28) |
 | complex | E4 high | claude-opus-5-5 @ high ($2.00) | claude-sonnet-5-5 @ high ($1.00) | claude-opus-5-5 @ high ($2.00) | gpt-6-astra @ high ($5.00) |
 | frontier | E5 xhigh | claude-opus-5-5 @ xhigh ($6.20) | - | claude-opus-5-5 @ xhigh ($6.20) | gpt-6-astra @ xhigh ($15.50) |
@@ -80,7 +80,7 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
 | claude-haiku-5-5 | <$0.01 ✓ @low | $0.01 ✓ @medium | $0.05 @high | $0.15 @xhigh |
-| gpt-6-luna | <$0.01 ✓ @low | $0.01 ✓ @medium | $0.05 @high | $0.15 @xhigh |
+| gpt-6-luna | <$0.01 ✓ @high | $0.01 ✓ @high | $0.05 @high | $0.15 @xhigh |
 | claude-sonnet-5-5 | $0.08 ✓ @low | $0.28 ✓ @medium | $1.00 ✓ @high | $3.10 @xhigh |
 | gpt-6.1-sol | $0.08 ✓ @low | $0.28 ✓ @medium | $1.00 ✓ @high | $3.10 @xhigh |
 | claude-opus-5-5 | $0.15 ✓ @low | $0.56 ✓ @medium | $2.00 ✓ @high | $6.20 ✓ @xhigh |
@@ -93,7 +93,7 @@ Template: `templates/debugging.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
+| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
 | moderate | E3 medium | claude-sonnet-5-5 @ medium ($0.14) | claude-haiku-5-5 @ medium (<$0.01) | claude-sonnet-5-5 @ medium ($0.14) | gpt-6.1-sol @ medium ($0.14) |
 | complex | E4 high | claude-opus-5-5 @ high ($1.50) | claude-sonnet-5-5 @ high ($0.75) | claude-opus-5-5 @ high ($1.50) | gpt-6-astra @ high ($3.75) |
 | frontier | E5 xhigh | claude-opus-5-5 @ xhigh ($5.60) | - | claude-opus-5-5 @ xhigh ($5.60) | gpt-6-astra @ xhigh ($14.00) |
@@ -104,7 +104,7 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a @medium | n/a @high | n/a @high |
 | claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @medium | $0.04 @high | $0.14 @xhigh |
-| gpt-6-luna | <$0.01 ✓ @low | <$0.01 ✓ @medium | $0.04 @high | $0.14 @xhigh |
+| gpt-6-luna | <$0.01 ✓ @high | <$0.01 ✓ @high | $0.04 @high | $0.14 @xhigh |
 | claude-sonnet-5-5 | $0.03 ✓ @low | $0.14 ✓ @medium | $0.75 ✓ @high | $2.80 @xhigh |
 | gpt-6.1-sol | $0.03 ✓ @low | $0.14 ✓ @medium | $0.75 ✓ @high | $2.80 @xhigh |
 | claude-opus-5-5 | $0.05 ✓ @low | $0.28 ✓ @medium | $1.50 ✓ @high | $5.60 ✓ @xhigh |
@@ -117,7 +117,7 @@ Template: `templates/code-review.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
+| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
 | moderate | E3 medium | claude-sonnet-5-5 @ medium ($0.20) | claude-haiku-5-5 @ medium ($0.01) | claude-sonnet-5-5 @ medium ($0.20) | gpt-6.1-sol @ medium ($0.20) |
 | complex | E4 high | claude-opus-5-5 @ high ($1.80) | claude-sonnet-5-5 @ high ($0.90) | claude-opus-5-5 @ high ($1.80) | gpt-6-astra @ high ($4.50) |
 | frontier | E5 xhigh | claude-opus-5-5 @ xhigh ($6.80) | - | claude-opus-5-5 @ xhigh ($6.80) | gpt-6-astra @ xhigh ($17.00) |
@@ -127,7 +127,7 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
 | claude-haiku-5-5 | <$0.01 ✓ @low | $0.01 ✓ @medium | $0.04 @high | $0.17 @xhigh |
-| gpt-6-luna | <$0.01 ✓ @low | $0.01 ✓ @medium | $0.04 @high | $0.17 @xhigh |
+| gpt-6-luna | <$0.01 ✓ @high | $0.01 ✓ @high | $0.04 @high | $0.17 @xhigh |
 | claude-sonnet-5-5 | $0.04 ✓ @low | $0.20 ✓ @medium | $0.90 ✓ @high | $3.40 @xhigh |
 | gpt-6.1-sol | $0.04 ✓ @low | $0.20 ✓ @medium | $0.90 ✓ @high | $3.40 @xhigh |
 | claude-opus-5-5 | $0.08 ✓ @low | $0.40 ✓ @medium | $1.80 ✓ @high | $6.80 ✓ @xhigh |
@@ -408,7 +408,7 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 
 Template: `templates/video.md`
 
-> No video-generation model is in the registry: OpenAI shut down the Sora 2 API on 2026-09-24 and Anthropic does not generate video. The route below is for the model that writes your shot list and generator prompt. Generate the clips in a video generator outside the registry (unranked, check your plan: Google Veo 3.1, Kling, Runway), then edit them together; see templates/video.md. Ranked generator recommendations are planned for phase 2. Routes shown are for `text.write`.
+> No video-generation model is in the registry: OpenAI shut down the Sora 2 API on 2026-09-24 and Anthropic does not generate video. The route below is for the model that writes your shot list and generator prompt. Generate the clips in a video generator outside the registry (unranked, check your plan: Google Veo 3.1, Kling, Runway), then edit them together; see templates/video.md. Ranked generator recommendations will come in a future registry update. Routes shown are for `text.write`.
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
@@ -473,9 +473,9 @@ Template: `templates/audio.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E1 minimal | gpt-realtime-translate @ default ($0.03) | - | - | gpt-realtime-translate @ default ($0.03) |
-| moderate | E2 low | gpt-realtime-translate @ default ($0.03) | - | - | gpt-realtime-translate @ default ($0.03) |
-| complex | E3 medium | gpt-live-1 @ default ($0.05) | gpt-realtime-translate @ default ($0.03) | - | gpt-live-1 @ default ($0.05) |
+| simple | E1 minimal | gpt-live-1 @ default ($0.05) | - | - | gpt-live-1 @ default ($0.05) |
+| moderate | E2 low | gpt-live-1 @ default ($0.05) | - | - | gpt-live-1 @ default ($0.05) |
+| complex | E3 medium | gpt-live-1 @ default ($0.05) | - | - | gpt-live-1 @ default ($0.05) |
 | frontier | E4 high | gpt-live-1 @ default ($0.05) | - | - | gpt-live-1 @ default ($0.05) |
 
 Cost per run across current models (✓ = clears the quality bar at that complexity; @ = effort):
@@ -484,6 +484,6 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 |---|---|---|---|---|
 | gpt-realtime-2.1 | n/a ✓ @default | n/a ✓ @default | n/a ✓ @default | n/a @default |
 | gpt-realtime-2.1-mini | n/a ✓ @default | n/a ✓ @default | n/a ✓ @default | n/a @default |
-| gpt-realtime-translate | $0.03 ✓ @default | $0.03 ✓ @default | $0.03 ✓ @default | $0.03 @default |
+| gpt-realtime-translate | $0.03 @default | $0.03 @default | $0.03 @default | $0.03 @default |
 | gpt-live-1 | $0.05 ✓ @default | $0.05 ✓ @default | $0.05 ✓ @default | $0.05 ✓ @default |
 

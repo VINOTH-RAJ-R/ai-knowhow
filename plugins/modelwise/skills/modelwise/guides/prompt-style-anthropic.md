@@ -42,7 +42,7 @@ Tag names are not magic. Any clear, consistent names work. Nest them when you ha
 6. **Use effort to control thinking, not words.** To get less (or more) thinking, change the effort level. Prompt requests like "think less" have almost no effect on current models.
 7. **Ask for verification on code.** "Run the tests / build / the changed command before saying it's done. A syntax check doesn't count." This matters most at low effort.
 8. **Don't discourage tools.** Phrases like "minimize tool calls" are followed literally and cause the model to answer from memory. Say which sources it should prefer instead.
-9. **For frontend/design, name what to avoid.** "Avoid generic AI look" just swaps one default for another. List concrete patterns: "no cream background, no italic accent words in headlines, no pill buttons, no 01/02/03 section labels".
+9. **For frontend and UI code, name what to avoid** (not for image-model prompts, which keep a generic Avoid line). "Avoid generic AI look" just swaps one default for another. List concrete patterns: "no cream background, no italic accent words in headlines, no pill buttons, no 01/02/03 section labels".
 10. **No assistant prefill.** Prefilling the assistant turn returns an error on current models. Use structured outputs or a system-prompt instruction instead.
 
 ## System prompt vs user message

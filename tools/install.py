@@ -21,7 +21,6 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKILLS = {
     "modelwise": os.path.join(ROOT, "plugins", "modelwise", "skills", "modelwise"),
     "retrace": os.path.join(ROOT, "plugins", "retrace", "skills", "retrace"),
-    "teach": os.path.join(ROOT, "plugins", "retrace", "skills", "teach"),
 }
 PLUGINS = {
     "modelwise": os.path.join(ROOT, "plugins", "modelwise"),
@@ -105,7 +104,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("target", choices=["claude-code", "codex", "zip", "plugin-zip", "openai-zip"])
     ap.add_argument("--project", action="store_true", help="Install into the current project instead of your home folder.")
-    ap.add_argument("--skills", default="modelwise,retrace,teach", help="Comma-separated subset.")
+    ap.add_argument("--skills", default="modelwise,retrace", help="Comma-separated subset.")
     ap.add_argument("--dest", help="Override the destination folder.")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()

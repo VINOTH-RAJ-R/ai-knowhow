@@ -32,7 +32,7 @@ claude plugin validate . --strict
 
 Install from the local folder exactly as you would from GitHub. Remove any old manual copies first, so you test the plugin and not a stale copy:
 ```bash
-rm -rf ~/.claude/skills/modelwise ~/.claude/skills/retrace ~/.claude/skills/teach
+rm -rf ~/.claude/skills/modelwise ~/.claude/skills/retrace ~/.claude/skills/teach  # teach is now part of retrace
 ```
 Then, inside Claude Code:
 ```
@@ -64,8 +64,10 @@ Also check: **no model, price or effort level that isn't in the registry** appea
    - `lesson.md` has every section: goal, steps, decision log, prompts, mistakes (or "none recorded"), efficiency review, pattern, quiz, exercise
    - no secrets appear in it
    - rationale it inferred is marked *(inferred)*
-3. Run `/reload-plugins`, then `/lesson-<slug>`. **Pass:** it asks overview / walkthrough / rebuild, teaches one step at a time, and ends with the quiz.
-4. Type `/retrace:teach`. **Pass:** lists the lesson (and `examples/lessons/` if you open the repo itself).
+   - right after saving, it teaches a **short retrace** in the chat: the map, 3–6 moves (looked at → decided → because → result) with turning points marked ↺, what steered it, the cheaper path, and one check question
+3. Reply "walkthrough". **Pass:** it teaches one phase at a time and waits for you between phases.
+4. Run `/reload-plugins`, then `/lesson-<slug>`. **Pass:** it opens with the short retrace and offers walkthrough or rebuild.
+5. Ask "which lessons do we have?". **Pass:** retrace lists the lesson (and `examples/lessons/` if you open the repo itself).
 
 ---
 

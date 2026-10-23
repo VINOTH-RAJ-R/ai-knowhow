@@ -15,10 +15,11 @@ AI can build an app, an image or a video in an afternoon, but the person who ask
 It saves all of this as a **lesson skill** (`lesson-<slug>/SKILL.md` + `lesson.md`). The lesson is itself a skill, so anyone can later run `/lesson-<slug>` and be tutored through it: a quick overview, a step-by-step walkthrough with check questions, or a guided rebuild.
 
 ## Skills in this plugin
-| Skill | Use |
+One skill, `retrace`, does both jobs:
+| You say | What happens |
 |---|---|
-| `retrace` | Capture a lesson after a task: `/retrace`, or "make a lesson from this" |
-| `teach` | List and teach lessons: `/retrace:teach`, or "teach me how we built X" |
+| `/retrace`, "teach me what you just did", "how did you arrive at this?" | Reads the whole session, saves the lesson, then teaches a **short retrace** in the chat: the map, the moves the AI made (what it looked at → what it decided → why → result), the turning points, what steered it, and the cheaper path. Reply "walkthrough" or "rebuild" to go deeper. |
+| "teach me how we built X", "which lessons do we have?" | Finds a saved lesson and teaches it: short retrace, walkthrough with check questions, or a guided rebuild. |
 
 ## Where lessons are saved
 - Claude Code: `.claude/skills/lesson-<slug>/` in your project. Commit it and your team gets the lesson too.
@@ -36,7 +37,7 @@ It saves all of this as a **lesson skill** (`lesson-<slug>/SKILL.md` + `lesson.m
 ## Example prompts
 1. `/retrace` (or "make a lesson from what we just did") at the end of a task. Writes `lesson-<slug>/` with `SKILL.md` and `lesson.md`.
 2. "Teach me how we built the checkout flow" or `/lesson-checkout-flow` to be tutored through a lesson: overview, walkthrough with check questions, or a rebuild exercise.
-3. "Which lessons do we have?" or `/retrace:teach` to list the lessons in this project and choose one.
+3. "Which lessons do we have?" to list the lessons in this project and choose one.
 
 ## What it runs and sends
 - Reads the conversation and, where available, local files and `git log` / `git diff` in your project. Writes the lesson files to the location described above.

@@ -1,6 +1,6 @@
 # Classifying a raw prompt
 
-Turn a basic prompt into six values: **department**, **industry**, then **task**, **complexity**, **priority** and **provider**. Takes one pass; don't over-think it.
+Turn a basic prompt into seven values: **department**, **industry**, **market**, then **task**, **complexity**, **priority** and **provider**. Takes one pass; don't over-think it.
 
 ## 0. Department and industry (who owns this at a top company?)
 | If the prompt is about… | Department |
@@ -19,6 +19,11 @@ Turn a basic prompt into six values: **department**, **industry**, then **task**
 | analysis, dashboards, research questions | data and research |
 
 **Industry** comes from the prompt, the brand named, or the user's context (`guides/industry-lens.md`). If neither is clear and it changes the answer, it's one of your two questions; otherwise state the assumption.
+
+**Market** is the country or region whose law and conventions apply. It comes from the prompt, the brand, the currency or the user's context.
+- If it's unknown and the work is regulated (exits, pay or contracts in HR; ads for finance, health, crypto or alcohol; privacy; legal), it's one of your two questions, asked at the end of the answer.
+- Meanwhile write "market: not specified" and apply no market-specific rule.
+- Never assume a market from the examples in this skill's guides.
 
 The department sets the top practitioner and their playbook (`guides/practice-functions.md` and the other practice guides). The **task** below is classified from the deliverable that practitioner decides on (SKILL.md step 2d). That can differ from the literal ask: "plan our hiring for next year" becomes a planning task (`reason.hard`) followed by writing (`text.write`).
 
@@ -47,7 +52,7 @@ Match against `registry/tasks.json` using its `label` and `signals`. Pick the ta
 | a video clip | `video.generate` |
 | speech transcribed | `audio.transcribe` |
 | text spoken aloud (voiceover, TTS) | `audio.speak` |
-| a live voice agent or live translation | `audio.agent` |
+| a live voice agent or live translation | `audio.agent` (for translation only, also name `gpt-realtime-translate`, which the router keeps below the bar for general agents) |
 
 **Common department deliverables:**
 
@@ -83,7 +88,7 @@ Bump up one level if: the user mentions production/money/security/legal, the out
 - Running inside Claude Code / claude.ai → the in-session answer is Anthropic; still show the best OpenAI option for reference.
 - Running inside ChatGPT / Codex → OpenAI first.
 - The user named a vendor or has only one API key → filter to it.
-- Image and audio tasks are OpenAI-only in this registry (Claude doesn't generate media). Video generation has no model in the registry since OpenAI shut down the Sora 2 API (2026-09-24): route the *prompt writing* and say a generator choice comes in phase 2. Say this plainly.
+- Image and audio tasks are OpenAI-only in this registry (Claude doesn't generate media). Video generation has no model in the registry since OpenAI shut down the Sora 2 API (2026-09-24): route the *prompt writing*, name the common generators as unranked options, and say ranked generator choices will come in a future registry update. Say this plainly.
 - Otherwise `any`.
 
 ## When to ask

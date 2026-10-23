@@ -3,68 +3,253 @@
   "title": "Modelwise model card",
   "description": "One file per model at registry/models/<provider>/<id>.json. Every claim should be backed by an entry in 'sources'. 'fit' ratings are curated judgments built from vendor docs and public evaluations. They are not benchmark scores.",
   "type": "object",
-  "required": ["id", "provider", "display_name", "tier", "status", "capabilities", "pricing", "effort", "fit", "best_for", "watch_out", "prompt_style", "sources", "verified"],
+  "required": [
+    "id",
+    "provider",
+    "display_name",
+    "tier",
+    "status",
+    "capabilities",
+    "pricing",
+    "effort",
+    "fit",
+    "best_for",
+    "watch_out",
+    "prompt_style",
+    "sources",
+    "verified"
+  ],
   "additionalProperties": false,
   "properties": {
-    "id": { "type": "string", "description": "Exact API model ID." },
-    "provider": { "enum": ["anthropic", "openai"] },
-    "display_name": { "type": "string" },
-    "family": { "type": "string" },
+    "id": {
+      "type": "string",
+      "description": "Exact API model ID."
+    },
+    "provider": {
+      "enum": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string"
+    },
     "tier": {
-      "enum": ["frontier", "flagship", "balanced", "fast", "specialist"],
+      "enum": [
+        "frontier",
+        "flagship",
+        "balanced",
+        "fast",
+        "specialist"
+      ],
       "description": "frontier = most capable/most expensive; flagship = the vendor's main top model; balanced = mid price/quality; fast = cheap, high volume; specialist = single-purpose (image, video, audio, coding-only)."
     },
     "status": {
-      "enum": ["current", "previous", "legacy", "deprecated", "restricted"],
+      "enum": [
+        "current",
+        "previous",
+        "legacy",
+        "deprecated",
+        "restricted"
+      ],
       "description": "current = recommended now; previous = superseded but fully served; legacy = old, still served; deprecated = shutdown announced; restricted = invite/program only."
     },
-    "released": { "type": ["string", "null"] },
-    "retires": { "type": ["string", "null"] },
+    "released": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "retires": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "capabilities": {
       "type": "array",
-      "items": { "enum": ["text_out", "image_in", "pdf_in", "image_out", "video_out", "audio", "tool_use", "computer_use", "structured_output", "web_search", "code_execution"] }
+      "items": {
+        "enum": [
+          "text_out",
+          "image_in",
+          "pdf_in",
+          "image_out",
+          "video_out",
+          "audio",
+          "tool_use",
+          "computer_use",
+          "structured_output",
+          "web_search",
+          "code_execution"
+        ]
+      }
     },
-    "context_window": { "type": ["integer", "null"] },
-    "max_output_tokens": { "type": ["integer", "null"] },
+    "context_window": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "max_output_tokens": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
     "pricing": {
       "type": "object",
-      "required": ["unit"],
+      "required": [
+        "unit"
+      ],
       "properties": {
-        "unit": { "enum": ["usd_per_mtok", "usd_per_image", "usd_per_second", "usd_per_minute"] },
-        "input": { "type": ["number", "null"] },
-        "output": { "type": ["number", "null"] },
-        "cached_input": { "type": ["number", "null"] },
-        "per_unit": { "type": ["number", "null"], "description": "For image/video/audio models: price per image/second/minute at the default quality." },
-        "notes": { "type": "string" }
+        "unit": {
+          "enum": [
+            "usd_per_mtok",
+            "usd_per_image",
+            "usd_per_second",
+            "usd_per_minute"
+          ]
+        },
+        "input": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "output": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "cached_input": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "per_unit": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "For image/video/audio models: price per image/second/minute at the default quality."
+        },
+        "notes": {
+          "type": "string"
+        }
       }
     },
     "effort": {
       "type": "object",
-      "required": ["parameter", "levels", "default"],
+      "required": [
+        "parameter",
+        "levels",
+        "default"
+      ],
       "properties": {
-        "parameter": { "type": ["string", "null"] },
-        "levels": { "type": "array", "items": { "type": "string" } },
-        "default": { "type": ["string", "null"] },
-        "map": { "type": "object", "description": "Optional override of the vendor E-scale mapping for this model, e.g. {\"E0\": \"low\"}." },
-        "notes": { "type": "string" }
+        "parameter": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "default": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "map": {
+          "type": "object",
+          "description": "Optional override of the vendor E-scale mapping for this model, e.g. {\"E0\": \"low\"}."
+        },
+        "notes": {
+          "type": "string"
+        },
+        "floor": {
+          "type": "object",
+          "description": "Optional minimum E-level per task id or prefix pattern, e.g. {\"code.*\": \"E4\"}, when the vendor says the model needs more effort for that work."
+        }
       }
     },
-    "speed": { "enum": ["fastest", "fast", "medium", "slow"], "description": "Relative latency within the registry." },
+    "speed": {
+      "enum": [
+        "fastest",
+        "fast",
+        "medium",
+        "slow"
+      ],
+      "description": "Relative latency within the registry."
+    },
     "fit": {
       "type": "object",
       "description": "0-5 per task id from tasks.json. 5 = among the best available for this task; 3 = solid; 1 = possible but poor; 0 or missing = not suitable.",
-      "additionalProperties": { "type": "number", "minimum": 0, "maximum": 5 }
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 5
+      }
     },
-    "best_for": { "type": "array", "items": { "type": "string" } },
-    "watch_out": { "type": "array", "items": { "type": "string" } },
-    "prompt_style": { "type": "string", "description": "File in guides/ that describes how to prompt this model, e.g. prompt-style-anthropic.md." },
-    "prompt_tips": { "type": "array", "items": { "type": "string" } },
-    "where": { "type": "array", "items": { "type": "string" }, "description": "Surfaces where users can run it: api, claude.ai, claude-code, chatgpt, codex, bedrock, vertex, foundry, azure." },
+    "best_for": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "watch_out": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "prompt_style": {
+      "type": "string",
+      "description": "File in guides/ that describes how to prompt this model, e.g. prompt-style-anthropic.md."
+    },
+    "prompt_tips": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "where": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Surfaces where users can run it: api, claude.ai, claude-code, chatgpt, codex, bedrock, vertex, foundry, azure."
+    },
     "sources": {
       "type": "array",
       "minItems": 1,
-      "items": { "type": "object", "required": ["url"], "properties": { "url": { "type": "string" }, "what": { "type": "string" } } }
+      "items": {
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "what": {
+            "type": "string"
+          }
+        }
+      }
     },
-    "verified": { "type": "string", "description": "YYYY-MM-DD the card was last checked against sources." }
+    "verified": {
+      "type": "string",
+      "description": "YYYY-MM-DD the card was last checked against sources."
+    }
   }
 }

@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "retrace",
-  "version": "0.1.8",
-  "description": "Capture how an AI-assisted task was done (decisions, prompts, mistakes, cheaper path) as a lesson skill, and teach it to people.",
+  "version": "0.1.9",
+  "description": "Retrace a finished AI-assisted task and teach it on the spot: the moves the AI made and why, the turning points, the prompts, the mistakes and the cheaper path, saved as a reusable lesson skill.",
   "author": {
     "name": "vinothraj",
     "url": "https://github.com/VINOTH-RAJ-R"
@@ -21,8 +21,8 @@
     "com.openai": {
       "interface": {
         "displayName": "Retrace",
-        "shortDescription": "Turn AI work into lessons",
-        "longDescription": "After an AI-assisted task, retrace captures the goal, the decisions and their rationale, the prompts that worked, mistakes and fixes, and how to do it cheaper next time, as a lesson skill. Anyone can then be taught how it was built: overview, step-by-step walkthrough with check questions, or a hands-on rebuild. Lessons stay on your machine.",
+        "shortDescription": "Retrace and teach AI work",
+        "longDescription": "After an AI-assisted task, retrace reads the whole session, saves a lesson skill and teaches it right away: the map, the moves the AI made (what it looked at, what it decided and why), the turning points, the prompts that worked, mistakes and fixes, and the cheaper path next time. Go deeper with a step-by-step walkthrough or a hands-on rebuild, now or later. Lessons stay on your machine.",
         "developerName": "vinothraj",
         "category": "Productivity",
         "capabilities": [
