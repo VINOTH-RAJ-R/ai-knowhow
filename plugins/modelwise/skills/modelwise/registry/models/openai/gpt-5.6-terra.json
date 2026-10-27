@@ -60,11 +60,12 @@
     "Former 'mini' tier"
   ],
   "watch_out": [
+    "Superseded by GPT-6.1 Terra, which costs half as much",
     "Costs more than GPT-6.1 Sol for less quality"
   ],
   "prompt_style": "prompt-style-openai.md",
   "prompt_tips": [
-    "Prefer gpt-6.1-sol or gpt-6-luna"
+    "Prefer gpt-6.1-terra (same tier, half the price), gpt-6.1-sol or gpt-6-luna"
   ],
   "where": [
     "api",

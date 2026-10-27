@@ -3,7 +3,7 @@ name: modelwise
 description: Turn a basic prompt from any department (engineering, design, marketing, sales, support, product, HR, finance, legal, operations, leadership) in any industry into an expert decision, the right model and effort, and a structured, model-specific prompt. It first decides like the top practitioner of that function would (goal, deliverable, approach, production path and sign-off), then classifies each phase (coding, frontend, debugging, writing, research, data, reasoning, vision, image, video, audio, agents), picks the best Anthropic or OpenAI model and reasoning effort from a curated registry, estimates cost, rewrites the prompt in the format that model works best with, and gives token-saving tips. Use when the user asks "which model should I use", "what effort", "improve/structure my prompt", "how do I prompt X for Y", "cheapest way to do this", or invokes /modelwise with a prompt. It returns the recommendation and ready-to-use prompts; it does not produce the final asset itself.
 license: MIT
 metadata:
-  version: "0.3.1"
+  version: "0.3.2"
   default-model-claude: "claude-haiku-5-5 at effort low (claude-sonnet-5-5 for complex rewrites)"
   default-model-openai: "gpt-6-luna at effort low (gpt-6.1-sol for complex rewrites)"
   registry-verified: "2026-10-17"

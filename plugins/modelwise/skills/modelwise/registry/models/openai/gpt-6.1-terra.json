@@ -1,0 +1,92 @@
+{
+  "id": "gpt-6.1-terra",
+  "provider": "openai",
+  "display_name": "GPT-6.1 Terra",
+  "family": "gpt-6",
+  "tier": "balanced",
+  "status": "current",
+  "released": "2026-10-26",
+  "retires": null,
+  "capabilities": [
+    "text_out",
+    "image_in",
+    "tool_use",
+    "computer_use",
+    "structured_output",
+    "web_search",
+    "code_execution"
+  ],
+  "context_window": 1050000,
+  "max_output_tokens": 128000,
+  "pricing": {
+    "unit": "usd_per_mtok",
+    "input": 1,
+    "output": 5,
+    "cached_input": 0.05,
+    "notes": "Cache write $1.25 (30-minute retention) or $2.50 (12-hour). Max input 922K tokens. Over 272K input tokens the whole request is billed at 2x input and cache / 1.5x output. Batch & Flex 50% off; Fast mode 2x; regional processing +10%."
+  },
+  "effort": {
+    "parameter": "reasoning.effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium",
+    "notes": "Hosted tools (computer use, code interpreter, MCP, hosted shell, apply patch) are Responses API only."
+  },
+  "speed": "fast",
+  "fit": {
+    "code.quick": 3.5,
+    "code.build": 3.5,
+    "code.frontend": 3.5,
+    "code.debug": 3.5,
+    "code.review": 3.5,
+    "agent.longrun": 3.5,
+    "agent.computer": 4.5,
+    "text.write": 4.5,
+    "text.transform": 4.5,
+    "text.chat": 4.5,
+    "data.extract": 4.5,
+    "data.analysis": 3.5,
+    "research.deep": 3.5,
+    "reason.hard": 3.5,
+    "vision.understand": 4.5
+  },
+  "best_for": [
+    "Visual reasoning: matching product photos to catalog entries, reading technical drawings",
+    "Computer use on application screens at half GPT-6.1 Sol's price",
+    "Clear, natural writing and revision at mid price"
+  ],
+  "watch_out": [
+    "Fit ratings are provisional: launched 2026-10-26 with no official benchmarks yet. Rated 4.5 only where OpenAI's model page positions it (visual reasoning, computer use, writing); coding and analysis held at the previous Terra's 3.5 until a benchmark run",
+    "PDF input is not listed on the model page",
+    "Use the Responses API for hosted tools such as computer use"
+  ],
+  "prompt_style": "prompt-style-openai.md",
+  "prompt_tips": [
+    "Same guidance as the GPT-6 family: goals and constraints over recipes; set effort explicitly",
+    "For screen and image tasks, name the target element or field you need back"
+  ],
+  "where": [
+    "api"
+  ],
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+      "what": "model page: limits, price, effort levels, tools, endpoints"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "what": "release date (2026-10-26)"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "what": "pricing"
+    }
+  ],
+  "verified": "2026-10-27"
+}
