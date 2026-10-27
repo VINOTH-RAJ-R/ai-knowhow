@@ -3,7 +3,7 @@ name: modelwise
 description: Turn a basic prompt from any department (engineering, design, marketing, sales, support, product, HR, finance, legal, operations, leadership) in any industry into an expert decision, the right model and effort, and a structured, model-specific prompt. It first decides like the top practitioner of that function would (goal, deliverable, approach, production path and sign-off), then classifies each phase (coding, frontend, debugging, writing, research, data, reasoning, vision, image, video, audio, agents), picks the best Anthropic or OpenAI model and reasoning effort from a curated registry, estimates cost, rewrites the prompt in the format that model works best with, and gives token-saving tips. Use when the user asks "which model should I use", "what effort", "improve/structure my prompt", "how do I prompt X for Y", "cheapest way to do this", or invokes /modelwise with a prompt. It returns the recommendation and ready-to-use prompts; it does not produce the final asset itself.
 license: MIT
 metadata:
-  version: "0.2.3"
+  version: "0.2.4"
   default-model-claude: "claude-haiku-5-5 at effort low (claude-sonnet-5-5 for complex rewrites)"
   default-model-openai: "gpt-6-luna at effort low (gpt-6.1-sol for complex rewrites)"
   registry-verified: "2026-10-17"
@@ -51,6 +51,8 @@ Use the text after the command, or the prompt the user is discussing. If there i
 
 ### 2. Understand: department, industry, task
 Follow `guides/classify.md` → `department`, `industry`, `market`, then a first read of `task`, `complexity`, `priority`, `provider`. The final task comes from the decision in step 2d.
+
+**Keep the audience the user states.** If the prompt names who it is for ("for MFDs", "for our sales team", "for clinic managers", "for parents"), that is the reader. Every brief, insight, scene, copy line and CTA speaks to them. Don't swap in the people they serve. In a business-to-intermediary brief (a platform writing for distributors, agents, resellers, franchisees or doctors), the end customer is the intermediary's audience, not yours: write as a peer to the intermediary, address them as "you", and show the end customer only as someone they serve. Write the audience as `<reader> (serving <their customers>)`. If the user wants the post to be shareable onward, that's a second version, so say so, not a silent switch.
 
 **Never block on questions.** Always send the full answer in the same turn, built on labelled assumptions. Put at most two questions at the end, under "To improve the result, tell me:". Stop and wait only if you can't tell what the task is at all. "Ask" defaults in the templates mean "list it there", not "stop and ask".
 
@@ -290,6 +292,7 @@ Before you send:
 - Check every prompt, **including the plate prompt**, against the checklist in `guides/art-direction.md`. If it contains "flat", "solid", "simple", "minimal", "icon", "leave empty", "plain", "no texture" or "no gradients" and the user didn't ask for that look, rewrite it. A strict palette (for example black and white) still gets light, material and texture: "black-and-white photograph, hard window light, fine film grain".
 - **Never describe reserved space as "zones", "boxes", "placeholders", "panels" or "empty slots".** Image models draw them as rectangles. Write "the area from x% to y% stays continuous background, with nothing drawn there".
 - **A carousel or other multi-slide request has a Carousel plan** covering every slide, a series template and the slide-copy prompt. Inner slides with lots of text are never sent to an image model.
+- **Audience check:** the brief's audience, the insight, every slide line and the CTA all speak to the reader the user named. If the prompt said "for <group>", no line addresses that group's customers instead.
 - Every route has its preview prompt in a code block. Don't give only the recommended route's prompt.
 - **Previews include the user's headline** (the Typography line quotes it exactly). Only the production plate is text-free. A post can't be judged without its words.
 - **Brand colours are not a mood.** A palette (even "black and white") governs type, logo and graphic elements. The image's mood comes from the industry personality and the offer. Career, education, finance and health offers feel hopeful, open and daylit unless the brand is explicitly dark-luxury. Never translate a dark palette into "deep shadow, noir, vignette, dark corridor, moody".

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "retrace",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Retrace a finished AI-assisted task and teach it on the spot: the moves the AI made and why, the turning points, the prompts, the mistakes and the cheaper path, saved as a reusable lesson skill.",
   "author": {
     "name": "vinothraj",
