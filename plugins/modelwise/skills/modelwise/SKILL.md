@@ -3,7 +3,7 @@ name: modelwise
 description: Turn a basic prompt from any department (engineering, design, marketing, sales, support, product, HR, finance, legal, operations, leadership) in any industry into an expert decision, the right model and effort, and a structured, model-specific prompt. It first decides like the top practitioner of that function would (goal, deliverable, approach, production path and sign-off), then classifies each phase (coding, frontend, debugging, writing, research, data, reasoning, vision, image, video, audio, agents), picks the best Anthropic or OpenAI model and reasoning effort from a curated registry, estimates cost, rewrites the prompt in the format that model works best with, and gives token-saving tips. Use when the user asks "which model should I use", "what effort", "improve/structure my prompt", "how do I prompt X for Y", "cheapest way to do this", or invokes /modelwise with a prompt. It returns the recommendation and ready-to-use prompts; it does not produce the final asset itself.
 license: MIT
 metadata:
-  version: "0.2.2"
+  version: "0.2.3"
   default-model-claude: "claude-haiku-5-5 at effort low (claude-sonnet-5-5 for complex rewrites)"
   default-model-openai: "gpt-6-luna at effort low (gpt-6.1-sol for complex rewrites)"
   registry-verified: "2026-10-17"
@@ -213,6 +213,15 @@ python3 "${CLAUDE_SKILL_DIR}/scripts/palette.py" <primary> <secondary> <accent>
 - **The user fixed the layout:** give one production route, but still give its visual a taste direction and a signature craft decision. A fixed layout isn't a reason for a bland plate.
 - **Say which tool and why** in the Expert decision's production path.
 
+**Multi-slide formats (carousels, story sequences, slide sets, LinkedIn document posts) are a sequence, not one image.** Plan the whole set, even when the user asks only for the cover: a cover with no slides behind it can't be posted. Say in the Deliverable line that you added the slide plan and why.
+- **Slide plan:** 5–10 slides by default. Slide 1 is the hook (the user's headline), then one point per slide, and the last slide carries the takeaway, the CTA, the source and any mandatories. Each slide has one job and at most about 15–20 words on it.
+- **Facts you don't have stay placeholders.** When the content depends on something not yet known or not supplied (an upcoming announcement, a report, product details), write `[FROM SOURCE: <what goes here>]`, never invented points.
+- **Series template:** one master built once in Figma or Canva: grid and margins, type scale, the brand device, a page counter, the swipe cue, and the logo and source positions. Every slide uses it, so the set reads as one piece.
+- **Plates only where needed.** The cover gets the three territories and a plate. Inner slides are type-led on the template, with no image model. Use an image model for an inner slide only when it needs a real visual (at most 1–2 per set): write its plate with the same taste recipe as the cover, and generate it in the cover's chat, or with the cover attached as a reference, so the look matches.
+- **Each route says how the inner slides inherit it** (which device, colour and type carry across), because the judging covers the system, not just the cover.
+- **The slide copy is a text phase** (`text.write`): route it in Route per phase and give its prompt.
+- **One ratio for the whole set** (Instagram 4:5 at 1080×1350; a LinkedIn document carousel exported as a PDF at the same size).
+
 **If you can't run the palette tool, or the user gave no colours:** write "Brand colours: not provided, send hex codes" and mark the tonal-range and contrast cells "unchecked". Never state a hex code or contrast ratio you didn't compute or receive.
 The default quality bar is a **creative director at a top agency**. That means a written brief with a real insight, three territories that are really different ideas, a judged recommendation, and a production-ready version. Craft (depth, light, tonal colour, type hierarchy) follows `guides/art-direction.md`. **Taste** comes from `guides/creative-taste.md`: read the industry's taste directions, craft recipe, voice and bland tells, plus the craft vocabulary. Produce flat or minimal work only when the user asks for it. Read `guides/practice-design.md` before writing this answer.
 
@@ -261,6 +270,12 @@ Then: **Recommended: Route X**, with one line on why.
 - Layout spec table: every text element, the logo and the mandatories, with font, size, position, colour and contrast.
 - Next step: generate the plate, set type and mandatories in Figma or Canva, get compliance sign-off where the category is regulated.
 
+## Carousel plan (multi-slide formats only)
+| # | Job | On-slide copy (exact, or [FROM SOURCE: …]) | Visual | Tool |
+One row per slide. Visual is "template, type only" unless the slide needs a plate; give each such plate's prompt in a code block.
+Series template: grid, margins, type scale, device, page counter, swipe cue, logo and source positions.
+Slide copy prompt: **Paste into** … · **You get:** … , then the text-phase prompt in a code block.
+
 ## Model and settings
 The router's pick and the API `quality` and `size` (image models have no published price, so cost shows as n/a and the router ranks by fit).
 | Model | Effort | Fit | Per run | Note |
@@ -274,6 +289,7 @@ One row per `cost_comparison` entry for the image task ("n/a: no per-image list 
 Before you send:
 - Check every prompt, **including the plate prompt**, against the checklist in `guides/art-direction.md`. If it contains "flat", "solid", "simple", "minimal", "icon", "leave empty", "plain", "no texture" or "no gradients" and the user didn't ask for that look, rewrite it. A strict palette (for example black and white) still gets light, material and texture: "black-and-white photograph, hard window light, fine film grain".
 - **Never describe reserved space as "zones", "boxes", "placeholders", "panels" or "empty slots".** Image models draw them as rectangles. Write "the area from x% to y% stays continuous background, with nothing drawn there".
+- **A carousel or other multi-slide request has a Carousel plan** covering every slide, a series template and the slide-copy prompt. Inner slides with lots of text are never sent to an image model.
 - Every route has its preview prompt in a code block. Don't give only the recommended route's prompt.
 - **Previews include the user's headline** (the Typography line quotes it exactly). Only the production plate is text-free. A post can't be judged without its words.
 - **Brand colours are not a mood.** A palette (even "black and white") governs type, logo and graphic elements. The image's mood comes from the industry personality and the offer. Career, education, finance and health offers feel hopeful, open and daylit unless the brand is explicitly dark-luxury. Never translate a dark palette into "deep shadow, noir, vignette, dark corridor, moody".

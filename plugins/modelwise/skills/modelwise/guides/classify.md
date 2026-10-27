@@ -66,7 +66,7 @@ Match against `registry/tasks.json` using its `label` and `signals`. Pick the ta
 | Competitive or market scan, regulation lookup | `research.deep` |
 | Triage or tagging of many tickets, CVs or invoices | `data.extract` |
 
-**Social posts are visual by default.** "An Instagram / LinkedIn / Facebook post", "a post for our launch", or any post with a headline or on-image text means an image (`image.generate`, step 7 creative structure) plus a caption (`text.write`) as a second phase. Treat it as copy only when the user says so ("write the caption", "LinkedIn text post", "just the copy").
+**Social posts are visual by default.** "An Instagram / LinkedIn / Facebook post", "a post for our launch", or any post with a headline or on-image text means an image (`image.generate`, step 7 creative structure) plus a caption (`text.write`) as a second phase. Treat it as copy only when the user says so ("write the caption", "LinkedIn text post", "just the copy"). **A carousel** (or story sequence, or LinkedIn document post) is several slides: the cover is `image.generate`, the slide copy is `text.write`, and the inner slides are built on a template in Figma or Canva (SKILL.md step 7, multi-slide formats). "Carousel cover" still gets the full slide plan.
 
 Mixed requests: classify by the **hardest deliverable** ("build an app that also generates logos" → `code.build`, then route the logo separately as `image.generate`). It's fine — and often cheaper — to return two routes for two phases.
 

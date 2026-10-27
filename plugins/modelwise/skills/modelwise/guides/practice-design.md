@@ -70,6 +70,7 @@ Iterate one variable at a time and keep a log of the prompt and settings for eac
 
 ## 6. Channel sizes (check the platform's help page before shipping)
 - **LinkedIn single image:** 1.91:1 at 1200×628, 1:1 at 1200×1200, 4:5 at 720×900 (vertical shows on mobile only). A 2:1 design crops slightly to 1.91:1, so keep 5% clear at the sides.
+- **Carousels:** every slide at the same ratio (4:5 at 1080×1350 on Instagram); up to 20 slides on Instagram, but 5–10 is the usual sweet spot. A LinkedIn document post is a PDF at the same size. Design the set as one system: a cover that stops the scroll, one idea per slide, and a last slide with the CTA.
 - **Instagram feed:** 4:5 at 1080×1350. Stories and Reels: 9:16 at 1080×1920. Keep the top ~14%, bottom ~35% and sides ~6% free of text (bottom ~40% if there's a disclaimer).
 - **Website hero:** the sides crop on narrow screens, so keep faces, products and text away from the edges and plan a separate mobile crop.
 - **Image API sizes:** edges in multiples of 16. Examples: 2:1 → 1536×768; 1.91:1 → 1536×800; 4:5 → 1024×1280.
