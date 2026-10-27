@@ -8,6 +8,9 @@
 4. **A structured prompt**: your prompt rewritten with the template for its task type, in the format that model prefers (XML-tagged sections for Claude, Markdown sections for GPT).
 5. **Token savers**: the 2-3 levers that matter most for this kind of task.
 
+## Route and run (Claude Code)
+`/modelwise-run <your prompt>` (plugin: `/modelwise:modelwise-run`) goes one step further: it understands the prompt, picks the Claude model and effort, structures the prompt for that model, and shows you the route, the cost compared with other models, and the exact prompt. When you say **Run it**, a helper agent on that model (`modelwise-haiku`, `-sonnet`, `-opus` or `-fable`, in `agents/`) does the task and the result comes back to your chat. It always asks before running. Image, video and audio tasks can't run on Claude, so it gives the modelwise prompt for them instead. Outside Claude Code it falls back to the modelwise answer. Tip: run your own session on Sonnet or Haiku so the routing step itself stays cheap.
+
 ## How it decides
 ```
 your prompt
@@ -31,6 +34,8 @@ Quality bar by complexity: simple ≥ 2, moderate ≥ 3, complex ≥ 4, frontier
 | Path | What |
 |---|---|
 | `skills/modelwise/SKILL.md` | The skill instructions |
+| `skills/modelwise-run/SKILL.md` | Route-and-run skill (Claude Code) |
+| `agents/` | The four runner agents, one per Claude model |
 | `skills/modelwise/registry/models/` | 60 model cards (Anthropic, OpenAI) |
 | `skills/modelwise/registry/tasks.json` | 21 task types |
 | `skills/modelwise/registry/effort-scale.json` | E0-E6 and vendor/app mappings |

@@ -20,8 +20,11 @@ import zipfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKILLS = {
     "modelwise": os.path.join(ROOT, "plugins", "modelwise", "skills", "modelwise"),
+    "modelwise-run": os.path.join(ROOT, "plugins", "modelwise", "skills", "modelwise-run"),
     "retrace": os.path.join(ROOT, "plugins", "retrace", "skills", "retrace"),
 }
+# Claude Code subagents that some skills hand work to (modelwise-run's model runners).
+AGENTS = {"modelwise-run": os.path.join(ROOT, "plugins", "modelwise", "agents")}
 PLUGINS = {
     "modelwise": os.path.join(ROOT, "plugins", "modelwise"),
     "retrace": os.path.join(ROOT, "plugins", "retrace"),
@@ -43,6 +46,21 @@ def copy_skill(name, dest_root, dry):
     if os.path.exists(dest):
         shutil.rmtree(dest)
     shutil.copytree(src, dest, ignore=IGNORE)
+
+
+def copy_agents(name, project, dry):
+    src = AGENTS.get(name)
+    if not src:
+        return
+    dest_root = os.path.join(os.getcwd() if project else os.path.expanduser("~"), ".claude", "agents")
+    for f in sorted(os.listdir(src)):
+        if not f.endswith(".md"):
+            continue
+        dest = os.path.join(dest_root, f)
+        print("%s %s -> %s" % ("Would copy" if dry else "Copying", os.path.relpath(os.path.join(src, f), ROOT), dest))
+        if not dry:
+            os.makedirs(dest_root, exist_ok=True)
+            shutil.copy2(os.path.join(src, f), dest)
 
 
 def zip_plugin(name, out_dir, dry):
@@ -104,7 +122,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("target", choices=["claude-code", "codex", "zip", "plugin-zip", "openai-zip"])
     ap.add_argument("--project", action="store_true", help="Install into the current project instead of your home folder.")
-    ap.add_argument("--skills", default="modelwise,retrace", help="Comma-separated subset.")
+    ap.add_argument("--skills", default="modelwise,modelwise-run,retrace", help="Comma-separated subset.")
     ap.add_argument("--dest", help="Override the destination folder.")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
@@ -131,7 +149,8 @@ def main():
 
     if args.target == "zip":
         out = args.dest or os.path.join(ROOT, "dist")
-        for n in names:
+        # modelwise-run needs the modelwise skill beside it and Claude Code's subagents, so it ships only in the plugin.
+        for n in [n for n in names if n not in AGENTS]:
             zip_skill(n, out, args.dry_run)
         print("\nUpload each ZIP: claude.ai → Customize → Skills → + → Upload a skill"
               " (needs code execution on). ChatGPT Business/Enterprise/Edu: Plugins → Skills → Create → Upload.")
@@ -142,8 +161,11 @@ def main():
         os.makedirs(dest_root, exist_ok=True)
     for n in names:
         copy_skill(n, dest_root, args.dry_run)
+        if args.target == "claude-code" and not args.dest:
+            copy_agents(n, args.project, args.dry_run)
     if args.target == "claude-code":
-        print("\nDone. Restart Claude Code (or run /reload-plugins), then try: /modelwise build a todo app")
+        print("\nDone. Restart Claude Code (or run /reload-plugins), then try: /modelwise build a todo app"
+              "\n  or route-and-run on the right Claude model: /modelwise-run write a regex for Indian PAN numbers")
     else:
         print("\nDone. Restart Codex, then type $modelwise or /skills.")
 

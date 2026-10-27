@@ -55,6 +55,12 @@ python3 tools/install.py claude-code          # ~/.claude/skills/  (add --projec
 /modelwise extract invoice number, date and total from 20,000 PDFs, cheapest way
 /modelwise why is my Next.js build failing after upgrading to v16
 ```
+To have it also **run** the task on the right Claude model, in Claude Code:
+```
+/modelwise-run write a regex for Indian PAN numbers
+```
+It shows the model, effort, cost and structured prompt, and runs it on a helper agent on that model once you say **Run it**.
+
 (As a plugin skill it's also available as `/modelwise:modelwise`. You can also just ask: *"which model should I use for…"*.)
 
 You get:
