@@ -129,7 +129,7 @@ Run the Step 0 and Step 1 commands in [publishing.md](publishing.md) first.
 | CI is green | GitHub → Actions → **validate** on your push | All steps pass, including release checks |
 | Install from GitHub works | New machine or after `/plugin marketplace remove ai-knowhow`: `/plugin marketplace add <owner>/ai-knowhow`, then install both | Both plugins install; scenario 1 works |
 | claude.ai marketplace | Customize → Plugins → Add marketplace → `<owner>/ai-knowhow` | Both plugins listed and installable |
-| Update path | `python3 tools/release.py --version 0.1.1 --check`, commit, push, `git tag v0.1.1 && git push origin v0.1.1`, then `claude plugin update modelwise@ai-knowhow` | Release created with 7 ZIPs; the update installs 0.1.1 |
+| Update path | `python3 tools/release.py --version 0.1.1 --check`, commit, push, `git tag v0.1.1 && git push origin v0.1.1`, then `claude plugin update modelwise@ai-knowhow` | Release created with 6 ZIPs; the update installs 0.1.1 |
 | Watcher | Actions → **watch-models** → Run workflow | Finishes; opens an issue only if something needs attention |
 | Benchmark workflow | Actions → **benchmark** → Run workflow (skips cleanly with no API keys) | "No API keys configured; skipping", or results committed if keys are set |
 

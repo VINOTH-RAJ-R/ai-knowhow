@@ -99,9 +99,10 @@ class RouterTests(unittest.TestCase):
     def test_volume_totals_and_inline_tips(self):
         res = route.route("data.extract", "simple", "cost", "any", registry=REG, volume=10000)
         row = res["volume"]["rows"][0]
-        per_run = res["cost_comparison"][0]["est_cost_usd"]
-        self.assertAlmostEqual(row["total_usd"], round(per_run * 10000, 2), places=2)
-        self.assertAlmostEqual(row["total_batch_usd"], round(per_run * 10000 * 0.5, 2), places=2)
+        per_1000 = res["cost_comparison"][0]["est_cost_per_1000_runs_usd"]
+        # per_1000 is itself rounded to cents, so allow 10 x half a cent.
+        self.assertAlmostEqual(row["total_usd"], per_1000 * 10, delta=0.06)
+        self.assertAlmostEqual(row["total_batch_usd"], row["total_usd"] / 2, delta=0.01)
         self.assertTrue(res["recommended"]["prompt_tips"])
         self.assertIsNone(r("code.build")["volume"])
 
@@ -120,6 +121,14 @@ class RouterTests(unittest.TestCase):
             res = r(task, "moderate", "balanced", "anthropic")
             self.assertIsNone(res["recommended"])
             self.assertEqual(res["fallback"]["route"]["recommended"]["provider"], "anthropic")
+
+    def test_volume_totals_use_unrounded_cost(self):
+        res = route.route("data.extract", "simple", "cost", "any", registry=REG, volume=50000)
+        per_1000 = {c["model"]: c["est_cost_per_1000_runs_usd"] for c in res["cost_comparison"]}
+        for row in [x for x in res["volume"]["rows"] if x["total_usd"] is not None]:
+            self.assertAlmostEqual(row["total_usd"], per_1000[row["model"]] * 50, delta=0.5, msg=row["model"])
+            self.assertAlmostEqual(row["total_batch_usd"], row["total_usd"] / 2, delta=0.01, msg=row["model"])
+        self.assertTrue(all("_cost" not in c for c in res["cost_comparison"]))
 
     def test_known_sensible_picks(self):
         # Guards against accidental regressions in fit ratings or scoring.

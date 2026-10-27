@@ -197,9 +197,10 @@ def cost_comparison(task, complexity, models, provider, scale, round_up, min_fit
             "est_cost_usd": round(cost, 4) if cost is not None else None,
             "est_cost_per_1000_runs_usd": round(cost * 1000, 2) if cost is not None else None,
             "note": note,
+            "_cost": cost,  # unrounded, for sorting and volume totals; removed before output
         })
     big = float("inf")
-    rows.sort(key=lambda r: (r["est_cost_usd"] if r["est_cost_usd"] is not None else big, -r["fit"], r["model"]))
+    rows.sort(key=lambda r: (r["_cost"] if r["_cost"] is not None else big, -r["fit"], r["model"]))
     return rows
 
 
@@ -209,7 +210,8 @@ def volume_totals(volume, rows):
         return None
     out = []
     for r in rows:
-        c = r["est_cost_usd"]
+        # Multiply the unrounded cost: rounding per run first skews totals by up to a third.
+        c = r["_cost"]
         out.append({"model": r["model"], "provider": r["provider"],
                     "total_usd": round(c * volume, 2) if c is not None else None,
                     "total_batch_usd": round(c * volume * 0.5, 2) if c is not None else None,
@@ -288,6 +290,10 @@ def route(task_id, complexity="moderate", priority="balanced", provider="any",
     comparison = cost_comparison(task, complexity, models, provider, scale, round_up, min_fit,
                                  top["card"]["id"] if top else None)
 
+    totals = volume_totals(volume, comparison)
+    for row in comparison:
+        del row["_cost"]
+
     fallback = None
     if not top and task.get("fallback"):
         fb = task["fallback"]
@@ -314,7 +320,7 @@ def route(task_id, complexity="moderate", priority="balanced", provider="any",
         "best_per_provider": {k: summary(v) for k, v in per_provider.items()},
         "ranked": [summary(e) for e in ranked[:6]],
         "cost_comparison": comparison,
-        "volume": volume_totals(volume, comparison),
+        "volume": totals,
         "app_settings": scale.get("app_mappings", {}),
         "cost_note": "List-price estimate for one typical task of this size, without caching or batch discounts. Use it to compare models, not as a quote.",
     }

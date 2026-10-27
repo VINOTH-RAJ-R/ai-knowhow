@@ -36,7 +36,7 @@ Quality bar by complexity: simple ≥ 2, moderate ≥ 3, complex ≥ 4, frontier
 | `skills/modelwise/SKILL.md` | The skill instructions |
 | `skills/modelwise-run/SKILL.md` | Route-and-run skill (Claude Code) |
 | `agents/` | The four runner agents, one per Claude model |
-| `skills/modelwise/registry/models/` | 60 model cards (Anthropic, OpenAI) |
+| `skills/modelwise/registry/models/` | 61 model cards (Anthropic, OpenAI) |
 | `skills/modelwise/registry/tasks.json` | 21 task types |
 | `skills/modelwise/registry/effort-scale.json` | E0-E6 and vendor/app mappings |
 | `skills/modelwise/registry/model.schema.json` | Card schema |

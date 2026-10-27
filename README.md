@@ -2,19 +2,22 @@
 
 **Know how it was built. Know what to build it with.**
 
-Two open-source agent skills for anyone who builds with AI: apps, images, videos, documents, analyses.
+Two open-source agent skills (plus a run mode for Claude Code) for anyone who builds with AI: apps, images, videos, documents, analyses.
 
 | Skill | The problem | What it does |
 |---|---|---|
-| **[modelwise](plugins/modelwise/)** | Everyone uses one model for everything, with a one-line prompt, and overpays. | You type a basic prompt. It tells you **which model** (Anthropic or OpenAI), **which effort level**, roughly **what it costs**, and gives you a **structured prompt** written the way that model works best, plus how to save tokens on this kind of task. |
+| **[modelwise](plugins/modelwise/)** | Everyone uses one model for everything, with a one-line prompt, and overpays. | You type a basic prompt from any department. It first decides what a top practitioner would deliver, then tells you **which model** (Anthropic or OpenAI) and **which effort level** for each phase, roughly **what it costs** against other models, and gives you a **structured prompt** written the way that model works best. Creative requests get a brief, three concepts, judging and a production-ready image prompt. |
+| **[modelwise-run](plugins/modelwise/#route-and-run-claude-code)** (Claude Code) | Knowing the right model still means switching to it by hand. | Routes your prompt, shows the model, cost and structured prompt, and after you confirm, runs it on a helper agent on that Claude model (Haiku, Sonnet, Opus or Fable). |
 | **[retrace](plugins/retrace/)** | AI builds the thing and it ships, but nobody learns *how*. | After a task, it captures the goal, the decisions and *why*, the prompts that worked, the mistakes and fixes, and the cheaper path next time, as a **lesson skill**. Anyone can invoke the lesson later and be **taught**, step by step. |
 
 They work in **Claude Code, claude.ai, OpenAI Codex and ChatGPT**, because they're plain [Agent Skills](https://agentskills.io) (Markdown + JSON + one small stdlib-only Python script).
 
 ```
- basic prompt ──► modelwise ──► model + effort + cost + structured prompt + token tips
+ basic prompt ──► modelwise ──► expert decision + model + effort + cost + structured prompt
                      │
-                     └── reads registry/  (60 model cards built from official Anthropic & OpenAI docs)
+                     ├── /modelwise-run: confirm ──► helper agent on the routed Claude model ──► result
+                     │
+                     └── reads registry/  (61 model cards built from official Anthropic & OpenAI docs)
 
  finished work ──► retrace ──► lesson-<slug>/ (SKILL.md + lesson.md) ──► /lesson-<slug> teaches a human
 ```
@@ -113,8 +116,6 @@ See a real one: [examples/lessons/lesson-building-ai-knowhow](examples/lessons/l
 ## Which model should run these skills?
 Your tool's selected model runs the skill, and we can't control that. The skills read data and fill templates, so you don't need a frontier model:
 
-| | Recommended | Budget |
-|---|---|---|
 | | Recommended | For complex rewrites |
 |---|---|---|
 | **Claude** (Claude Code, claude.ai, Cowork) | Claude Haiku 5.5 @ low effort | Claude Sonnet 5.5 |
@@ -130,7 +131,7 @@ Full report: [docs/benchmark-report-2026-10.md](docs/benchmark-report-2026-10.md
 - **Honest caveats:** auto-rewriting a *vague, subjective* prompt without the user's details scored 1-2 points **lower** than sending it as-is, in 3 rounds. modelwise now says "send it as-is to <model>" in that case and offers the structured prompt as an upgrade once you add details. On objective tasks the rewrite was neutral. Running the skill on Sonnet can cost more than it saves on tiny one-off tasks. On Haiku (now the default) it doesn't.
 
 ## What's in the registry (Phase 1: Anthropic + OpenAI)
-- **60 model cards**: every current, previous, legacy and deprecated Claude and OpenAI model still served, plus image and audio models. Each card has capabilities, context, price, effort levels and defaults, fit ratings per task, prompting tips, and sources, with a `verified` date.
+- **61 model cards**: every current, previous, legacy and deprecated Claude and OpenAI model still served, plus image and audio models. Each card has capabilities, context, price, effort levels and defaults, fit ratings per task, prompting tips, and sources, with a `verified` date.
 - **21 task types** with effort per complexity, from quick code to long-running agents, images, video and voice.
 - **15 prompt templates** with slots, a universal skeleton, Claude and OpenAI renderings, a worked example, and token savers.
 - **One normalized effort scale** (E0 to E6) mapped to Claude's `output_config.effort`, OpenAI's `reasoning.effort`, and the in-app settings of Claude Code, claude.ai, ChatGPT and Codex.
@@ -151,6 +152,8 @@ Fit ratings are curated judgments built from vendor docs. They are not benchmark
 .claude-plugin/marketplace.json     Claude Code / claude.ai / ChatGPT marketplace
 .agents/plugins/marketplace.json    Codex marketplace
 plugins/modelwise/skills/modelwise/ SKILL.md · registry/ · templates/ · guides/ · scripts/route.py · ROUTING_TABLE.md
+plugins/modelwise/skills/modelwise-run/ SKILL.md (route, confirm, run on a helper agent)
+plugins/modelwise/agents/           runner agents: modelwise-haiku · -sonnet · -opus · -fable
 plugins/retrace/skills/retrace/     SKILL.md · templates/ (lesson + lesson skill) · guides/capture-checklist.md
 examples/lessons/                   example lessons
 adapters/                           per-platform install notes (ChatGPT, Codex, claude.ai + Cowork)

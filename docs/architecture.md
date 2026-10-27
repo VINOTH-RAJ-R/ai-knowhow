@@ -13,7 +13,12 @@
                     └──────────────┬───────────────────────────────┬────────────┘
 user prompt                        │                               │
    │                               ▼                               ▼
-   ├─► classify (LLM + guides/classify.md) ─► task, complexity, priority, provider
+   ├─► classify (LLM + guides/classify.md) ─► department, industry, market, audience
+   │                               │
+   │                               ▼
+   ├─► expert decision (guides/industry-lens.md, practice-*.md, regulated.md for the stated market)
+   │       goal · deliverable · approach · success measure · production path · red lines
+   │       └─► one or more phases, each with task, complexity, priority, provider
    │                               │
    │                               ▼
    │          route.py: capability filter → status filter → quality bar (min fit)
@@ -25,7 +30,25 @@ user prompt                        │                               │
                                    │
                                    ▼
             answer: model · effort · cost · structured prompt · token savers · why
+                    (one route per phase; each prompt says where it runs and what you get back)
 ```
+
+**Creative requests** (posters, social posts, carousels, ads) add a creative director's process before the prompts: a brief with one human insight, the category clichés to avoid, three routes that differ in visual metaphor and medium, each with a taste direction from `guides/creative-taste.md`, a judging table, then a text-free production plate and a layout spec for Figma or Canva. Text-heavy layouts go to a design tool, not an image model. Multi-slide formats get a plan for every slide and one series template.
+
+## modelwise-run (Claude Code only)
+```
+user prompt ─► modelwise-run SKILL.md
+   │  steps 1–3 reuse ../modelwise: classify → route.py --provider anthropic → structured prompt
+   ▼
+confirm card: model @ effort · cost vs other models · the exact prompt   ── user: Run / stronger / cheaper / cancel
+   │
+   ▼
+Agent tool ─► runner agent (agents/modelwise-haiku | -sonnet | -opus | -fable, model fixed in frontmatter)
+   │          effort set per call; the helper can't see the chat, so the prompt stands alone
+   ▼
+result in full + "Ran on <model> @ <effort> · est. $x · vs Opus $y"
+```
+A skill can't change the model of the chat it runs in, so the work moves to a subagent on the routed model. The session model only classifies and structures, so running the session on Sonnet or Haiku keeps that step cheap. Image, video and audio phases can't run on Claude and fall back to the modelwise prompt. Other surfaces (claude.ai, Cowork, Codex) fall back to the modelwise answer.
 
 ## retrace data flow
 ```
@@ -44,9 +67,12 @@ lesson-<slug>/
 /retrace teaches it right away; later: /lesson-<slug> or "teach me <slug>" → a person is taught
 ```
 
+## Cost estimates
+`route.py` prices one typical task from the task's token profile and the card's list price. Rows are sorted and volume totals (`--volume N`, with the 50% Batch price) are computed from the unrounded cost; only the displayed per-run and per-1,000 figures are rounded. They are list-price comparisons, not quotes: caching, regional and priority tiers are left out.
+
 ## Keeping the registry current
 ```
-weekly GitHub Action ─► tools/watch_models.py (vendor model pages) ─► unknown IDs? ─► issue
+daily GitHub Action ─► tools/watch_models.py (vendor model pages) ─► unknown IDs? ─► issue
 human ─► updates the card from official docs ─► tools/validate.py --fix ─► PR ─► CI (validate + tests)
 ```
 
