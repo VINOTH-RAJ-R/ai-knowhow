@@ -408,7 +408,7 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 
 Template: `templates/video.md`
 
-> No video-generation model is in the registry: OpenAI shut down the Sora 2 API on 2026-09-24 and Anthropic does not generate video. The route below is for the model that writes your shot list and generator prompt. Generate the clips in a video generator outside the registry (unranked, check your plan: Google Veo 3.1, Kling, Runway), then edit them together; see templates/video.md. Ranked generator recommendations will come in a future registry update. Routes shown are for `text.write`.
+> No video-generation model is in the registry: OpenAI shut down the Sora 2 API on 2026-09-24 and Anthropic does not generate video. The route below is for the model that writes your shot list and generator prompt. Generate the clips in a video generator outside the registry (unranked, check your plan: Google Gemini Omni Flash, Kling, Runway), then edit them together; see templates/video.md. Ranked generator recommendations will come in a future registry update. Routes shown are for `text.write`.
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|

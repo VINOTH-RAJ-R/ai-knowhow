@@ -38,7 +38,7 @@ A different style family is not enough on its own. Two routes that are both "a 3
 ## Phrases that cause flat, generic output (don't use them unless the user asks)
 "flat", "solid background", "simple geometric shapes", "no gradients", "no 3D", "minimal illustration", "icon", "clip-art", "leave empty", "plain".
 
-## Phrases that raise the quality bar
+## Phrases that raise the quality bar (only alongside a concrete craft recipe from `guides/creative-taste.md`; on their own they produce generic polish)
 "art-directed", "polished, high detail", "award-level finish", "considered typographic hierarchy", "depth and dimension", "premium brand campaign", "contemporary", "grounded, real-world".
 
 ## Phrases that cause genre drift (use only where the industry fits; see `guides/industry-lens.md`)

@@ -66,6 +66,8 @@ Match against `registry/tasks.json` using its `label` and `signals`. Pick the ta
 | Competitive or market scan, regulation lookup | `research.deep` |
 | Triage or tagging of many tickets, CVs or invoices | `data.extract` |
 
+**Social posts are visual by default.** "An Instagram / LinkedIn / Facebook post", "a post for our launch", or any post with a headline or on-image text means an image (`image.generate`, step 7 creative structure) plus a caption (`text.write`) as a second phase. Treat it as copy only when the user says so ("write the caption", "LinkedIn text post", "just the copy").
+
 Mixed requests: classify by the **hardest deliverable** ("build an app that also generates logos" → `code.build`, then route the logo separately as `image.generate`). It's fine — and often cheaper — to return two routes for two phases.
 
 ## 2. Complexity

@@ -76,7 +76,7 @@ It returns a tonal range for each colour and the text colours that pass contrast
 | Line | What to write |
 |---|---|
 | FORMAT | Ratio, pixel size and use, e.g. "2:1 landscape banner, 1536×768, for LinkedIn and the website". |
-| ART DIRECTION | One style family from the guide, plus the quality bar: "premium 3D render, art-directed, polished, high detail". |
+| ART DIRECTION | The route's taste direction from `guides/creative-taste.md`, written as a craft recipe (light, lens, grade or film look, casting, set, materials) plus the style family. Not just "premium, cinematic, high detail". |
 | EXPERT LENS | The top designer for this industry and 3–5 brand-personality words, from `guides/industry-lens.md` (e.g. "head of brand design at a leading fintech; trustworthy, clear, calm, modern"). |
 | CONCEPT | One-line visual idea in the industry's own visual language, drawn from this brief (`guides/practice-design.md`), never from an example. Run the brand-fit check: no fantasy, mythic or spiritual scenes for corporate, finance or health brands. |
 | COMPOSITION | Grid and placement: where the hero sits, where the headline sits, the reading order, and margins. The background runs edge to edge. Reserved zones are "kept clear of elements, still filled with the background". |
@@ -88,7 +88,7 @@ It returns a tonal range for each colour and the text colours that pass contrast
 
 **Skeleton**
 ```
-Create a <ratio> <format> (<px>) for <use>. Designed as <top practitioner> for a <industry> brand that feels <personality words>. Art direction: <style family>, art-directed, polished, high detail, premium brand-campaign quality, contemporary and grounded.
+Create a <ratio> <format> (<px>) for <use>. Designed as <top practitioner> for a <industry> brand that feels <personality words>. Art direction: <taste direction as a craft recipe: light source and direction, lens, grade or film look, casting, set and materials>, <style family>, art-directed. Signature detail: <the one specific, visible craft decision>.
 Concept: <one-line visual idea in the industry's visual language>.
 Composition: <hero placement>, <headline placement>, reading order <A → B → C>. Margins about 6–8% of the short edge. The background fills the entire canvas edge to edge; keep <zone> clear of elements but filled with the same background.
 Colour: <primary> is the dominant colour (<the share the user gave, or "clearly dominant">), built as a tonal range from <shade> to <tint> with soft gradients and directional light, not a flat fill. <accent> for <role> (<user's share, or "restrained">). <secondary> <role and share>. Text in <text colour>.

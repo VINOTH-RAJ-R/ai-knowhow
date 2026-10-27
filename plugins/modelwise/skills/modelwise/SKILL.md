@@ -28,6 +28,7 @@ Everything you know about models comes from the files in this skill, **not from 
 | `guides/regulated.md` | Market-specific rules: regulated advertising (finance, crypto, health), banking and payments, employment law, privacy, and AI use by lawyers. Open only the section that matches the prompt's category and market |
 | `guides/practice-functions.md` | How the top person in each business function works: sales, marketing strategy, support and success, product, HR, finance, legal, operations and procurement, leadership and strategy |
 | `guides/practice-content.md` | How senior producers, copywriters and analysts brief video, copy, research and data work, plus content rules by industry |
+| `guides/creative-taste.md` | Industry taste library: what award-level work looks like in 14 industries (taste directions, craft recipes, voice, bland tells), plus craft vocabulary that beats AI-generic output and a creative director's taste check |
 | `guides/art-direction.md` | Senior-designer checklist, style families and category clichés for posters, banners and social graphics |
 | `scripts/palette.py` | Tonal range and text contrast for brand colours |
 | `ROUTING_TABLE.md` | Pre-computed routes, for environments that can't run scripts |
@@ -109,7 +110,7 @@ The result already includes the recommended model's `watch_out` and `prompt_tips
 **Borderline complexity.** If the prompt could reasonably be one level lower or higher (e.g. "landing page for my bakery" — prototype or real site?) and that level routes to a different model, run it too and add one line after the recommendation: *"If this is just a quick prototype: <model @ effort, cost>"* (or *"If this is production-critical: …"*).
 
 **No direct route (`recommended` is null, `fallback` present)** — e.g. video: say plainly why (the fallback `note`), recommend the fallback route as **Phase 1: write the script and shot prompts**. Take the model, effort, cost and the cost table from `fallback.route` (`fallback.route.recommended`, `fallback.route.cost_comparison`). The top-level `cost_comparison` is empty in this case. Label the table "Cost of writing the script and shot prompts; clip generation is unpriced". Then add:
-- **Phase 2: generate the clips** in a tool outside the registry. Name the common generators as unranked options without prices, and tell the user to check which one their plan includes: Google Veo 3.1 (Gemini app, Google Flow, Vertex AI), Kling, Runway.
+- **Phase 2: generate the clips** in a tool outside the registry. Name the common generators as unranked options without prices, and tell the user to check which one their plan includes: Google Gemini Omni Flash (Gemini API and Gemini app; GA Veo models on Google's enterprise platform; the Veo 3.1 Preview API shut down on 2026-10-22), Kling, Runway.
 - **Phase 3: edit,** following the generate-then-edit workflow in `templates/video.md`.
 
 Still produce the full prompt from the original task's template.
@@ -118,7 +119,7 @@ Still produce the full prompt from the original task's template.
 Our benchmark (in the repository's docs, not shipped with this skill) found that rewriting a **short, vague, subjective** prompt (writing, design, marketing) *without the user's details* scored 1-2 points lower than sending the user's own prompt to the same model, while on objective or detailed tasks (code with a clear spec, extraction, math, summaries of supplied text) the structured prompt was equal. So:
 - **Detailed or objective prompt** → build the structured prompt (step 5) and present it as the prompt to use.
 - **Vague + subjective prompt, and the user hasn't given details** → lead with **"Best now: send your prompt as-is to <model> @ <effort>"**, then offer the structured version as an **upgrade**: list the 3-4 details that matter most ("To improve the result, tell me: …") and show the structured prompt built from what you know, labelled "Use this once you've added those details". Don't present the rewrite as better than their own prompt. "Best now" is the first line under **Your prompt**, never above the Expert decision.
-- **Exception: creative and event requests (step 7) never use "send as-is".** They always get three territories. "A poster" asks for one finished asset, not one idea.
+- **Exception: creative and event requests (step 7), including brand social posts, never use "send as-is".** They always get three territories. "A poster" asks for one finished asset, not one idea.
 
 ### 5. Build the structured prompt
 1. Open the task's template (`template` field) and the prompt-style guide for the recommended model's provider.
@@ -199,13 +200,13 @@ For a decision with several AI phases (decide or plan with a strong model, then 
 | Type, logo, legal lines, editing | Figma or Canva for images; CapCut, Canva or Premiere for video | the finished asset |
 
 ### 7. Creative and event requests (posters, banners, social graphics, invitations)
-**This applies whenever the request includes a poster, banner, ad, campaign or brand social graphic, or an invitation, including mixed requests** ("a launch video and images"). Casual or personal images use short mode. Give the full structure below for the image part: all three territories with their prompts and the judging table, in the same answer. Never give one route and offer the others as a follow-up. In a mixed request, give the video plan first in the generic format (with the Expert decision and Route per phase covering both), then this creative structure for the images. Share the brief, expert lens and brand brief once, not twice.
+**This applies whenever the request includes a poster, banner, ad, campaign, brand social post or graphic, or an invitation, including mixed requests** ("a launch video and images"). A brand's social post with a headline is visual by default: the image gets this structure and the caption is a second, text phase (`guides/classify.md`). Casual or personal images use short mode. Give the full structure below for the image part: all three territories with their prompts and the judging table, in the same answer. Never give one route and offer the others as a follow-up. In a mixed request, give the video plan first in the generic format (with the Expert decision and Route per phase covering both), then this creative structure for the images. Share the brief, expert lens and brand brief once, not twice.
 Use this structure in place of the generic **Recommendation** and **Your prompt** sections. Keep **Expert decision** first and keep the cost table (both are in the structure below). Keep each part short. Run the palette tool first:
 ```bash
 python3 "${CLAUDE_SKILL_DIR}/scripts/palette.py" <primary> <secondary> <accent>
 ```
 **If you can't run the palette tool, or the user gave no colours:** write "Brand colours: not provided, send hex codes" and mark the tonal-range and contrast cells "unchecked". Never state a hex code or contrast ratio you didn't compute or receive.
-The default quality bar is a **creative director at a top agency**. That means a written brief with a real insight, three territories that are really different ideas, a judged recommendation, and a production-ready version. Craft (depth, light, tonal colour, type hierarchy) follows `guides/art-direction.md`. Produce flat or minimal work only when the user asks for it. Read `guides/practice-design.md` before writing this answer.
+The default quality bar is a **creative director at a top agency**. That means a written brief with a real insight, three territories that are really different ideas, a judged recommendation, and a production-ready version. Craft (depth, light, tonal colour, type hierarchy) follows `guides/art-direction.md`. **Taste** comes from `guides/creative-taste.md`: read the industry's taste directions, craft recipe, voice and bland tells, plus the craft vocabulary. Produce flat or minimal work only when the user asks for it. Read `guides/practice-design.md` before writing this answer.
 
 ```
 ## Expert decision
@@ -231,6 +232,7 @@ Text colour: one that passes contrast on the primary. Typography, and what the i
 
 ## Three territories
 ### Route A: <name>. <one-line idea>
+Taste direction: <one of the industry's directions in guides/creative-taste.md, a different one per route> · Signature craft decision: <the one visible, specific thing that makes it unmistakable>
 Axes: <focal element> · <visual metaphor> · <tonal register> · <medium>
 Hero: <one sentence>. Leaves out: <what it deliberately omits>.
 Copy staging: <how the user's exact words sit with the hero>.
@@ -241,6 +243,7 @@ Risk: <one line>
 Distinctness check: one line confirming each pair differs on at least two axes and passes the swap test.
 
 ## Judging
+Run the creative director's taste check from `guides/creative-taste.md` on each route first. Rewrite any route that fails the "competitor's brief would produce the same image" test before it reaches this table.
 | Route | Thumbnail | One-second message | Distinctive (logo covered) | Brand and industry fit | Compliance room | Verdict |
 Then: **Recommended: Route X**, with one line on why.
 
@@ -263,13 +266,15 @@ One row per `cost_comparison` entry for the image task ("n/a: no per-image list 
 Before you send:
 - Check every prompt against the checklist in `guides/art-direction.md`. If it contains "flat", "solid", "simple", "minimal", "icon", "leave empty" or "plain" and the user didn't ask for that look, rewrite it.
 - If any two routes share a focal element and a medium, replace one.
-- If a route's hero is a category cliché, replace it.
+- If a route's hero is a category cliché or one of the industry's bland tells, replace it.
+- Each prompt carries its taste direction as a concrete craft recipe (light, lens, grade or film look, casting, set, materials, type, colour). If a prompt only says "cinematic", "high quality", "premium" or "modern" without the recipe, rewrite it.
+- No brand, campaign, agency or living artist's name appears in any prompt.
 - Keep the Avoid or Constraints line generic ("no religious symbols", "no stock finance imagery", "no fantasy scenes"). Never list the specific motifs you're steering away from (lotus, sun, bars, portals): naming them pulls them into the image. Name the clichés in the answer, not in the prompt.
 - Use the poster skeleton from `templates/image.md` (Format, Art direction, Concept, Composition, Colour, Hero, Typography, Finish, Avoid), not the generic photo skeleton.
 
 ## Rules
 - Never recommend a model that isn't in the registry, and never invent a model ID, price or effort level. If the user asks about a model that's missing, say it isn't in the registry yet and suggest the closest card plus checking the vendor's docs.
-- Image and audio models in this registry are OpenAI-only; Claude can still write the prompt. There is no video generator in the registry (Sora 2 API shut down 2026-09-24): when `route.py` returns a `fallback`, explain its note, give the fallback route for writing the prompt, and still produce the full video prompt from `templates/video.md`. Then say where to generate the clips (unranked: Google Veo 3.1, Kling, Runway) and how to edit them together.
+- Image and audio models in this registry are OpenAI-only; Claude can still write the prompt. There is no video generator in the registry (Sora 2 API shut down 2026-09-24): when `route.py` returns a `fallback`, explain its note, give the fallback route for writing the prompt, and still produce the full video prompt from `templates/video.md`. Then say where to generate the clips (unranked: Google Gemini Omni Flash, Kling, Runway) and how to edit them together.
 - Respect the card's `status`: don't recommend `deprecated` models; mention `previous`/`legacy` only when the user is already on them, with the migration target.
 - Each card has a `verified` date. If it is more than 45 days old, add one line suggesting the user check the vendor's model page for changes.
 - Effort is the main lever for thinking depth and cost — prefer lowering effort to switching to a weaker model.

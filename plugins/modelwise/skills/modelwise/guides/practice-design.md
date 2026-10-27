@@ -36,7 +36,7 @@ A territory is a different idea about why the audience should care. A different 
 | Tonal register | calm and editorial · bold and urgent · warm and human · precise and technical |
 | Medium | from the style families in `guides/art-direction.md`: 3D, glass and light, photography, typographic, paper-cut, abstract geometry, UI-led |
 
-**Default spread for three routes:** one type-led, one object- or product-led, one human- or graphic-led. Each route uses a different medium.
+**Default spread for three routes:** one type-led, one object- or product-led, one human- or graphic-led. Each route uses a different medium **and a different taste direction** from the industry's list in `guides/creative-taste.md`, with one signature craft decision.
 
 **Swap test.** If changing the background, palette or medium would turn one route into another, they are the same idea. Replace one.
 
