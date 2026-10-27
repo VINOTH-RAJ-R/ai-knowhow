@@ -3,7 +3,7 @@ name: modelwise
 description: Turn a basic prompt from any department (engineering, design, marketing, sales, support, product, HR, finance, legal, operations, leadership) in any industry into an expert decision, the right model and effort, and a structured, model-specific prompt. It first decides like the top practitioner of that function would (goal, deliverable, approach, production path and sign-off), then classifies each phase (coding, frontend, debugging, writing, research, data, reasoning, vision, image, video, audio, agents), picks the best Anthropic or OpenAI model and reasoning effort from a curated registry, estimates cost, rewrites the prompt in the format that model works best with, and gives token-saving tips. Use when the user asks "which model should I use", "what effort", "improve/structure my prompt", "how do I prompt X for Y", "cheapest way to do this", or invokes /modelwise with a prompt. It returns the recommendation and ready-to-use prompts; it does not produce the final asset itself.
 license: MIT
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
   default-model-claude: "claude-haiku-5-5 at effort low (claude-sonnet-5-5 for complex rewrites)"
   default-model-openai: "gpt-6-luna at effort low (gpt-6.1-sol for complex rewrites)"
   registry-verified: "2026-10-17"
@@ -244,7 +244,7 @@ Taste direction: <one of the industry's directions in guides/creative-taste.md, 
 Axes: <focal element> · <visual metaphor> · <tonal register> · <medium>
 Hero: <one sentence>. Leaves out: <what it deliberately omits>.
 Copy staging: <how the user's exact words sit with the hero>.
-**Paste into:** ChatGPT image generation (or the OpenAI Images API, `size=<WxH>`, `quality=<draft level>`) · **You get:** a preview image to judge. Claude can't generate it.
+**Paste into:** a **new** ChatGPT chat for each route (in the same chat it reuses the previous image's look), or the OpenAI Images API (`size=<WxH>`, `quality=<draft level>`) · **You get:** a preview image to judge. Claude can't generate it.
 Prompt (preview, with the user's copy): <code block following the skeleton in templates/image.md>
 Risk: <one line>
 ### Route B … ### Route C … (three routes, unless the user names a different number of concepts)
@@ -275,7 +275,13 @@ Before you send:
 - Check every prompt, **including the plate prompt**, against the checklist in `guides/art-direction.md`. If it contains "flat", "solid", "simple", "minimal", "icon", "leave empty", "plain", "no texture" or "no gradients" and the user didn't ask for that look, rewrite it. A strict palette (for example black and white) still gets light, material and texture: "black-and-white photograph, hard window light, fine film grain".
 - **Never describe reserved space as "zones", "boxes", "placeholders", "panels" or "empty slots".** Image models draw them as rectangles. Write "the area from x% to y% stays continuous background, with nothing drawn there".
 - Every route has its preview prompt in a code block. Don't give only the recommended route's prompt.
-- If any two routes share a focal element and a medium, replace one.
+- **Previews include the user's headline** (the Typography line quotes it exactly). Only the production plate is text-free. A post can't be judged without its words.
+- **Brand colours are not a mood.** A palette (even "black and white") governs type, logo and graphic elements. The image's mood comes from the industry personality and the offer. Career, education, finance and health offers feel hopeful, open and daylit unless the brand is explicitly dark-luxury. Never translate a dark palette into "deep shadow, noir, vignette, dark corridor, moody".
+- **Mood check:** would the audience feel the offer's promise (confidence, possibility, relief) at a glance? If a route feels ominous, lonely, cold or tense when the offer is positive, rewrite it.
+- **When the offer is about people** (a career, a course, a service, a community), at least one route shows the person the audience will become, or a real moment from their day: a specific, relatable person, not a stock model.
+- **The hero fills at least a third of the frame,** placed deliberately. A small object stranded in a large empty field reads as unfinished.
+- **The first line of every image prompt states orientation and pixel size** ("Vertical 4:5 portrait, 1024×1280 pixels"). In the ChatGPT app, if the result comes back square, ask it to "extend to a vertical 4:5 canvas, keeping everything else identical".
+- If any two routes share a focal element and a medium, replace one. **The visual metaphor must always differ.** Two routes built on the same device (for example both "a row of thirty marks", one as type and one as dots) are one idea. Replace one with a different metaphor.
 - If a route's hero is a category cliché or one of the industry's bland tells, replace it.
 - Each prompt carries its taste direction as a concrete craft recipe (light, lens, grade or film look, casting, set, materials, type, colour). If a prompt only says "cinematic", "high quality", "premium" or "modern" without the recipe, rewrite it.
 - No brand, campaign, agency or living artist's name appears in any prompt.

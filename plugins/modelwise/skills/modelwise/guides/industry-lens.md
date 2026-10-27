@@ -56,8 +56,8 @@ If the industry isn't in the playbook, reason it out with the same five steps an
 - **Copy:** plain language at a reading age of about 12, no diagnosis or promised outcomes.
 - **Engineering:** patient-data privacy (HIPAA or local equivalents), consent, audit trails, accessibility.
 
-### Education and edtech
-- **Personality:** encouraging, clear, curious, inclusive.
+### Education and edtech (including career and certification programmes)
+- **Personality:** encouraging, clear, curious, inclusive, hopeful.
 - **Best practice:** bright and friendly scenes, learners in action, simple illustration systems, clear progress metaphors (paths, steps, badges).
 - **Refuse:** exam-fear imagery, elitist cues, cluttered infographics.
 - **Engineering:** child-data protection where minors are involved, accessibility, offline and low-bandwidth tolerance.

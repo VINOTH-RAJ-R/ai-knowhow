@@ -1,6 +1,6 @@
 {
   "name": "modelwise",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "For any department and industry: decide like the top practitioner, then pick the right Anthropic/OpenAI model and effort for each phase and write model-specific prompts, with cost comparisons.",
   "author": {
     "name": "vinothraj",

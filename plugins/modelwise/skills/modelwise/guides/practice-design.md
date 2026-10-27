@@ -38,7 +38,7 @@ A territory is a different idea about why the audience should care. A different 
 
 **Default spread for three routes:** one type-led, one object- or product-led, one human- or graphic-led. Each route uses a different medium **and a different taste direction** from the industry's list in `guides/creative-taste.md`, with one signature craft decision.
 
-**Swap test.** If changing the background, palette or medium would turn one route into another, they are the same idea. Replace one.
+**Swap test.** If changing the background, palette or medium would turn one route into another, they are the same idea. Replace one. The visual metaphor axis must differ for every pair, whatever else differs.
 
 For each route, write:
 - a name and a one-line idea,
