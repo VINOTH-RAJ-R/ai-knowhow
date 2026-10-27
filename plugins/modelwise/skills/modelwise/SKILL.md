@@ -3,6 +3,7 @@ name: modelwise
 description: Turn a basic prompt from any department (engineering, design, marketing, sales, support, product, HR, finance, legal, operations, leadership) in any industry into an expert decision, the right model and effort, and a structured, model-specific prompt. It first decides like the top practitioner of that function would (goal, deliverable, approach, production path and sign-off), then classifies each phase (coding, frontend, debugging, writing, research, data, reasoning, vision, image, video, audio, agents), picks the best Anthropic or OpenAI model and reasoning effort from a curated registry, estimates cost, rewrites the prompt in the format that model works best with, and gives token-saving tips. Use when the user asks "which model should I use", "what effort", "improve/structure my prompt", "how do I prompt X for Y", "cheapest way to do this", or invokes /modelwise with a prompt. It returns the recommendation and ready-to-use prompts; it does not produce the final asset itself.
 license: MIT
 metadata:
+  version: "0.2.1"
   default-model-claude: "claude-haiku-5-5 at effort low (claude-sonnet-5-5 for complex rewrites)"
   default-model-openai: "gpt-6-luna at effort low (gpt-6.1-sol for complex rewrites)"
   registry-verified: "2026-10-17"
@@ -36,6 +37,7 @@ Everything you know about models comes from the files in this skill, **not from 
 ## What this skill delivers (output contract)
 - **The deliverable is advice plus prompts:** the model and effort recommendation, the cost table, and ready-to-paste prompts in the answer format below.
 - **Don't do the task itself.** Don't generate the image, poster, design, artifact, web page, code, document or file, even when tools for that are available (artifact or design tools, image tools, file writing, code execution). The only tool use allowed is reading and locating this skill's own files, web research, and running `scripts/route.py` and `scripts/palette.py`.
+- **Version stamp.** The very last line of every answer is `modelwise v<version>`, using `metadata.version` from this file's frontmatter, so users can tell when an old copy is running.
 - **Offer, don't assume.** End with one line, for example: *"Want me to build option B here as an editable design?"* Then wait.
 - **Only if the user explicitly asks for both** ("give me the prompt and make it"): give the modelwise answer first, then do the work.
 
@@ -205,6 +207,12 @@ Use this structure in place of the generic **Recommendation** and **Your prompt*
 ```bash
 python3 "${CLAUDE_SKILL_DIR}/scripts/palette.py" <primary> <secondary> <accent>
 ```
+**Pick the right tool before writing any image prompt** (a senior designer's first decision):
+- **Text-heavy or diagram-like layouts** go to Figma, Canva, or a coded design (HTML or SVG) as the primary tool: equations, lists, comparisons, infographics, carousels heavy with copy, or anything reusing existing icons. Write a layout spec, plus an art-direction spec for the type scale, grid, colour blocking and icon treatment. Use an image model only for a real hero visual or a crafted background (texture, material, photograph) with a taste recipe, never for empty boxes or flat gradients.
+- **Visual-led ideas** (a scene, an object, a person, a crafted typographic object) go to the image model with the three territories below.
+- **The user fixed the layout:** give one production route, but still give its visual a taste direction and a signature craft decision. A fixed layout isn't a reason for a bland plate.
+- **Say which tool and why** in the Expert decision's production path.
+
 **If you can't run the palette tool, or the user gave no colours:** write "Brand colours: not provided, send hex codes" and mark the tonal-range and contrast cells "unchecked". Never state a hex code or contrast ratio you didn't compute or receive.
 The default quality bar is a **creative director at a top agency**. That means a written brief with a real insight, three territories that are really different ideas, a judged recommendation, and a production-ready version. Craft (depth, light, tonal colour, type hierarchy) follows `guides/art-direction.md`. **Taste** comes from `guides/creative-taste.md`: read the industry's taste directions, craft recipe, voice and bland tells, plus the craft vocabulary. Produce flat or minimal work only when the user asks for it. Read `guides/practice-design.md` before writing this answer.
 
@@ -248,7 +256,7 @@ Run the creative director's taste check from `guides/creative-taste.md` on each 
 Then: **Recommended: Route X**, with one line on why.
 
 ## Production version (Route X)
-- Plate prompt: **Paste into:** ChatGPT image generation or the Images API (`size`, `quality=high`) · **You get:** a text-free background. Then the full plate prompt in a code block, with reserved zones in percent (templates/image.md).
+- Plate prompt: **Paste into:** ChatGPT image generation or the Images API (`size`, `quality=high`) · **You get:** a text-free plate. Then the full plate prompt in a code block, with reserved areas in percent (templates/image.md). The plate keeps the recommended route's hero, taste direction and signature craft decision; only the words are removed. It is never just a gradient.
 - One line per extra size the channels need (for example 9:16 Stories, 1.91:1 LinkedIn): which lines of the plate prompt change.
 - Layout spec table: every text element, the logo and the mandatories, with font, size, position, colour and contrast.
 - Next step: generate the plate, set type and mandatories in Figma or Canva, get compliance sign-off where the category is regulated.
@@ -264,7 +272,9 @@ One row per `cost_comparison` entry for the image task ("n/a: no per-image list 
 <one-line offer: "Want me to build route <X> here as an editable design?" Never build it unasked.>
 ```
 Before you send:
-- Check every prompt against the checklist in `guides/art-direction.md`. If it contains "flat", "solid", "simple", "minimal", "icon", "leave empty" or "plain" and the user didn't ask for that look, rewrite it.
+- Check every prompt, **including the plate prompt**, against the checklist in `guides/art-direction.md`. If it contains "flat", "solid", "simple", "minimal", "icon", "leave empty", "plain", "no texture" or "no gradients" and the user didn't ask for that look, rewrite it. A strict palette (for example black and white) still gets light, material and texture: "black-and-white photograph, hard window light, fine film grain".
+- **Never describe reserved space as "zones", "boxes", "placeholders", "panels" or "empty slots".** Image models draw them as rectangles. Write "the area from x% to y% stays continuous background, with nothing drawn there".
+- Every route has its preview prompt in a code block. Don't give only the recommended route's prompt.
 - If any two routes share a focal element and a medium, replace one.
 - If a route's hero is a category cliché or one of the industry's bland tells, replace it.
 - Each prompt carries its taste direction as a concrete craft recipe (light, lens, grade or film look, casting, set, materials, type, colour). If a prompt only says "cinematic", "high quality", "premium" or "modern" without the recipe, rewrite it.

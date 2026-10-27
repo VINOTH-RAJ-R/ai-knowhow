@@ -62,7 +62,7 @@ Score each route on these checks, in order, and recommend the one that passes th
 
 Image models can't reliably place text, keep brand elements consistent or follow a precise layout (OpenAI's own guide says so). Studios therefore split the work:
 - **Preview prompt** (each route): the full image with the user's exact copy, for judging the idea in ChatGPT or similar.
-- **Production plate** (the recommended route only): the same scene with no text, no logo and no UI chrome. Reserved zones are described as rectangles in percent of the canvas, "kept clear and calm, still filled with the background". Check a zone by laying a bright box over it in the design tool; if anything pokes through, regenerate.
+- **Production plate** (the recommended route only): the same scene, hero and light with no text, no logo and no UI chrome. Space for type is described in percent of the canvas as "continuous background, nothing drawn there". Never call it zones or boxes, which models draw as rectangles. Check a zone by laying a bright box over it in the design tool; if anything pokes through, regenerate.
 - **Layout spec** for the designer: grid and margins; each text level with font, size (as % of canvas height) and weight; anchor positions; logo version and position; legal block position; the text colour and its contrast ratio (`scripts/palette.py`).
 - **Mandatories checklist:** every required element, to be set as real type in Figma or Canva.
 

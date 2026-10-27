@@ -74,7 +74,11 @@ def set_version(version):
                 with open(p, "w", encoding="utf-8") as f:
                     json.dump(c, f, indent=2)
                     f.write("\n")
-    print("Set version %s in all plugin manifests." % version)
+        for skill in glob.glob(os.path.join(ROOT, "plugins", name, "skills", "*", "SKILL.md")):
+            s = open(skill, encoding="utf-8").read()
+            s = re.sub(r'^  version: "[^"]*"$', '  version: "%s"' % version, s, count=1, flags=re.M)
+            open(skill, "w", encoding="utf-8").write(s)
+    print("Set version %s in all plugin manifests and SKILL.md metadata." % version)
 
 
 def check():
@@ -128,6 +132,9 @@ def check():
         entry = next((e for e in marketplace["plugins"] if e["name"] == name), None)
         if entry and entry.get("version"):
             versions["marketplace"] = entry["version"]
+        for skill in glob.glob(os.path.join(d, "skills", "*", "SKILL.md")):
+            m = re.search(r'^  version: "([^"]*)"$', open(skill, encoding="utf-8").read(), flags=re.M)
+            versions[os.path.relpath(skill, d)] = m.group(1) if m else None
         if len(set(versions.values())) > 1:
             problems.append("plugins/%s: versions differ %s" % (name, versions))
         # Everything a skill references must be inside the plugin folder.

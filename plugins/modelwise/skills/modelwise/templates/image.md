@@ -120,10 +120,10 @@ A studio doesn't ship text rendered by an image model. It generates a text-free 
 **Plate skeleton.** Take the chosen option's prompt and change three lines:
 ```
 Typography: none. This is a text-free background plate: no words, letters, numbers, logos, UI text or watermarks anywhere.
-Reserved zones (kept clear and calm, still filled with the background, low detail): headline <x–y% from left, y1–y2% from top>; supporting line and CTA <…>; logo <corner, size %>; legal and compliance block <bottom band, height %>.
+Kept clear (continuous background, nothing drawn there, low detail): the area <x–y% from left, y1–y2% from top>; the area <…>; the <corner> corner <size %>; the bottom band <height %>. Never call these zones, boxes, panels or placeholders: models draw them as rectangles.
 Composition: <hero placement> so it never enters a reserved zone; key elements at least 5% inside every edge.
 ```
-Keep every other line (format, art direction, concept, colour, hero, finish, avoid).
+Keep every other line (format, art direction, concept, colour, hero, finish, avoid). The plate keeps the route's hero and its taste recipe; it is never a bare gradient. For text-heavy layouts (equations, lists, infographics), the layout lives in Figma, Canva or code, and the image model makes only a hero visual or a crafted backdrop.
 
 **Layout spec** (a small table for the designer):
 

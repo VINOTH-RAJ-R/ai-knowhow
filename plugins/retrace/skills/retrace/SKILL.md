@@ -2,6 +2,8 @@
 name: retrace
 description: Retrace a finished AI-assisted task (an app, feature, fix, image, video, document, analysis or plan) and teach it. It reads the whole session, saves a lesson skill, and then walks the person through how the AI approached the work, from the visible record. It covers the goal, what the AI looked at, each decision and why, the turning points, the prompts that worked, the mistakes and fixes, and the cheaper path next time. It also teaches any saved lesson on request. Use when the user says "retrace", "teach me what you just did", "how did you arrive at this", "make a lesson from this", "capture this for the team", "teach me how we built X", "quiz me on", "onboard me to", or asks which lessons exist.
 license: MIT
+metadata:
+  version: "0.2.1"
 ---
 
 # Retrace: capture the work, then teach it
