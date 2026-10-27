@@ -59,10 +59,12 @@ python3 scripts/route.py --model claude-opus-5-5
 2. `/modelwise classify 50,000 support tickets into billing, bug, feature request, other - as cheap as possible`: extraction at volume. Returns the cheapest capable model, total and Batch cost for 50,000 runs, and a structured-output prompt.
 3. `/modelwise why does my Next.js build fail after upgrading to v16`: debugging. Returns a balanced or flagship model at medium effort and a root-cause-first debugging prompt.
 4. `/modelwise 15 second instagram reel ad for my running shoes`: video. Explains that no video generator is in the registry yet, routes the prompt-writing to a text model, and writes a full shot list.
+5. `/modelwise-run write a regex for Indian PAN numbers` (Claude Code): routes to Claude Haiku at low effort, shows the cost against Sonnet and Opus and the structured prompt, and after you choose **Run it**, returns the regex with valid and invalid examples.
 
 ## What it runs and sends
 - Runs one local script, `skills/modelwise/scripts/route.py` (Python 3.8+, standard library only), which reads the JSON files in `skills/modelwise/registry/`.
 - **No network access, no data collection, no API keys.** Nothing leaves your session except what your AI assistant normally processes. See [PRIVACY.md](../../PRIVACY.md).
+- **`/modelwise-run` (Claude Code only) hands work to a helper agent.** After you confirm, it starts one of the bundled runner agents (`agents/modelwise-haiku.md`, `-sonnet`, `-opus`, `-fable`) on that Claude model with the prompt it showed you. The helper uses your Claude Code session's permissions, so it can read and edit files in your project. It's told not to commit, push, send, publish or delete anything, and Claude Code's own permission prompts still apply. It runs on your Claude plan or API key, like any other Claude Code task. The plain `/modelwise` skill never runs anything beyond the router script.
 - If scripts can't run (for example in a ChatGPT Project), it reads the pre-computed `ROUTING_TABLE.md` instead.
 
 ## Support
