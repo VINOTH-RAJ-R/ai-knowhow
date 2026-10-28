@@ -108,13 +108,20 @@ The model does the judgment (steps 1, 2 and 4). A script does the ranking and th
 **Creative work** (posters, social posts, carousels, ads) gets a creative director's process: a brief with one human insight, the category clichés to avoid, three really different concepts with industry taste, a judging table, then a text-free production image and a layout spec for Figma or Canva.
 
 ### Example
-`/modelwise landing page for my bakery` returns, in short:
+You type one vague line:
+```
+/modelwise pricing page for our AI meeting-notes app
+```
+and get back an expert's plan, the right model, and a prompt that model can run. In short:
 
 ```
 ## Expert decision
-Owner: senior frontend engineer + brand designer · small food business · locals on their phones
-Real goal: more walk-ins and pre-orders · Deliverable: one fast, mobile-first page
-Red lines: no stock-photo hero, no unreadable menu image, no slow carousel
+Owner: product designer + senior frontend engineer · B2B SaaS · team leads comparing plans
+Real goal: more trial sign-ups, fewer "which plan do I need?" support tickets
+Deliverable: one responsive pricing page: 3 plans, monthly/yearly toggle, comparison table, FAQ
+Approach: anchor on the plan most teams pick · show the yearly saving in money, not percent
+Success measure: trial starts per visit and plan-page support tickets, before vs after
+Red lines: no "Most popular" badge without data · no hidden fees · no pre-ticked yearly billing
 
 ## Recommendation
 Model:  Claude Sonnet 5.5 (claude-sonnet-5-5): fit 4.5/5 for frontend at half of Opus's cost
@@ -133,8 +140,15 @@ Same fit from OpenAI: gpt-6.1-sol @ medium, $0.28
 | claude-opus-5-5       | medium | 5   | $0.56   | $560           |
 
 ## Your prompt  (paste into Claude Code or claude.ai · you get the page code)
-<context>…</context> <task>…</task> <design>… Do not use: pill buttons, gradient blobs …</design> …
+<context>AI meeting-notes app for teams of 5–200. Visitors are team leads deciding
+between plans, often on a laptop between meetings.</context>
+<task>Build a responsive pricing page: Free, Team and Business plans, a monthly/yearly
+toggle that shows the yearly saving in money, a comparison table, and a 5-question FAQ.</task>
+<design>Calm, confident, plenty of white space. Do not use: pill buttons, gradient blobs,
+fake urgency, or a pre-selected yearly plan.</design>
+<done_when>Works at 375px, passes WCAG AA contrast, toggle updates every price.</done_when>
 ```
+Then run it yourself, or let `/modelwise-run` run it on Claude Sonnet after you confirm.
 
 Run the router on its own:
 ```bash

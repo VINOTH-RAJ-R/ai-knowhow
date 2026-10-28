@@ -59,7 +59,7 @@ python3 scripts/route.py --model claude-opus-5-5
 ```
 
 ## Example prompts
-1. `/modelwise landing page for my bakery`: frontend task. Returns the model and effort, a cost table across all current models, and a design prompt (or "send it as-is" plus an upgrade if your prompt is vague).
+1. `/modelwise pricing page for our AI meeting-notes app`: frontend task. Returns the expert decision (plans, toggle, comparison table, red lines like no pre-ticked yearly billing), the model and effort, a cost table across all current models, and a ready build prompt.
 2. `/modelwise classify 50,000 support tickets into billing, bug, feature request, other - as cheap as possible`: extraction at volume. Returns the cheapest capable model, total and Batch cost for 50,000 runs, and a structured-output prompt.
 3. `/modelwise why does my Next.js build fail after upgrading to v16`: debugging. Returns a balanced or flagship model at medium effort and a root-cause-first debugging prompt.
 4. `/modelwise 15 second instagram reel ad for my running shoes`: video. Explains that no video generator is in the registry yet, routes the prompt-writing to a text model, and writes a full shot list.

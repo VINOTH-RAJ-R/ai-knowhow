@@ -34,7 +34,7 @@
         "privacyPolicyURL": "https://github.com/VINOTH-RAJ-R/ai-knowhow/blob/main/PRIVACY.md",
         "termsOfServiceURL": "https://github.com/VINOTH-RAJ-R/ai-knowhow/blob/main/LICENSE",
         "defaultPrompt": [
-          "Use modelwise: landing page for my bakery",
+          "Use modelwise: pricing page for our AI meeting-notes app",
           "Use modelwise to find the cheapest way to classify 50,000 support tickets",
           "Use modelwise: which model and effort for debugging a failing Next.js build?"
         ],
