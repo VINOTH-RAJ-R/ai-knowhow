@@ -1,167 +1,205 @@
 # ai-knowhow
 
-**Know how it was built. Know what to build it with.**
+**Know what to build it with. Know how it was built.**
 
-Two open-source agent skills (plus a run mode for Claude Code) for anyone who builds with AI: apps, images, videos, documents, analyses.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Works in](https://img.shields.io/badge/works%20in-Claude%20Code%20·%20claude.ai%20·%20Codex%20·%20ChatGPT-black.svg)](#quick-start)
 
-| Skill | The problem | What it does |
+Most people use one AI model for everything, with a one-line prompt. They overpay for simple work, get average results on hard work, and nobody on the team learns how the result was made.
+
+ai-knowhow is two open-source agent skills that fix that:
+
+| | What you type | What you get |
 |---|---|---|
-| **[modelwise](plugins/modelwise/)** | Everyone uses one model for everything, with a one-line prompt, and overpays. | You type a basic prompt from any department. It first decides what a top practitioner would deliver, then tells you **which model** (Anthropic or OpenAI) and **which effort level** for each phase, roughly **what it costs** against other models, and gives you a **structured prompt** written the way that model works best. Creative requests get a brief, three concepts, judging and a production-ready image prompt. |
-| **[modelwise-run](plugins/modelwise/#route-and-run-claude-code)** (Claude Code) | Knowing the right model still means switching to it by hand. | Routes your prompt, shows the model, cost and structured prompt, and after you confirm, runs it on a helper agent on that Claude model (Haiku, Sonnet, Opus or Fable). |
-| **[retrace](plugins/retrace/)** | AI builds the thing and it ships, but nobody learns *how*. | After a task, it captures the goal, the decisions and *why*, the prompts that worked, the mistakes and fixes, and the cheaper path next time, as a **lesson skill**. Anyone can invoke the lesson later and be **taught**, step by step. |
+| **[modelwise](plugins/modelwise/)** | Any basic prompt, from any department: engineering, marketing, sales, HR, finance, design, legal, operations | What a top practitioner would deliver, the right **model** and **effort** for each phase (Anthropic or OpenAI), the **cost** against other models, and a **prompt written the way that model works best** |
+| **[modelwise-run](plugins/modelwise/#route-and-run-claude-code)** · Claude Code | `/modelwise-run <prompt>` | The same route, then, after you confirm, the task **runs on that Claude model** (Haiku, Sonnet, Opus or Fable) and the result comes back to your chat |
+| **[retrace](plugins/retrace/)** | `/retrace` at the end of any AI task | A saved **lesson** of how it was done (the moves, decisions, prompts that worked, mistakes and the cheaper path), taught to you on the spot and replayable by your team |
 
-They work in **Claude Code, claude.ai, OpenAI Codex and ChatGPT**, because they're plain [Agent Skills](https://agentskills.io) (Markdown + JSON + one small stdlib-only Python script).
+They are plain [Agent Skills](https://agentskills.io): Markdown, JSON and one small Python script with no dependencies. No server, no API keys, no data collection.
 
-```
- basic prompt ──► modelwise ──► expert decision + model + effort + cost + structured prompt
-                     │
-                     ├── /modelwise-run: confirm ──► helper agent on the routed Claude model ──► result
-                     │
-                     └── reads registry/  (61 model cards built from official Anthropic & OpenAI docs)
-
- finished work ──► retrace ──► lesson-<slug>/ (SKILL.md + lesson.md) ──► /lesson-<slug> teaches a human
-```
+## Contents
+- [Quick start](#quick-start)
+- [Install on other tools](#install-on-other-tools)
+- [modelwise: how it works](#modelwise-how-it-works)
+- [modelwise-run: route and run](#modelwise-run-route-and-run)
+- [retrace: turn work into lessons](#retrace-turn-work-into-lessons)
+- [Does it work?](#does-it-work)
+- [What's in the registry](#whats-in-the-registry)
+- [Privacy and safety](#privacy-and-safety)
+- [FAQ](#faq)
+- [Repo layout](#repo-layout) · [Contributing](#contributing) · [License](#license)
 
 ---
 
-## Install
-
-> Publishing your own copy or testing before release? See [docs/publishing.md](docs/publishing.md) (all marketplaces, step by step) and [docs/testing.md](docs/testing.md) (end-to-end test plan).
-
-### Claude Code (recommended)
+## Quick start
+In **Claude Code**:
 ```
 /plugin marketplace add VINOTH-RAJ-R/ai-knowhow
 /plugin install modelwise@ai-knowhow
 /plugin install retrace@ai-knowhow
 /reload-plugins
 ```
-Or copy the skills without the plugin system:
-```bash
-git clone https://github.com/VINOTH-RAJ-R/ai-knowhow.git && cd ai-knowhow
-python3 tools/install.py claude-code          # ~/.claude/skills/  (add --project for ./.claude/skills/)
+Then try:
 ```
+/modelwise landing page for my bakery
+/modelwise-run write a regex for Indian PAN numbers
+/retrace
+```
+As plugin skills they're also available as `/modelwise:modelwise`, `/modelwise:modelwise-run` and `/retrace:retrace`. You can also just ask *"which model should I use for…"*.
 
-### Other tools
+> No GitHub SSH key? Set `CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` first. Third-party marketplaces don't auto-update by default: turn it on in `/plugin` → Marketplaces, or run `claude plugin update modelwise@ai-knowhow`.
+
+## Install on other tools
 | Tool | How |
 |---|---|
-| **claude.ai chat & Cowork** | `python3 tools/install.py plugin-zip`, then Customize → Plugins → Add → Upload plugin. Works in chat and Cowork, and syncs to Claude Code ([details](adapters/claude-ai/README.md)) |
-| **OpenAI Codex** | `python3 tools/install.py codex` ([details](adapters/codex/README.md)) |
-| **ChatGPT** | Workspace plugin import, skill upload, or a Project with our instructions file ([details](adapters/chatgpt/README.md)) |
+| **Claude Code, without the plugin system** | `git clone https://github.com/VINOTH-RAJ-R/ai-knowhow.git && cd ai-knowhow && python3 tools/install.py claude-code` (copies the skills to `~/.claude/skills/` and the runner agents to `~/.claude/agents/`; add `--project` for this project only). Start a new session afterwards. |
+| **claude.ai and Cowork** | Download `modelwise-plugin.zip` and `retrace-plugin.zip` from the [latest release](https://github.com/VINOTH-RAJ-R/ai-knowhow/releases/latest), then Customize → Plugins → Add → Upload plugin. Or add the marketplace `VINOTH-RAJ-R/ai-knowhow` there. [Details](adapters/claude-ai/README.md) |
+| **OpenAI Codex** | `codex plugin marketplace add VINOTH-RAJ-R/ai-knowhow`, or `python3 tools/install.py codex`. [Details](adapters/codex/README.md) |
+| **ChatGPT** | Workspace plugin import, skill upload, or a Project with our instructions file. [Details](adapters/chatgpt/README.md) |
+
+`modelwise-run` needs Claude Code, because only Claude Code can hand work to an agent on another model. Everywhere else, modelwise gives you the route and the prompt to run yourself.
 
 ---
 
-## Use it
+## modelwise: how it works
+```
+your prompt
+  1. understand   department · industry · market · audience
+  2. decide       what a top practitioner would deliver: goal, deliverable, approach,
+                  success measure, production path, red lines
+  3. route        each phase → task type → registry → model + effort + cost (scripts/route.py)
+  4. write        a prompt in the chosen model's own style, from a task template
+  5. answer       expert decision · route per phase · cost across models · ready prompts,
+                  each with "Paste into … · You get …"
+```
+The model does the judgment (steps 1, 2 and 4). A script does the ranking and the costs (step 3), so the same inputs always give the same recommendation. Model facts come from a registry built from official vendor docs, not from what the running model remembers.
 
-### modelwise
-```
-/modelwise landing page for my bakery
-/modelwise extract invoice number, date and total from 20,000 PDFs, cheapest way
-/modelwise why is my Next.js build failing after upgrading to v16
-```
-To have it also **run** the task on the right Claude model, in Claude Code:
-```
-/modelwise-run write a regex for Indian PAN numbers
-```
-It shows the model, effort, cost and structured prompt, and runs it on a helper agent on that model once you say **Run it**.
+**Creative work** (posters, social posts, carousels, ads) gets a creative director's process: a brief with one human insight, the category clichés to avoid, three really different concepts with industry taste, a judging table, then a text-free production image and a layout spec for Figma or Canva.
 
-(As a plugin skill it's also available as `/modelwise:modelwise`. You can also just ask: *"which model should I use for…"*.)
-
-You get:
+### Example
+`/modelwise landing page for my bakery` returns, in short:
 
 ```
+## Expert decision
+Owner: senior frontend engineer + brand designer · small food business · locals on their phones
+Real goal: more walk-ins and pre-orders · Deliverable: one fast, mobile-first page
+Red lines: no stock-photo hero, no unreadable menu image, no slow carousel
+
 ## Recommendation
-Model:  Claude Sonnet 5.5 (claude-sonnet-5-5, anthropic): everyday frontend work at a fifth of Opus cost
-Effort: medium (E3). API: output_config.effort=medium · Claude Code: /effort medium
-Est. cost per run: $0.28 (list price, before caching/batch)
-Cheaper: claude-haiku-5-5 @ medium   Stronger: claude-opus-5-5 @ high
-Best OpenAI option: gpt-6.1-sol @ medium
+Model:  Claude Sonnet 5.5 (claude-sonnet-5-5): fit 4.5/5 for frontend at half of Opus's cost
+Effort: medium · API: output_config.effort=medium · Claude Code: /effort medium
+Est. cost per run: $0.28 (list price, before caching and batch)
+Cheaper: gpt-6.1-terra @ medium, $0.14 · Stronger: claude-opus-5-5 @ medium, $0.56
+Same fit from OpenAI: gpt-6.1-sol @ medium, $0.28
 
 ## Cost across models
-| Model             | Effort | Fit | Per run | Per 1,000 runs |
-| claude-haiku-5-5  | medium | 3   | $0.01   | $14      (below quality bar) |
-| gpt-6-luna        | medium | 3   | $0.01   | $14      (below quality bar) |
-| **claude-sonnet-5-5** | medium | 4.5 | $0.28 | $280 |
-| gpt-6.1-sol       | medium | 4.5 | $0.28   | $280 |
-| claude-opus-5-5   | medium | 5   | $0.56   | $560 |
-| claude-fable-5-1 / gpt-6-astra | medium | 5 | $1.40 | $1,400 |
+| Model                 | Effort | Fit | Per run | Per 1,000 runs |
+| claude-haiku-5-5      | medium | 3   | $0.014  | $14            |
+| gpt-6-luna            | high   | 3   | $0.014  | $14            |
+| gpt-6.1-terra         | medium | 3.5 | $0.14   | $140           |
+| **claude-sonnet-5-5** | medium | 4.5 | $0.28   | $280           |
+| gpt-6.1-sol           | medium | 4.5 | $0.28   | $280           |
+| claude-opus-5-5       | medium | 5   | $0.56   | $560           |
 
-## Your prompt
+## Your prompt  (paste into Claude Code or claude.ai · you get the page code)
 <context>…</context> <task>…</task> <design>… Do not use: pill buttons, gradient blobs …</design> …
-
-## Save tokens on this task
-- Put design tokens in the system prompt once; iterate with screenshots + "change X"
-
-## Why this works
-…
 ```
 
-You can run the router on its own:
+More to try:
+```
+/modelwise extract invoice number, date and total from 20,000 PDFs, cheapest way
+/modelwise why is my Next.js build failing after upgrading to v16
+/modelwise Instagram carousel for our new savings account. Brand is navy and white.
+/modelwise plan next year's hiring for a 40-person startup
+```
+
+Run the router on its own:
 ```bash
 python3 plugins/modelwise/skills/modelwise/scripts/route.py --task code.frontend --complexity moderate
 python3 plugins/modelwise/skills/modelwise/scripts/route.py --task data.extract --priority cost --volume 50000   # totals + Batch price
 python3 plugins/modelwise/skills/modelwise/scripts/route.py --list-tasks
 ```
 
-### retrace
-At the end of any task:
-```
-/retrace            (or: "make a lesson from what we just did")
-```
-It reads the whole session, writes `.claude/skills/lesson-<slug>/`, and then teaches you straight away with a short retrace: the map, the moves the AI made (what it looked at, what it decided and why, the result), the turning points, and the cheaper path next time. Reply "walkthrough" or "rebuild" to go deeper. Commit the lesson, and your whole team can run `/lesson-<slug>` or ask "teach me <slug>" later. Teaching is built into retrace; there's no separate teach skill any more.
+## modelwise-run: route and run
+In Claude Code, `/modelwise-run <prompt>`:
+1. routes the prompt to a Claude model and effort, using the same steps as modelwise;
+2. shows a card with the model, the cost against other models, and the exact prompt it will send;
+3. waits for **Run it**, a stronger or cheaper model, or **Cancel**. It never runs without your OK;
+4. hands the task to a helper agent on that model (`modelwise-haiku`, `-sonnet`, `-opus` or `-fable`) and returns the result, with what it cost.
 
-See a real one: [examples/lessons/lesson-building-ai-knowhow](examples/lessons/lesson-building-ai-knowhow/lesson.md), the lesson for how this repo was built.
+A skill can't change the model of the chat it runs in, so the work moves to a helper agent on the routed model. Tip: keep your own session on Sonnet or Haiku, so the routing step itself stays cheap. Image, video and audio tasks can't run on Claude, so it gives you the modelwise prompt for those instead.
+
+## retrace: turn work into lessons
+At the end of any task, type `/retrace` (or *"make a lesson from what we just did"*). It:
+1. reads the whole session: requests, files, commands, prompts, errors and fixes;
+2. saves a lesson to `.claude/skills/lesson-<slug>/` (secrets and personal data removed);
+3. teaches you straight away with a short retrace: the map, the moves the AI made and why, the turning points, what steered it, and the cheaper path next time.
+
+Reply *"walkthrough"* to go step by step, or *"rebuild"* to try it yourself. Commit the lesson, and anyone on your team can run `/lesson-<slug>` or ask *"teach me <slug>"* later. Lessons mark anything the record doesn't state as *(inferred)*.
+
+See a real one: [the lesson for how this repo was built](examples/lessons/lesson-building-ai-knowhow/lesson.md).
 
 ---
 
-## Which model should run these skills?
-Your tool's selected model runs the skill, and we can't control that. The skills read data and fill templates, so you don't need a frontier model:
+## Does it work?
+Benchmark from 2026-10-18 (before the creative and run features). Full report: [docs/benchmark-report-2026-10.md](docs/benchmark-report-2026-10.md).
+- **Model choice:** on 7 objectively scored tasks (code with unit tests, extraction, math), the routed cheaper models matched Claude Opus 5.5 on every test, and **task cost fell by about 74%**.
+- **Classification:** 40/40 on task and complexity with both Sonnet and Haiku running the skill. ChatGPT and claude.ai simulations matched the script's routes 9/9.
+- **retrace:** teammates given the lesson scored **9/10 and 10/10** on how-and-why quizzes, against **6.5 and 7.5** with the code alone.
+- **Honest caveats:** rewriting a *vague, subjective* prompt without your details scored 1–2 points *lower* than sending it as-is, so modelwise now says "send it as-is" in that case and offers the structured prompt once you add details. On tiny one-off tasks, running the skill on Sonnet can cost more than it saves; on Haiku it doesn't.
+
+**Which model should run the skills themselves?** They read data and fill templates, so you don't need a frontier model:
 
 | | Recommended | For complex rewrites |
 |---|---|---|
 | **Claude** (Claude Code, claude.ai, Cowork) | Claude Haiku 5.5 @ low effort | Claude Sonnet 5.5 |
 | **OpenAI** (ChatGPT, Codex) | GPT-6 Luna @ low effort | GPT-6.1 Sol |
 
-The answer doesn't depend on the model's own knowledge. All model facts come from the registry. In our benchmark, Haiku running the skill gave the same routes and the same answer format as Sonnet, at about a fifteenth of the per-run cost.
+## What's in the registry
+Phase 1 covers Anthropic and OpenAI:
+- **61 model cards**: every current, previous, legacy and deprecated Claude and OpenAI model still served, plus image and audio models. Each has capabilities, context, price, effort levels, fit ratings per task, prompting tips, sources and a `verified` date.
+- **21 task types**, **15 prompt templates**, and **12 guides** (classification, prompt styles, practice checklists for engineering, design, content and business functions, industry lens, creative taste, regulated markets).
+- **One effort scale** (E0 to E6) mapped to Claude's `output_config.effort`, OpenAI's `reasoning.effort`, and the in-app settings of Claude Code, claude.ai, ChatGPT and Codex.
 
-## Does it work? (benchmark, 2026-10-18)
-Full report: [docs/benchmark-report-2026-10.md](docs/benchmark-report-2026-10.md). In short:
-- **modelwise model choice:** on 7 objectively scored tasks (code with unit tests, extraction, math), the routed cheaper models matched Claude Opus 5.5 on every test, and **task execution cost fell by about 74%**.
-- **Classification:** 40/40 on task and complexity with both Sonnet and Haiku running the skill. The ChatGPT and claude.ai simulations matched the script's routes 9/9.
-- **retrace:** teammates given the lesson scored **9/10 and 10/10** on how-and-why quizzes, against **6.5 and 7.5** with the code alone. The retrace run also found two real bugs the original build had missed.
-- **Honest caveats:** auto-rewriting a *vague, subjective* prompt without the user's details scored 1-2 points **lower** than sending it as-is, in 3 rounds. modelwise now says "send it as-is to <model>" in that case and offers the structured prompt as an upgrade once you add details. On objective tasks the rewrite was neutral. Running the skill on Sonnet can cost more than it saves on tiny one-off tasks. On Haiku (now the default) it doesn't.
+Fit ratings are curated judgments from vendor docs, not benchmark scores. Prices are list prices for comparison, not quotes. **Current gap:** no video generator is ranked (OpenAI shut down the Sora 2 API on 2026-09-24); modelwise still writes the full video prompt and names common tools. Phase 2 adds Google and other vendors.
 
-## What's in the registry (Phase 1: Anthropic + OpenAI)
-- **61 model cards**: every current, previous, legacy and deprecated Claude and OpenAI model still served, plus image and audio models. Each card has capabilities, context, price, effort levels and defaults, fit ratings per task, prompting tips, and sources, with a `verified` date.
-- **21 task types** with effort per complexity, from quick code to long-running agents, images, video and voice.
-- **15 prompt templates** with slots, a universal skeleton, Claude and OpenAI renderings, a worked example, and token savers.
-- **One normalized effort scale** (E0 to E6) mapped to Claude's `output_config.effort`, OpenAI's `reasoning.effort`, and the in-app settings of Claude Code, claude.ai, ChatGPT and Codex.
+**How it stays current:** a daily GitHub Action ([`tools/watch_models.py`](tools/watch_models.py)) flags new model IDs on vendor pages, retired models and cards not re-verified in 45 days, and opens an issue. A person updates the card from the official docs, and CI validates it. Schedule: [docs/maintenance.md](docs/maintenance.md).
 
-Fit ratings are curated judgments built from vendor docs. They are not benchmark scores. Prices are list prices for comparison. Always check the vendor's page before committing to a budget.
+## Privacy and safety
+- **modelwise** runs one local script (`route.py`) that reads the bundled registry. No network calls, no API keys, nothing collected.
+- **modelwise-run** starts a helper agent in your Claude Code session after you confirm. It has your session's permissions, is told not to commit, push, send, publish or delete anything, and Claude Code's own permission prompts still apply. It runs on your Claude plan, like any other task.
+- **retrace** writes lesson files only where you run it, after removing keys, tokens, passwords and personal data.
+- Full details: [PRIVACY.md](PRIVACY.md).
 
-**Current gaps:** no video generator is listed. OpenAI shut down the Sora 2 API on 2026-09-24 and Anthropic doesn't generate video. Modelwise still writes a full video prompt. Phase 2 adds Google (Gemini, Veo) and other vendors.
+## FAQ
+**Does modelwise make the image, video or app itself?** No. It decides, routes and writes the prompt; you run it in the named tool. `modelwise-run` is the one that executes, and only on Claude, only after you confirm.
 
-## How it stays current
-- **Daily:** `tools/watch_models.py` (GitHub Action) flags unknown model IDs on vendor pages, cards past their retirement date, and cards not re-verified in 45 days. It opens one issue.
-- **Within 48 hours of a launch:** a person updates the card from official docs, then runs `python3 tools/validate.py --fix`, and CI checks it.
-- **Monthly:** `bench/run_api.py` re-runs the A/B benchmark over the real APIs with an effort sweep, if API keys are set as repo secrets.
-- **Quarterly:** review fit ratings and the skill benchmark.
-- Full schedule: [docs/maintenance.md](docs/maintenance.md). How to contribute: [CONTRIBUTING.md](CONTRIBUTING.md).
+**Do I need API keys?** No. The skills run inside the AI tool you already use.
+
+**How accurate are the costs?** They are list-price estimates for one typical task of that size, to compare models. Caching and Batch lower them; your real usage may differ.
+
+**Will it recommend OpenAI when I'm in Claude Code?** It shows the best option from each vendor. Being in Claude Code doesn't hide OpenAI; `modelwise-run` only runs Claude models.
+
+**A model I use is missing.** Open an issue, or add a card: see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Repo layout
 ```
-.claude-plugin/marketplace.json     Claude Code / claude.ai / ChatGPT marketplace
-.agents/plugins/marketplace.json    Codex marketplace
-plugins/modelwise/skills/modelwise/ SKILL.md · registry/ · templates/ · guides/ · scripts/route.py · ROUTING_TABLE.md
-plugins/modelwise/skills/modelwise-run/ SKILL.md (route, confirm, run on a helper agent)
-plugins/modelwise/agents/           runner agents: modelwise-haiku · -sonnet · -opus · -fable
-plugins/retrace/skills/retrace/     SKILL.md · templates/ (lesson + lesson skill) · guides/capture-checklist.md
-examples/lessons/                   example lessons
-adapters/                           per-platform install notes (ChatGPT, Codex, claude.ai + Cowork)
-tools/                              validate.py · test_route.py · install.py · release.py · watch_models.py
-bench/                              A/B benchmark: tasks, checkers, scorers, API runner, results
-docs/                               architecture · publishing · testing · maintenance · benchmark report
-PRIVACY.md                          no data collection; what the skills run
+plugins/modelwise/skills/modelwise/       SKILL.md · registry/ · templates/ · guides/ · scripts/ · ROUTING_TABLE.md
+plugins/modelwise/skills/modelwise-run/   SKILL.md: route, confirm, run on a helper agent
+plugins/modelwise/agents/                 runner agents: modelwise-haiku · -sonnet · -opus · -fable
+plugins/retrace/skills/retrace/           SKILL.md · templates/ · guides/capture-checklist.md
+.claude-plugin/marketplace.json           Claude Code, claude.ai and ChatGPT marketplace
+.agents/plugins/marketplace.json          Codex marketplace
+examples/lessons/                         example lessons
+adapters/                                 install notes for ChatGPT, Codex, claude.ai and Cowork
+tools/                                    validate · test_route · install · release · watch_models
+bench/                                    A/B benchmark: tasks, checkers, scorers, results
+docs/                                     architecture · publishing · testing · maintenance · benchmark report
 ```
+How the pieces fit together: [docs/architecture.md](docs/architecture.md).
+
+## Contributing
+Issues and pull requests are welcome: new model cards, fit corrections with evidence, templates, practice guides and lessons. Start with [CONTRIBUTING.md](CONTRIBUTING.md). Every change runs `tools/validate.py` and the router tests in CI.
 
 ## License
-MIT. Not affiliated with Anthropic or OpenAI. Model names are their owners' trademarks.
+[MIT](LICENSE). Not affiliated with Anthropic or OpenAI. Model names are their owners' trademarks.

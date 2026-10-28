@@ -1,6 +1,6 @@
 {
   "name": "ai-knowhow",
-  "description": "Know how it was built. Know what to build it with. Agent skills: modelwise and retrace.",
+  "description": "Know what to build it with. Know how it was built. modelwise picks the right Anthropic or OpenAI model, effort and prompt for any task, with costs, and can run it on the right Claude model; retrace turns finished AI work into lessons that teach people.",
   "owner": {
     "name": "vinothraj",
     "url": "https://github.com/VINOTH-RAJ-R"

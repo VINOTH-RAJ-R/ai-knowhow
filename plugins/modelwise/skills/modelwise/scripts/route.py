@@ -329,8 +329,11 @@ def route(task_id, complexity="moderate", priority="balanced", provider="any",
 def fmt_cost(c):
     if c is None:
         return "n/a"
-    if c < 0.01:
-        return "<$0.01"
+    if c < 0.001:
+        return "<$0.001"
+    if c < 0.10:
+        # A third decimal keeps small costs consistent with the per-1,000 column ($0.014 vs $14.00).
+        return "$%.3f" % c
     return "$%.2f" % c
 
 

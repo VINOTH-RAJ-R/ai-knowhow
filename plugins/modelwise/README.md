@@ -1,7 +1,8 @@
 # modelwise
 
-**Right model, right effort, right prompt.** Type a basic prompt and get back:
+**Right model, right effort, right prompt.** Type a basic prompt from any department and get back:
 
+0. **The expert decision**: what a top practitioner in that role would deliver (goal, deliverable, approach, success measure, production path, red lines), before any model is picked.
 1. **The model**: the best Anthropic or OpenAI model for this task, plus a cheaper and a stronger alternative and the best pick from each vendor.
 2. **The effort level**: the exact setting (`output_config.effort` for Claude, `reasoning.effort` for OpenAI) and how to set it in Claude Code, claude.ai, ChatGPT or Codex.
 3. **A cost estimate**: list price for one typical run, so you can compare.
@@ -14,7 +15,9 @@
 ## How it decides
 ```
 your prompt
-  → classify   (guides/classify.md)       task · complexity · priority · provider
+  → classify   (guides/classify.md)       department · industry · market · audience
+  → decide     (industry-lens, practice-*) what the expert delivers, split into phases
+  → per phase                              task · complexity · priority · provider
   → route      (scripts/route.py)          filter by capability and status → quality bar → rank
   → template   (templates/<task>.md)       fill slots, render for the chosen vendor
   → answer     model · effort · cost · prompt · token tips · why it works

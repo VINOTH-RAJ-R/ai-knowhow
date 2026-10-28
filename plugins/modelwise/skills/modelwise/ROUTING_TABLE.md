@@ -22,9 +22,9 @@ Template: `templates/coding.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
-| moderate | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
-| complex | E3 medium | claude-sonnet-5-5 @ medium ($0.08) | claude-haiku-5-5 @ medium (<$0.01) | claude-sonnet-5-5 @ medium ($0.08) | gpt-6.1-sol @ medium ($0.08) |
+| simple | E2 low | claude-haiku-5-5 @ low (<$0.001) | - | claude-haiku-5-5 @ low (<$0.001) | gpt-6-luna @ high (<$0.001) |
+| moderate | E2 low | claude-haiku-5-5 @ low ($0.002) | - | claude-haiku-5-5 @ low ($0.002) | gpt-6-luna @ high ($0.002) |
+| complex | E3 medium | claude-sonnet-5-5 @ medium ($0.080) | claude-haiku-5-5 @ medium ($0.004) | claude-sonnet-5-5 @ medium ($0.080) | gpt-6.1-sol @ medium ($0.080) |
 | frontier | E4 high | claude-sonnet-5-5 @ high ($0.16) | - | claude-sonnet-5-5 @ high ($0.16) | gpt-6.1-sol @ high ($0.16) |
 
 Cost per run across current models (✓ = clears the quality bar at that complexity; @ = effort):
@@ -32,14 +32,14 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a ✓ @low | n/a @medium | n/a @high |
-| claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @low | <$0.01 ✓ @medium | <$0.01 @high |
-| gpt-6-luna | <$0.01 ✓ @high | <$0.01 ✓ @high | <$0.01 ✓ @high | <$0.01 @high |
-| gpt-6.1-terra | <$0.01 ✓ @low | $0.01 ✓ @low | $0.04 @medium | $0.08 @high |
-| claude-sonnet-5-5 | $0.01 ✓ @low | $0.03 ✓ @low | $0.08 ✓ @medium | $0.16 ✓ @high |
-| gpt-6.1-sol | $0.01 ✓ @low | $0.03 ✓ @low | $0.08 ✓ @medium | $0.16 ✓ @high |
-| claude-opus-5-5 | $0.02 ✓ @low | $0.06 ✓ @low | $0.16 ✓ @medium | $0.32 ✓ @high |
-| claude-fable-5-1 | $0.06 ✓ @low | $0.15 ✓ @low | $0.40 ✓ @medium | $0.80 ✓ @high |
-| gpt-6-astra | $0.06 ✓ @low | $0.15 ✓ @low | $0.40 ✓ @medium | $0.80 ✓ @high |
+| claude-haiku-5-5 | <$0.001 ✓ @low | $0.002 ✓ @low | $0.004 ✓ @medium | $0.008 @high |
+| gpt-6-luna | <$0.001 ✓ @high | $0.002 ✓ @high | $0.004 ✓ @high | $0.008 @high |
+| gpt-6.1-terra | $0.006 ✓ @low | $0.015 ✓ @low | $0.040 @medium | $0.080 @high |
+| claude-sonnet-5-5 | $0.012 ✓ @low | $0.030 ✓ @low | $0.080 ✓ @medium | $0.16 ✓ @high |
+| gpt-6.1-sol | $0.012 ✓ @low | $0.030 ✓ @low | $0.080 ✓ @medium | $0.16 ✓ @high |
+| claude-opus-5-5 | $0.024 ✓ @low | $0.060 ✓ @low | $0.16 ✓ @medium | $0.32 ✓ @high |
+| claude-fable-5-1 | $0.060 ✓ @low | $0.15 ✓ @low | $0.40 ✓ @medium | $0.80 ✓ @high |
+| gpt-6-astra | $0.060 ✓ @low | $0.15 ✓ @low | $0.40 ✓ @medium | $0.80 ✓ @high |
 
 ## code.build: Build a feature, app, API or script from a description
 
@@ -47,7 +47,7 @@ Template: `templates/coding.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
+| simple | E2 low | claude-haiku-5-5 @ low ($0.002) | - | claude-haiku-5-5 @ low ($0.002) | gpt-6-luna @ high ($0.002) |
 | moderate | E3 medium | claude-sonnet-5-5 @ medium ($0.24) | gpt-6.1-terra @ medium ($0.12) | claude-sonnet-5-5 @ medium ($0.24) | gpt-6.1-sol @ medium ($0.24) |
 | complex | E4 high | claude-opus-5-5 @ high ($2.00) | claude-sonnet-5-5 @ high ($1.00) | claude-opus-5-5 @ high ($2.00) | gpt-6-astra @ high ($5.00) |
 | frontier | E5 xhigh | claude-opus-5-5 @ xhigh ($8.40) | - | claude-opus-5-5 @ xhigh ($8.40) | gpt-6-astra @ xhigh ($21.00) |
@@ -57,12 +57,12 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a @medium | n/a @high | n/a @high |
-| claude-haiku-5-5 | <$0.01 ✓ @low | $0.01 ✓ @medium | $0.05 @high | $0.21 @xhigh |
-| gpt-6-luna | <$0.01 ✓ @high | $0.01 ✓ @high | $0.05 @high | $0.21 @xhigh |
-| gpt-6.1-terra | $0.02 ✓ @low | $0.12 ✓ @medium | $0.50 @high | $2.10 @xhigh |
-| claude-sonnet-5-5 | $0.05 ✓ @low | $0.24 ✓ @medium | $1.00 ✓ @high | $4.20 @xhigh |
-| gpt-6.1-sol | $0.05 ✓ @low | $0.24 ✓ @medium | $1.00 ✓ @high | $4.20 @xhigh |
-| claude-opus-5-5 | $0.09 ✓ @low | $0.48 ✓ @medium | $2.00 ✓ @high | $8.40 ✓ @xhigh |
+| claude-haiku-5-5 | $0.002 ✓ @low | $0.012 ✓ @medium | $0.050 @high | $0.21 @xhigh |
+| gpt-6-luna | $0.002 ✓ @high | $0.012 ✓ @high | $0.050 @high | $0.21 @xhigh |
+| gpt-6.1-terra | $0.023 ✓ @low | $0.12 ✓ @medium | $0.50 @high | $2.10 @xhigh |
+| claude-sonnet-5-5 | $0.046 ✓ @low | $0.24 ✓ @medium | $1.00 ✓ @high | $4.20 @xhigh |
+| gpt-6.1-sol | $0.046 ✓ @low | $0.24 ✓ @medium | $1.00 ✓ @high | $4.20 @xhigh |
+| claude-opus-5-5 | $0.092 ✓ @low | $0.48 ✓ @medium | $2.00 ✓ @high | $8.40 ✓ @xhigh |
 | claude-fable-5-1 | $0.23 ✓ @low | $1.20 ✓ @medium | $5.00 ✓ @high | $21.00 ✓ @xhigh |
 | gpt-6-astra | $0.23 ✓ @low | $1.20 ✓ @medium | $5.00 ✓ @high | $21.00 ✓ @xhigh |
 
@@ -72,7 +72,7 @@ Template: `templates/frontend.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
+| simple | E2 low | claude-haiku-5-5 @ low ($0.004) | - | claude-haiku-5-5 @ low ($0.004) | gpt-6-luna @ high ($0.004) |
 | moderate | E3 medium | claude-sonnet-5-5 @ medium ($0.28) | gpt-6.1-terra @ medium ($0.14) | claude-sonnet-5-5 @ medium ($0.28) | gpt-6.1-sol @ medium ($0.28) |
 | complex | E4 high | claude-opus-5-5 @ high ($2.00) | claude-sonnet-5-5 @ high ($1.00) | claude-opus-5-5 @ high ($2.00) | gpt-6-astra @ high ($5.00) |
 | frontier | E5 xhigh | claude-opus-5-5 @ xhigh ($6.20) | - | claude-opus-5-5 @ xhigh ($6.20) | gpt-6-astra @ xhigh ($15.50) |
@@ -81,11 +81,11 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
-| claude-haiku-5-5 | <$0.01 ✓ @low | $0.01 ✓ @medium | $0.05 @high | $0.15 @xhigh |
-| gpt-6-luna | <$0.01 ✓ @high | $0.01 ✓ @high | $0.05 @high | $0.15 @xhigh |
-| gpt-6.1-terra | $0.04 ✓ @low | $0.14 ✓ @medium | $0.50 @high | $1.55 @xhigh |
-| claude-sonnet-5-5 | $0.08 ✓ @low | $0.28 ✓ @medium | $1.00 ✓ @high | $3.10 @xhigh |
-| gpt-6.1-sol | $0.08 ✓ @low | $0.28 ✓ @medium | $1.00 ✓ @high | $3.10 @xhigh |
+| claude-haiku-5-5 | $0.004 ✓ @low | $0.014 ✓ @medium | $0.050 @high | $0.15 @xhigh |
+| gpt-6-luna | $0.004 ✓ @high | $0.014 ✓ @high | $0.050 @high | $0.15 @xhigh |
+| gpt-6.1-terra | $0.038 ✓ @low | $0.14 ✓ @medium | $0.50 @high | $1.55 @xhigh |
+| claude-sonnet-5-5 | $0.076 ✓ @low | $0.28 ✓ @medium | $1.00 ✓ @high | $3.10 @xhigh |
+| gpt-6.1-sol | $0.076 ✓ @low | $0.28 ✓ @medium | $1.00 ✓ @high | $3.10 @xhigh |
 | claude-opus-5-5 | $0.15 ✓ @low | $0.56 ✓ @medium | $2.00 ✓ @high | $6.20 ✓ @xhigh |
 | claude-fable-5-1 | $0.38 ✓ @low | $1.40 ✓ @medium | $5.00 ✓ @high | $15.50 ✓ @xhigh |
 | gpt-6-astra | $0.38 ✓ @low | $1.40 ✓ @medium | $5.00 ✓ @high | $15.50 ✓ @xhigh |
@@ -96,8 +96,8 @@ Template: `templates/debugging.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
-| moderate | E3 medium | claude-sonnet-5-5 @ medium ($0.14) | gpt-6.1-terra @ medium ($0.07) | claude-sonnet-5-5 @ medium ($0.14) | gpt-6.1-sol @ medium ($0.14) |
+| simple | E2 low | claude-haiku-5-5 @ low ($0.001) | - | claude-haiku-5-5 @ low ($0.001) | gpt-6-luna @ high ($0.001) |
+| moderate | E3 medium | claude-sonnet-5-5 @ medium ($0.14) | gpt-6.1-terra @ medium ($0.070) | claude-sonnet-5-5 @ medium ($0.14) | gpt-6.1-sol @ medium ($0.14) |
 | complex | E4 high | claude-opus-5-5 @ high ($1.50) | claude-sonnet-5-5 @ high ($0.75) | claude-opus-5-5 @ high ($1.50) | gpt-6-astra @ high ($3.75) |
 | frontier | E5 xhigh | claude-opus-5-5 @ xhigh ($5.60) | - | claude-opus-5-5 @ xhigh ($5.60) | gpt-6-astra @ xhigh ($14.00) |
 
@@ -106,12 +106,12 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a @medium | n/a @high | n/a @high |
-| claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @medium | $0.04 @high | $0.14 @xhigh |
-| gpt-6-luna | <$0.01 ✓ @high | <$0.01 ✓ @high | $0.04 @high | $0.14 @xhigh |
-| gpt-6.1-terra | $0.01 ✓ @low | $0.07 ✓ @medium | $0.38 @high | $1.40 @xhigh |
-| claude-sonnet-5-5 | $0.03 ✓ @low | $0.14 ✓ @medium | $0.75 ✓ @high | $2.80 @xhigh |
-| gpt-6.1-sol | $0.03 ✓ @low | $0.14 ✓ @medium | $0.75 ✓ @high | $2.80 @xhigh |
-| claude-opus-5-5 | $0.05 ✓ @low | $0.28 ✓ @medium | $1.50 ✓ @high | $5.60 ✓ @xhigh |
+| claude-haiku-5-5 | $0.001 ✓ @low | $0.007 ✓ @medium | $0.037 @high | $0.14 @xhigh |
+| gpt-6-luna | $0.001 ✓ @high | $0.007 ✓ @high | $0.037 @high | $0.14 @xhigh |
+| gpt-6.1-terra | $0.013 ✓ @low | $0.070 ✓ @medium | $0.38 @high | $1.40 @xhigh |
+| claude-sonnet-5-5 | $0.027 ✓ @low | $0.14 ✓ @medium | $0.75 ✓ @high | $2.80 @xhigh |
+| gpt-6.1-sol | $0.027 ✓ @low | $0.14 ✓ @medium | $0.75 ✓ @high | $2.80 @xhigh |
+| claude-opus-5-5 | $0.054 ✓ @low | $0.28 ✓ @medium | $1.50 ✓ @high | $5.60 ✓ @xhigh |
 | claude-fable-5-1 | $0.14 ✓ @low | $0.70 ✓ @medium | $3.75 ✓ @high | $14.00 ✓ @xhigh |
 | gpt-6-astra | $0.14 ✓ @low | $0.70 ✓ @medium | $3.75 ✓ @high | $14.00 ✓ @xhigh |
 
@@ -121,7 +121,7 @@ Template: `templates/code-review.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ high (<$0.01) |
+| simple | E2 low | claude-haiku-5-5 @ low ($0.002) | - | claude-haiku-5-5 @ low ($0.002) | gpt-6-luna @ high ($0.002) |
 | moderate | E3 medium | claude-sonnet-5-5 @ medium ($0.20) | gpt-6.1-terra @ medium ($0.10) | claude-sonnet-5-5 @ medium ($0.20) | gpt-6.1-sol @ medium ($0.20) |
 | complex | E4 high | claude-opus-5-5 @ high ($1.80) | claude-sonnet-5-5 @ high ($0.90) | claude-opus-5-5 @ high ($1.80) | gpt-6-astra @ high ($4.50) |
 | frontier | E5 xhigh | claude-opus-5-5 @ xhigh ($6.80) | - | claude-opus-5-5 @ xhigh ($6.80) | gpt-6-astra @ xhigh ($17.00) |
@@ -130,12 +130,12 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
-| claude-haiku-5-5 | <$0.01 ✓ @low | $0.01 ✓ @medium | $0.04 @high | $0.17 @xhigh |
-| gpt-6-luna | <$0.01 ✓ @high | $0.01 ✓ @high | $0.04 @high | $0.17 @xhigh |
-| gpt-6.1-terra | $0.02 ✓ @low | $0.10 ✓ @medium | $0.45 @high | $1.70 @xhigh |
-| claude-sonnet-5-5 | $0.04 ✓ @low | $0.20 ✓ @medium | $0.90 ✓ @high | $3.40 @xhigh |
-| gpt-6.1-sol | $0.04 ✓ @low | $0.20 ✓ @medium | $0.90 ✓ @high | $3.40 @xhigh |
-| claude-opus-5-5 | $0.08 ✓ @low | $0.40 ✓ @medium | $1.80 ✓ @high | $6.80 ✓ @xhigh |
+| claude-haiku-5-5 | $0.002 ✓ @low | $0.010 ✓ @medium | $0.045 @high | $0.17 @xhigh |
+| gpt-6-luna | $0.002 ✓ @high | $0.010 ✓ @high | $0.045 @high | $0.17 @xhigh |
+| gpt-6.1-terra | $0.020 ✓ @low | $0.10 ✓ @medium | $0.45 @high | $1.70 @xhigh |
+| claude-sonnet-5-5 | $0.040 ✓ @low | $0.20 ✓ @medium | $0.90 ✓ @high | $3.40 @xhigh |
+| gpt-6.1-sol | $0.040 ✓ @low | $0.20 ✓ @medium | $0.90 ✓ @high | $3.40 @xhigh |
+| claude-opus-5-5 | $0.080 ✓ @low | $0.40 ✓ @medium | $1.80 ✓ @high | $6.80 ✓ @xhigh |
 | claude-fable-5-1 | $0.20 ✓ @low | $1.00 ✓ @medium | $4.50 ✓ @high | $17.00 ✓ @xhigh |
 | gpt-6-astra | $0.20 ✓ @low | $1.00 ✓ @medium | $4.50 ✓ @high | $17.00 ✓ @xhigh |
 
@@ -145,7 +145,7 @@ Template: `templates/agentic.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E3 medium | gpt-6.1-terra @ medium ($0.17) | claude-haiku-5-5 @ medium ($0.02) | claude-sonnet-5-5 @ medium ($0.35) | gpt-6.1-terra @ medium ($0.17) |
+| simple | E3 medium | gpt-6.1-terra @ medium ($0.17) | claude-haiku-5-5 @ medium ($0.018) | claude-sonnet-5-5 @ medium ($0.35) | gpt-6.1-terra @ medium ($0.17) |
 | moderate | E3 medium | gpt-6.1-sol @ medium ($1.50) | gpt-6.1-terra @ medium ($0.75) | claude-sonnet-5-5 @ medium ($1.50) | gpt-6.1-sol @ medium ($1.50) |
 | complex | E4 high | claude-opus-5-5 @ high ($11.00) | gpt-6.1-sol @ high ($5.50) | claude-opus-5-5 @ high ($11.00) | gpt-6-astra @ high ($27.50) |
 | frontier | E5 xhigh | claude-opus-5-5 @ xhigh ($42.00) | - | claude-opus-5-5 @ xhigh ($42.00) | gpt-6-astra @ xhigh ($105.00) |
@@ -154,8 +154,8 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
-| claude-haiku-5-5 | $0.02 ✓ @medium | $0.07 @medium | $0.28 @high | $1.05 @xhigh |
-| gpt-6-luna | $0.02 ✓ @medium | $0.07 @medium | $0.28 @high | $1.05 @xhigh |
+| claude-haiku-5-5 | $0.018 ✓ @medium | $0.075 @medium | $0.28 @high | $1.05 @xhigh |
+| gpt-6-luna | $0.018 ✓ @medium | $0.075 @medium | $0.28 @high | $1.05 @xhigh |
 | gpt-6.1-terra | $0.17 ✓ @medium | $0.75 ✓ @medium | $2.75 @high | $10.50 @xhigh |
 | claude-sonnet-5-5 | $0.35 ✓ @medium | $1.50 ✓ @medium | $5.50 ✓ @high | $21.00 @xhigh |
 | gpt-6.1-sol | $0.35 ✓ @medium | $1.50 ✓ @medium | $5.50 ✓ @high | $21.00 @xhigh |
@@ -169,8 +169,8 @@ Template: `templates/agentic.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6.1-terra @ low ($0.07) |
-| moderate | E3 medium | gpt-6.1-terra @ medium ($0.25) | claude-haiku-5-5 @ medium ($0.03) | claude-sonnet-5-5 @ medium ($0.50) | gpt-6.1-terra @ medium ($0.25) |
+| simple | E2 low | claude-haiku-5-5 @ low ($0.006) | - | claude-haiku-5-5 @ low ($0.006) | gpt-6.1-terra @ low ($0.065) |
+| moderate | E3 medium | gpt-6.1-terra @ medium ($0.25) | claude-haiku-5-5 @ medium ($0.025) | claude-sonnet-5-5 @ medium ($0.50) | gpt-6.1-terra @ medium ($0.25) |
 | complex | E4 high | claude-opus-5-5 @ high ($3.80) | gpt-6.1-terra @ high ($0.95) | claude-opus-5-5 @ high ($3.80) | gpt-6-astra @ high ($9.50) |
 | frontier | E4 high | claude-opus-5-5 @ high ($9.20) | - | claude-opus-5-5 @ high ($9.20) | gpt-6-astra @ high ($23.00) |
 
@@ -178,8 +178,8 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
-| claude-haiku-5-5 | <$0.01 ✓ @low | $0.03 ✓ @medium | $0.10 @high | $0.23 @high |
-| gpt-6.1-terra | $0.07 ✓ @low | $0.25 ✓ @medium | $0.95 ✓ @high | $2.30 @high |
+| claude-haiku-5-5 | $0.006 ✓ @low | $0.025 ✓ @medium | $0.095 @high | $0.23 @high |
+| gpt-6.1-terra | $0.065 ✓ @low | $0.25 ✓ @medium | $0.95 ✓ @high | $2.30 @high |
 | claude-sonnet-5-5 | $0.13 ✓ @low | $0.50 ✓ @medium | $1.90 ✓ @high | $4.60 @high |
 | gpt-6.1-sol | $0.13 ✓ @low | $0.50 ✓ @medium | $1.90 ✓ @high | $4.60 @high |
 | claude-opus-5-5 | $0.26 ✓ @low | $1.00 ✓ @medium | $3.80 ✓ @high | $9.20 ✓ @high |
@@ -192,9 +192,9 @@ Template: `templates/writing.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E1 minimal | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
-| moderate | E2 low | gpt-6.1-terra @ low ($0.02) | claude-haiku-5-5 @ low (<$0.01) | claude-sonnet-5-5 @ low ($0.04) | gpt-6.1-terra @ low ($0.02) |
-| complex | E3 medium | claude-opus-5-5 @ medium ($0.28) | gpt-6.1-terra @ medium ($0.07) | claude-opus-5-5 @ medium ($0.28) | gpt-6-astra @ medium ($0.70) |
+| simple | E1 minimal | claude-haiku-5-5 @ low (<$0.001) | - | claude-haiku-5-5 @ low (<$0.001) | gpt-6-luna @ low (<$0.001) |
+| moderate | E2 low | gpt-6.1-terra @ low ($0.020) | claude-haiku-5-5 @ low ($0.002) | claude-sonnet-5-5 @ low ($0.040) | gpt-6.1-terra @ low ($0.020) |
+| complex | E3 medium | claude-opus-5-5 @ medium ($0.28) | gpt-6.1-terra @ medium ($0.070) | claude-opus-5-5 @ medium ($0.28) | gpt-6-astra @ medium ($0.70) |
 | frontier | E4 high | claude-opus-5-5 @ high ($0.80) | - | claude-opus-5-5 @ high ($0.80) | gpt-6-astra @ high ($2.00) |
 
 Cost per run across current models (✓ = clears the quality bar at that complexity; @ = effort):
@@ -202,14 +202,14 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a ✓ @low | n/a @medium | n/a @high |
-| claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @low | <$0.01 @medium | $0.02 @high |
-| gpt-6-luna | <$0.01 ✓ @low | <$0.01 ✓ @low | <$0.01 @medium | $0.02 @high |
-| gpt-6.1-terra | <$0.01 ✓ @low | $0.02 ✓ @low | $0.07 ✓ @medium | $0.20 @high |
-| claude-sonnet-5-5 | $0.01 ✓ @low | $0.04 ✓ @low | $0.14 ✓ @medium | $0.40 @high |
-| gpt-6.1-sol | $0.01 ✓ @low | $0.04 ✓ @low | $0.14 ✓ @medium | $0.40 @high |
-| claude-opus-5-5 | $0.03 ✓ @low | $0.08 ✓ @low | $0.28 ✓ @medium | $0.80 ✓ @high |
-| claude-fable-5-1 | $0.07 ✓ @low | $0.20 ✓ @low | $0.70 ✓ @medium | $2.00 ✓ @high |
-| gpt-6-astra | $0.07 ✓ @low | $0.20 ✓ @low | $0.70 ✓ @medium | $2.00 ✓ @high |
+| claude-haiku-5-5 | <$0.001 ✓ @low | $0.002 ✓ @low | $0.007 @medium | $0.020 @high |
+| gpt-6-luna | <$0.001 ✓ @low | $0.002 ✓ @low | $0.007 @medium | $0.020 @high |
+| gpt-6.1-terra | $0.006 ✓ @low | $0.020 ✓ @low | $0.070 ✓ @medium | $0.20 @high |
+| claude-sonnet-5-5 | $0.013 ✓ @low | $0.040 ✓ @low | $0.14 ✓ @medium | $0.40 @high |
+| gpt-6.1-sol | $0.013 ✓ @low | $0.040 ✓ @low | $0.14 ✓ @medium | $0.40 @high |
+| claude-opus-5-5 | $0.026 ✓ @low | $0.080 ✓ @low | $0.28 ✓ @medium | $0.80 ✓ @high |
+| claude-fable-5-1 | $0.065 ✓ @low | $0.20 ✓ @low | $0.70 ✓ @medium | $2.00 ✓ @high |
+| gpt-6-astra | $0.065 ✓ @low | $0.20 ✓ @low | $0.70 ✓ @medium | $2.00 ✓ @high |
 
 ## text.transform: Summarize, rewrite, translate, change tone, shorten
 
@@ -217,9 +217,9 @@ Template: `templates/writing.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E0 none | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ none (<$0.01) |
-| moderate | E1 minimal | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
-| complex | E2 low | claude-sonnet-5-5 @ low ($0.36) | claude-haiku-5-5 @ low ($0.02) | claude-sonnet-5-5 @ low ($0.36) | gpt-6.1-sol @ low ($0.36) |
+| simple | E0 none | claude-haiku-5-5 @ low (<$0.001) | - | claude-haiku-5-5 @ low (<$0.001) | gpt-6-luna @ none (<$0.001) |
+| moderate | E1 minimal | claude-haiku-5-5 @ low ($0.003) | - | claude-haiku-5-5 @ low ($0.003) | gpt-6-luna @ low ($0.003) |
+| complex | E2 low | claude-sonnet-5-5 @ low ($0.36) | claude-haiku-5-5 @ low ($0.018) | claude-sonnet-5-5 @ low ($0.36) | gpt-6.1-sol @ low ($0.36) |
 | frontier | E3 medium | claude-sonnet-5-5 @ medium ($1.35) | - | claude-sonnet-5-5 @ medium ($1.35) | gpt-6.1-sol @ medium ($1.35) |
 
 Cost per run across current models (✓ = clears the quality bar at that complexity; @ = effort):
@@ -227,14 +227,14 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a ✓ @low | n/a @low | n/a @medium |
-| claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @low | $0.02 ✓ @low | $0.07 @medium |
-| gpt-6-luna | <$0.01 ✓ @none | <$0.01 ✓ @low | $0.02 ✓ @low | $0.07 @medium |
-| gpt-6.1-terra | <$0.01 ✓ @none | $0.03 ✓ @low | $0.18 ✓ @low | $0.68 @medium |
-| claude-sonnet-5-5 | $0.01 ✓ @low | $0.06 ✓ @low | $0.36 ✓ @low | $1.35 ✓ @medium |
-| gpt-6.1-sol | $0.01 ✓ @low | $0.06 ✓ @low | $0.36 ✓ @low | $1.35 ✓ @medium |
-| claude-opus-5-5 | $0.02 ✓ @low | $0.12 ✓ @low | $0.72 ✓ @low | $2.70 ✓ @medium |
-| claude-fable-5-1 | $0.06 ✓ @low | $0.30 ✓ @low | $1.80 ✓ @low | $6.75 ✓ @medium |
-| gpt-6-astra | $0.06 ✓ @low | $0.30 ✓ @low | $1.80 ✓ @low | $6.75 ✓ @medium |
+| claude-haiku-5-5 | <$0.001 ✓ @low | $0.003 ✓ @low | $0.018 ✓ @low | $0.068 @medium |
+| gpt-6-luna | <$0.001 ✓ @none | $0.003 ✓ @low | $0.018 ✓ @low | $0.068 @medium |
+| gpt-6.1-terra | $0.006 ✓ @none | $0.030 ✓ @low | $0.18 ✓ @low | $0.68 @medium |
+| claude-sonnet-5-5 | $0.012 ✓ @low | $0.060 ✓ @low | $0.36 ✓ @low | $1.35 ✓ @medium |
+| gpt-6.1-sol | $0.012 ✓ @low | $0.060 ✓ @low | $0.36 ✓ @low | $1.35 ✓ @medium |
+| claude-opus-5-5 | $0.024 ✓ @low | $0.12 ✓ @low | $0.72 ✓ @low | $2.70 ✓ @medium |
+| claude-fable-5-1 | $0.060 ✓ @low | $0.30 ✓ @low | $1.80 ✓ @low | $6.75 ✓ @medium |
+| gpt-6-astra | $0.060 ✓ @low | $0.30 ✓ @low | $1.80 ✓ @low | $6.75 ✓ @medium |
 
 ## text.chat: Quick question, explanation, brainstorming, advice
 
@@ -242,9 +242,9 @@ Template: `templates/chat.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E0 none | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ none (<$0.01) |
-| moderate | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
-| complex | E3 medium | claude-sonnet-5-5 @ medium ($0.05) | gpt-6.1-terra @ medium ($0.03) | claude-sonnet-5-5 @ medium ($0.05) | gpt-6.1-sol @ medium ($0.05) |
+| simple | E0 none | claude-haiku-5-5 @ low (<$0.001) | - | claude-haiku-5-5 @ low (<$0.001) | gpt-6-luna @ none (<$0.001) |
+| moderate | E2 low | claude-haiku-5-5 @ low (<$0.001) | - | claude-haiku-5-5 @ low (<$0.001) | gpt-6-luna @ low (<$0.001) |
+| complex | E3 medium | claude-sonnet-5-5 @ medium ($0.050) | gpt-6.1-terra @ medium ($0.025) | claude-sonnet-5-5 @ medium ($0.050) | gpt-6.1-sol @ medium ($0.050) |
 | frontier | E4 high | claude-sonnet-5-5 @ high ($0.12) | - | claude-sonnet-5-5 @ high ($0.12) | gpt-6.1-sol @ high ($0.12) |
 
 Cost per run across current models (✓ = clears the quality bar at that complexity; @ = effort):
@@ -252,14 +252,14 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a ✓ @low | n/a @medium | n/a @high |
-| claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @low | <$0.01 ✓ @medium | <$0.01 @high |
-| gpt-6-luna | <$0.01 ✓ @none | <$0.01 ✓ @low | <$0.01 ✓ @medium | <$0.01 @high |
-| gpt-6.1-terra | <$0.01 ✓ @none | <$0.01 ✓ @low | $0.03 ✓ @medium | $0.06 @high |
-| claude-sonnet-5-5 | <$0.01 ✓ @low | $0.02 ✓ @low | $0.05 ✓ @medium | $0.12 ✓ @high |
-| gpt-6.1-sol | <$0.01 ✓ @low | $0.02 ✓ @low | $0.05 ✓ @medium | $0.12 ✓ @high |
-| claude-opus-5-5 | $0.01 ✓ @low | $0.03 ✓ @low | $0.10 ✓ @medium | $0.24 ✓ @high |
-| claude-fable-5-1 | $0.03 ✓ @low | $0.08 ✓ @low | $0.25 ✓ @medium | $0.60 ✓ @high |
-| gpt-6-astra | $0.03 ✓ @low | $0.08 ✓ @low | $0.25 ✓ @medium | $0.60 ✓ @high |
+| claude-haiku-5-5 | <$0.001 ✓ @low | <$0.001 ✓ @low | $0.003 ✓ @medium | $0.006 @high |
+| gpt-6-luna | <$0.001 ✓ @none | <$0.001 ✓ @low | $0.003 ✓ @medium | $0.006 @high |
+| gpt-6.1-terra | $0.003 ✓ @none | $0.008 ✓ @low | $0.025 ✓ @medium | $0.060 @high |
+| claude-sonnet-5-5 | $0.005 ✓ @low | $0.016 ✓ @low | $0.050 ✓ @medium | $0.12 ✓ @high |
+| gpt-6.1-sol | $0.005 ✓ @low | $0.016 ✓ @low | $0.050 ✓ @medium | $0.12 ✓ @high |
+| claude-opus-5-5 | $0.010 ✓ @low | $0.032 ✓ @low | $0.10 ✓ @medium | $0.24 ✓ @high |
+| claude-fable-5-1 | $0.025 ✓ @low | $0.080 ✓ @low | $0.25 ✓ @medium | $0.60 ✓ @high |
+| gpt-6-astra | $0.025 ✓ @low | $0.080 ✓ @low | $0.25 ✓ @medium | $0.60 ✓ @high |
 
 ## data.extract: Extraction / classification / tagging, often at high volume, structured output
 
@@ -267,24 +267,24 @@ Template: `templates/extraction.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E0 none | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ none (<$0.01) |
-| moderate | E1 minimal | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
-| complex | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
-| frontier | E3 medium | claude-haiku-5-5 @ medium (<$0.01) | - | claude-haiku-5-5 @ medium (<$0.01) | gpt-6-luna @ medium (<$0.01) |
+| simple | E0 none | claude-haiku-5-5 @ low (<$0.001) | - | claude-haiku-5-5 @ low (<$0.001) | gpt-6-luna @ none (<$0.001) |
+| moderate | E1 minimal | claude-haiku-5-5 @ low (<$0.001) | - | claude-haiku-5-5 @ low (<$0.001) | gpt-6-luna @ low (<$0.001) |
+| complex | E2 low | claude-haiku-5-5 @ low ($0.002) | - | claude-haiku-5-5 @ low ($0.002) | gpt-6-luna @ low ($0.002) |
+| frontier | E3 medium | claude-haiku-5-5 @ medium ($0.008) | - | claude-haiku-5-5 @ medium ($0.008) | gpt-6-luna @ medium ($0.008) |
 
 Cost per run across current models (✓ = clears the quality bar at that complexity; @ = effort):
 
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a ✓ @low | n/a @low | n/a @medium |
-| claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @low | <$0.01 ✓ @low | <$0.01 ✓ @medium |
-| gpt-6-luna | <$0.01 ✓ @none | <$0.01 ✓ @low | <$0.01 ✓ @low | <$0.01 ✓ @medium |
-| gpt-6.1-terra | <$0.01 ✓ @none | <$0.01 ✓ @low | $0.02 ✓ @low | $0.08 @medium |
-| claude-sonnet-5-5 | <$0.01 ✓ @low | $0.01 ✓ @low | $0.04 ✓ @low | $0.16 ✓ @medium |
-| gpt-6.1-sol | <$0.01 ✓ @low | $0.01 ✓ @low | $0.04 ✓ @low | $0.16 ✓ @medium |
-| claude-opus-5-5 | <$0.01 ✓ @low | $0.02 ✓ @low | $0.09 ✓ @low | $0.32 ✓ @medium |
-| claude-fable-5-1 | $0.02 ✓ @low | $0.05 ✓ @low | $0.23 ✓ @low | $0.80 ✓ @medium |
-| gpt-6-astra | $0.02 ✓ @low | $0.05 ✓ @low | $0.23 ✓ @low | $0.80 ✓ @medium |
+| claude-haiku-5-5 | <$0.001 ✓ @low | <$0.001 ✓ @low | $0.002 ✓ @low | $0.008 ✓ @medium |
+| gpt-6-luna | <$0.001 ✓ @none | <$0.001 ✓ @low | $0.002 ✓ @low | $0.008 ✓ @medium |
+| gpt-6.1-terra | $0.002 ✓ @none | $0.005 ✓ @low | $0.022 ✓ @low | $0.080 @medium |
+| claude-sonnet-5-5 | $0.003 ✓ @low | $0.010 ✓ @low | $0.045 ✓ @low | $0.16 ✓ @medium |
+| gpt-6.1-sol | $0.003 ✓ @low | $0.010 ✓ @low | $0.045 ✓ @low | $0.16 ✓ @medium |
+| claude-opus-5-5 | $0.006 ✓ @low | $0.020 ✓ @low | $0.090 ✓ @low | $0.32 ✓ @medium |
+| claude-fable-5-1 | $0.015 ✓ @low | $0.050 ✓ @low | $0.23 ✓ @low | $0.80 ✓ @medium |
+| gpt-6-astra | $0.015 ✓ @low | $0.050 ✓ @low | $0.23 ✓ @low | $0.80 ✓ @medium |
 
 ## data.analysis: Data analysis: spreadsheets, CSV, metrics, charts, SQL
 
@@ -292,8 +292,8 @@ Template: `templates/data-analysis.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
-| moderate | E3 medium | claude-sonnet-5-5 @ medium ($0.11) | gpt-6.1-terra @ medium ($0.06) | claude-sonnet-5-5 @ medium ($0.11) | gpt-6.1-sol @ medium ($0.11) |
+| simple | E2 low | claude-haiku-5-5 @ low ($0.001) | - | claude-haiku-5-5 @ low ($0.001) | gpt-6-luna @ low ($0.001) |
+| moderate | E3 medium | claude-sonnet-5-5 @ medium ($0.11) | gpt-6.1-terra @ medium ($0.055) | claude-sonnet-5-5 @ medium ($0.11) | gpt-6.1-sol @ medium ($0.11) |
 | complex | E4 high | claude-opus-5-5 @ high ($0.90) | claude-sonnet-5-5 @ high ($0.45) | claude-opus-5-5 @ high ($0.90) | gpt-6-astra @ high ($2.25) |
 | frontier | E4 high | claude-opus-5-5 @ high ($2.80) | - | claude-opus-5-5 @ high ($2.80) | gpt-6-astra @ high ($7.00) |
 
@@ -301,12 +301,12 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
-| claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @medium | $0.02 @high | $0.07 @high |
-| gpt-6-luna | <$0.01 ✓ @low | <$0.01 ✓ @medium | $0.02 @high | $0.07 @high |
-| gpt-6.1-terra | $0.01 ✓ @low | $0.06 ✓ @medium | $0.23 @high | $0.70 @high |
-| claude-sonnet-5-5 | $0.03 ✓ @low | $0.11 ✓ @medium | $0.45 ✓ @high | $1.40 @high |
-| gpt-6.1-sol | $0.03 ✓ @low | $0.11 ✓ @medium | $0.45 ✓ @high | $1.40 @high |
-| claude-opus-5-5 | $0.05 ✓ @low | $0.22 ✓ @medium | $0.90 ✓ @high | $2.80 ✓ @high |
+| claude-haiku-5-5 | $0.001 ✓ @low | $0.005 ✓ @medium | $0.022 @high | $0.070 @high |
+| gpt-6-luna | $0.001 ✓ @low | $0.005 ✓ @medium | $0.022 @high | $0.070 @high |
+| gpt-6.1-terra | $0.013 ✓ @low | $0.055 ✓ @medium | $0.23 @high | $0.70 @high |
+| claude-sonnet-5-5 | $0.025 ✓ @low | $0.11 ✓ @medium | $0.45 ✓ @high | $1.40 @high |
+| gpt-6.1-sol | $0.025 ✓ @low | $0.11 ✓ @medium | $0.45 ✓ @high | $1.40 @high |
+| claude-opus-5-5 | $0.050 ✓ @low | $0.22 ✓ @medium | $0.90 ✓ @high | $2.80 ✓ @high |
 | claude-fable-5-1 | $0.12 ✓ @low | $0.55 ✓ @medium | $2.25 ✓ @high | $7.00 ✓ @high |
 | gpt-6-astra | $0.12 ✓ @low | $0.55 ✓ @medium | $2.25 ✓ @high | $7.00 ✓ @high |
 
@@ -316,7 +316,7 @@ Template: `templates/research.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
+| simple | E2 low | claude-haiku-5-5 @ low ($0.003) | - | claude-haiku-5-5 @ low ($0.003) | gpt-6-luna @ low ($0.003) |
 | moderate | E3 medium | gpt-6.1-sol @ medium ($0.26) | gpt-6.1-terra @ medium ($0.13) | claude-sonnet-5-5 @ medium ($0.26) | gpt-6.1-sol @ medium ($0.26) |
 | complex | E3 medium | claude-opus-5-5 @ medium ($1.90) | gpt-6.1-sol @ medium ($0.95) | claude-opus-5-5 @ medium ($1.90) | gpt-6-astra @ medium ($4.75) |
 | frontier | E4 high | claude-opus-5-5 @ high ($6.80) | - | claude-opus-5-5 @ high ($6.80) | gpt-6-astra @ high ($17.00) |
@@ -325,11 +325,11 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
-| claude-haiku-5-5 | <$0.01 ✓ @low | $0.01 ✓ @medium | $0.05 @medium | $0.17 @high |
-| gpt-6-luna | <$0.01 ✓ @low | $0.01 ✓ @medium | $0.05 @medium | $0.17 @high |
-| gpt-6.1-terra | $0.03 ✓ @low | $0.13 ✓ @medium | $0.47 @medium | $1.70 @high |
-| claude-sonnet-5-5 | $0.06 ✓ @low | $0.26 ✓ @medium | $0.95 ✓ @medium | $3.40 @high |
-| gpt-6.1-sol | $0.06 ✓ @low | $0.26 ✓ @medium | $0.95 ✓ @medium | $3.40 @high |
+| claude-haiku-5-5 | $0.003 ✓ @low | $0.013 ✓ @medium | $0.048 @medium | $0.17 @high |
+| gpt-6-luna | $0.003 ✓ @low | $0.013 ✓ @medium | $0.048 @medium | $0.17 @high |
+| gpt-6.1-terra | $0.030 ✓ @low | $0.13 ✓ @medium | $0.47 @medium | $1.70 @high |
+| claude-sonnet-5-5 | $0.060 ✓ @low | $0.26 ✓ @medium | $0.95 ✓ @medium | $3.40 @high |
+| gpt-6.1-sol | $0.060 ✓ @low | $0.26 ✓ @medium | $0.95 ✓ @medium | $3.40 @high |
 | claude-opus-5-5 | $0.12 ✓ @low | $0.52 ✓ @medium | $1.90 ✓ @medium | $6.80 ✓ @high |
 | claude-fable-5-1 | $0.30 ✓ @low | $1.30 ✓ @medium | $4.75 ✓ @medium | $17.00 ✓ @high |
 | gpt-6-astra | $0.30 ✓ @low | $1.30 ✓ @medium | $4.75 ✓ @medium | $17.00 ✓ @high |
@@ -340,8 +340,8 @@ Template: `templates/reasoning.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E2 low | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
-| moderate | E3 medium | gpt-6.1-sol @ medium ($0.09) | gpt-6.1-terra @ medium ($0.04) | claude-sonnet-5-5 @ medium ($0.09) | gpt-6.1-sol @ medium ($0.09) |
+| simple | E2 low | claude-haiku-5-5 @ low ($0.001) | - | claude-haiku-5-5 @ low ($0.001) | gpt-6-luna @ low ($0.001) |
+| moderate | E3 medium | gpt-6.1-sol @ medium ($0.086) | gpt-6.1-terra @ medium ($0.043) | claude-sonnet-5-5 @ medium ($0.086) | gpt-6.1-sol @ medium ($0.086) |
 | complex | E4 high | claude-fable-5-1 @ high ($1.33) | gpt-6.1-sol @ high ($0.27) | claude-fable-5-1 @ high ($1.33) | gpt-6-astra @ high ($1.33) |
 | frontier | E6 max | claude-fable-5-1 @ max ($4.20) | - | claude-fable-5-1 @ max ($4.20) | gpt-6-astra @ max ($4.20) |
 
@@ -350,12 +350,12 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a ✓ @medium | n/a @high | n/a @high |
-| claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @medium | $0.01 @high | $0.04 @max |
-| gpt-6-luna | <$0.01 ✓ @low | <$0.01 ✓ @medium | $0.01 @high | $0.04 @max |
-| gpt-6.1-terra | $0.01 ✓ @low | $0.04 ✓ @medium | $0.13 @high | $0.42 @max |
-| claude-sonnet-5-5 | $0.02 ✓ @low | $0.09 ✓ @medium | $0.27 ✓ @high | $0.84 @max |
-| gpt-6.1-sol | $0.02 ✓ @low | $0.09 ✓ @medium | $0.27 ✓ @high | $0.84 @max |
-| claude-opus-5-5 | $0.04 ✓ @low | $0.17 ✓ @medium | $0.53 ✓ @high | $1.68 @max |
+| claude-haiku-5-5 | $0.001 ✓ @low | $0.004 ✓ @medium | $0.013 @high | $0.042 @max |
+| gpt-6-luna | $0.001 ✓ @low | $0.004 ✓ @medium | $0.013 @high | $0.042 @max |
+| gpt-6.1-terra | $0.011 ✓ @low | $0.043 ✓ @medium | $0.13 @high | $0.42 @max |
+| claude-sonnet-5-5 | $0.022 ✓ @low | $0.086 ✓ @medium | $0.27 ✓ @high | $0.84 @max |
+| gpt-6.1-sol | $0.022 ✓ @low | $0.086 ✓ @medium | $0.27 ✓ @high | $0.84 @max |
+| claude-opus-5-5 | $0.044 ✓ @low | $0.17 ✓ @medium | $0.53 ✓ @high | $1.68 @max |
 | claude-fable-5-1 | $0.11 ✓ @low | $0.43 ✓ @medium | $1.33 ✓ @high | $4.20 ✓ @max |
 | gpt-6-astra | $0.11 ✓ @low | $0.43 ✓ @medium | $1.33 ✓ @high | $4.20 ✓ @max |
 
@@ -365,8 +365,8 @@ Template: `templates/vision.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E1 minimal | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
-| moderate | E2 low | gpt-6.1-terra @ low ($0.02) | claude-haiku-5-5 @ low (<$0.01) | claude-sonnet-5-5 @ low ($0.04) | gpt-6.1-terra @ low ($0.02) |
+| simple | E1 minimal | claude-haiku-5-5 @ low (<$0.001) | - | claude-haiku-5-5 @ low (<$0.001) | gpt-6-luna @ low (<$0.001) |
+| moderate | E2 low | gpt-6.1-terra @ low ($0.022) | claude-haiku-5-5 @ low ($0.002) | claude-sonnet-5-5 @ low ($0.045) | gpt-6.1-terra @ low ($0.022) |
 | complex | E4 high | claude-opus-5-5 @ high ($0.42) | gpt-6.1-terra @ high ($0.10) | claude-opus-5-5 @ high ($0.42) | gpt-6-astra @ high ($1.05) |
 | frontier | E5 xhigh | claude-opus-5-5 @ xhigh ($1.50) | - | claude-opus-5-5 @ xhigh ($1.50) | gpt-6-astra @ xhigh ($3.75) |
 
@@ -374,14 +374,14 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
-| claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @low | $0.01 @high | $0.04 @xhigh |
-| gpt-6-luna | <$0.01 ✓ @low | <$0.01 ✓ @low | $0.01 @high | $0.04 @xhigh |
-| gpt-6.1-terra | <$0.01 ✓ @low | $0.02 ✓ @low | $0.10 ✓ @high | $0.38 @xhigh |
-| claude-sonnet-5-5 | $0.01 ✓ @low | $0.04 ✓ @low | $0.21 ✓ @high | $0.75 @xhigh |
-| gpt-6.1-sol | $0.01 ✓ @low | $0.04 ✓ @low | $0.21 ✓ @high | $0.75 @xhigh |
-| claude-opus-5-5 | $0.02 ✓ @low | $0.09 ✓ @low | $0.42 ✓ @high | $1.50 ✓ @xhigh |
-| claude-fable-5-1 | $0.06 ✓ @low | $0.23 ✓ @low | $1.05 ✓ @high | $3.75 ✓ @xhigh |
-| gpt-6-astra | $0.06 ✓ @low | $0.23 ✓ @low | $1.05 ✓ @high | $3.75 ✓ @xhigh |
+| claude-haiku-5-5 | <$0.001 ✓ @low | $0.002 ✓ @low | $0.011 @high | $0.037 @xhigh |
+| gpt-6-luna | <$0.001 ✓ @low | $0.002 ✓ @low | $0.011 @high | $0.037 @xhigh |
+| gpt-6.1-terra | $0.005 ✓ @low | $0.022 ✓ @low | $0.10 ✓ @high | $0.38 @xhigh |
+| claude-sonnet-5-5 | $0.011 ✓ @low | $0.045 ✓ @low | $0.21 ✓ @high | $0.75 @xhigh |
+| gpt-6.1-sol | $0.011 ✓ @low | $0.045 ✓ @low | $0.21 ✓ @high | $0.75 @xhigh |
+| claude-opus-5-5 | $0.022 ✓ @low | $0.090 ✓ @low | $0.42 ✓ @high | $1.50 ✓ @xhigh |
+| claude-fable-5-1 | $0.055 ✓ @low | $0.23 ✓ @low | $1.05 ✓ @high | $3.75 ✓ @xhigh |
+| gpt-6-astra | $0.055 ✓ @low | $0.23 ✓ @low | $1.05 ✓ @high | $3.75 ✓ @xhigh |
 
 ## image.generate: Generate an image: illustration, product shot, poster, logo, social graphic
 
@@ -427,9 +427,9 @@ Template: `templates/video.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E1 minimal | claude-haiku-5-5 @ low (<$0.01) | - | claude-haiku-5-5 @ low (<$0.01) | gpt-6-luna @ low (<$0.01) |
-| moderate | E2 low | gpt-6.1-terra @ low ($0.02) | claude-haiku-5-5 @ low (<$0.01) | claude-sonnet-5-5 @ low ($0.04) | gpt-6.1-terra @ low ($0.02) |
-| complex | E3 medium | claude-opus-5-5 @ medium ($0.28) | gpt-6.1-terra @ medium ($0.07) | claude-opus-5-5 @ medium ($0.28) | gpt-6-astra @ medium ($0.70) |
+| simple | E1 minimal | claude-haiku-5-5 @ low (<$0.001) | - | claude-haiku-5-5 @ low (<$0.001) | gpt-6-luna @ low (<$0.001) |
+| moderate | E2 low | gpt-6.1-terra @ low ($0.020) | claude-haiku-5-5 @ low ($0.002) | claude-sonnet-5-5 @ low ($0.040) | gpt-6.1-terra @ low ($0.020) |
+| complex | E3 medium | claude-opus-5-5 @ medium ($0.28) | gpt-6.1-terra @ medium ($0.070) | claude-opus-5-5 @ medium ($0.28) | gpt-6-astra @ medium ($0.70) |
 | frontier | E4 high | claude-opus-5-5 @ high ($0.80) | - | claude-opus-5-5 @ high ($0.80) | gpt-6-astra @ high ($2.00) |
 
 Cost per run across current models (✓ = clears the quality bar at that complexity; @ = effort):
@@ -437,14 +437,14 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
 | gpt-oss-120b | n/a ✓ @low | n/a ✓ @low | n/a @medium | n/a @high |
-| claude-haiku-5-5 | <$0.01 ✓ @low | <$0.01 ✓ @low | <$0.01 @medium | $0.02 @high |
-| gpt-6-luna | <$0.01 ✓ @low | <$0.01 ✓ @low | <$0.01 @medium | $0.02 @high |
-| gpt-6.1-terra | <$0.01 ✓ @low | $0.02 ✓ @low | $0.07 ✓ @medium | $0.20 @high |
-| claude-sonnet-5-5 | $0.01 ✓ @low | $0.04 ✓ @low | $0.14 ✓ @medium | $0.40 @high |
-| gpt-6.1-sol | $0.01 ✓ @low | $0.04 ✓ @low | $0.14 ✓ @medium | $0.40 @high |
-| claude-opus-5-5 | $0.03 ✓ @low | $0.08 ✓ @low | $0.28 ✓ @medium | $0.80 ✓ @high |
-| claude-fable-5-1 | $0.07 ✓ @low | $0.20 ✓ @low | $0.70 ✓ @medium | $2.00 ✓ @high |
-| gpt-6-astra | $0.07 ✓ @low | $0.20 ✓ @low | $0.70 ✓ @medium | $2.00 ✓ @high |
+| claude-haiku-5-5 | <$0.001 ✓ @low | $0.002 ✓ @low | $0.007 @medium | $0.020 @high |
+| gpt-6-luna | <$0.001 ✓ @low | $0.002 ✓ @low | $0.007 @medium | $0.020 @high |
+| gpt-6.1-terra | $0.006 ✓ @low | $0.020 ✓ @low | $0.070 ✓ @medium | $0.20 @high |
+| claude-sonnet-5-5 | $0.013 ✓ @low | $0.040 ✓ @low | $0.14 ✓ @medium | $0.40 @high |
+| gpt-6.1-sol | $0.013 ✓ @low | $0.040 ✓ @low | $0.14 ✓ @medium | $0.40 @high |
+| claude-opus-5-5 | $0.026 ✓ @low | $0.080 ✓ @low | $0.28 ✓ @medium | $0.80 ✓ @high |
+| claude-fable-5-1 | $0.065 ✓ @low | $0.20 ✓ @low | $0.70 ✓ @medium | $2.00 ✓ @high |
+| gpt-6-astra | $0.065 ✓ @low | $0.20 ✓ @low | $0.70 ✓ @medium | $2.00 ✓ @high |
 
 ## audio.transcribe: Transcribe audio: meetings, calls, podcasts, captions
 
@@ -452,18 +452,18 @@ Template: `templates/audio.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E0 none | gpt-transcribe @ default (<$0.01) | - | - | gpt-transcribe @ default (<$0.01) |
-| moderate | E0 none | gpt-transcribe @ default (<$0.01) | - | - | gpt-transcribe @ default (<$0.01) |
-| complex | E1 minimal | gpt-transcribe @ default (<$0.01) | - | - | gpt-transcribe @ default (<$0.01) |
-| frontier | E2 low | gpt-transcribe @ default (<$0.01) | - | - | gpt-transcribe @ default (<$0.01) |
+| simple | E0 none | gpt-transcribe @ default ($0.004) | - | - | gpt-transcribe @ default ($0.004) |
+| moderate | E0 none | gpt-transcribe @ default ($0.004) | - | - | gpt-transcribe @ default ($0.004) |
+| complex | E1 minimal | gpt-transcribe @ default ($0.004) | - | - | gpt-transcribe @ default ($0.004) |
+| frontier | E2 low | gpt-transcribe @ default ($0.004) | - | - | gpt-transcribe @ default ($0.004) |
 
 Cost per run across current models (✓ = clears the quality bar at that complexity; @ = effort):
 
 | Model | simple | moderate | complex | frontier |
 |---|---|---|---|---|
-| gpt-transcribe | <$0.01 ✓ @default | <$0.01 ✓ @default | <$0.01 ✓ @default | <$0.01 ✓ @default |
-| gpt-live-transcribe | $0.02 ✓ @default | $0.02 ✓ @default | $0.02 ✓ @default | $0.02 @default |
-| gpt-realtime-whisper | $0.02 ✓ @default | $0.02 ✓ @default | $0.02 ✓ @default | $0.02 @default |
+| gpt-transcribe | $0.004 ✓ @default | $0.004 ✓ @default | $0.004 ✓ @default | $0.004 ✓ @default |
+| gpt-live-transcribe | $0.017 ✓ @default | $0.017 ✓ @default | $0.017 ✓ @default | $0.017 @default |
+| gpt-realtime-whisper | $0.017 ✓ @default | $0.017 ✓ @default | $0.017 ✓ @default | $0.017 @default |
 
 ## audio.speak: Text-to-speech: voiceover, narration, spoken audio
 
@@ -489,10 +489,10 @@ Template: `templates/audio.md`
 
 | Complexity | Effort | Recommended | Cheaper | Best Anthropic | Best OpenAI |
 |---|---|---|---|---|---|
-| simple | E1 minimal | gpt-live-1 @ default ($0.05) | - | - | gpt-live-1 @ default ($0.05) |
-| moderate | E2 low | gpt-live-1 @ default ($0.05) | - | - | gpt-live-1 @ default ($0.05) |
-| complex | E3 medium | gpt-live-1 @ default ($0.05) | - | - | gpt-live-1 @ default ($0.05) |
-| frontier | E4 high | gpt-live-1 @ default ($0.05) | - | - | gpt-live-1 @ default ($0.05) |
+| simple | E1 minimal | gpt-live-1 @ default ($0.050) | - | - | gpt-live-1 @ default ($0.050) |
+| moderate | E2 low | gpt-live-1 @ default ($0.050) | - | - | gpt-live-1 @ default ($0.050) |
+| complex | E3 medium | gpt-live-1 @ default ($0.050) | - | - | gpt-live-1 @ default ($0.050) |
+| frontier | E4 high | gpt-live-1 @ default ($0.050) | - | - | gpt-live-1 @ default ($0.050) |
 
 Cost per run across current models (✓ = clears the quality bar at that complexity; @ = effort):
 
@@ -500,6 +500,6 @@ Cost per run across current models (✓ = clears the quality bar at that complex
 |---|---|---|---|---|
 | gpt-realtime-2.1 | n/a ✓ @default | n/a ✓ @default | n/a ✓ @default | n/a @default |
 | gpt-realtime-2.1-mini | n/a ✓ @default | n/a ✓ @default | n/a ✓ @default | n/a @default |
-| gpt-realtime-translate | $0.03 @default | $0.03 @default | $0.03 @default | $0.03 @default |
-| gpt-live-1 | $0.05 ✓ @default | $0.05 ✓ @default | $0.05 ✓ @default | $0.05 ✓ @default |
+| gpt-realtime-translate | $0.034 @default | $0.034 @default | $0.034 @default | $0.034 @default |
+| gpt-live-1 | $0.050 ✓ @default | $0.050 ✓ @default | $0.050 ✓ @default | $0.050 ✓ @default |
 

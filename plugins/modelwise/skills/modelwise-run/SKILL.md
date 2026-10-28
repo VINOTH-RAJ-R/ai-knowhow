@@ -3,7 +3,7 @@ name: modelwise-run
 description: Route a prompt to the right Claude model and run it there, in Claude Code. It understands the prompt (department, industry, task, complexity), picks the Claude model and effort from the modelwise registry, rewrites the prompt in that model's preferred structure, shows the route, cost and prompt for the user's OK, then hands the task to a helper agent on that model and returns the result. Use when the user invokes /modelwise-run or /modelwise:modelwise-run with a prompt, or says "route and run this", "run this on the right model", "auto-route this", "use the cheapest model that can do this". For advice only (which model, a prompt to paste elsewhere, image or video prompts), use modelwise.
 license: MIT
 metadata:
-  version: "0.3.3"
+  version: "0.3.4"
 ---
 
 # Modelwise run: understand, route, structure, confirm, execute
