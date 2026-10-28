@@ -39,12 +39,43 @@ In **Claude Code**:
 /plugin install retrace@ai-knowhow
 /reload-plugins
 ```
-Then try:
+
+### Your first five minutes
+
+**1. Find out what you're overpaying for**
 ```
-/modelwise landing page for my bakery
-/modelwise-run write a regex for Indian PAN numbers
+/modelwise sort 5,000 support tickets into billing, bug and feature request, as cheap as possible
+```
+It picks the cheapest model that still clears the quality bar and prices the whole job: about **$0.78 on Claude Haiku against $31 on Opus**, and half that again with Batch.
+
+**2. Ask like a manager, get a creative director's answer**
+```
+/modelwise launch post for our new app on Instagram and LinkedIn
+```
+You get a brief, the clichés to avoid, three really different concepts with a judging table, and a ready image prompt for each, plus the caption.
+
+**3. Let it do the work** (Claude Code)
+```
+/modelwise-run write a Python function that validates email addresses, with tests
+```
+A card shows the model, the cost and the exact prompt. Say **Run it**, and Claude Haiku does the job for less than a cent.
+
+**4. Learn what just happened**
+```
 /retrace
 ```
+It replays the session as a short lesson: the moves, the turning points, the prompts that worked, and the cheaper path next time. Saved for your team.
+
+### Or pick your role
+| You are | Try |
+|---|---|
+| Founder | `/modelwise three pricing tiers for our B2B SaaS, and how to test them` |
+| Marketer | `/modelwise festive sale email for our skincare brand` |
+| Engineer | `/modelwise why does my Docker build take 12 minutes` |
+| HR | `/modelwise job description and interview scorecard for a senior data analyst` |
+| Finance | `/modelwise monthly cash-flow forecast from our bank exports` |
+| Support lead | `/modelwise reply templates for our top 10 refund questions` |
+
 As plugin skills they're also available as `/modelwise:modelwise`, `/modelwise:modelwise-run` and `/retrace:retrace`. You can also just ask *"which model should I use for…"*.
 
 > No GitHub SSH key? Set `CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` first. Third-party marketplaces don't auto-update by default: turn it on in `/plugin` → Marketplaces, or run `claude plugin update modelwise@ai-knowhow`.
@@ -103,14 +134,6 @@ Same fit from OpenAI: gpt-6.1-sol @ medium, $0.28
 
 ## Your prompt  (paste into Claude Code or claude.ai · you get the page code)
 <context>…</context> <task>…</task> <design>… Do not use: pill buttons, gradient blobs …</design> …
-```
-
-More to try:
-```
-/modelwise extract invoice number, date and total from 20,000 PDFs, cheapest way
-/modelwise why is my Next.js build failing after upgrading to v16
-/modelwise Instagram carousel for our new savings account. Brand is navy and white.
-/modelwise plan next year's hiring for a 40-person startup
 ```
 
 Run the router on its own:
