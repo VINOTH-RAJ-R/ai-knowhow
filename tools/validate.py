@@ -3,7 +3,7 @@
 
 Standard library only. Exit code 1 on errors; warnings don't fail the build.
   python3 tools/validate.py            # validate
-  python3 tools/validate.py --fix      # also regenerate ROUTING_TABLE.md
+  python3 tools/validate.py --fix      # also regenerate ROUTING_TABLE.md and MODELS.md
 """
 import argparse
 import datetime
@@ -176,26 +176,28 @@ def check_manifests():
                 err(".agents marketplace: source %s missing" % p["source"]["path"])
 
 
-def check_routing_table(fix):
-    out = subprocess.run([sys.executable, os.path.join(MW, "scripts", "route.py"), "--table"],
-                         capture_output=True, text=True)
-    if out.returncode != 0:
-        err("route.py --table failed: %s" % out.stderr.strip())
-        return
-    path = os.path.join(MW, "ROUTING_TABLE.md")
-    current = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
-    if current != out.stdout:
-        if fix:
-            with open(path, "w", encoding="utf-8") as f:
-                f.write(out.stdout)
-            print("Regenerated %s" % rel(path))
-        else:
-            err("ROUTING_TABLE.md is out of date: run python3 tools/validate.py --fix")
+def check_generated(fix):
+    """ROUTING_TABLE.md and MODELS.md are generated from the registry; they must match it."""
+    for flag, name in (("--table", "ROUTING_TABLE.md"), ("--models", "MODELS.md")):
+        out = subprocess.run([sys.executable, os.path.join(MW, "scripts", "route.py"), flag],
+                             capture_output=True, text=True)
+        if out.returncode != 0:
+            err("route.py %s failed: %s" % (flag, out.stderr.strip()))
+            continue
+        path = os.path.join(MW, name)
+        current = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
+        if current != out.stdout:
+            if fix:
+                with open(path, "w", encoding="utf-8") as f:
+                    f.write(out.stdout)
+                print("Regenerated %s" % rel(path))
+            else:
+                err("%s is out of date: run python3 tools/validate.py --fix" % name)
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--fix", action="store_true", help="Regenerate ROUTING_TABLE.md")
+    ap.add_argument("--fix", action="store_true", help="Regenerate ROUTING_TABLE.md and MODELS.md")
     args = ap.parse_args()
     schema = load(os.path.join(REG, "model.schema.json"))
     tasks = load(os.path.join(REG, "tasks.json"))
@@ -205,7 +207,7 @@ def main():
         check_cards(schema, task_ids)
     check_skills()
     check_manifests()
-    check_routing_table(args.fix)
+    check_generated(args.fix)
     for w in warnings:
         print("WARN  " + w)
     for e in errors:

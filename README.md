@@ -180,9 +180,11 @@ Benchmark from 2026-10-18 (before the creative and run features). Full report: [
 
 ## What's in the registry
 Phase 1 covers Anthropic and OpenAI:
-- **61 model cards**: every current, previous, legacy and deprecated Claude and OpenAI model still served, plus image and audio models. Each has capabilities, context, price, effort levels, fit ratings per task, prompting tips, sources and a `verified` date.
+- **61 model cards** (17 Anthropic, 44 OpenAI): every current, previous, legacy and deprecated Claude and OpenAI model still served, plus image and audio models. Each has capabilities, context, price, effort levels, fit ratings per task, prompting tips, sources and a `verified` date. **[See the full list, with prices and sources →](plugins/modelwise/skills/modelwise/MODELS.md)**
 - **21 task types**, **15 prompt templates**, and **12 guides** (classification, prompt styles, practice checklists for engineering, design, content and business functions, industry lens, creative taste, regulated markets).
 - **One effort scale** (E0 to E6) mapped to Claude's `output_config.effort`, OpenAI's `reasoning.effort`, and the in-app settings of Claude Code, claude.ai, ChatGPT and Codex.
+
+**Where the facts come from:** only the vendors' official documentation, [platform.claude.com](https://platform.claude.com/docs/en/about-claude/models/overview) for Claude and [developers.openai.com](https://developers.openai.com/api/docs/models) for OpenAI (model pages, pricing, effort and changelog pages). Every card links its exact pages. Blog posts, leaks and social media are never used.
 
 Fit ratings are curated judgments from vendor docs, not benchmark scores. Prices are list prices for comparison, not quotes. **Current gap:** no video generator is ranked (OpenAI shut down the Sora 2 API on 2026-09-24); modelwise still writes the full video prompt and names common tools. Phase 2 adds Google and other vendors.
 

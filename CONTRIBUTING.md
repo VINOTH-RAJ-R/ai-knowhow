@@ -13,7 +13,7 @@ Thanks for helping keep this accurate. The registry is only as useful as it is c
    - When a model is superseded, set the old card's `status` to `previous` (or `legacy`), and set `retires` once a date is announced.
 4. Run:
    ```bash
-   python3 tools/validate.py --fix   # validates everything and regenerates ROUTING_TABLE.md
+   python3 tools/validate.py --fix   # validates everything and regenerates ROUTING_TABLE.md and MODELS.md
    python3 tools/test_route.py
    ```
 5. Open a PR. In the description, say what changed and link the sources.
