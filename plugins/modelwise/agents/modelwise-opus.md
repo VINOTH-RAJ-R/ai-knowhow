@@ -1,6 +1,6 @@
 ---
 name: modelwise-opus
-description: Runner for the modelwise-run skill. Executes one structured prompt on Claude Opus. Use only when modelwise-run hands off a task it routed to Opus.
+description: Claude Opus runner for /modelwise-run, for hard work: tricky debugging, complex builds and deep reasoning. Used only when modelwise-run routes a task here and you confirm.
 model: opus
 ---
 

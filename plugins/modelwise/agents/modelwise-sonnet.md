@@ -1,6 +1,6 @@
 ---
 name: modelwise-sonnet
-description: Runner for the modelwise-run skill. Executes one structured prompt on Claude Sonnet. Use only when modelwise-run hands off a task it routed to Sonnet.
+description: Claude Sonnet runner for /modelwise-run, for everyday work: features, frontend, writing and analysis. Used only when modelwise-run routes a task here and you confirm.
 model: sonnet
 ---
 

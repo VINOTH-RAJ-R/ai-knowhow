@@ -1,17 +1,18 @@
 {
   "name": "modelwise",
-  "version": "0.3.4",
-  "description": "For any department and industry: decide like the top practitioner, then pick the right Anthropic/OpenAI model and effort for each phase and write model-specific prompts, with cost comparisons. In Claude Code, /modelwise-run also runs the task on the routed Claude model after you confirm.",
+  "version": "0.3.5",
+  "description": "Stop using one AI model for everything. Type any prompt, from any team, and modelwise decides what an expert would deliver, picks the right Claude or OpenAI model and effort for each step, shows what it costs across models, and writes a prompt tuned for that model. In Claude Code, /modelwise-run then runs it on the right Claude model after you confirm.",
   "author": {
     "name": "vinothraj",
     "url": "https://github.com/VINOTH-RAJ-R"
   },
   "license": "MIT",
   "keywords": [
-    "prompting",
     "model-selection",
-    "effort",
-    "cost",
+    "prompt-engineering",
+    "cost-optimization",
+    "reasoning-effort",
+    "ai-routing",
     "anthropic",
     "openai"
   ],

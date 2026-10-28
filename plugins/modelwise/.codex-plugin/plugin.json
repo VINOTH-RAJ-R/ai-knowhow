@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "modelwise",
-  "version": "0.3.4",
-  "description": "For any department and industry: decide like the top practitioner, then pick the right Anthropic/OpenAI model and effort for each phase and write model-specific prompts, with cost comparisons.",
+  "version": "0.3.5",
+  "description": "Stop using one AI model for everything. Type any prompt, from any team, and modelwise decides what an expert would deliver, picks the right Claude or OpenAI model and effort for each step, shows what it costs across models, and writes a prompt tuned for that model.",
   "author": {
     "name": "vinothraj",
     "url": "https://github.com/VINOTH-RAJ-R"
@@ -11,10 +11,11 @@
   "repository": "https://github.com/VINOTH-RAJ-R/ai-knowhow",
   "license": "MIT",
   "keywords": [
-    "prompting",
     "model-selection",
-    "effort",
-    "cost",
+    "prompt-engineering",
+    "cost-optimization",
+    "reasoning-effort",
+    "ai-routing",
     "anthropic",
     "openai"
   ],
@@ -23,7 +24,7 @@
       "interface": {
         "displayName": "Modelwise",
         "shortDescription": "Right model, effort & prompt",
-        "longDescription": "Type a basic prompt and get the best Anthropic or OpenAI model for it, the reasoning effort to use, a cost comparison across all current models, a structured prompt in the format that model prefers, and token-saving tips. All model facts come from a curated registry built from official vendor docs; runs fully locally.",
+        "longDescription": "Stop using one AI model for everything. Type any prompt, from any team, and modelwise decides what an expert would deliver, picks the right Claude or OpenAI model and effort for each step, shows what it costs across models, and writes a prompt tuned for that model. Model facts come from a registry built only from the vendors' official docs, checked daily. No API keys, nothing collected; it runs locally.",
         "developerName": "vinothraj",
         "category": "Productivity",
         "capabilities": [

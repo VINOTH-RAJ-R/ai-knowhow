@@ -1,7 +1,7 @@
 {
   "name": "retrace",
-  "version": "0.3.4",
-  "description": "Retrace a finished AI-assisted task and teach it on the spot: the moves the AI made and why, the turning points, the prompts, the mistakes and the cheaper path, saved as a reusable lesson skill.",
+  "version": "0.3.5",
+  "description": "Turn any finished AI task into a lesson your team can learn from. Type /retrace and it replays how the work was done: the moves the AI made and why, the turning points, the prompts that worked, the mistakes, and the cheaper path next time. Saved as a lesson anyone can replay later, as a walkthrough or a hands-on rebuild.",
   "author": {
     "name": "vinothraj",
     "url": "https://github.com/VINOTH-RAJ-R"
@@ -11,8 +11,9 @@
     "learning",
     "lessons",
     "onboarding",
+    "knowledge-sharing",
     "documentation",
-    "teaching"
+    "ai-workflow"
   ],
   "homepage": "https://github.com/VINOTH-RAJ-R/ai-knowhow",
   "repository": "https://github.com/VINOTH-RAJ-R/ai-knowhow",

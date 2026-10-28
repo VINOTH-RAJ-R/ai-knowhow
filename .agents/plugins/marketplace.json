@@ -1,6 +1,6 @@
 {
   "name": "ai-knowhow",
-  "description": "Know what to build it with. Know how it was built. modelwise picks the right Anthropic or OpenAI model, effort and prompt for any task, with costs, and can run it on the right Claude model; retrace turns finished AI work into lessons that teach people.",
+  "description": "Know what to build it with. Know how it was built. Two open-source plugins: modelwise picks the right model, effort and prompt for any task, with costs, and can run it for you in Claude Code; retrace turns finished AI work into lessons your team can replay.",
   "owner": {
     "name": "vinothraj",
     "url": "https://github.com/VINOTH-RAJ-R"
@@ -17,7 +17,7 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity",
-      "description": "Expert decision, right model and effort, and structured prompts for any department."
+      "description": "Right model, effort and prompt for any task, from any team, with costs."
     },
     {
       "name": "retrace",
@@ -30,7 +30,7 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity",
-      "description": "Retrace finished AI work and teach how it was done, step by step."
+      "description": "Turn finished AI work into lessons your team can replay."
     }
   ]
 }

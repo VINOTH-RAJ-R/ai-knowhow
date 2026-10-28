@@ -1,6 +1,6 @@
 ---
 name: modelwise-fable
-description: Runner for the modelwise-run skill. Executes one structured prompt on Claude Fable. Use only when modelwise-run hands off a task it routed to Fable.
+description: Claude Fable runner for /modelwise-run, for the hardest, frontier-level problems where correctness matters most. Used only when modelwise-run routes a task here and you confirm.
 model: fable
 ---
 

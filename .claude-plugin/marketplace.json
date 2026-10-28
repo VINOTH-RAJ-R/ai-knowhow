@@ -1,6 +1,6 @@
 {
   "name": "ai-knowhow",
-  "description": "Know what to build it with. Know how it was built. modelwise picks the right Anthropic or OpenAI model, effort and prompt for any task, with costs, and can run it on the right Claude model; retrace turns finished AI work into lessons that teach people.",
+  "description": "Know what to build it with. Know how it was built. Two open-source plugins: modelwise picks the right model, effort and prompt for any task, with costs, and can run it for you in Claude Code; retrace turns finished AI work into lessons your team can replay.",
   "owner": {
     "name": "vinothraj",
     "url": "https://github.com/VINOTH-RAJ-R"
@@ -9,12 +9,12 @@
     {
       "name": "modelwise",
       "source": "./plugins/modelwise",
-      "description": "For any department and industry: decide like the top practitioner, then pick the right Anthropic/OpenAI model and effort for each phase and write model-specific prompts, with cost comparisons.",
+      "description": "Stop using one AI model for everything. Type any prompt, from any team, and modelwise decides what an expert would deliver, picks the right Claude or OpenAI model and effort for each step, shows what it costs across models, and writes a prompt tuned for that model. In Claude Code, /modelwise-run then runs it on the right Claude model after you confirm.",
       "category": "productivity",
       "tags": [
-        "prompting",
         "model-selection",
-        "cost",
+        "prompt-engineering",
+        "cost-optimization",
         "anthropic",
         "openai"
       ]
@@ -22,13 +22,13 @@
     {
       "name": "retrace",
       "source": "./plugins/retrace",
-      "description": "Retrace a finished AI-assisted task and teach it on the spot: the moves the AI made and why, the turning points, the prompts, the mistakes and the cheaper path, saved as a reusable lesson skill.",
+      "description": "Turn any finished AI task into a lesson your team can learn from. Type /retrace and it replays how the work was done: the moves the AI made and why, the turning points, the prompts that worked, the mistakes, and the cheaper path next time. Saved as a lesson anyone can replay later, as a walkthrough or a hands-on rebuild.",
       "category": "learning",
       "tags": [
         "learning",
-        "documentation",
         "onboarding",
-        "knowledge-sharing"
+        "knowledge-sharing",
+        "documentation"
       ]
     }
   ]
