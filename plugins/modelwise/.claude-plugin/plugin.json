@@ -1,6 +1,6 @@
 {
   "name": "modelwise",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Stop using one AI model for everything. Type any prompt, from any team, and modelwise decides what an expert would deliver, picks the right Claude or OpenAI model and effort for each step, shows what it costs across models, and writes a prompt tuned for that model. In Claude Code, /modelwise-run then runs it on the right Claude model after you confirm.",
   "author": {
     "name": "vinothraj",

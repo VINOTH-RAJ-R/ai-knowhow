@@ -11,6 +11,9 @@ prerequisites: <what a learner should already know>
 
 # <Title>
 
+## 0. In plain words
+Two or three sentences a beginner understands: what was wanted, what was made, and the one idea that made it work. Then the journey as stages: `<Stage> → <Stage> → … → <Result>`.
+
 ## 1. The goal
 What was asked for, in the user's words, and what success looked like. Include the constraints (budget, stack, deadline, style).
 
@@ -21,14 +24,21 @@ What was delivered — a short description, the key files/outputs (link to `arti
 The overall strategy, so the learner has a map before the details.
 
 ## 4. Step by step (the moves)
-Numbered phases in the order they actually happened. For each:
-- **Looked at:** the files, searches, data or outputs the AI used at this point
-- **What** was done
-- **Why** at this point (mark `(inferred)` where the record doesn't say)
-- **Tool/model** used (and effort, if known)
-- **Output** of the step
+Numbered steps in the order they actually happened, matching the journey in section 0. For each:
+- **Saw:** the files, searches, data, outputs or instructions the AI was working from
+- **Thought:** the decision and why at this point (mark `(inferred)` where the record doesn't say)
+- **Did:** the action, with the tool or model (and effort, if known)
+- **Got:** the result
+- **In everyday terms** (optional): a one-line analogy for a technical step
 
 Mark a phase where the plan changed with **↺ Turning point:** what triggered it (a failed test, a user correction, a new fact) and what changed.
+
+## 4b. Words to know
+| Term | Meaning in one line |
+|---|---|
+| | |
+
+Every technical word used in this lesson, explained once.
 
 ## 5. Decision log
 | # | Decision | Options considered | Why this one | Evidence |

@@ -3,7 +3,7 @@ name: retrace
 description: Retrace a finished AI-assisted task (an app, feature, fix, image, video, document, analysis or plan) and teach it. It reads the whole session, saves a lesson skill, and then walks the person through how the AI approached the work, from the visible record. It covers the goal, what the AI looked at, each decision and why, the turning points, the prompts that worked, the mistakes and fixes, and the cheaper path next time. It also teaches any saved lesson on request. Use when the user says "retrace", "teach me what you just did", "how did you arrive at this", "make a lesson from this", "capture this for the team", "teach me how we built X", "quiz me on", "onboard me to", or asks which lessons exist.
 license: MIT
 metadata:
-  version: "0.3.5"
+  version: "0.3.6"
 ---
 
 # Retrace: capture the work, then teach it
@@ -12,18 +12,26 @@ One skill, two modes:
 - **Retrace and teach** (default, at the end of a task): gather the whole session, save a lesson, then teach it straight away.
 - **Teach a saved lesson** (the user names a lesson, or says "teach me how we built X", "which lessons do we have?"): skip to Step 6.
 
+**What the user always gets.** A saved lesson, then a lesson taught in the chat in plain, beginner-friendly words (Step 5). Retrace is a teacher looking back at finished work. It is never a status report, a project check, a list of "things to verify before you post", or a continuation of the original task. If the last thing you did was check or fix the work, stop doing that: the user is now asking to *learn* how it was done.
+
 File paths in this skill (`templates/…`, `guides/…`) are relative to this skill's folder: `${CLAUDE_SKILL_DIR}`. Where that variable isn't substituted (claude.ai, Codex), read them next to this SKILL.md.
 
 **Truthfulness.** Everything comes from the visible record: messages, files read and written, searches, commands and their outputs, prompts, errors and fixes. Teach the *approach*, meaning the observable decisions and the reasons the record gives for them. Never present a reconstruction as the model's private internal reasoning. Where you infer why something was done and the record doesn't say, mark it `(inferred)`.
 
+**Which model.** Retracing a long session is reading and judgment over a lot of context. Sonnet at medium effort handles it well. Haiku is fine for short sessions; on a long one it can lose the thread. If you notice that, say so in one line and suggest rerunning on Sonnet, rather than giving a thin lesson.
+
 ## Step 1: Gather the whole context
-Read the entire session from the first message, not just the last few turns. Collect:
+**The conversation is the record.** Read the entire session from the first message, not just the last few turns. If earlier turns were summarized, use the summary as the record and say so in the lesson.
+
+**Look, don't redo.** You may run at most five quick, read-only commands to confirm what exists: `git log --oneline -20`, `git diff --stat`, or a listing of the output folder. Never run builds, renders, type checks, tests, installs or verifications, and never inspect media files: the work is finished, and retrace explains it, it doesn't re-check it.
+
+Collect:
 1. **The request:** the user's original words, clarifications, constraints, and what "done" meant.
 2. **What the AI looked at:** files read, searches and pages fetched, data inspected, research or sub-agents used, and what each one contributed.
 3. **The moves:** each meaningful action in order: what was done, the tool or model used (and effort, if known), and what came back.
 4. **Turning points:** where the plan changed: a failed attempt, a user correction, a test result, a new fact. Note what triggered each change.
 5. **The artifacts:**
-   - **Code:** `git log --oneline -20` and `git diff --stat` where git is available; otherwise, the files created or edited.
+   - **Code:** `git log --oneline -20` and `git diff --stat` where git is available; otherwise, the files created or edited, as named in the conversation.
    - **Images and video:** every generation prompt, the settings, and what was kept or rejected and why.
    - **Documents and analysis:** the outline, sources and revisions.
 6. **Cost signals:** models used, retries, long pasted context, time.
@@ -60,28 +68,40 @@ Where to write it (first match wins):
 
 Build the ZIP with the folder at the top (`zip -r lesson-<slug>.zip lesson-<slug>/`). It can be uploaded in claude.ai under Customize → Skills → + → Upload a skill.
 
-## Step 5: Teach it now (the short retrace)
-Right after saving, teach the lesson in the chat. Keep it short: one screen, then stop. Use this shape:
+## Step 5: Teach it now (the easy retrace)
+Right after saving, teach the lesson in the chat. Write for a smart beginner who wasn't there: short sentences, everyday words, one idea per line. Explain every technical word the first time, or leave it out. Use one analogy where it makes a step click. Keep it to about one and a half screens, in this shape:
 
 ```
-## How this was done: <outcome, one line>
+## How the AI did it: <outcome, in plain words>
 **Saved:** <path> · reopen any time with /lesson-<slug> or "teach me <slug>"
 
-**The map:** <goal> → <approach in one sentence> → <result>
+**In one breath:** <2 sentences: what you wanted, and what the AI made. No jargon.>
 
-**The moves**
-1. <what the AI looked at> → <what it decided> → because <reason> → <result>
-2. …
-(3–6 moves. Mark a turning point with ↺ and say what triggered it: "↺ the test failed on X, so …")
+**The journey:** <Stage> → <Stage> → <Stage> → <Stage> → <Result>   (4–7 short stages)
 
-**What steered it:** the 1–2 user prompts or corrections that changed the outcome most, quoted, and why they worked.
+**How the AI thought, step by step**
+**1. <stage name>**
+- Saw: <what it looked at or was given>
+- Thought: <the decision, and why: from the record, or marked (inferred)>
+- Did: <the action, with the tool or model in plain words>
+- Got: <the result>
+**2. …**   (4–7 steps, matching the journey)
+↺ **Turning point:** <what went wrong or changed, what triggered it, and what the AI did next>   (one line per turning point, placed after the step where it happened)
 
-**Next time, cheaper:** <one line: model and effort per phase, or what to skip>
+**Why it worked:** 2–3 principles anyone can reuse, each one line ("Fix the timing before the visuals, because the voice sets the pace").
 
-**Check yourself:** <one question about a key decision>. Answer it, or say "walkthrough" for the step-by-step, "rebuild" to try it yourself, or "done".
+**Words you met:** 3–6 terms from this work, each with a one-line meaning ("Render: turning the code into a video file").
+
+**What steered it:** the 1–2 things you said that changed the result most, quoted, and why they mattered.
+
+**Next time, cheaper:** <one line: which model and effort for each stage, or what to skip>
+
+**Check yourself:** <one question about a key decision>. Answer it, or say "walkthrough" to go step by step, "rebuild" to try it yourself, or "done".
 ```
 
 Then wait for the learner. Their reply is handled by Step 6's modes.
+
+**Before you send, check:** the answer starts with "## How the AI did it", the lesson file exists, every step has Saw / Thought / Did / Got, every technical word is explained, and nothing in it tells the user to check, fix or post the original work.
 
 ## Step 6: Teach a saved lesson (and follow-ups)
 **Find the lesson** (when the user names one, or asks what exists):
@@ -95,12 +115,13 @@ If no lesson was named, list the ones found as `slug — title (domain, difficul
 
 **Teach.** Read `lesson.md` completely and use the teaching protocol in that lesson's own `SKILL.md`. If there is none, use these modes:
 - **Short retrace:** the Step 5 shape.
-- **Walkthrough:** phase by phase. For each: what the AI looked at, what it decided and why, the real prompt or snippet. Then a check question, and wait. Pull in the matching decision-log row when a choice was made.
+- **Walkthrough:** one step per message. For each: what the AI saw, what it thought and why, what it did (with the real prompt or snippet, kept short), and what it got. Add an analogy if the step is technical. Then one check question, and wait. Pull in the matching decision-log row when a choice was made.
 - **Rebuild:** give the *Try it yourself* exercise, review the learner's attempt against the lesson, and give hints before answers.
 
 Always cover *Mistakes and fixes* and the *Efficiency review* by the end. Finish with the check questions and one line on applying the pattern to the learner's own work.
 
 ## Rules
+- **Teach, don't report.** The output is a lesson for a person, never a project status update or a checklist for the original task.
 - **Evidence over storytelling.** Don't invent alternatives that were never considered. Label expert suggestions as "Other options an expert might consider".
 - **Recorded versus inferred.** Keep the two visibly apart. Never claim to replay the model's private reasoning.
 - **Short turns.** Wait for the learner between phases. Compress for advanced learners; slow down and add an analogy for a lost one.

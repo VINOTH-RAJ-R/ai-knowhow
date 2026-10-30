@@ -192,6 +192,8 @@ Benchmark from 2026-10-18 (before the creative and run features). Full report: [
 | **Claude** (Claude Code, claude.ai, Cowork) | Claude Haiku 5.5 @ low effort | Claude Sonnet 5.5 |
 | **OpenAI** (ChatGPT, Codex) | GPT-6 Luna @ low effort | GPT-6.1 Sol |
 
+**retrace on a long session** needs more reading and judgment: use Claude Sonnet 5.5 (or GPT-6.1 Sol) at medium. Haiku and Luna are fine for short sessions.
+
 ## What's in the registry
 Phase 1 covers Anthropic and OpenAI:
 - **61 model cards** (17 Anthropic, 44 OpenAI): every current, previous, legacy and deprecated Claude and OpenAI model still served, plus image and audio models. Each has capabilities, context, price, effort levels, fit ratings per task, prompting tips, sources and a `verified` date. **[See the full list, with prices and sources →](plugins/modelwise/skills/modelwise/MODELS.md)**
