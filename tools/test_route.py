@@ -171,6 +171,17 @@ class RouterTests(unittest.TestCase):
         self.assertGreaterEqual(hit["phases_needed"], 2)
         self.assertLess(hit["stops_near_step"], 140)
 
+    def test_statusline_helper_reads_plan_windows(self):
+        sys.path.insert(0, os.path.join(ROOT, "plugins", "modelwise", "skills", "modelwise", "scripts"))
+        import statusline
+        data = {"rate_limits": {"five_hour": {"used_percentage": 41.2, "resets_at": 1795000000},
+                                "seven_day": {"used_percentage": 46}}}
+        found = statusline.windows(data)
+        self.assertEqual(found["5h"]["pct"], 41.2)
+        self.assertEqual(found["week"]["pct"], 46.0)
+        self.assertEqual(statusline.windows({}), {})
+        self.assertEqual(statusline.segment(found), "usage 5h 41% · wk 46%")
+
     def test_known_sensible_picks(self):
         # Guards against accidental regressions in fit ratings or scoring.
         self.assertIn(r("data.extract", "simple")["recommended"]["tier"], ("fast",))

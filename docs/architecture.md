@@ -74,6 +74,8 @@ lesson-<slug>/
 
 **Usage limits and checkpoints.** Where the app exposes plan usage (the desktop app's `get_usage`), modelwise-run reads the 5-hour and weekly percentages before and after each run and logs them. `scripts/limit_check.py` learns the user's own list-price dollars per 1% of each window (median over at least 3 logged runs; runs that cross a reset are skipped) and predicts whether the next run fits, where it would stop, and how many phases would fit. Long or phased runs keep `.modelwise/checkpoint-<name>.md` (template in `skills/modelwise-run/checkpoint-template.md`); a stopped run continues with a fresh helper that reads only the checkpoint and the files it needs, because resuming the old helper after its cache expires re-sends its whole history.
 
+Usage sources, in order: the desktop app's `get_usage`; in terminal Claude Code, `scripts/statusline.py`, which receives `rate_limits.five_hour` and `rate_limits.seven_day` in the status line input after each reply and saves them to `~/.claude/modelwise/usage.json` (installed with `tools/install.py statusline`, which wraps an existing status line and backs up settings); and, for big runs only, asking the user for the `/usage` figures. The status line fields are documented for Pro, Max and Ultra plans.
+
 ## Keeping the registry current
 ```
 daily GitHub Action ─► tools/watch_models.py (vendor model pages) ─► unknown IDs? ─► issue

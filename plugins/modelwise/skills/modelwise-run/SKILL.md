@@ -3,7 +3,7 @@ name: modelwise-run
 description: Route a prompt to the right Claude model and run it there, in Claude Code. It understands the prompt (department, industry, task, complexity), picks the Claude model and effort from the modelwise registry, rewrites the prompt in that model's preferred structure, shows the route, cost, usage-limit check and prompt for the user's OK, then hands the task to a helper agent on that model and returns the result. Long jobs keep a checkpoint, so a stopped run continues cheaply with /modelwise-run continue. Use when the user invokes /modelwise-run or /modelwise:modelwise-run with a prompt, or says "route and run this", "run this on the right model", "auto-route this", "use the cheapest model that can do this", "continue the stopped run". For advice only (which model, a prompt to paste elsewhere, image or video prompts), use modelwise.
 license: MIT
 metadata:
-  version: "0.3.9"
+  version: "0.3.10"
 ---
 
 # Modelwise run: understand, route, structure, confirm, execute
@@ -47,7 +47,12 @@ python3 "${CLAUDE_SKILL_DIR}/../modelwise/scripts/route.py" --task <task> --comp
 - **Map the effort:** `none` and `minimal` become `low`; `low`, `medium`, `high`, `xhigh` and `max` pass through.
 
 ## Step 2b: Check the usage limit
-If a usage tool is available (in the Claude desktop app: `get_usage` from the session-management tools), call it before showing the card. Take the percent used and reset time of the 5-hour and weekly windows, then run:
+Get the percent used and reset time of the 5-hour and weekly windows from the first source that works:
+1. **Desktop app:** the `get_usage` session-management tool, if it's available.
+2. **Claude Code in the terminal:** the usage the status line helper saved (set up once with `python3 tools/install.py statusline` from the ai-knowhow repo). Pass `--usage-file` instead of the `--pct-*` and `--resets-*` flags below; `limit_check.py --read-usage` prints the saved numbers on their own. Saved usage older than 15 minutes is ignored.
+3. **Ask, for big runs only:** if neither source works and `agent_run.warn` is true, ask once: "What does `/usage` show for your 5-hour and weekly limits? (for example 41 46), or Skip". Use the answer as `--pct-5h` and `--pct-week`. For smaller runs, don't ask.
+
+Then run:
 ```bash
 python3 "${CLAUDE_SKILL_DIR}/../modelwise/scripts/limit_check.py" --typical <typical_usd> --low <low_usd> --high <high_usd> --steps <a> <b> --pct-5h <pct> --resets-5h "<time>" --pct-week <pct> --resets-week "<time>"
 ```
@@ -55,7 +60,7 @@ It learns how much of each window a run takes from your own logged runs, so its 
 - **learning:** fewer than 3 runs logged with usage. Show the headroom only, and say so.
 - **fits** / **likely fits:** show the predicted share of the tighter window.
 - **likely hits the limit:** say where it would probably stop, and propose phases that each fit (Checkpoints and continuing), or running after the reset.
-If no usage tool is available or the plan limits don't apply (an API key), skip this step and say "Usage limit: not visible here" in the card.
+If no source gives the numbers, or the plan limits don't apply (an API key), say "Usage limit: not visible here" in the card. In the terminal, add once: "Run `python3 tools/install.py statusline` from the ai-knowhow repo to see it here." The status line fields are documented for Pro, Max and Ultra plans; on other plans they may not appear, and then the ask is the only source.
 
 ## Step 3: Structure the prompt
 Build it as `MW/SKILL.md` step 5 does: the route's `template` (a path inside MW, such as `templates/coding.md`) and `MW/guides/prompt-style-anthropic.md`. The helper sees nothing of this chat, so the prompt must stand alone:
@@ -111,7 +116,7 @@ Wait for the result. Don't do the task yourself in parallel, and never predict t
   ```bash
   python3 "${CLAUDE_SKILL_DIR}/../modelwise/scripts/log_run.py" --task <task> --complexity <complexity> --priority <priority> --model <model id> --effort <effort as passed, or default> --typical <typical_usd> --low <low_usd> --high <high_usd> --outcome <finished|failed|cancelled> --desc "<the Agent description, 3–5 words>" --version <this skill's version> [--checkpoint <path>] [--plan <plan> --pct-5h-before <n> --pct-5h-after <n> --pct-week-before <n> --pct-week-after <n>]
   ```
-  When a usage tool is available, read it again right after the run and pass the before and after percentages, so `limit_check.py` can learn how much of your limit a run takes. It writes only to `~/.claude/modelwise/runs.jsonl` on this machine, with no prompt text, and does nothing when `MODELWISE_LOG=0`. Log cancelled cards too (`--outcome cancelled`). `python3 "${CLAUDE_SKILL_DIR}/../modelwise/scripts/runs_report.py"` later compares each logged quote with the run's real token cost.
+  When a usage source is available (the desktop tool, or `limit_check.py --read-usage` in the terminal, which refreshes after each reply), read it again right after the run and pass the before and after percentages, so `limit_check.py` can learn how much of your limit a run takes. It writes only to `~/.claude/modelwise/runs.jsonl` on this machine, with no prompt text, and does nothing when `MODELWISE_LOG=0`. Log cancelled cards too (`--outcome cancelled`). `python3 "${CLAUDE_SKILL_DIR}/../modelwise/scripts/runs_report.py"` later compares each logged quote with the run's real token cost.
 - Last lines:
   - `Ran on <Model> @ <effort as actually passed, or "app default"> · quoted typical $<typical> (range $<low>–$<high>) · <Opus @ high>: typical $<y> · <cheapest that clears the bar>: typical $<z>`
   - `modelwise-run v<version>`: copy the `version:` value from this file's frontmatter, as loaded. Never write it from memory or from another file; if you can't see it, run `grep -m1 'version:' "${CLAUDE_SKILL_DIR}/SKILL.md"`.

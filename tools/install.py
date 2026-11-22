@@ -5,6 +5,7 @@ Standard library only.
 
   python3 tools/install.py claude-code            # ~/.claude/skills/  (add --project for ./.claude/skills/)
   python3 tools/install.py codex                  # ~/.agents/skills/  (add --project for ./.agents/skills/)
+  python3 tools/install.py statusline             # terminal Claude Code: usage status line for modelwise-run's limit check (--remove to undo)
   python3 tools/install.py zip                    # dist/<skill>.zip for claude.ai / ChatGPT skill upload
   python3 tools/install.py plugin-zip             # dist/<plugin>-plugin.zip for claude.ai + Cowork plugin upload
   python3 tools/install.py openai-zip             # dist/<plugin>-openai.zip for the OpenAI plugin directory (root plugin.json)
@@ -12,6 +13,7 @@ Standard library only.
   python3 tools/install.py claude-code --dry-run
 """
 import argparse
+import json
 import os
 import shutil
 import sys
@@ -61,6 +63,54 @@ def copy_agents(name, project, dry):
         if not dry:
             os.makedirs(dest_root, exist_ok=True)
             shutil.copy2(os.path.join(src, f), dest)
+
+
+def install_statusline(project, remove, dry):
+    """Point Claude Code's status line at modelwise's helper, keeping any existing status line on screen."""
+    home_mw = os.path.join(os.path.expanduser("~"), ".claude", "modelwise")
+    script = os.path.join(home_mw, "statusline.py")
+    wrap = os.path.join(home_mw, "statusline-wrap.txt")
+    settings = os.path.join(os.getcwd() if project else os.path.expanduser("~"), ".claude", "settings.json")
+    data = {}
+    if os.path.exists(settings):
+        with open(settings, encoding="utf-8") as f:
+            data = json.load(f)
+    current = (data.get("statusLine") or {}).get("command", "")
+    ours = 'python3 "%s"' % script
+    if remove:
+        if current != ours:
+            print("The status line isn't modelwise's; nothing to remove.")
+            return
+        old = open(wrap, encoding="utf-8").read().strip() if os.path.exists(wrap) else ""
+        print("%s restore the status line in %s to: %s" % ("Would" if dry else "Will", settings, old or "(none)"))
+        if dry:
+            return
+        if old:
+            data["statusLine"] = {"type": "command", "command": old}
+        else:
+            data.pop("statusLine", None)
+        if os.path.exists(wrap):
+            os.remove(wrap)
+    else:
+        print("%s copy statusline.py -> %s" % ("Would" if dry else "Will", script))
+        if current and current != ours:
+            print("%s keep your current status line (%s) and add usage after it" % ("Would" if dry else "Will", current))
+        print("%s set statusLine in %s (backup: settings.json.bak)" % ("Would" if dry else "Will", settings))
+        if dry:
+            return
+        os.makedirs(home_mw, exist_ok=True)
+        shutil.copy2(os.path.join(SKILLS["modelwise"], "scripts", "statusline.py"), script)
+        if current and current != ours:
+            with open(wrap, "w", encoding="utf-8") as f:
+                f.write(current)
+        data["statusLine"] = {"type": "command", "command": ours, "padding": 0}
+    os.makedirs(os.path.dirname(settings), exist_ok=True)
+    if os.path.exists(settings):
+        shutil.copy2(settings, settings + ".bak")
+    with open(settings, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+        f.write("\n")
+    print("Done. Start a new Claude Code session in the terminal; usage appears after the first reply.")
 
 
 def zip_plugin(name, out_dir, dry):
@@ -120,7 +170,8 @@ def zip_skill(name, out_dir, dry):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("target", choices=["claude-code", "codex", "zip", "plugin-zip", "openai-zip"])
+    ap.add_argument("target", choices=["claude-code", "codex", "zip", "plugin-zip", "openai-zip", "statusline"])
+    ap.add_argument("--remove", action="store_true", help="statusline only: restore your previous status line.")
     ap.add_argument("--project", action="store_true", help="Install into the current project instead of your home folder.")
     ap.add_argument("--skills", default="modelwise,modelwise-run,retrace", help="Comma-separated subset.")
     ap.add_argument("--dest", help="Override the destination folder.")
@@ -131,6 +182,10 @@ def main():
     for n in names:
         if n not in SKILLS:
             sys.exit("Unknown skill '%s'. Choose from: %s" % (n, ", ".join(SKILLS)))
+
+    if args.target == "statusline":
+        install_statusline(args.project, args.remove, args.dry_run)
+        return
 
     if args.target == "openai-zip":
         out = args.dest or os.path.join(ROOT, "dist")

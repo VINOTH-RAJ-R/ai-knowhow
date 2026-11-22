@@ -22,6 +22,29 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import runs_report  # noqa: E402
 
 MIN_RUNS = 3
+USAGE_PATH = os.environ.get("MODELWISE_USAGE_PATH",
+                            os.path.join(os.path.expanduser("~"), ".claude", "modelwise", "usage.json"))
+
+
+def read_usage_file(max_age_min=15, path=None):
+    """Plan usage saved by statusline.py (Claude Code in the terminal), if recent enough."""
+    import datetime
+    path = path or USAGE_PATH
+    try:
+        data = json.load(open(path, encoding="utf-8"))
+        saved = datetime.datetime.strptime(data["saved_at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc)
+    except (OSError, ValueError, KeyError):
+        return None
+    age = (datetime.datetime.now(datetime.timezone.utc) - saved).total_seconds() / 60.0
+    if age > max_age_min:
+        return {"stale": True, "age_min": round(age)}
+    out = {"stale": False, "age_min": round(age, 1)}
+    for w in ("5h", "week"):
+        if w in data:
+            resets = data[w].get("resets_at")
+            when = datetime.datetime.fromtimestamp(resets).strftime("%a %H:%M") if resets else ""
+            out[w] = {"pct": data[w]["pct"], "resets": when}
+    return out
 WINDOWS = (("5h", "5-hour limit"), ("week", "weekly limit"))
 
 
@@ -87,9 +110,26 @@ def main(argv=None):
     ap.add_argument("--resets-5h", default="")
     ap.add_argument("--resets-week", default="")
     ap.add_argument("--calibration", action="store_true", help="Only print the learned rates.")
+    ap.add_argument("--usage-file", action="store_true",
+                    help="Fill the percentages from the status line helper's saved usage (terminal Claude Code).")
+    ap.add_argument("--read-usage", action="store_true", help="Only print the saved usage as JSON (for before/after logging).")
+    ap.add_argument("--max-age", type=float, default=15, help="Minutes before saved usage counts as stale.")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args(argv)
 
+    if args.read_usage:
+        print(json.dumps(read_usage_file(args.max_age)))
+        return 0
+    if args.usage_file and args.pct_5h is None and args.pct_week is None:
+        saved = read_usage_file(args.max_age)
+        if not saved or saved.get("stale"):
+            print("Usage limit: not visible here (%s)." % ("saved usage is %s min old" % saved["age_min"] if saved
+                                                         else "no saved usage; the status line helper isn't set up or your plan doesn't report it"))
+            return 0
+        for w, attr in (("5h", "5h"), ("week", "week")):
+            if w in saved:
+                setattr(args, "pct_" + attr, saved[w]["pct"])
+                setattr(args, "resets_" + attr, saved[w]["resets"])
     cal = calibration()
     if args.calibration or args.typical is None:
         print(json.dumps(cal, indent=2))
