@@ -103,6 +103,41 @@ def estimate_cost(card, task, complexity):
     return None
 
 
+def agent_run_estimate(card, task, complexity, level, tasks):
+    """List-price range for running the task as a helper-agent loop (modelwise-run).
+
+    Each step re-reads the context from cache, and the context grows as the run goes on, so
+    cost rises faster than the step count. Calibration lives in tasks.json["agent_run"].
+    """
+    ar = tasks.get("agent_run")
+    p = card.get("pricing") or {}
+    if not ar or p.get("unit") != "usd_per_mtok" or p.get("input") is None or p.get("output") is None:
+        return None
+    pin, pout = p["input"], p["output"]
+    pcache = p.get("cached_input") if p.get("cached_input") is not None else pin * 0.1
+    turns = (task.get("agent_turns") or {}).get(complexity) or ar["turns"][complexity]
+    out_tokens = ar["output_per_turn"] * ar["effort_output_factor"].get(level, 1.0)
+
+    long_ctx = p.get("long_context")
+
+    def total(steps, base, growth):
+        avg_context = base + growth * steps
+        i, o, c = pin, pout, pcache
+        if long_ctx and avg_context > long_ctx["above_tokens"]:
+            i, o = long_ctx["input"], long_ctx["output"]
+            c = long_ctx.get("cached_input") if long_ctx.get("cached_input") is not None else i * 0.1
+        per_step = avg_context * c + ar["cache_write_per_turn"] * i * 1.25 + out_tokens * o
+        return steps * per_step / 1_000_000.0
+
+    ctx = ar["context_tokens"]
+    low = total(turns[0], ctx["base"][0], ctx["per_turn"][0])
+    high = total(turns[1], ctx["base"][1], ctx["per_turn"][1])
+    mid = lambda pair: (pair[0] + pair[1]) / 2.0
+    typical = total(round(mid(turns)), mid(ctx["base"]), mid(ctx["per_turn"]))
+    return {"low_usd": round(low, 2), "typical_usd": round(typical, 2), "high_usd": round(high, 2),
+            "steps": list(turns), "warn": high > ar.get("warn_above_usd", float("inf"))}
+
+
 def candidates(task, complexity, models, provider, statuses, tasks):
     need = set(task["requires"])
     min_fit = tasks["min_fit_by_complexity"][complexity]
@@ -164,13 +199,14 @@ def rank(entries, priority, min_fit):
     return sorted(entries, key=key)
 
 
-def cost_comparison(task, complexity, models, provider, scale, round_up, min_fit, recommended_id):
+def cost_comparison(task, complexity, models, provider, scale, round_up, min_fit, recommended_id,
+                    tasks=None, level=None):
     """Every *current* model that can do the task, cheapest first, with its effort, fit and cost.
 
     Includes models below the quality bar (flagged), so users see what they'd save or risk by switching.
     """
     need = set(task["requires"])
-    level = task["effort"][complexity]
+    level = level or task["effort"][complexity]
     rows = []
     for m in models:
         if m["status"] != "current":
@@ -197,6 +233,7 @@ def cost_comparison(task, complexity, models, provider, scale, round_up, min_fit
             "meets_quality_bar": fit >= min_fit,
             "est_cost_usd": round(cost, 4) if cost is not None else None,
             "est_cost_per_1000_runs_usd": round(cost * 1000, 2) if cost is not None else None,
+            "agent_run": agent_run_estimate(m, task, complexity, level, tasks or {}),
             "note": note,
             "_cost": cost,  # unrounded, for sorting and volume totals; removed before output
         })
@@ -222,11 +259,11 @@ def volume_totals(volume, rows):
 
 
 def route(task_id, complexity="moderate", priority="balanced", provider="any",
-          include_legacy=False, registry=None, volume=None):
+          include_legacy=False, registry=None, volume=None, effort_level=None):
     registry = registry or load_registry()
     tasks, scale, models = registry
     task = find_task(tasks, task_id)
-    level = task["effort"][complexity]
+    level = effort_level or task["effort"][complexity]
     statuses = LEGACY_STATUSES if include_legacy else DEFAULT_STATUSES
     pool, relaxed = candidates(task, complexity, models, provider, statuses, tasks)
     round_up = priority == "quality" or complexity in ("complex", "frontier")
@@ -237,6 +274,7 @@ def route(task_id, complexity="moderate", priority="balanced", provider="any",
             "fit": fit,
             "cost": estimate_cost(card, task, complexity),
             "effort": native_effort(card, level, scale, round_up, task["id"]),
+            "agent": agent_run_estimate(card, task, complexity, level, tasks),
         })
     ranked = rank(entries, priority, tasks["min_fit_by_complexity"][complexity])
 
@@ -254,6 +292,7 @@ def route(task_id, complexity="moderate", priority="balanced", provider="any",
             "effort": e["effort"],
             "effort_parameter": (c.get("effort") or {}).get("parameter"),
             "est_cost_usd": round(e["cost"], 4) if e["cost"] is not None else None,
+            "agent_run": e.get("agent"),
             "prompt_style": c.get("prompt_style"),
             "card": c["_path"],
             "watch_out": c.get("watch_out", []),
@@ -289,7 +328,7 @@ def route(task_id, complexity="moderate", priority="balanced", provider="any",
 
     min_fit = tasks["min_fit_by_complexity"][complexity]
     comparison = cost_comparison(task, complexity, models, provider, scale, round_up, min_fit,
-                                 top["card"]["id"] if top else None)
+                                 top["card"]["id"] if top else None, tasks, level)
 
     totals = volume_totals(volume, comparison)
     for row in comparison:
@@ -355,6 +394,11 @@ def print_human(r):
         return
     print("\nRECOMMENDED  %s  [%s]  effort=%s  fit=%s/5  est=%s" % (
         rec["model"], rec["provider"], rec["effort"] or "-", rec["fit"], fmt_cost(rec["est_cost_usd"])))
+    ar = rec.get("agent_run")
+    if ar:
+        print("             as a helper-agent run (modelwise-run): typical %s, range %s–%s over about %d–%d steps%s" % (
+            fmt_cost(ar["typical_usd"]), fmt_cost(ar["low_usd"]), fmt_cost(ar["high_usd"]), ar["steps"][0], ar["steps"][1],
+            "  ⚠ large run" if ar["warn"] else ""))
     for label, key in (("TIE        ", "tie_with"), ("CHEAPER    ", "cheaper_option"), ("STRONGER   ", "stronger_option")):
         o = r[key]
         if o:
@@ -540,6 +584,8 @@ def main(argv=None):
     ap.add_argument("--priority", default="balanced", choices=["quality", "balanced", "cost", "speed"])
     ap.add_argument("--provider", default="any", choices=["any", "anthropic", "openai"])
     ap.add_argument("--include-legacy", action="store_true", help="Also consider legacy models.")
+    ap.add_argument("--effort-level", choices=["E0", "E1", "E2", "E3", "E4", "E5", "E6"],
+                    help="Override the task's normalized effort level (e.g. E3 to price Opus at medium instead of high).")
     ap.add_argument("--volume", type=int, help="How many times the task runs (e.g. 50000 tickets): adds total and batch cost.")
     ap.add_argument("--json", action="store_true", help="Machine-readable output.")
     ap.add_argument("--list-tasks", action="store_true")
@@ -558,7 +604,8 @@ def main(argv=None):
     elif args.models:
         sys.stdout.write(models_list(registry))
     elif args.task:
-        r = route(args.task, args.complexity, args.priority, args.provider, args.include_legacy, registry, args.volume)
+        r = route(args.task, args.complexity, args.priority, args.provider, args.include_legacy, registry, args.volume,
+                  args.effort_level)
         if args.json:
             print(json.dumps(r, indent=2))
         else:

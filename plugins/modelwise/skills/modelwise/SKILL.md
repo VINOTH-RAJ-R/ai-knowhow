@@ -3,7 +3,7 @@ name: modelwise
 description: Turn a basic prompt from any department (engineering, design, marketing, sales, support, product, HR, finance, legal, operations, leadership) in any industry into an expert decision, the right model and effort, and a structured, model-specific prompt. It first decides like the top practitioner of that function would (goal, deliverable, approach, production path and sign-off), then classifies each phase (coding, frontend, debugging, writing, research, data, reasoning, vision, image, video, audio, agents), picks the best Anthropic or OpenAI model and reasoning effort from a curated registry, estimates cost, rewrites the prompt in the format that model works best with, and gives token-saving tips. Use when the user asks "which model should I use", "what effort", "improve/structure my prompt", "how do I prompt X for Y", "cheapest way to do this", or invokes /modelwise with a prompt. It returns the recommendation and ready-to-use prompts; it does not produce the final asset itself.
 license: MIT
 metadata:
-  version: "0.3.7"
+  version: "0.3.9"
   default-model-claude: "claude-haiku-5-5 at effort low (claude-sonnet-5-5 for complex rewrites)"
   default-model-openai: "gpt-6-luna at effort low (gpt-6.1-sol for complex rewrites)"
   registry-verified: "2026-10-17"
@@ -172,7 +172,7 @@ Leave out these sections entirely: Expert decision, Save tokens, Why this works,
 ## Cost across models
 | Model | Effort | Fit | Per run | Per 1,000 runs | Note |
 |---|---|---|---|---|---|
-<one row per entry in `cost_comparison` from the `--provider any` result (every current model that can do the task, both vendors, cheapest first). Mark the recommended row in bold, and show "below quality bar" in Note where `meets_quality_bar` is false. Always include this table — even when the user is limited to one vendor — so they can see what the same task costs elsewhere. With several AI phases, show the full table only for the costliest phase; the Route per phase table carries each phase's own cost and a "Total per run" row. Without the script, see step 3.>
+<one row per entry in `cost_comparison` from the `--provider any` result (every current model that can do the task, both vendors, cheapest first). Mark the recommended row in bold, and show "below quality bar" in Note where `meets_quality_bar` is false. Always include this table — even when the user is limited to one vendor — so they can see what the same task costs elsewhere. When the prompt will run as an agent (Claude Code, Codex, or `/modelwise-run`), add one line under the table with the recommended model's `agent_run` figures ("As an agent run: typical $X, range $low–$high, about a–b steps"), because agent loops cost far more than one answer. With several AI phases, show the full table only for the costliest phase; the Route per phase table carries each phase's own cost and a "Total per run" row. Without the script, see step 3.>
 
 ## Your prompt
 <Start every prompt block with one line: **Paste into:** <app or tool, see "Where each prompt runs"> · **You get:** <what comes back: a script and shot prompts, an image, a draft, a table>. If the user is in Claude and the step needs an image or video, say plainly that Claude can't make it, and name where it's made.>

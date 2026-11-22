@@ -130,6 +130,47 @@ class RouterTests(unittest.TestCase):
             self.assertAlmostEqual(row["total_batch_usd"], row["total_usd"] / 2, delta=0.01, msg=row["model"])
         self.assertTrue(all("_cost" not in c for c in res["cost_comparison"]))
 
+    def test_agent_run_ranges_cover_measured_runs(self):
+        # Real modelwise-run helper runs, 2026-10-30 to 2026-11-14, at list price.
+        measured = [("text.transform", "moderate", "E3", "claude-opus-5-5", 0.98),
+                    ("code.review", "complex", "E4", "claude-opus-5-5", 3.37),
+                    ("code.build", "complex", "E4", "claude-opus-5-5", 5.12),
+                    ("code.build", "complex", "E4", "claude-opus-5-5", 26.05),
+                    ("code.review", "moderate", "E3", "claude-sonnet-5-5", 0.80),
+                    ("code.frontend", "moderate", "E3", "claude-sonnet-5-5", 3.80)]
+        for task, cx, level, model, actual in measured:
+            res = route.route(task, cx, "balanced", "anthropic", registry=REG, effort_level=level)
+            ar = {c["model"]: c["agent_run"] for c in res["cost_comparison"]}[model]
+            self.assertLessEqual(ar["low_usd"], actual, (task, model))
+            self.assertGreaterEqual(ar["high_usd"], actual, (task, model))
+            self.assertTrue(ar["low_usd"] <= ar["typical_usd"] <= ar["high_usd"])
+
+    def test_agent_run_warns_on_big_runs_and_uses_long_context_prices(self):
+        big = r("code.build", "complex", "balanced", "anthropic")["recommended"]["agent_run"]
+        self.assertTrue(big["warn"])
+        small = r("code.quick", "simple", "balanced", "anthropic")["recommended"]["agent_run"]
+        self.assertFalse(small["warn"])
+        rows = {c["model"]: c["agent_run"] for c in r("code.build", "complex", "balanced", "anthropic")["cost_comparison"]}
+        # Haiku crosses its 100K-token price step in a long run, so it can't look nearly free.
+        self.assertGreater(rows["claude-haiku-5-5"]["high_usd"], 1.0)
+
+    def test_effort_level_override(self):
+        high = route.route("code.build", "complex", "balanced", "anthropic", registry=REG)
+        med = route.route("code.build", "complex", "balanced", "anthropic", registry=REG, effort_level="E3")
+        self.assertEqual(med["effort_level"], "E3")
+        self.assertLess(med["recommended"]["agent_run"]["typical_usd"], high["recommended"]["agent_run"]["typical_usd"])
+
+    def test_limit_check_predictions(self):
+        sys.path.insert(0, os.path.join(ROOT, "plugins", "modelwise", "skills", "modelwise", "scripts"))
+        import limit_check
+        self.assertEqual(limit_check.predict(None, 13.6, 3.6, 33.1, 41)["verdict"], "learning")
+        self.assertEqual(limit_check.predict(0.5, 1.9, 0.35, 4.8, 41)["verdict"], "fits")
+        self.assertEqual(limit_check.predict(0.5, 13.6, 3.6, 33.1, 41)["verdict"], "likely fits")
+        hit = limit_check.predict(0.5, 13.6, 3.6, 33.1, 85, [60, 220])
+        self.assertEqual(hit["verdict"], "likely hits the limit")
+        self.assertGreaterEqual(hit["phases_needed"], 2)
+        self.assertLess(hit["stops_near_step"], 140)
+
     def test_known_sensible_picks(self):
         # Guards against accidental regressions in fit ratings or scoring.
         self.assertIn(r("data.extract", "simple")["recommended"]["tier"], ("fast",))

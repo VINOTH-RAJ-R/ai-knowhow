@@ -164,6 +164,8 @@ In Claude Code, `/modelwise-run <prompt>`:
 3. waits for **Run it**, a stronger or cheaper model, or **Cancel**. It never runs without your OK;
 4. hands the task to a helper agent on that model (`modelwise-haiku`, `-sonnet`, `-opus` or `-fable`) and returns the result, with what it cost.
 
+It prices the run as a helper loop (a typical figure and a range, calibrated on real runs) and, in the desktop app, checks your plan's 5-hour and weekly usage first: it tells you whether the run should fit, or proposes phases that each fit. Long jobs keep a checkpoint file, so if one stops at the limit, `/modelwise-run continue` starts a fresh helper from the checkpoint instead of re-reading the whole run.
+
 A skill can't change the model of the chat it runs in, so the work moves to a helper agent on the routed model. Tip: keep your own session on Sonnet or Haiku, so the routing step itself stays cheap. Image, video and audio tasks can't run on Claude, so it gives you the modelwise prompt for those instead.
 
 ## retrace: turn work into lessons
@@ -208,7 +210,7 @@ Fit ratings are curated judgments from vendor docs, not benchmark scores. Prices
 
 ## Privacy and safety
 - **modelwise** runs one local script (`route.py`) that reads the bundled registry. No network calls, no API keys, nothing collected.
-- **modelwise-run** starts a helper agent in your Claude Code session after you confirm. It has your session's permissions, is told not to commit, push, send, publish or delete anything, and Claude Code's own permission prompts still apply. It runs on your Claude plan, like any other task.
+- **modelwise-run** starts a helper agent in your Claude Code session after you confirm. It has your session's permissions, is told not to commit, push, send, publish or delete anything, and Claude Code's own permission prompts still apply. It runs on your Claude plan, like any other task. After each run it appends one line to a local log, `~/.claude/modelwise/runs.jsonl` (date, route, quoted price, outcome and a 3–5 word label; never your prompt or results), so `scripts/runs_report.py` can compare quotes with real usage. Nothing is sent anywhere; set `MODELWISE_LOG=0` to turn it off. When the desktop app shows plan usage, it also records your 5-hour and weekly usage % before and after the run, so it can learn how much of your limit a run takes and warn before a run that won't fit. Long runs keep a short checkpoint in `.modelwise/` in your project (added to `.gitignore`), so a stopped run continues from it instead of re-reading everything.
 - **retrace** writes lesson files only where you run it, after removing keys, tokens, passwords and personal data.
 - Full details: [PRIVACY.md](PRIVACY.md).
 

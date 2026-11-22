@@ -24,7 +24,12 @@
     "input": 0.1,
     "output": 0.5,
     "cached_input": null,
-    "notes": "For prompts up to 100K tokens; $0.50 / $2.50 above that."
+    "notes": "For prompts up to 100K tokens; $0.50 / $2.50 above that.",
+    "long_context": {
+      "above_tokens": 100000,
+      "input": 0.5,
+      "output": 2.5
+    }
   },
   "effort": {
     "parameter": "output_config.effort",

@@ -70,6 +70,10 @@ lesson-<slug>/
 ## Cost estimates
 `route.py` prices one typical task from the task's token profile and the card's list price. Rows are sorted and volume totals (`--volume N`, with the 50% Batch price) are computed from the unrounded cost; only the displayed per-run and per-1,000 figures are rounded. They are list-price comparisons, not quotes: caching, regional and priority tiers are left out.
 
+**Helper-agent runs are priced differently.** `/modelwise-run` hands work to an agent that loops through many steps, re-reading the project from cache at each one, so the cost grows with steps × context, not with one prompt's size. `agent_run_estimate()` prices that loop from `tasks.json["agent_run"]` (step ranges per complexity, with overrides for builds and long runs; context that grows per step; cache writes; output scaled by effort) and returns a low, typical and high figure, plus a warning flag above $15. It was calibrated on 7 measured runs ($0.80–$26.05, 13–257 steps), all inside their ranges, and checked against a 37-run usage report. Because cache reads dominate, effort changes an agent run's cost far less than the step count does. `scripts/log_run.py` records each quote locally and `scripts/runs_report.py` compares it with the helper's real token usage.
+
+**Usage limits and checkpoints.** Where the app exposes plan usage (the desktop app's `get_usage`), modelwise-run reads the 5-hour and weekly percentages before and after each run and logs them. `scripts/limit_check.py` learns the user's own list-price dollars per 1% of each window (median over at least 3 logged runs; runs that cross a reset are skipped) and predicts whether the next run fits, where it would stop, and how many phases would fit. Long or phased runs keep `.modelwise/checkpoint-<name>.md` (template in `skills/modelwise-run/checkpoint-template.md`); a stopped run continues with a fresh helper that reads only the checkpoint and the files it needs, because resuming the old helper after its cache expires re-sends its whole history.
+
 ## Keeping the registry current
 ```
 daily GitHub Action ─► tools/watch_models.py (vendor model pages) ─► unknown IDs? ─► issue

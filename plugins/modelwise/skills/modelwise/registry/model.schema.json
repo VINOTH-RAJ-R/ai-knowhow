@@ -140,6 +140,32 @@
         },
         "notes": {
           "type": "string"
+        },
+        "long_context": {
+          "type": "object",
+          "description": "Higher prices once a request's input passes a threshold, as published by the vendor.",
+          "required": [
+            "above_tokens",
+            "input",
+            "output"
+          ],
+          "properties": {
+            "above_tokens": {
+              "type": "number"
+            },
+            "input": {
+              "type": "number"
+            },
+            "output": {
+              "type": "number"
+            },
+            "cached_input": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
         }
       }
     },
