@@ -3,7 +3,7 @@ name: modelwise-run
 description: Route a prompt to the right Claude model and run it there, in Claude Code. It understands the prompt (department, industry, task, complexity), picks the Claude model and effort from the modelwise registry, rewrites the prompt in that model's preferred structure, shows the route, cost and prompt for the user's OK, then hands the task to a helper agent on that model and returns the result. Use when the user invokes /modelwise-run or /modelwise:modelwise-run with a prompt, or says "route and run this", "run this on the right model", "auto-route this", "use the cheapest model that can do this". For advice only (which model, a prompt to paste elsewhere, image or video prompts), use modelwise.
 license: MIT
 metadata:
-  version: "0.3.6"
+  version: "0.3.7"
 ---
 
 # Modelwise run: understand, route, structure, confirm, execute
@@ -18,6 +18,9 @@ The router, registry, guides and templates live in the sibling `modelwise` skill
 Follow `MW/guides/classify.md` to get department, industry, market, task, complexity and priority. Keep the user's stated audience (`MW/SKILL.md`, step 2).
 - Read only what you need to classify. If the task depends on project files, name the paths for the helper to read rather than pasting them.
 - Never block on questions: assume, and list the assumptions in the confirm card.
+- **Priority defaults to `balanced`.** Use `quality` only when the user asks for it ("best", "most accurate", "critical", "for a client or investor", "production") or a previous attempt failed. Use `cost` when they say "cheap", "budget" or "at scale". A task feeling important is not a reason for `quality`: the stronger model is one click away in the confirm card.
+- **Complexity is the biggest cost lever.** Rate the size of the work, not how much it matters: one document or one page is usually `moderate`; many files, a whole codebase or a long autonomous run is `complex`. At `complex` the router needs a near-top fit, which usually means Opus.
+- **Task ids come from the registry only:** the task table in `MW/guides/classify.md`, or `route.py --list-tasks`. Never invent an id (`review.code`, `writing.long_form`); if unsure, run `--list-tasks` first.
 
 ## Step 2: Route
 ```bash
@@ -35,6 +38,8 @@ python3 "${CLAUDE_SKILL_DIR}/../modelwise/scripts/route.py" --task <task> --comp
 | `claude-fable` | `modelwise-fable` | `fable` |
 
   If you skipped a model (for example one Claude Code can't select), say which and why in the card.
+- **Borderline complexity:** if the task could fairly be one level lower, run the router at that level too and show it in the card as its own option (`If it's moderate: Sonnet @ medium, $0.28`).
+- **Stronger option:** if `stronger_option` is empty under `balanced`, rerun the router with `--priority quality` and offer its pick as the stronger button, with its cost.
 - **Map the effort:** `none` and `minimal` become `low`; `low`, `medium`, `high`, `xhigh` and `max` pass through.
 
 ## Step 3: Structure the prompt
@@ -51,6 +56,7 @@ Show this card, then ask. Never run before an explicit yes.
 ```
 **Route:** <task> · <complexity> → **<Model> @ <effort>** · est. $<cost> per run
 **Compare:** <cheaper model @ effort> $<x> · <Opus @ high> $<y>   (list prices, before caching)
+**If it's simpler:** <route at one complexity level lower, with cost>   (only when the task is borderline)
 **Why:** <one line>
 **Runs in:** helper agent `<runner>`. It can read and edit this project's files but can't see this chat.
 **Assumptions:** <one line, or "none">
@@ -58,25 +64,27 @@ Show this card, then ask. Never run before an explicit yes.
 <the structured prompt in a code block>
 ```
 
-Ask with the AskUserQuestion tool when it's available, otherwise as the last line of your message, offering: **Run it** · **Use <stronger model>** · **Use <cheaper model>** · **Cancel**. If the user edits the prompt or picks another model, update the card and run on their choice; don't re-ask unless the change is large.
+Ask with the AskUserQuestion tool when it's available, otherwise as the last line of your message, offering: **Run it** · **Use <stronger model>** · **Use <cheaper model>** (or the one-level-lower route, when it's borderline) · **Cancel**. If the user edits the prompt or picks another model, update the card and run on their choice; don't re-ask unless the change is large.
 
 ## Step 5: Execute
 Call the Agent tool:
 - `subagent_type`: the runner, as listed in the available agents (`modelwise:modelwise-sonnet` from the plugin, `modelwise-sonnet` from a personal install). If no runner is listed, use `general-purpose` and set `model` to the alias from the table.
-- `effort`: the mapped effort. This skill is the explicit instruction to set it.
+- `effort`: the mapped effort, on every call. This skill is the explicit instruction to set it. If this app's Agent tool has no `effort` parameter, or rejects it, run without it and record "effort: app default (couldn't be set here)". The report must describe the call as it was actually made.
 - `prompt`: the structured prompt. `description`: 3–5 words.
 
 Wait for the result. Don't do the task yourself in parallel, and never predict the result before it arrives.
+
+**Follow-ups stay routed.** When the user asks for a fix, a change or the next step after a run, route it the same way and confirm with a one-line card (`Route: <task> → <Model> @ <effort> · est. $<cost> · Run it?`), or send it back to the same runner. The session model only does small checks itself: reading a result, listing files, viewing a screenshot. If the session itself is on Opus or Fable, say once that switching it to Sonnet (`/model claude-sonnet-5-5`) keeps follow-ups cheap.
 
 ## Step 6: Report
 - The result in full, as the helper returned it (code, text, findings). List files it created or changed. Check a claimed file change before repeating it.
 - If the helper failed or the result is weak, say so plainly and offer a rerun on `stronger_option`. Ask first.
 - Last lines:
-  - `Ran on <Model> @ <effort> · est. $<cost> · <Opus @ high>: $<y> · <cheapest that clears the bar>: $<z>`
-  - `modelwise-run v<version>`, using `metadata.version` from this file.
+  - `Ran on <Model> @ <effort as actually passed, or "app default"> · est. $<cost> · <Opus @ high>: $<y> · <cheapest that clears the bar>: $<z>`
+  - `modelwise-run v<version>`: copy the `version:` value from this file's frontmatter, as loaded. Never write it from memory or from another file; if you can't see it, run `grep -m1 'version:' "${CLAUDE_SKILL_DIR}/SKILL.md"`.
 
 ## Rules
-- Only say a task ran on a model if the Agent call used that runner or `model`.
+- Only say a task ran on a model, or at an effort, if the Agent call actually set that runner or `model`, and that `effort`.
 - Costs are the router's list-price estimates, not measured usage.
 - The helper uses this session's permissions. Anything that commits, pushes, sends, publishes, deletes or buys still needs the user's own yes.
 - One prompt, one route. For a multi-phase request, confirm each phase's route in the same card and run them in order, passing each result into the next prompt.
